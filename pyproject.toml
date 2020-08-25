@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "bf2-www"
+version = "0.1.0"
+description = "A website for the BF2 frisbee team"
+authors = ["Luko van der Maas <me@luko.dev>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+django = "3.0.9"
+django-cms = "^3.7.4"
+djangocms-text-ckeditor = "^3.10.0"
+django-filer = "^1.7.1"
+djangocms-link = "^2.6.1"
+djangocms-file = "^2.4.0"
+djangocms-picture = "^2.4.0"
+djangocms-video = "^2.3.0"
+djangocms-googlemap = "^1.4.0"
+djangocms-snippet = "^2.3.0"
+djangocms-style = "^2.3.0"
+djangocms-column = "^1.11.0"
+djangocms-bootstrap4 = "^1.6.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

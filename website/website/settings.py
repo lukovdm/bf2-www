@@ -31,6 +31,14 @@ SITE_ID = 1
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+LOGIN_URL = '/user/login/'
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
+
+CMS_PERMISSION = True
+
 CMS_TEMPLATES = [
     ("page.html", "Page"),
     ("feature.html", "Page with Feature"),

@@ -13,9 +13,13 @@ class Member(models.Model):
 
     phone_number = models.CharField(max_length=16)
 
-    street_address = models.CharField(max_length=255, verbose_name=_("Street address and house number"))
+    street_address = models.CharField(
+        max_length=255, verbose_name=_("Street address and house number")
+    )
 
-    postcode = models.CharField(max_length=7, validators=[RegexValidator("^\\d{4} ?[A-Za-z]{2}$")])
+    postcode = models.CharField(
+        max_length=7, validators=[RegexValidator("^\\d{4} ?[A-Za-z]{2}$")]
+    )
 
     city = models.CharField(max_length=52)
 

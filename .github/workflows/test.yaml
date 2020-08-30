@@ -11,6 +11,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install python
+        uses: actions/setup-python@v2
+
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2.0.0
+
       - name: Install any missing dependencies
         run: poetry install --no-interaction
 

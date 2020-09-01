@@ -57,6 +57,7 @@ THUMBNAIL_PROCESSORS = (
 
 INSTALLED_APPS = [
     "djangocms_admin_style",
+    # Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -64,6 +65,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    # Django cms
     "cms",
     "menus",
     "treebeard",
@@ -96,7 +98,9 @@ INSTALLED_APPS = [
     "djangocms_bootstrap4.contrib.bootstrap4_picture",
     "djangocms_bootstrap4.contrib.bootstrap4_tabs",
     "djangocms_bootstrap4.contrib.bootstrap4_utilities",
+    # custom applications
     "members",
+    "events",
 ]
 
 MIDDLEWARE = [

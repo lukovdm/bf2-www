@@ -5,11 +5,11 @@ from django.db.models import (
     CharField,
     DateTimeField,
     IntegerField,
-    OneToOneField,
     CASCADE,
     BooleanField,
     ForeignKey,
 )
+from django.urls import reverse
 from django.utils.timezone import now
 
 
@@ -21,10 +21,13 @@ class Event(Model):
     location = CharField(max_length=255)
     description = PlaceholderField("description")
 
-    limit = IntegerField(null=True, name="participant limit")
-    cost = IntegerField(null=True)
-    registration_start = DateTimeField(default=now, null=True)
-    registration_end = DateTimeField(null=True)
+    limit = IntegerField(null=True, blank=True, verbose_name="participant limit")
+    cost = IntegerField(null=True, blank=True)
+    registration_start = DateTimeField(null=True, blank=True)
+    registration_end = DateTimeField(null=True, blank=True)
+
+    def get_absolute_url(self):
+        return reverse("events:detail", kwargs={"pk": self.pk})
 
 
 class Registration(Model):
@@ -34,4 +37,4 @@ class Registration(Model):
     user = ForeignKey(User, CASCADE)
 
     date = DateTimeField(default=now)
-    has_payed = BooleanField(null=True)
+    has_payed = BooleanField(null=True, blank=True)

@@ -12,8 +12,6 @@ services:
 
   web:
     build: .
-    expose:
-      - 8000
     env_file:
       - config/secrets.env
     volumes:
@@ -35,8 +33,10 @@ services:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - static_volume:/bf2-www/static/
       - media_volume:/bf2-www/media/
-      - certbot_conf:/etc/letsencrypt
-      - certbot_www:/var/www/certbot
+      - web_root:/var/www/html
+      - certbot_var:/var/lib/letsencrypt
+      - certbot_etc:/etc/letsencrypt
+      - dhparam:/etc/ssl/certs
     networks:
       - nginx_network
     depends_on:
@@ -44,9 +44,14 @@ services:
 
   certbot:
     image: certbot/certbot
+    container_name: certbot
     volumes:
-      - certbot_conf:/etc/letsencrypt
-      - certbot_www:/var/www/certbot
+      - certbot_etc:/etc/letsencrypt
+      - certbot_var:/var/lib/letsencrypt
+      - web-_root:/var/www/html
+    depends_on:
+      - nginx
+    command: certonly --webroot --webroot-path=/var/www/html --email sport@luko.dev --agree-tos --no-eff-email --force-renewal -d bf2.luko.dev
 
 networks:
   nginx_network:
@@ -58,5 +63,12 @@ volumes:
   database_volume:
   static_volume:
   media_volume:
-  certbot_conf:
-  certbot_www:
+  certbot_etc:
+  certbot_var:
+  web_root:
+  dhparam:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./dhparam/
+      o: bind

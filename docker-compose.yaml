@@ -43,12 +43,12 @@ services:
       - web
 
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot:arm64v8-latest
     container_name: certbot
     volumes:
       - certbot_etc:/etc/letsencrypt
       - certbot_var:/var/lib/letsencrypt
-      - web-_root:/var/www/html
+      - web_root:/var/www/html
     depends_on:
       - nginx
     command: certonly --webroot --webroot-path=/var/www/html --email sport@luko.dev --agree-tos --no-eff-email --force-renewal -d bf2.luko.dev

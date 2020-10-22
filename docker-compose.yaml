@@ -1,0 +1,74 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    env_file:
+      - config/secrets.env
+    volumes:
+      - database_volume:/var/lib/postgresql/data/
+    networks:
+      - db_network
+
+  web:
+    build: .
+    env_file:
+      - config/secrets.env
+    volumes:
+      - static_volume:/bf2-www/static/
+      - media_volume:/bf2-www/media/
+    networks:
+      - nginx_network
+      - db_network
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - static_volume:/bf2-www/static/
+      - media_volume:/bf2-www/media/
+      - web_root:/var/www/html
+      - certbot_var:/var/lib/letsencrypt
+      - certbot_etc:/etc/letsencrypt
+      - dhparam:/etc/ssl/certs
+    networks:
+      - nginx_network
+    depends_on:
+      - web
+
+  certbot:
+    image: certbot/certbot:arm64v8-latest
+    container_name: certbot
+    volumes:
+      - certbot_etc:/etc/letsencrypt
+      - certbot_var:/var/lib/letsencrypt
+      - web_root:/var/www/html
+    depends_on:
+      - nginx
+    command: certonly --webroot --webroot-path=/var/www/html --email sport@luko.dev --agree-tos --no-eff-email --force-renewal -d bf2.luko.dev
+
+networks:
+  nginx_network:
+    driver: bridge
+  db_network:
+    driver: bridge
+
+volumes:
+  database_volume:
+  static_volume:
+  media_volume:
+  certbot_etc:
+  certbot_var:
+  web_root:
+  dhparam:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./dhparam/
+      o: bind

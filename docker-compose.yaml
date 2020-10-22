@@ -9,6 +9,7 @@ services:
       - database_volume:/var/lib/postgresql/data/
     networks:
       - db_network
+
   web:
     build: .
     expose:
@@ -23,11 +24,12 @@ services:
       - db_network
     depends_on:
       - db
+
   nginx:
     image: nginx
     restart: always
     ports:
-      - 1337:80
+      - 80:80
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - static_volume:/bf2-www/static/

@@ -30,14 +30,23 @@ services:
     restart: always
     ports:
       - 80:80
+      - 443:443
     volumes:
       - ./config/nginx/conf.d:/etc/nginx/conf.d
       - static_volume:/bf2-www/static/
       - media_volume:/bf2-www/media/
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
     networks:
       - nginx_network
     depends_on:
       - web
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot_conf:/etc/letsencrypt
+      - certbot_www:/var/www/certbot
 
 networks:
   nginx_network:
@@ -49,3 +58,5 @@ volumes:
   database_volume:
   static_volume:
   media_volume:
+  certbot_conf:
+  certbot_www:

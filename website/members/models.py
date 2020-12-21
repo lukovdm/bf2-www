@@ -6,11 +6,12 @@ from django.utils.translation import gettext_lazy as _
 
 class Member(models.Model):
     """A model to hold all extra personal information about members."""
-    RU = 'RU'
-    HAN = 'HAN'
+
+    RU = "RU"
+    HAN = "HAN"
     TYPE_STUDENT = [
-        (RU, 'radboud universiteit'),
-        (HAN, 'hogeschool Arnhem Nijmegen'), 
+        (RU, "radboud universiteit"),
+        (HAN, "hogeschool Arnhem Nijmegen"),
     ]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -31,9 +32,7 @@ class Member(models.Model):
 
     is_student = models.BooleanField()
 
-
-    student_type = models.CharField(
-        max_length=3, choices = TYPE_STUDENT, blank = True)
+    student_type = models.CharField(max_length=3, choices=TYPE_STUDENT, blank=True)
 
     sports_card_number = models.CharField(max_length=10)
 

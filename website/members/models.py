@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 class Member(models.Model):
@@ -10,8 +11,8 @@ class Member(models.Model):
     RU = "RU"
     HAN = "HAN"
     TYPE_STUDENT = [
-        (RU, "radboud universiteit"),
-        (HAN, "hogeschool Arnhem Nijmegen"),
+        (RU, _("radboud university")),
+        (HAN, _("HAN")),
     ]
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -32,8 +33,16 @@ class Member(models.Model):
 
     is_student = models.BooleanField()
 
-    student_type = models.CharField(max_length=3, choices=TYPE_STUDENT, blank=True)
+    student_type = models.CharField(
+        max_length=3, choices=TYPE_STUDENT, blank=True, null=True
+    )
 
     sports_card_number = models.CharField(max_length=10)
 
     graduation_date = models.DateField()
+
+    def clean(self):
+        if self.is_student == True and self.student_type is None:
+            raise ValidationError(
+                _("You are a student so please indicate your student type")
+            )

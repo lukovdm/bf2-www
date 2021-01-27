@@ -1,0 +1,9 @@
+<div>
+    <h1>Board of {{ year }}</h1>
+    <img src="{{ picture.url }}"/>
+    <ul>
+        {% for member in members %}
+            <li>{{ member.member.user.first_name }} {{ member.fuction }} {{ member.email }}</li>
+        {% endfor %}
+    </ul>
+</div>

@@ -16,6 +16,6 @@ class CurrentBoardPlugin(CMSPluginBase):
         context = super().render(context, instance, placeholder)
         board = Board.objects.order_by("-start").first()
         context["year"] = board.start.year
-        context["members"] = board.members.through.objects.all()
+        context["board_members"] = board.boardmembership_set.all()
         context["picture"] = board.picture
         return context

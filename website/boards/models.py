@@ -8,9 +8,7 @@ class Board(models.Model):
     start = models.DateField()
     end = models.DateField(blank=True, null=True)
 
-    members = models.ManyToManyField(to=Member, through="BoardMembership")
-
-    picture = models.ImageField()
+    picture = models.ImageField(blank=True, null=True)
 
     def clean(self):
         if self.end:
@@ -52,9 +50,27 @@ class Board(models.Model):
 
 class BoardMembership(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
-    member = models.ForeignKey(Member, on_delete=models.CASCADE)
+
+    member = models.ForeignKey(Member, blank=True, null=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, blank=True, null=True)
 
     function = models.CharField(max_length=255)
     email = models.EmailField()
+    picture = models.ImageField(blank=True, null=True)
 
-    picture = models.ImageField()
+    def clean(self):
+        if self.member is not None and self.name is not None:
+            raise ValidationError(
+                {
+                    "member": "Either member or name have to be filled, not both",
+                    "name": "Either member or name have to be filled, not both",
+                }
+            )
+
+        if self.member is None and self.name is None:
+            raise ValidationError(
+                {
+                    "member": "Either member or name is required",
+                    "name": "Either member or name is required",
+                }
+            )

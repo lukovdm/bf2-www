@@ -99,6 +99,7 @@ INSTALLED_APPS = [
     # custom applications
     "members",
     "events",
+    "boards",
 ]
 
 MIDDLEWARE = [

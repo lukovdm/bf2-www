@@ -134,6 +134,7 @@ dmypy.json
 # website files
 website/*.sqlite3
 website/media/
+/media/
 database/
 
 # secrets

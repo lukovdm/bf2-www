@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views import View
 from django.views.generic import ListView, DetailView
+from django.utils.translation import gettext_lazy as _
 
 from events.models import Event, Registration
 
@@ -52,21 +53,27 @@ class EventRegisterView(LoginRequiredMixin, View):
         if (
             event.registration_start
             and event.registration_start > timezone.now()
-            or event.registration_end
+        ):
+            messages.error(
+                request,
+                _("The registrations for this event have not opened yet."),
+            )
+        elif (
+            event.registration_end
             and event.registration_end < timezone.now()
         ):
             messages.error(
                 request,
-                "You can't register outside of the start or end date of this event.",
+                _("The registrations for this event have already closed."),
             )
         elif event.limit and len(event.registration_set.all()) >= event.limit:
-            messages.error(request, "Event is already full.")
+            messages.error(request, _("This event is already full."))
         elif event.registration_set.all().filter(user=request.user).exists():
-            messages.error(request, "You already registered for this event.")
+            messages.error(request, _("You have already registered for this event."))
         else:
             Registration.objects.create(
                 event=event, user=request.user, has_payed=False if event.cost else None
             )
-            messages.success(request, "You successfully registered.")
+            messages.success(request, _("You successfully registered."))
 
         return redirect(event)

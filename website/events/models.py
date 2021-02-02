@@ -11,20 +11,27 @@ from django.db.models import (
 )
 from django.urls import reverse
 from django.utils.timezone import now
+from django.utils.translation import gettext_lazy as _
+
+from utils.translations import ModelTranslateMeta, MultilingualField
 
 
-class Event(Model):
+class Event(Model, metaclass=ModelTranslateMeta):
     """An event with no registrations in itself"""
 
-    name = CharField(max_length=255)
-    date = DateTimeField()
-    location = CharField(max_length=255)
-    description = PlaceholderField("description")
+    name = MultilingualField(CharField, max_length=255, verbose_name=_("name"))
+    date = DateTimeField(verbose_name=_("date"))
+    location = CharField(max_length=255, verbose_name=_("location"))
+    description = PlaceholderField("description", verbose_name=_("description"))
 
-    limit = IntegerField(null=True, blank=True, verbose_name="participant limit")
-    cost = IntegerField(null=True, blank=True)
-    registration_start = DateTimeField(null=True, blank=True)
-    registration_end = DateTimeField(null=True, blank=True)
+    limit = IntegerField(null=True, blank=True, verbose_name=_("participant limit"))
+    cost = IntegerField(null=True, blank=True, verbose_name=_("cost"))
+    registration_start = DateTimeField(
+        null=True, blank=True, verbose_name=_("registration start")
+    )
+    registration_end = DateTimeField(
+        null=True, blank=True, verbose_name=_("registration end")
+    )
 
     def get_absolute_url(self):
         return reverse("events:detail", kwargs={"pk": self.pk})
@@ -33,8 +40,8 @@ class Event(Model):
 class Registration(Model):
     """Registration of a user to a registrable event"""
 
-    event = ForeignKey(Event, CASCADE)
-    user = ForeignKey(User, CASCADE)
+    event = ForeignKey(Event, CASCADE, verbose_name=_("event"))
+    user = ForeignKey(User, CASCADE, verbose_name=_("user"))
 
-    date = DateTimeField(default=now)
-    has_payed = BooleanField(null=True, blank=True)
+    date = DateTimeField(default=now, verbose_name=_("registration date"))
+    has_payed = BooleanField(null=True, blank=True, verbose_name=_("has payed"))

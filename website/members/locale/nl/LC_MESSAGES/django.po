@@ -1,0 +1,71 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-02 20:32+0100\n"
+"PO-Revision-Date: 2021-02-02 20:50+0100\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.4.1\n"
+
+#: models.py:14
+msgid "radboud university"
+msgstr "radboud universiteit"
+
+#: models.py:15
+msgid "HAN"
+msgstr "HAN"
+
+#: models.py:20
+msgid "birthday"
+msgstr "geboortedatum"
+
+#: models.py:22
+msgid "phone number"
+msgstr "telefoonnummer"
+
+#: models.py:25
+msgid "Street address and house number"
+msgstr "Straatnaam en huisnummer"
+
+#: models.py:29
+msgid "postcode"
+msgstr "postcode"
+
+#: models.py:32
+msgid "city"
+msgstr "stad"
+
+#: models.py:34
+msgid "is student"
+msgstr "student"
+
+#: models.py:37
+msgid "student type"
+msgstr "type student"
+
+#: models.py:40
+msgid "sports card number"
+msgstr "sportkaartnummer"
+
+#: models.py:42
+msgid "graduation date"
+msgstr "afstudeerdatum"
+
+#: models.py:47
+msgid "You are a student so please indicate your student type"
+msgstr "Jij bent een student, dus geef alstublieft een student type aan"
+
+#: templates/members/become_a_member.html:4
+msgid "Become a member"
+msgstr "Word lid"

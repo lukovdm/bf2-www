@@ -25,5 +25,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("user/", include("django.contrib.auth.urls")),
     path("become-a-member/", BecomeAMemberView.as_view(), name="become-a-member"),
+    path('i18n/', include('django.conf.urls.i18n')),
     url(r"^", include("cms.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

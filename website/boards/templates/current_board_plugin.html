@@ -1,6 +1,8 @@
+{% load i18n %}
+
 <div>
-    <h1>Board of {{ year }}</h1>
-    <img src="{{ picture.url }}"/>
+    <h1>{% trans "Board of" %} {{ year }}</h1>
+    <img src="{{ picture.url }}" style="width: 100%"/>
     <ul>
         {% for board_member in board_members %}
             <li>{% if board_member.member %}{{ board_member.member.user.first_name }}{% else %}{{ board_member.name }}{% endif %} {{ board_member.fuction }} {{ board_member.email }}</li>

@@ -50,18 +50,12 @@ class EventRegisterView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         event = get_object_or_404(Event, pk=kwargs["pk"])
 
-        if (
-            event.registration_start
-            and event.registration_start > timezone.now()
-        ):
+        if event.registration_start and event.registration_start > timezone.now():
             messages.error(
                 request,
                 _("The registrations for this event have not opened yet."),
             )
-        elif (
-            event.registration_end
-            and event.registration_end < timezone.now()
-        ):
+        elif event.registration_end and event.registration_end < timezone.now():
             messages.error(
                 request,
                 _("The registrations for this event have already closed."),

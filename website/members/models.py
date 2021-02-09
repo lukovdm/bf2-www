@@ -26,7 +26,9 @@ class Member(models.Model):
     )
 
     postcode = models.CharField(
-        max_length=7, validators=[RegexValidator("^\\d{4} ?[A-Za-z]{2}$")], verbose_name=_("postcode")
+        max_length=7,
+        validators=[RegexValidator("^\\d{4} ?[A-Za-z]{2}$")],
+        verbose_name=_("postcode"),
     )
 
     city = models.CharField(max_length=52, verbose_name=_("city"))
@@ -34,10 +36,16 @@ class Member(models.Model):
     is_student = models.BooleanField(verbose_name=_("is student"))
 
     student_type = models.CharField(
-        max_length=3, choices=TYPE_STUDENT, blank=True, null=True, verbose_name=_("student type")
+        max_length=3,
+        choices=TYPE_STUDENT,
+        blank=True,
+        null=True,
+        verbose_name=_("student type"),
     )
 
-    sports_card_number = models.CharField(max_length=10, verbose_name=_("sports card number"))
+    sports_card_number = models.CharField(
+        max_length=10, verbose_name=_("sports card number")
+    )
 
     graduation_date = models.DateField(verbose_name=_("graduation date"))
 

@@ -33,8 +33,12 @@ class Board(models.Model):
                 ):
                     raise ValidationError(
                         {
-                            "start": _("A boards start and end cannot overlap with another board"),
-                            "end": _("A boards start and end cannot overlap with another board"),
+                            "start": _(
+                                "A boards start and end cannot overlap with another board"
+                            ),
+                            "end": _(
+                                "A boards start and end cannot overlap with another board"
+                            ),
                         }
                     )
         else:
@@ -53,10 +57,20 @@ class Board(models.Model):
 class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
     board = models.ForeignKey(Board, on_delete=models.CASCADE, verbose_name=_("board"))
 
-    member = models.ForeignKey(Member, blank=True, null=True, on_delete=models.CASCADE, verbose_name=_("member"))
-    name = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("name"))
+    member = models.ForeignKey(
+        Member,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        verbose_name=_("member"),
+    )
+    name = models.CharField(
+        max_length=255, blank=True, null=True, verbose_name=_("name")
+    )
 
-    function = MultilingualField(models.CharField, max_length=255, verbose_name=_("function"))
+    function = MultilingualField(
+        models.CharField, max_length=255, verbose_name=_("function")
+    )
     email = models.EmailField(verbose_name=_("email"))
     picture = models.ImageField(blank=True, null=True, verbose_name=_("picture"))
 

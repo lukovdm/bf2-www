@@ -45,6 +45,7 @@ jobs:
           echo "Searching for obsolete translations."
           grep --include="*.po" --files-with-matches --recursive "^#~" website && exit 1 || echo "No obsolete translations found."
           # Check for untranslated strings in .po files
+          echo "Searching for untranslated strings."
           empty_strings=$(sed '$a\\' website/**/locale/nl/LC_MESSAGES/django.po | tac | sed '/^$/N;/\nmsgstr ""$/,/^msgid/!d' | tac)
           if [[ $empty_strings ]]; then echo $empty_strings && exit 1; else echo "No untranslated strings found."; fi
           # Check for fuzzy translations in .po files

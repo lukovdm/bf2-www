@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-10 20:41+0000\n"
-"PO-Revision-Date: 2021-02-10 21:36+0100\n"
+"PO-Revision-Date: 2021-02-10 22:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -36,8 +36,7 @@ msgstr "De start datum moet voor de eind datum zijn."
 
 #: models.py:37 models.py:40
 msgid "A boards start and end cannot overlap with another board"
-msgstr ""
-"Een bestuurs start en eind datum mogen niet overlappen met een ander bestuur"
+msgstr "Een bestuurs start en eind datum mogen niet overlappen met een ander bestuur"
 
 #: models.py:50
 msgid "A boards start cannot fall in another board"
@@ -68,8 +67,6 @@ msgid "email"
 msgstr "email"
 
 #: models.py:81 models.py:82
-#, fuzzy
-#| msgid "Either member or name have to be filled, not both"
 msgid "Either member or name have to be filled in, not both"
 msgstr "Of lid of naam moet ingevuld zijn, maar niet beide"
 

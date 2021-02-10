@@ -78,8 +78,8 @@ class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
         if self.member is not None and self.name is not None:
             raise ValidationError(
                 {
-                    "member": _("Either member or name have to be filled, not both"),
-                    "name": _("Either member or name have to be filled, not both"),
+                    "member": _("Either member or name have to be filled in, not both"),
+                    "name": _("Either member or name have to be filled in, not both"),
                 }
             )
 

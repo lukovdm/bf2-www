@@ -22,7 +22,7 @@ class Member(models.Model):
     phone_number = models.CharField(max_length=16, verbose_name=_("phone number"))
 
     street_address = models.CharField(
-        max_length=255, verbose_name=_("Street address and house number")
+        max_length=255, verbose_name=_("street name and house number")
     )
 
     postcode = models.CharField(

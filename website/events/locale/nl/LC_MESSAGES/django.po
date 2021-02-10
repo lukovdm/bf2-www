@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-02 20:45+0100\n"
+"POT-Creation-Date: 2021-02-10 20:41+0000\n"
 "PO-Revision-Date: 2021-02-02 20:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -63,7 +63,9 @@ msgid "registration date"
 msgstr "aanmeld datum"
 
 #: models.py:47
-msgid "has payed"
+#, fuzzy
+#| msgid "has payed"
+msgid "has paid"
 msgstr "heeft betaald"
 
 #: templates/events/event_detail.html:19
@@ -91,22 +93,22 @@ msgctxt "date"
 msgid "at"
 msgstr "op"
 
-#: views.py:59
+#: views.py:56
 msgid "The registrations for this event have not opened yet."
 msgstr "De aanmeldingen voor dit evenement zijn nog niet open gegaan."
 
-#: views.py:67
+#: views.py:61
 msgid "The registrations for this event have already closed."
 msgstr "De aanmeldingen voor dit evenement zijn al gesloten."
 
-#: views.py:70
+#: views.py:64
 msgid "This event is already full."
 msgstr "Dit evenement is al vol."
 
-#: views.py:72
+#: views.py:66
 msgid "You have already registered for this event."
 msgstr "Je bent al aangemeld voor dit evenement."
 
-#: views.py:77
+#: views.py:71
 msgid "You successfully registered."
-msgstr "Je ben aangemeld."
+msgstr "Je bent aangemeld."

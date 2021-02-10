@@ -44,4 +44,4 @@ class Registration(Model):
     user = ForeignKey(User, CASCADE, verbose_name=_("user"))
 
     date = DateTimeField(default=now, verbose_name=_("registration date"))
-    has_payed = BooleanField(null=True, blank=True, verbose_name=_("has payed"))
+    has_payed = BooleanField(null=True, blank=True, verbose_name=_("has paid"))

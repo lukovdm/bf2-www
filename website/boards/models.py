@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from cms.models.pluginmodel import CMSPlugin
 
 from members.models import Member
 
@@ -74,3 +75,7 @@ class BoardMembership(models.Model):
                     "name": "Either member or name is required",
                 }
             )
+
+
+class PreviousBoardModel(CMSPlugin):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE)

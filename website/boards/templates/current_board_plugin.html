@@ -5,5 +5,6 @@
         {% for board_member in board_members %}
             <li>{% if board_member.member %}{{ board_member.member.user.first_name }}{% else %}{{ board_member.name }}{% endif %} {{ board_member.fuction }} {{ board_member.email }}</li>
         {% endfor %}
+        
     </ul>
 </div>

@@ -36,7 +36,12 @@
             </nav>
             {% block content %}{% endblock content %}
             <footer class="container py-5 bg-dark text-white">
-                {% static_placeholder 'footer' %}
+                <div id="fb-root"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v9.0" nonce="XJr1lDBb"></script>
+                <div class="fb-page" data-href="https://www.facebook.com/BFrisBee2s/" data-tabs="" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/BFrisBee2s/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/BFrisBee2s/">BFrisBee2&#039;s</a></blockquote></div>
+                
+                <a href="https://www.facebook.com/BFrisBee2s/"><img src="{% static 'images/facebookIcon.png' %}" alt="Follow us on Facebook" style="width:24px; height:auto; display:inline; margin-right:20px;"></a>
+
             </footer>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

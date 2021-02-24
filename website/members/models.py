@@ -40,7 +40,7 @@ class Member(models.Model):
     postcode = models.CharField(
         max_length=7,
         validators=[RegexValidator("^\\d{4} ?[A-Za-z]{2}$")],
-        verbose_name=_("postcode"),
+        verbose_name=_("zipcode"),
     )
 
     city = models.CharField(max_length=52, verbose_name=_("city"))
@@ -49,7 +49,7 @@ class Member(models.Model):
     student_type = models.CharField(
         max_length=3,
         choices=TYPE_STUDENT,
-        verbose_name=_("student type"),
+        verbose_name=_("institution"),
     )
 
     sports_card_number = models.CharField(
@@ -69,7 +69,7 @@ class Member(models.Model):
     def clean(self):
         if self.is_student and self.student_type is None:
             raise ValidationError(
-                _("You are a student so please indicate your student type")
+                _("You are a student so please indicate your institution")
             )
 
 

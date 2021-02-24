@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-24 21:26+0000\n"
-"PO-Revision-Date: 2021-02-10 22:14+0100\n"
+"POT-Creation-Date: 2021-02-24 20:29+0000\n"
+"PO-Revision-Date: 2021-02-24 21:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -40,7 +40,7 @@ msgstr "student"
 
 #: models.py:32
 msgid "birthday"
-msgstr "geboortedatum"
+msgstr "verjaardag"
 
 #: models.py:34
 msgid "phone number"
@@ -50,17 +50,21 @@ msgstr "telefoonnummer"
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: models.py:43
-msgid "postcode"
+#: models.py:31
+msgid "zipcode"
 msgstr "postcode"
 
 #: models.py:46
 msgid "city"
 msgstr "stad"
 
-#: models.py:52
-msgid "student type"
-msgstr "type student"
+#: models.py:36
+msgid "is student"
+msgstr "is student"
+
+#: models.py:43
+msgid "institution"
+msgstr "onderwijsinstelling"
 
 #: models.py:56
 msgid "sports card number"
@@ -70,9 +74,9 @@ msgstr "sportkaartnummer"
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:72
-msgid "You are a student so please indicate your student type"
-msgstr "Jij bent een student, dus geef alstublieft een student type aan"
+#: models.py:55
+msgid "You are a student so please indicate your institution"
+msgstr "U bent een student, geef alstublieft een onderwijsinstelling aan"
 
 #: templates/members/become_a_member.html:4
 msgid "Become a member"

@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-24 20:50+0000\n"
+"PO-Revision-Date: 2021-02-24 21:58+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#: templates/base.html:47
+msgid "Sign out"
+msgstr "Log uit"
+
+#: templates/base.html:49
+msgid "Become a member"
+msgstr "Word lid"
+
+#: templates/base.html:50 templates/registration/login.html:7
+#: templates/registration/login.html:42
+msgid "Sign in"
+msgstr "Log in"
+
+#: templates/registration/login.html:11
+msgid ""
+"Your account does not have access to this page. To proceed, please sign in "
+"with an account that has access."
+msgstr ""
+"Uw account heeft nog geen toegang tot deze pagina. Om door te gaan, log "
+"alstublieft in met een account dat wel toegang heeft."
+
+#: templates/registration/login.html:16
+msgid "Please sign in to see this page."
+msgstr "Log alstublieft in om deze pagina te bekijken."
+
+#: templates/registration/login.html:24
+msgid "Invalid username or password."
+msgstr "Ongeldige gebruikersnaam of wachtwoord."
+
+#: templates/registration/login.html:33
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#: templates/registration/login.html:38
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: templates/registration/login.html:44
+msgid "Forgot password"
+msgstr "Wachtwoord vergeten"

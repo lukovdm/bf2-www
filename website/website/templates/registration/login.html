@@ -4,17 +4,17 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-    <h1 class="text-center section-title">{% trans "Log in" %}</h1>
+    <h1 class="text-center section-title">{% trans "Sign in" %}</h1>
             {% if next %}
                 <p class="text-center">
                     {% if user.is_authenticated %}
                         {% blocktrans trimmed %}
-                            Your account does not have access to this page. To proceed, please log in with an account
+                            Your account does not have access to this page. To proceed, please sign in with an account
                             that has access.
                         {% endblocktrans %}
                     {% else %}
                         {% blocktrans trimmed %}
-                            Please log in to see this page.
+                            Please sign in to see this page.
                         {% endblocktrans %}
                     {% endif %}
                 </p>
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="submit" value="{% trans "Login" %}" class="btn btn-primary float-right">
+                    <input type="submit" value="{% trans "Sign in" %}" class="btn btn-primary float-right">
                     <a href="{% url 'password_reset' %}"
                        class="forgot btn float-left btn-secondary">{% trans "Forgot password" %}</a>
                 </div>

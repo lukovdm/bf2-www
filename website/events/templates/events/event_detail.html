@@ -1,35 +1,36 @@
 {% extends 'base.html' %}
 {% load cms_tags %}
+{% load i18n %}
 
 {% block content %}
     <h1>{{ object.name }}</h1>
-    <p>date: {{ object.date }}</p>
-    <p>location: {{ object.location }}</p>
+    <p>{% trans "date"|capfirst %}: {{ object.date }}</p>
+    <p>{% trans "location"|capfirst %}: {{ object.location }}</p>
     {% if object.cost %}
-        <p>cost: {{ object.cost }}</p>
+        <p>{% trans "cost"|capfirst %}: {{ object.cost }}</p>
     {% endif %}
     {% if object.registration_start %}
-        <p>registration start: {{ object.registration_start }}</p>
+        <p>{% trans "registration start"|capfirst %}: {{ object.registration_start }}</p>
     {% endif %}
     {% if object.registration_end %}
-        <p>registration end: {{ object.registration_end }}</p>
+        <p>{% trans "registration end"|capfirst %}: {{ object.registration_end }}</p>
     {% endif %}
     {% if object.limit %}
-        <p>participants: {{ object.registration_set.all|length }}/{{ object.limit }}</p>
+        <p>{% trans "participants"|capfirst %}: {{ object.registration_set.all|length }}/{{ object.limit }}</p>
     {% endif %}
     {% if user.is_authenticated %}
         {% if registration %}
-            <p>You are registered :)</p>
+            <p>{% trans "You are registered :)" %}</p>
         {% elif object.registration_set|length >= object.limit %}
-            <p>This event is already full :(</p>
+            <p>{% trans "This event is already full :(" %}</p>
         {% else %}
             <form action="{% url "events:register" object.pk %}" method="post">{% csrf_token %}
-                <button class="btn btn-primary" name="register" value="register">Register</button>
+                <button class="btn btn-primary" name="register" value="register">{% trans "register"|capfirst %}</button>
             </form>
         {% endif %}
     {% endif %}
     <div>
-        <p>description:</p>
+        <p>{% trans "description"|capfirst %}:</p>
         {% render_placeholder object.description %}
     </div>
 {% endblock content %}

@@ -2,6 +2,7 @@ from cms.admin.placeholderadmin import PlaceholderAdminMixin
 from django.contrib.admin import ModelAdmin, register, StackedInline, TabularInline
 
 from events.models import Event, Registration
+from utils.translations import TranslatedModelAdmin
 
 
 class RegistrationInline(TabularInline):
@@ -11,7 +12,7 @@ class RegistrationInline(TabularInline):
 
 
 @register(Event)
-class EventAdmin(PlaceholderAdminMixin, ModelAdmin):
+class EventAdmin(PlaceholderAdminMixin, TranslatedModelAdmin):
     """The admin off events"""
 
     inlines = [RegistrationInline]

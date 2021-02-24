@@ -123,7 +123,7 @@ ROOT_URLCONF = "website.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": ["website/templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -170,6 +170,8 @@ LANGUAGES = [
     ("en", "English"),
     ("nl", "Dutch"),
 ]
+
+LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
 TIME_ZONE = "UTC"
 

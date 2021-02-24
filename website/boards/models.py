@@ -1,21 +1,23 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from cms.models.pluginmodel import CMSPlugin
+from django.utils.translation import gettext_lazy as _
 
 from members.models import Member
+from utils.translations import ModelTranslateMeta, MultilingualField
 
 
 class Board(models.Model):
-    start = models.DateField()
-    end = models.DateField(blank=True, null=True)
+    start = models.DateField(verbose_name=_("start"))
+    end = models.DateField(blank=True, null=True, verbose_name=_("end"))
 
-    picture = models.ImageField(blank=True, null=True)
+    picture = models.ImageField(blank=True, null=True, verbose_name=_("picture"))
 
     def clean(self):
         if self.end:
             if self.start > self.end:
                 raise ValidationError(
-                    {"start": "Start date should be before end date."}
+                    {"start": _("Start date should be before end date.")}
                 )
 
             for board in Board.objects.all():
@@ -32,8 +34,12 @@ class Board(models.Model):
                 ):
                     raise ValidationError(
                         {
-                            "start": "A boards start and end cannot overlap with another board",
-                            "end": "A boards start and end cannot overlap with another board",
+                            "start": _(
+                                "A boards start and end cannot overlap with another board"
+                            ),
+                            "end": _(
+                                "A boards start and end cannot overlap with another board"
+                            ),
                         }
                     )
         else:
@@ -42,37 +48,47 @@ class Board(models.Model):
                     continue
                 if board.start < self.start < board.end:
                     raise ValidationError(
-                        {"start": "A boards start cannot fall in another board"}
+                        {"start": _("A boards start cannot fall in another board")}
                     )
 
     def __str__(self):
-        return f"Board of {self.start.year}"
+        return _("Board of") + " " + str(self.start.year)
 
 
-class BoardMembership(models.Model):
-    board = models.ForeignKey(Board, on_delete=models.CASCADE)
+class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, verbose_name=_("board"))
 
-    member = models.ForeignKey(Member, blank=True, null=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, blank=True, null=True)
+    member = models.ForeignKey(
+        Member,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        verbose_name=_("member"),
+    )
+    name = models.CharField(
+        max_length=255, blank=True, null=True, verbose_name=_("name")
+    )
 
-    function = models.CharField(max_length=255)
-    email = models.EmailField()
-    picture = models.ImageField(blank=True, null=True)
+    function = MultilingualField(
+        models.CharField, max_length=255, verbose_name=_("function")
+    )
+    email = models.EmailField(verbose_name=_("email"))
+    picture = models.ImageField(blank=True, null=True, verbose_name=_("picture"))
 
     def clean(self):
         if self.member is not None and self.name is not None:
             raise ValidationError(
                 {
-                    "member": "Either member or name have to be filled, not both",
-                    "name": "Either member or name have to be filled, not both",
+                    "member": _("Either member or name have to be filled in, not both"),
+                    "name": _("Either member or name have to be filled in, not both"),
                 }
             )
 
         if self.member is None and self.name is None:
             raise ValidationError(
                 {
-                    "member": "Either member or name is required",
-                    "name": "Either member or name is required",
+                    "member": _("Either member or name is required"),
+                    "name": _("Either member or name is required"),
                 }
             )
 

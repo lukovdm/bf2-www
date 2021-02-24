@@ -7,6 +7,7 @@ from .models import Member, OtherClub
 class MemberAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(OtherClub)
 class OtherClubAdmin(admin.ModelAdmin):
     pass

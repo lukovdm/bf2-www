@@ -1,5 +1,6 @@
+{% load i18n %}
 <div>
-    <h1>Board of {{ year }}</h1>
+    <h1>{% trans "Board of" %} {{ year }}</h1>
     {% if picture %}<img src="{{ picture.url }}"/>{% endif %}
     <ul>
         {% for board_member in board_members %}

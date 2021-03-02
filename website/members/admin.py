@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportMixin
 
-from .models import Member
+from .models import Member, OtherClub
 
 
 class UserResource(resources.ModelResource):
@@ -91,3 +91,8 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
+
+
+@admin.register(OtherClub)
+class OtherClubAdmin(admin.ModelAdmin):
+    pass

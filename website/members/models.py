@@ -5,14 +5,30 @@ from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 
 
+class OtherClub(models.Model):
+    name = models.CharField(
+        max_length=64,
+        verbose_name=_("other club"),
+        unique=True,
+    )
+
+    class Meta:
+        ordering = ("name",)
+
+    def __str__(self):
+        return self.name
+
+
 class Member(models.Model):
     """A model to hold all extra personal information about members."""
 
     RU = "RU"
     HAN = "HAN"
+    NOSTUDENT = "NS"
     TYPE_STUDENT = [
-        (RU, _("radboud university")),
+        (RU, _("Radboud University")),
         (HAN, _("HAN")),
+        (NOSTUDENT, _("Not a student")),
     ]
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -33,13 +49,9 @@ class Member(models.Model):
 
     city = models.CharField(max_length=52, verbose_name=_("city"))
 
-    is_student = models.BooleanField(verbose_name=_("is student"))
-
     student_type = models.CharField(
         max_length=3,
         choices=TYPE_STUDENT,
-        blank=True,
-        null=True,
         verbose_name=_("institution"),
     )
 
@@ -48,6 +60,14 @@ class Member(models.Model):
     )
 
     graduation_date = models.DateField(verbose_name=_("graduation date"))
+
+    other_club = models.ForeignKey(
+        OtherClub,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
+        verbose_name=_("other club"),
+    )
 
     def clean(self):
         if self.is_student and self.student_type is None:

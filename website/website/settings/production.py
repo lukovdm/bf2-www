@@ -23,7 +23,7 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = "/bf2-www/static/"
+STATIC_ROOt = "/bf2-www/static/"
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = "/bf2-www/media"

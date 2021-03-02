@@ -15,7 +15,7 @@ class Member(models.Model):
         (HAN, _("HAN")),
     ]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     birthday = models.DateField(verbose_name=_("birthday"))
 

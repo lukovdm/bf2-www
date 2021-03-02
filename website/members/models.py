@@ -9,6 +9,7 @@ class OtherClub(models.Model):
     name = models.CharField(
         max_length=64,
         verbose_name=_("other club"),
+        unique=True,
     )
 
     class Meta:

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.utils.dateparse import parse_date
 from import_export import resources
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
@@ -24,28 +25,28 @@ class UserResource(resources.ModelResource):
             "member__student_type",
             "member__sports_card_number",
             "member__graduation_date",
+            "member__other_club"
         )
 
     def init_instance(self, row=None):
+        print(row)
         user = User.objects.create_user(
             username=row["email"],
-            first_name=row["first_name"],
-            last_name=row["last_name"],
-            email=row["email"],
         )
         user.set_unusable_password()
         user.save()
         Member.objects.create(
             user=user,
-            birthday=row["member__birthday"],
+            birthday=parse_date(row["member__birthday"]),
             phone_number=row["member__phone_number"],
             street_address=row["member__street_address"],
             postcode=row["member__postcode"],
             city=row["member__city"],
             student_type=row["member__student_type"],
             sports_card_number=row["member__sports_card_number"],
-            graduation_date=row["member__graduation_date"],
+            graduation_date=parse_date(row["member__graduation_date"]),
         )
+        return user
 
 
 class MemberInline(admin.StackedInline):

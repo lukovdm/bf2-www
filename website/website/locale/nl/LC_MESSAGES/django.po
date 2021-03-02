@@ -7,6 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
+
 "POT-Creation-Date: 2021-02-24 20:50+0000\n"
 "PO-Revision-Date: 2021-02-24 21:58+0100\n"
 "Last-Translator: \n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
 #: templates/base.html:47
 msgid "Sign out"
@@ -30,6 +31,18 @@ msgstr "Word lid"
 #: templates/registration/login.html:42
 msgid "Sign in"
 msgstr "Log in"
+
+#: templates/base.html:57
+msgid "Follow us:"
+msgstr "Volg ons: "
+
+#: templates/base.html:58
+msgid "Follow us on Facebook"
+msgstr "Volg ons op Facebook"
+
+#: templates/base.html:59
+msgid "Follow us on Instagram"
+msgstr "Volg ons op Instagram"
 
 #: templates/registration/login.html:11
 msgid ""

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 20:41+0000\n"
-"PO-Revision-Date: 2021-02-10 22:06+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2021-02-24 20:38+0000\n"
+"PO-Revision-Date: 2021-02-24 21:42+0100\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "X-Generator: Poedit 2.4.1\n"
 
 #: models.py:10
@@ -28,19 +28,19 @@ msgstr "einde"
 
 #: models.py:13 models.py:75
 msgid "picture"
-msgstr "foto"
+msgstr "afbeelding"
 
 #: models.py:19
 msgid "Start date should be before end date."
-msgstr "De start datum moet voor de eind datum zijn."
+msgstr "De startdatum moet voor de einddatum vallen."
 
 #: models.py:37 models.py:40
 msgid "A boards start and end cannot overlap with another board"
-msgstr "Een bestuurs start en eind datum mogen niet overlappen met een ander bestuur"
+msgstr "Een startdatum en einddatum van een bestuur mogen niet overlappen met een ander bestuur"
 
 #: models.py:50
 msgid "A boards start cannot fall in another board"
-msgstr "Een bestuur kan niet in een ander bestuur vallen"
+msgstr "Bestuur mag niet tijdens een ander bestuur vallen"
 
 #: models.py:54 templates/current_board_plugin.html:4
 msgid "Board of"
@@ -68,8 +68,8 @@ msgstr "email"
 
 #: models.py:81 models.py:82
 msgid "Either member or name have to be filled in, not both"
-msgstr "Of lid of naam moet ingevuld zijn, maar niet beide"
+msgstr "Of bestuur of naam moeten zijn ingevuld, maar niet beide"
 
 #: models.py:89 models.py:90
 msgid "Either member or name is required"
-msgstr "Of lid of naam is nodig"
+msgstr "Of lid of naam is verplicht"

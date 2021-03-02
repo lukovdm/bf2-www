@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from cms.models.pluginmodel import CMSPlugin
 from django.utils.translation import gettext_lazy as _
 
 from members.models import Member
@@ -90,3 +91,7 @@ class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
                     "name": _("Either member or name is required"),
                 }
             )
+
+
+class PreviousBoardModel(CMSPlugin):
+    board = models.ForeignKey(Board, on_delete=models.CASCADE)

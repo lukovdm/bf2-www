@@ -138,3 +138,5 @@ database/
 
 # secrets
 config/secrets.env
+
+.vscode/

@@ -69,8 +69,5 @@ class Member(models.Model):
         verbose_name=_("other club"),
     )
 
-    def clean(self):
-        if self.is_student and self.student_type is None:
-            raise ValidationError(
-                _("You are a student so please indicate your institution")
-            )
+    
+

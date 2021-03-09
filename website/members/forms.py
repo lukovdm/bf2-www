@@ -22,8 +22,9 @@ class BecomeAMemberForm(ModelForm):
             self.cleaned_data["email"],
             self.cleaned_data["password"],
         )
-        user.firstname = self.cleaned_data["firstname"]
-        user.lastname = self.cleaned_data["lastname"]
+        user.first_name = self.cleaned_data["firstname"]
+        user.last_name = self.cleaned_data["lastname"]
+        user.is_active = False
         user.save()
         member.user = user
         if commit:

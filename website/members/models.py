@@ -31,7 +31,7 @@ class Member(models.Model):
         (NOSTUDENT, _("Not a student")),
     ]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     birthday = models.DateField(verbose_name=_("birthday"))
 
@@ -68,9 +68,3 @@ class Member(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("other club"),
     )
-
-    def clean(self):
-        if self.is_student and self.student_type is None:
-            raise ValidationError(
-                _("You are a student so please indicate your institution")
-            )

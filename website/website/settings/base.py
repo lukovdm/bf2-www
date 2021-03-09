@@ -100,6 +100,8 @@ INSTALLED_APPS = [
     "members",
     "events",
     "boards",
+    # installed libraries
+    "import_export",
 ]
 
 MIDDLEWARE = [
@@ -160,6 +162,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Django Import Export
+# https://django-import-export.readthedocs.io/en/stable/installation.html#settings
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+IMPORT_EXPORT_IMPORT_PERMISSION_CODE = ("add",)
+IMPORT_EXPORT_EXPORT_PERMISSION_CODE = ("view",)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

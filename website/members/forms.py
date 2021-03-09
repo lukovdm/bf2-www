@@ -18,7 +18,7 @@ class BecomeAMemberForm(ModelForm):
     def save(self, commit=True):
         member = super().save(commit=False)
         user = User.objects.create_user(
-            self.cleaned_data["firstname"][0] + self.cleaned_data["lastname"],
+            self.cleaned_data["email"],
             self.cleaned_data["email"],
             self.cleaned_data["password"],
         )

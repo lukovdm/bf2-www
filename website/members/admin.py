@@ -29,7 +29,6 @@ class UserResource(resources.ModelResource):
         )
 
     def init_instance(self, row=None):
-        print(row)
         user = User.objects.create_user(
             username=row["email"],
         )

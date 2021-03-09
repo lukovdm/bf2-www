@@ -25,7 +25,7 @@ class UserResource(resources.ModelResource):
             "member__student_type",
             "member__sports_card_number",
             "member__graduation_date",
-            "member__other_club"
+            "member__other_club",
         )
 
     def init_instance(self, row=None):

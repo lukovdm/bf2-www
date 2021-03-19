@@ -1,12 +1,18 @@
+from cms.utils.mail import send_mail
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
 from django.utils.dateparse import parse_date
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
 from import_export import resources
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportMixin
 
 from .models import Member, OtherClub
+from .tokens import AccountActivationTokenGenerator
 
 
 class UserResource(resources.ModelResource):
@@ -57,6 +63,7 @@ class MemberInline(admin.StackedInline):
 class UserAdmin(ImportExportMixin, BaseUserAdmin):
     inlines = (MemberInline,)
     resource_class = UserResource
+    actions = ["send_password_email"]
 
     fieldsets = (
         (
@@ -87,6 +94,30 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
             },
         ),
     )
+
+    def send_password_email(self, request, queryset):
+        current_site = get_current_site(request)
+        domain = current_site.domain
+        use_https = "https" if request.is_secure() else "http"
+        base = f"{use_https}://{domain}"
+
+        token_generator = AccountActivationTokenGenerator()
+
+        for user in queryset:
+            link = base + reverse(
+                "activate-account",
+                kwargs={
+                    "uidb64": urlsafe_base64_encode(force_bytes(user.pk)),
+                    "token": token_generator.make_token(user),
+                }
+            )
+
+            send_mail(
+                "New account information",
+                "members/new_account_email/new_account_email.txt",
+                [user.email],
+                {"user": user, "link": link},
+            )
 
 
 admin.site.unregister(User)

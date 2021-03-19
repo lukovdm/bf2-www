@@ -19,12 +19,17 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from members.views import BecomeAMemberView
+from members.views import BecomeAMemberView, PasswordSetView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("user/", include("django.contrib.auth.urls")),
     path("become-a-member/", BecomeAMemberView.as_view(), name="become-a-member"),
+    path(
+        "activate-account/<uidb64>/<token>/",
+        PasswordSetView.as_view(),
+        name="activate-account",
+    ),
     path("i18n/", include("django.conf.urls.i18n")),
     url(r"^", include("cms.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

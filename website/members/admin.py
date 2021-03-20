@@ -11,6 +11,12 @@ from import_export import resources
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportMixin
+from django.contrib.auth.models import User
+from django.utils.dateparse import parse_date
+from import_export import resources
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.utils.translation import gettext_lazy as _
+from import_export.admin import ImportExportMixin
 
 from .models import Member, OtherClub
 from .tokens import AccountActivationTokenGenerator
@@ -112,14 +118,11 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
                 kwargs={
                     "uidb64": urlsafe_base64_encode(force_bytes(user.pk)),
                     "token": token_generator.make_token(user),
-                }
+                },
             )
 
             mail_template.to = user.email
-            mail_template.send({
-                "name": user.get_full_name(),
-                "link": link
-            })
+            mail_template.send({"name": user.get_full_name(), "link": link})
 
             user.is_active = True
             user.set_unusable_password()

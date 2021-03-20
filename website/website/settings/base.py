@@ -105,8 +105,8 @@ INSTALLED_APPS = [
     "boards",
     # installed libraries
     "import_export",
-    'ckeditor',
-    'django_mail_template',
+    "ckeditor",
+    "django_mail_template",
 ]
 
 MIDDLEWARE = [

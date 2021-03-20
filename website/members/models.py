@@ -68,4 +68,6 @@ class Member(models.Model):
         verbose_name=_("other club"),
     )
 
-    preferred_language = models.CharField(choices=settings.LANGUAGES, default="nl", max_length=3)
+    preferred_language = models.CharField(
+        choices=settings.LANGUAGES, default="nl", max_length=3
+    )

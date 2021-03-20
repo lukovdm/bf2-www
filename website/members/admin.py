@@ -124,7 +124,10 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
                 success = False
             else:
                 Configuration.objects.create(process="activate_account_" + lang)
-                messages.error(request, (_("No configuration exists for %s and has been created") % lang))
+                messages.error(
+                    request,
+                    (_("No configuration exists for %s and has been created") % lang),
+                )
                 success = False
         if not success:
             return

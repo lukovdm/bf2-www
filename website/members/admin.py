@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils.dateparse import parse_date
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from django_mail_template.models import Configuration
 from import_export import resources
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
@@ -103,6 +104,8 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
 
         token_generator = AccountActivationTokenGenerator()
 
+        mail_template = Configuration.get_mail_template("activate_account")
+
         for user in queryset:
             link = base + reverse(
                 "activate-account",
@@ -112,12 +115,15 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
                 }
             )
 
-            send_mail(
-                "New account information",
-                "members/new_account_email/new_account_email.txt",
-                [user.email],
-                {"user": user, "link": link},
-            )
+            mail_template.to = user.email
+            mail_template.send({
+                "name": user.get_full_name(),
+                "link": link
+            })
+
+            user.is_active = True
+            user.set_unusable_password()
+            user.save()
 
 
 admin.site.unregister(User)

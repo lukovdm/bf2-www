@@ -67,3 +67,5 @@ class Member(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("other club"),
     )
+
+    preferred_language = models.CharField(choices=settings.LANGUAGES, default="nl", max_length=3)

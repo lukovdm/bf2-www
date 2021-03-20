@@ -1,21 +1,15 @@
-from cms.utils.mail import send_mail
-from django.contrib import admin
+from django.conf import settings
+from django.contrib import admin, messages
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from django.utils.dateparse import parse_date
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from django.utils.translation import gettext_lazy as _
 from django_mail_template.models import Configuration
 from import_export import resources
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.utils.translation import gettext_lazy as _
-from import_export.admin import ImportExportMixin
-from django.contrib.auth.models import User
-from django.utils.dateparse import parse_date
-from import_export import resources
-from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportMixin
 
 from .models import Member, OtherClub
@@ -39,6 +33,7 @@ class UserResource(resources.ModelResource):
             "member__sports_card_number",
             "member__graduation_date",
             "member__other_club",
+            "member__preferred_language",
         )
 
     def init_instance(self, row=None):
@@ -110,7 +105,29 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
 
         token_generator = AccountActivationTokenGenerator()
 
-        mail_template = Configuration.get_mail_template("activate_account")
+        templates = {}
+        success = True
+        for lang, display in settings.LANGUAGES:
+            t = Configuration.get_mail_template("activate_account_" + lang)
+            if t:
+                templates[lang] = t
+            elif Configuration.objects.filter(
+                process="activate_account_" + lang
+            ).exists():
+                messages.error(
+                    request,
+                    (
+                        _("No email template has been attached to the %s configuration")
+                        % lang
+                    ),
+                )
+                success = False
+            else:
+                Configuration.objects.create(process="activate_account_" + lang)
+                messages.error(request, (_("No configuration exists for %s and has been created") % lang))
+                success = False
+        if not success:
+            return
 
         for user in queryset:
             link = base + reverse(
@@ -121,8 +138,9 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
                 },
             )
 
-            mail_template.to = user.email
-            mail_template.send({"name": user.get_full_name(), "link": link})
+            lang = user.preferred_language
+            templates[lang].to = user.email
+            templates[lang].send({"name": user.get_full_name(), "link": link})
 
             user.is_active = True
             user.set_unusable_password()

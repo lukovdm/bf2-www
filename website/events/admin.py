@@ -17,7 +17,7 @@ class EventAdmin(PlaceholderAdminMixin, TranslatedModelAdmin):
 
     inlines = [RegistrationInline]
 
-    list_display = ("name", "date", "registrations_count", "cost")
+    list_display = ("name", "start_date", "end_date", "registrations_count", "cost")
 
     def registrations_count(self, event):
         if event.limit:

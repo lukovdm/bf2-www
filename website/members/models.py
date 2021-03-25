@@ -2,7 +2,6 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
 
 
 class OtherClub(models.Model):
@@ -52,7 +51,6 @@ class Member(models.Model):
     student_type = models.CharField(
         max_length=3,
         choices=TYPE_STUDENT,
-        verbose_name=_("institution"),
     )
 
     sports_card_number = models.CharField(
@@ -69,7 +67,13 @@ class Member(models.Model):
         verbose_name=_("other club"),
     )
 
+    preferred_language = models.CharField(
+        choices=settings.LANGUAGES, default="nl", max_length=3
+    )
+    
     class Meta: 
         permissions = (
             ("can_accept_or_reject", _("can accept or reject")),
         )
+
+    

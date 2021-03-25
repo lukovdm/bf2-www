@@ -1,15 +1,19 @@
-from django import forms
 from django.contrib.auth.models import User
-from django.forms import ModelForm
+from django.forms import (
+    ModelForm,
+    CharField,
+    EmailField,
+    PasswordInput,
+)
 
 from members.models import Member
 
 
 class BecomeAMemberForm(ModelForm):
-    firstname = forms.CharField()
-    lastname = forms.CharField()
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    firstname = CharField()
+    lastname = CharField()
+    email = EmailField()
+    password = CharField(widget=PasswordInput())
 
     class Meta:
         model = Member

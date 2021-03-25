@@ -27,6 +27,9 @@ LOGIN_REDIRECT_URL = "/"
 
 LOGOUT_REDIRECT_URL = "/"
 
+# about 3 months
+ACCOUNT_ACTIVATION_TIMEOUT = 60 * 60 * 24 * 30 * 3
+
 CMS_PERMISSION = True
 
 CMS_TEMPLATES = [
@@ -102,6 +105,8 @@ INSTALLED_APPS = [
     "boards",
     # installed libraries
     "import_export",
+    "ckeditor",
+    "django_mail_template",
 ]
 
 MIDDLEWARE = [

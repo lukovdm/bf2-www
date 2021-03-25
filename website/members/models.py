@@ -51,7 +51,6 @@ class Member(models.Model):
     student_type = models.CharField(
         max_length=3,
         choices=TYPE_STUDENT,
-        verbose_name=_("institution"),
     )
 
     sports_card_number = models.CharField(

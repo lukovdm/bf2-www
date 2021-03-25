@@ -117,7 +117,9 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
                 messages.error(
                     request,
                     (
-                        _("No email template has been attached to the %s configuration, you have to create one first")
+                        _(
+                            "No email template has been attached to the %s configuration, you have to create one first"
+                        )
                         % lang
                     ),
                 )
@@ -134,7 +136,12 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
                 )
                 messages.error(
                     request,
-                    (_("No configuration exists for %s and has been created. You do have to add a template yourself") % lang),
+                    (
+                        _(
+                            "No configuration exists for %s and has been created. You do have to add a template yourself"
+                        )
+                        % lang
+                    ),
                 )
                 success = False
         if not success:

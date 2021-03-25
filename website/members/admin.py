@@ -117,16 +117,24 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
                 messages.error(
                     request,
                     (
-                        _("No email template has been attached to the %s configuration")
+                        _("No email template has been attached to the %s configuration, you have to create one first")
                         % lang
                     ),
                 )
                 success = False
             else:
-                Configuration.objects.create(process="activate_account_" + lang)
+                Configuration.objects.create(
+                    process="activate_account_" + lang,
+                    description="""This configuration is used to send the account activation emails for imported users.
+                    
+                    You can use the following variables:
+                    {name}: the name of the user
+                    {link}: the link where the user can activate your account
+                    """,
+                )
                 messages.error(
                     request,
-                    (_("No configuration exists for %s and has been created") % lang),
+                    (_("No configuration exists for %s and has been created. You do have to add a template yourself") % lang),
                 )
                 success = False
         if not success:

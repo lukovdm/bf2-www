@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-20 11:34+0000\n"
-"PO-Revision-Date: 2021-03-20 12:39+0100\n"
+"POT-Creation-Date: 2021-03-25 20:09+0000\n"
+"PO-Revision-Date: 2021-03-25 21:11+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -28,13 +28,21 @@ msgstr "Rechten"
 
 #: admin.py:120
 #, python-format
-msgid "No email template has been attached to the %s configuration"
-msgstr "Er bestaat geen email template voor de %s configuratie"
+msgid ""
+"No email template has been attached to the %s configuration, you have to "
+"create one first"
+msgstr ""
+"Er bestaat geen email template voor de %s configuratie, je moet er eerst "
+"zelf een maken"
 
-#: admin.py:127
+#: admin.py:137
 #, python-format
-msgid "No configuration exists for %s and has been created"
-msgstr "Er bestaat geen configuratie voor %s, deze is nu gemaakt"
+msgid ""
+"No configuration exists for %s and has been created. You do have to add a "
+"template yourself"
+msgstr ""
+"Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
+"zelf een template maken"
 
 #: models.py:10 models.py:68
 msgid "other club"
@@ -96,8 +104,7 @@ msgstr "Activeer uw account"
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
-msgstr ""
-"Voer uw nieuwe wachtwoord in en check of je het goed hebt ingetyped."
+msgstr "Voer uw nieuwe wachtwoord in en check of je het goed hebt ingetyped."
 
 #: templates/members/passwerd_set.html:15
 msgid "New password:"

@@ -81,6 +81,17 @@ argon2 = ["argon2-cffi (>=16.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-ckeditor"
+version = "6.0.0"
+description = "Django admin CKEditor integration."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django-js-asset = ">=1.2.2"
+
+[[package]]
 name = "django-classy-tags"
 version = "2.0.0"
 description = "Class based template tags for Django"
@@ -153,6 +164,17 @@ description = "script tag with additional attributes for django.forms.Media"
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "django-mail-template"
+version = "0.1.11"
+description = "Application for creating mails templates with context variables. There is a double mapping between a mail template and process configuration so is possible to change used mail template of a process at run time."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+django-ckeditor = "*"
 
 [[package]]
 name = "django-mptt"
@@ -609,7 +631,7 @@ production = ["gunicorn", "psycopg2-binary"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "c42b107264438d056626882849e43fb8559eb1ecf8a8c787e8fed78c7284542f"
+content-hash = "638a59f997ad7c5ef2a99699742aa481395643d54acacd534b1484b09a402f59"
 
 [metadata.files]
 appdirs = [
@@ -639,6 +661,10 @@ django = [
     {file = "Django-3.1.7-py3-none-any.whl", hash = "sha256:baf099db36ad31f970775d0be5587cc58a6256a6771a44eb795b554d45f211b8"},
     {file = "Django-3.1.7.tar.gz", hash = "sha256:32ce792ee9b6a0cbbec340123e229ac9f765dff8c2a4ae9247a14b2ba3a365a7"},
 ]
+django-ckeditor = [
+    {file = "django-ckeditor-6.0.0.tar.gz", hash = "sha256:29fd1a333cb9741ac2c3fd4e427a5c00115ed33a2389716a09af7656022dcdde"},
+    {file = "django_ckeditor-6.0.0-py2.py3-none-any.whl", hash = "sha256:cc2d377f1bdcd4ca1540caeebe85f7e2cd006198d57328ef6c718d3eaa5a0846"},
+]
 django-classy-tags = [
     {file = "django-classy-tags-2.0.0.tar.gz", hash = "sha256:d59d98bdf96a764dcf7a2929a86439d023b283a9152492811c7e44fc47555bc9"},
     {file = "django_classy_tags-2.0.0-py3-none-any.whl", hash = "sha256:25eb4f95afee396148683bfb4811b83b3f5729218d73ad0a3399271a6f9fcc49"},
@@ -661,6 +687,10 @@ django-import-export = [
 django-js-asset = [
     {file = "django-js-asset-1.2.2.tar.gz", hash = "sha256:c163ae80d2e0b22d8fb598047cd0dcef31f81830e127cfecae278ad574167260"},
     {file = "django_js_asset-1.2.2-py2.py3-none-any.whl", hash = "sha256:8ec12017f26eec524cab436c64ae73033368a372970af4cf42d9354fcb166bdd"},
+]
+django-mail-template = [
+    {file = "django_mail_template-0.1.11-py3-none-any.whl", hash = "sha256:ecc4ccfebf5f28f8e8c6773a7a4b59d515fc9e03f88ef368e064b5f31f19a201"},
+    {file = "django_mail_template-0.1.11.tar.gz", hash = "sha256:bcb296308928c014089297b07195360c6b3392376dd7abab500b297287f5a7d0"},
 ]
 django-mptt = [
     {file = "django-mptt-0.12.0.tar.gz", hash = "sha256:8ae6c3821127b529bb2f938de27bf0771b1bcbe9dbccdfba33986af78611f13a"},

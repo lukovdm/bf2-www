@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-24 21:38+0000\n"
-"PO-Revision-Date: 2021-02-24 22:40+0100\n"
+"POT-Creation-Date: 2021-03-25 20:35+0000\n"
+"PO-Revision-Date: 2021-03-25 21:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,60 +16,108 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.1\n"
 
-#: models.py:8 models.py:66
+#: admin.py:72
+msgid "Personal"
+msgstr "Persoonlijk"
+
+#: admin.py:85
+msgid "Permissions"
+msgstr "Rechten"
+
+#: admin.py:121
+#, python-format
+msgid ""
+"No email template has been attached to the %s configuration, you have to "
+"create one first"
+msgstr ""
+"Er bestaat geen email template voor de %s configuratie, je moet er eerst "
+"zelf een maken"
+
+#: admin.py:141
+#, python-format
+msgid ""
+"No configuration exists for %s and has been created. You do have to add a "
+"template yourself"
+msgstr ""
+"Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
+"zelf een template maken"
+
+#: models.py:10 models.py:67
 msgid "other club"
 msgstr "andere club"
 
-#: models.py:24
+#: models.py:28
 msgid "Radboud University"
 msgstr "Radboud Universiteit"
 
-#: models.py:25
+#: models.py:29
 msgid "HAN"
 msgstr "HAN"
 
-#: models.py:26
+#: models.py:30
 msgid "Not a student"
 msgstr "Geen student"
 
-#: models.py:32
+#: models.py:35
 msgid "birthday"
 msgstr "verjaardag"
 
-#: models.py:34
+#: models.py:37
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: models.py:37
+#: models.py:40
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: models.py:43
+#: models.py:46
 msgid "zipcode"
 msgstr "postcode"
 
-#: models.py:46
+#: models.py:49
 msgid "city"
 msgstr "stad"
 
-#: models.py:52
-msgid "institution"
-msgstr "onderwijsinstelling"
-
-#: models.py:56
+#: models.py:57
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:59
+#: models.py:60
 msgid "graduation date"
 msgstr "afstudeerdatum"
-
-#: models.py:72
-msgid "You are a student so please indicate your institution"
-msgstr "U bent een student, geef alstublieft een onderwijsinstelling aan"
 
 #: templates/members/become_a_member.html:4
 msgid "Become a member"
 msgstr "Word lid"
+
+#: templates/members/passwerd_set.html:4
+msgid "Activate your account"
+msgstr "Activeer uw account"
+
+#: templates/members/passwerd_set.html:9
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr "Voer uw nieuwe wachtwoord in en check of je het goed hebt ingetyped."
+
+#: templates/members/passwerd_set.html:15
+msgid "New password:"
+msgstr "Nieuwe wachtwoord:"
+
+#: templates/members/passwerd_set.html:20
+msgid "Confirm password:"
+msgstr "Herhaal wachtwoord:"
+
+#: templates/members/passwerd_set.html:23
+msgid "Change my password"
+msgstr "Verander mijn wachtwoord"
+
+#: templates/members/passwerd_set.html:29
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"De wachtwoord reset link was niet valide, hij is misschien al een keer "
+"gebruikt. Vraag alstublieft een nieuwe wachtwoord reset aan."

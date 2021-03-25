@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-25 20:09+0000\n"
-"PO-Revision-Date: 2021-03-25 21:11+0100\n"
+"POT-Creation-Date: 2021-03-25 20:35+0000\n"
+"PO-Revision-Date: 2021-03-25 21:35+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -26,7 +26,7 @@ msgstr "Persoonlijk"
 msgid "Permissions"
 msgstr "Rechten"
 
-#: admin.py:120
+#: admin.py:121
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: admin.py:137
+#: admin.py:141
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -44,7 +44,7 @@ msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
 
-#: models.py:10 models.py:68
+#: models.py:10 models.py:67
 msgid "other club"
 msgstr "andere club"
 
@@ -80,15 +80,11 @@ msgstr "postcode"
 msgid "city"
 msgstr "stad"
 
-#: models.py:54
-msgid "institution"
-msgstr "onderwijsinstelling"
-
-#: models.py:58
+#: models.py:57
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:61
+#: models.py:60
 msgid "graduation date"
 msgstr "afstudeerdatum"
 

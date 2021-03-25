@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-24 21:38+0000\n"
-"PO-Revision-Date: 2021-02-24 22:40+0100\n"
+"POT-Creation-Date: 2021-03-09 22:03+0000\n"
+"PO-Revision-Date: 2021-03-09 23:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,57 +18,65 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.2\n"
 
-#: models.py:8 models.py:66
+#: admin.py:65
+msgid "Personal"
+msgstr "Persoonlijk"
+
+#: admin.py:78
+msgid "Permissions"
+msgstr "Rechten"
+
+#: models.py:11 models.py:69
 msgid "other club"
 msgstr "andere club"
 
-#: models.py:24
+#: models.py:29
 msgid "Radboud University"
 msgstr "Radboud Universiteit"
 
-#: models.py:25
+#: models.py:30
 msgid "HAN"
 msgstr "HAN"
 
-#: models.py:26
+#: models.py:31
 msgid "Not a student"
 msgstr "Geen student"
 
-#: models.py:32
+#: models.py:36
 msgid "birthday"
 msgstr "verjaardag"
 
-#: models.py:34
+#: models.py:38
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: models.py:37
+#: models.py:41
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: models.py:43
+#: models.py:47
 msgid "zipcode"
 msgstr "postcode"
 
-#: models.py:46
+#: models.py:50
 msgid "city"
 msgstr "stad"
 
-#: models.py:52
+#: models.py:55
 msgid "institution"
 msgstr "onderwijsinstelling"
 
-#: models.py:56
+#: models.py:59
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:59
+#: models.py:62
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:72
-msgid "You are a student so please indicate your institution"
-msgstr "U bent een student, geef alstublieft een onderwijsinstelling aan"
+#: models.py:74
+msgid "can accept or reject"
+msgstr "kan accepteren of afwijzen"
 
 #: templates/members/become_a_member.html:4
 msgid "Become a member"

@@ -68,3 +68,8 @@ class Member(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("other club"),
     )
+
+    class Meta: 
+        permissions = (
+            ("can_accept_or_reject", _("can accept or reject")),
+        )

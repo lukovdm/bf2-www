@@ -5,6 +5,8 @@ from import_export import resources
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 from import_export.admin import ImportExportMixin
+from django.http import HttpResponseRedirect
+from django.core.exceptions import PermissionDenied, ValidationError
 
 from .models import Member, OtherClub
 
@@ -57,6 +59,7 @@ class MemberInline(admin.StackedInline):
 class UserAdmin(ImportExportMixin, BaseUserAdmin):
     inlines = (MemberInline,)
     resource_class = UserResource
+    change_form_template = "members/admin/change_form.html"
 
     fieldsets = (
         (
@@ -88,6 +91,29 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
         ),
     )
 
+    def response_change(self, request, obj):
+        if "_accept" in request.POST:
+            if request.user.has_perm('members.can_accept_or_reject'):
+                obj.is_active = True
+                obj.save()
+            else: 
+                raise PermissionDenied(_("You don't have permission to accept a user"))
+            return HttpResponseRedirect(".")
+        if "_reject" in request.POST: 
+            if not request.user.has_perm('members.can_accept_or_reject'):
+                raise PermissionDenied(_("You don't have permission to accept a user"))    
+            if obj.is_active:
+                raise ValidationError(_("You can't deny a person who is already active"))
+            obj.delete()
+            return HttpResponseRedirect(".")
+        return super().response_change(request, obj)
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_accept_reject_buttons'] = request.user.has_perm('members.can_accept_or_reject')
+        return super(UserAdmin, self).change_view(
+            request, object_id, form_url, extra_context=extra_context,
+        )
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)

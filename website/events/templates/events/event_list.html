@@ -41,11 +41,4 @@
 {% block content %}
     <h1>{% trans "Events" %}</h1>
     <div id='calendar'></div>
-    {#    <ul class="list-group list-group-flush">#}
-    {#        {% for event in object_list %}#}
-    {#            <li class="list-group-item"><a#}
-    {#                    href="{% url 'events:detail' pk=event.pk %}">{{ event.name }} {% trans "at" context "date" %} {{ event.date }}</a>#}
-    {#            </li>#}
-    {#        {% endfor %}#}
-    {#    </ul>#}
 {% endblock content %}

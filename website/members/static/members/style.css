@@ -1,0 +1,13 @@
+.submit-row .rejectButton {
+    background: red;
+    color: white !important;
+    text-align: center !important;
+    font-size: 16px !important;
+}
+
+.submit-row .acceptButton {
+    background: green !important;
+    text-align: center !important;
+    color: white !important;
+    font-size: 16px !important;
+}

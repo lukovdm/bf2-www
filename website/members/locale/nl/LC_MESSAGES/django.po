@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-25 20:35+0000\n"
-"PO-Revision-Date: 2021-03-25 21:35+0100\n"
+"POT-Creation-Date: 2021-04-02 13:15+0000\n"
+"PO-Revision-Date: 2021-04-02 15:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,17 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 
-#: admin.py:72
+#: admin.py:75
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: admin.py:85
+#: admin.py:88
 msgid "Permissions"
 msgstr "Rechten"
 
-#: admin.py:121
+#: admin.py:117 admin.py:200
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: admin.py:141
+#: admin.py:135 admin.py:220
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -43,6 +43,14 @@ msgid ""
 msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
+
+#: admin.py:154 admin.py:158
+msgid "You don't have permission to accept a user"
+msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
+
+#: admin.py:161
+msgid "You can't deny a person who is already active"
+msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
 #: models.py:10 models.py:67
 msgid "other club"
@@ -87,6 +95,10 @@ msgstr "sportkaartnummer"
 #: models.py:60
 msgid "graduation date"
 msgstr "afstudeerdatum"
+
+#: models.py:75
+msgid "can accept or reject"
+msgstr "kan accepteren of afwijzen"
 
 #: templates/members/become_a_member.html:4
 msgid "Become a member"

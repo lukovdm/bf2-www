@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-26 14:00+0000\n"
-"PO-Revision-Date: 2021-03-26 15:00+0100\n"
+"POT-Creation-Date: 2021-04-02 13:15+0000\n"
+"PO-Revision-Date: 2021-04-02 15:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -26,7 +26,7 @@ msgstr "Persoonlijk"
 msgid "Permissions"
 msgstr "Rechten"
 
-#: admin.py:117 admin.py:195
+#: admin.py:117 admin.py:200
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: admin.py:135 admin.py:215
+#: admin.py:135 admin.py:220
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -44,20 +44,11 @@ msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
 
-#: admin.py:154
-#, python-format
-msgid ""
-"No email template has been attached to the %s accept user configuration, you "
-"have to create one first"
-msgstr ""
-"Er bestaat geen email template voor de %s accepteer gebruiker configuratie, "
-"je moet er eerst zelf een maken"
-
-#: admin.py:156 admin.py:160
+#: admin.py:154 admin.py:158
 msgid "You don't have permission to accept a user"
 msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 
-#: admin.py:162
+#: admin.py:161
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
@@ -105,7 +96,7 @@ msgstr "sportkaartnummer"
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:76
+#: models.py:75
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 

@@ -20,7 +20,8 @@ class Event(Model, metaclass=ModelTranslateMeta):
     """An event with no registrations in itself"""
 
     name = MultilingualField(CharField, max_length=255, verbose_name=_("name"))
-    date = DateTimeField(verbose_name=_("date"))
+    start_date = DateTimeField(verbose_name=_("start date"))
+    end_date = DateTimeField(verbose_name=_("end date"))
     location = CharField(max_length=255, verbose_name=_("location"))
     description = PlaceholderField("description", verbose_name=_("description"))
 

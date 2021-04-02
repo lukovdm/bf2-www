@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
 from django.utils import timezone
+from django.utils.dateparse import parse_datetime
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView, DetailView
-from django.utils.translation import gettext_lazy as _
 
 from events.models import Event, Registration
 
@@ -18,7 +18,7 @@ class EventListView(ListView):
 
     def get_queryset(self):
         events = super().get_queryset()
-        events = events.filter(date__gte=timezone.now()).order_by("date")
+        events = events.order_by("start_date")
         return events
 
 
@@ -41,11 +41,7 @@ class EventDetailView(DetailView):
 
 
 class EventRegisterView(LoginRequiredMixin, View):
-    http_method_names = ["get", "post"]
-
-    def get(self, request, *args, **kwargs):
-        event = get_object_or_404(Event, pk=kwargs["pk"])
-        return redirect(event)
+    http_method_names = ["post"]
 
     def post(self, request, *args, **kwargs):
         event = get_object_or_404(Event, pk=kwargs["pk"])

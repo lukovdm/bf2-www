@@ -32,6 +32,9 @@ jobs:
       - name: Run black
         run: poetry run black --quiet --check website
 
+      - name: Check migrations
+        run: poetry run python website/manage.py makemigrations --no-input --check --dry-run
+
       - name: Check translations
         shell: bash
         run: |
@@ -39,7 +42,7 @@ jobs:
           sudo apt-get install gettext
           # Run makemessages for all app
           cd website
-          for dir in $(find * -maxdepth 0 -type d); do (cd $dir && poetry run ../manage.py makemessages); done
+          for dir in $(find * -maxdepth 0 -type d); do (cd $dir && poetry run ../manage.py makemessages -all); done
           cd ..
           # Check for obsolete translations in .po files (starting with `#~`).
           echo "Searching for obsolete translations."

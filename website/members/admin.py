@@ -100,11 +100,56 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
         ),
     )
 
+    def send_accept_email(self, request, obj):
+        templates = {}
+        success = True
+        for lang, display in settings.LANGUAGES:
+            t = Configuration.get_mail_template("accept_account_" + lang)
+            if t:
+                templates[lang] = t
+            elif Configuration.objects.filter(
+                process="accept_account_" + lang
+            ).exists():
+                messages.error(
+                    request,
+                    (
+                        _(
+                            "No email template has been attached to the %s configuration, you have to create one first"
+                        )
+                        % lang
+                    ),
+                )
+                success = False
+            else:
+                Configuration.objects.create(
+                    process="accept_account_" + lang,
+                    description="""This configuration is used to send accept account email for new users.
+                    You can use the following variables:
+                    {name}: the name of the user
+                    """,
+                )
+                messages.error(
+                    request,
+                    (
+                        _(
+                            "No configuration exists for %s and has been created. You do have to add a template yourself"
+                        )
+                        % lang
+                    ),
+                )
+                success = False
+        if not success:
+            return False
+        lang = obj.member.preferred_language
+        templates[lang].to = obj.email
+        templates[lang].send({"name": obj.get_full_name()})
+
     def response_change(self, request, obj):
         if "_accept" in request.POST:
             if request.user.has_perm('members.can_accept_or_reject'):
-                obj.is_active = True
-                obj.save()
+                if self.send_accept_email(request, obj): 
+                    obj.is_active = True
+                    obj.save()                
             else: 
                 raise PermissionDenied(_("You don't have permission to accept a user"))
             return HttpResponseRedirect(".")
@@ -123,7 +168,7 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
         return super(UserAdmin, self).change_view(
             request, object_id, form_url, extra_context=extra_context,
         )
-        
+
     def send_password_email(self, request, queryset):
         current_site = get_current_site(request)
         domain = current_site.domain
@@ -183,7 +228,7 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
                 },
             )
 
-            lang = user.preferred_language
+            lang = user.member.preferred_language
             templates[lang].to = user.email
             templates[lang].send({"name": user.get_full_name(), "link": link})
 

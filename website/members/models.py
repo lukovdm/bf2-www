@@ -70,10 +70,6 @@ class Member(models.Model):
     preferred_language = models.CharField(
         choices=settings.LANGUAGES, default="nl", max_length=3
     )
-    
-    class Meta: 
-        permissions = (
-            ("can_accept_or_reject", _("can accept or reject")),
-        )
 
-    
+    class Meta:
+        permissions = (("can_accept_or_reject", _("can accept or reject")),)

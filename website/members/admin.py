@@ -146,27 +146,34 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
 
     def response_change(self, request, obj):
         if "_accept" in request.POST:
-            if request.user.has_perm('members.can_accept_or_reject'):
-                if self.send_accept_email(request, obj): 
+            if request.user.has_perm("members.can_accept_or_reject"):
+                if self.send_accept_email(request, obj):
                     obj.is_active = True
-                    obj.save()                
-            else: 
+                    obj.save()
+            else:
                 raise PermissionDenied(_("You don't have permission to accept a user"))
             return HttpResponseRedirect(".")
-        if "_reject" in request.POST: 
-            if not request.user.has_perm('members.can_accept_or_reject'):
-                raise PermissionDenied(_("You don't have permission to accept a user"))    
+        if "_reject" in request.POST:
+            if not request.user.has_perm("members.can_accept_or_reject"):
+                raise PermissionDenied(_("You don't have permission to accept a user"))
             if obj.is_active:
-                raise ValidationError(_("You can't deny a person who is already active"))
+                raise ValidationError(
+                    _("You can't deny a person who is already active")
+                )
             obj.delete()
             return HttpResponseRedirect(".")
         return super().response_change(request, obj)
 
-    def change_view(self, request, object_id, form_url='', extra_context=None):
+    def change_view(self, request, object_id, form_url="", extra_context=None):
         extra_context = extra_context or {}
-        extra_context['show_accept_reject_buttons'] = request.user.has_perm('members.can_accept_or_reject')
+        extra_context["show_accept_reject_buttons"] = request.user.has_perm(
+            "members.can_accept_or_reject"
+        )
         return super(UserAdmin, self).change_view(
-            request, object_id, form_url, extra_context=extra_context,
+            request,
+            object_id,
+            form_url,
+            extra_context=extra_context,
         )
 
     def send_password_email(self, request, queryset):

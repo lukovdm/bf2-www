@@ -5,10 +5,11 @@
   min-height: 35rem;
   padding: 15rem 0;
   background: linear-gradient(
-                  185deg,
-                  #{fade-out($white, 1)} 0%,
-                  #{fade-out($white, 1)} 60%,
-                  $white 85%
+                  2deg,
+                  $white 15%,
+                  #{fade-out($white, 1)} 40%,
+                  #{fade-out($white, 1)} 100%
+                  
     ),
     url(unquote(get-setting(STATIC_URL) + "website/images/header_brosa.jpg"));
   background-position: center;

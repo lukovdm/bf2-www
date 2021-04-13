@@ -10,7 +10,7 @@
         {% render_block "css" %}
         {% block extracss %}{% endblock extracss %}
     </head>
-    <body>
+    <body class= "bg-secondary">
         {% cms_toolbar %}
         {% bootstrap_messages %}
         <header class="masthead">
@@ -57,8 +57,15 @@
 
             </div>
         </header>
-        <div class="container">
-            {% block content %}{% endblock content %}
+        <div class="container-fluid bg-fade pt-5">
+        <div class="container bg-light shadow rounded mt-4 mb-5 pt-5 pb-5">
+            <div class= "border-bottom border-primary border-2 row mb-4">
+                <h1 class="text-center section-title">{% block pagetitle %}{% endblock pagetitle %}</h1>
+            </div>
+            <div class="row">
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
         </div>
         <footer class="container py-5 bg-dark text-white">
 

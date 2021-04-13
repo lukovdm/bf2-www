@@ -12,8 +12,8 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
 
-
 from members.models import Member
+
 
 class BecomeAMemberForm(ModelForm):
     firstname = CharField()
@@ -48,25 +48,28 @@ class BecomeAMemberForm(ModelForm):
             template = Configuration.get_mail_template("new_member")
             if template:
                 link = reverse("admin:auth_user_change", args=(user.id,))
-                template.send({
-                    "name": user.get_full_name(), 
-                    "phone_number": member.phone_number(), 
-                    "email": user.email(), 
-                    "birthday": member.birthday(),
-                    "sports_card_number": member.sports_card_number(), 
-                    "link_to_member": link 
-                    })
+                template.send(
+                    {
+                        "name": user.get_full_name(),
+                        "phone_number": member.phone_number(),
+                        "email": user.email(),
+                        "birthday": member.birthday(),
+                        "sports_card_number": member.sports_card_number(),
+                        "link_to_member": link,
+                    }
+                )
             else:
-                mail_admins("""No template or configuration for sign up""", """Either the configuration or template for sign up is missing or 
-                not connected. Please solve this problem now!""")
-                if not Configuration.objects.filter(
-                    process="new_member"
-                ).exists():
+                mail_admins(
+                    """No template or configuration for sign up""",
+                    """Either the configuration or template for sign up is missing or 
+                not connected. Please solve this problem now!""",
+                )
+                if not Configuration.objects.filter(process="new_member").exists():
                     Configuration.objects.create(
                         process="new_member",
                         description="""This configuration is used to send a mail to the secretary when a new member signed up.
                         You can use the following variables:
                         {name}: the name of the new member
                         """,
-                    )                
+                    )
         return member

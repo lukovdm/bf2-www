@@ -154,15 +154,15 @@ IMPORT_EXPORT_EXPORT_PERMISSION_CODE = ("view",)
 
 # Django sass processor
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'sass_processor.finders.CssFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
 ]
 
 SASS_PRECISION = 8
 
 # TODO remove when no longer needed in future update
-SASS_OUTPUT_STYLE = 'compact'
+SASS_OUTPUT_STYLE = "compact"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

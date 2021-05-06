@@ -1,12 +1,36 @@
 {% extends "base.html" %}
-{% load i18n bootstrap5 %}
+{% load i18n bootstrap5 sass_tags %}
 
 {% block title %}{% trans "Become a member" %}{% endblock title %}
 {% block pagetitle %}{% trans "Become a member" %}{% endblock pagetitle %}
 
 {% block content %}
     <form method="post">{% csrf_token %}
-        {% bootstrap_form form %}
+        <!--{% bootstrap_form form %}-->
+        <div class="row g-3">
+            <div class="col">
+                <div class="form-group mb-4">
+                    <label for="id_firstname" class="form-label">{% trans "First name" %}</label>
+                    <input type="text" class="form-control" name="firstname" placeholder="{% trans "First name" %}" " aria-label="First name">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="id_lastname" class="form-label">{% trans " Last name" %}</label>
+                    <input type="text" class="form-control" name="lastname" placeholder="{% trans "Last name" %}" " aria-label="Last name">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group reg_spacing">
+                    <label for="id_graduation_date" class="form-label">{% trans "Expected graduation date" %}</label>
+                    <input type="text" class="form-control" name="graduation_date" placeholder="{% trans "Expected graduation date" %}" aria-label="Expected graduation date">
+                </div>
+                <div class="form-group mb-4">
+                    <label for="id_other_club" class="form-label">{% trans "Other club" %}</label>
+                    <input type="text" class="form-control" name="other_club" placeholder="{% trans "Other club" %}" aria-label="Other ultimate club">
+                </div>
+              
+              
+            </div>
+          </div>
         <input type="submit" value="Submit">
     </form>
 {% endblock content %}

@@ -1,9 +1,10 @@
-{% extends 'base.html' %}
+{% extends 'page.html' %}
 {% load cms_tags %}
 {% load i18n %}
 
+{% block pagetitle %}{{ object.name }}{% endblock pagetitle %}
+
 {% block content %}
-    <h1>{{ object.name }}</h1>
     <p>{% trans "date"|capfirst %}: {{ object.date }}</p>
     <p>{% trans "location"|capfirst %}: {{ object.location }}</p>
     {% if object.cost %}

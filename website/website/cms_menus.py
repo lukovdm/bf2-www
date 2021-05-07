@@ -16,13 +16,15 @@ class HomeModifier(Modifier):
             # and put them in a dict for efficient access
             page_nodes = {n.id: n for n in nodes if n.attr["is_page"]}
             # retrieve the attributes of interest from the relevant pages
-            pages = Page.objects.filter(id__in=page_nodes.keys()).values('id', 'is_home')
+            pages = Page.objects.filter(id__in=page_nodes.keys()).values(
+                "id", "is_home"
+            )
             # loop over all relevant pages
             for page in pages:
                 # take the node referring to the page
-                node = page_nodes[page['id']]
+                node = page_nodes[page["id"]]
                 # put the is_home attribute on the node
-                node.attr["is_home"] = page['is_home']
+                node.attr["is_home"] = page["is_home"]
         return nodes
 
 

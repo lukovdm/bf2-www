@@ -49,20 +49,20 @@
             font-size: 4rem;
             line-height: 4rem;
         }
-    }
-    @include media-breakpoint-up(lg) {
-        height: calc(100vh - #{$navbar-padding-y * 4 + $font-size-base} );
-        padding: 0;
-        h1 {
-            font-size: 6.5rem;
-            line-height: 6.5rem;
-            letter-spacing: 0.8rem;
-        }
-        h2 {
-            max-width: 30rem;
-            font-size: 1.25rem;
-        }
-    }
+  }
+  @include media-breakpoint-up(lg) {
+      height: calc(100vh - #{$navbar-padding-y * 4 + $font-size-base} );
+      padding: 0;
+      h1 {
+          font-size: 6.5rem;
+          line-height: 6.5rem;
+          letter-spacing: 0.8rem;
+      }
+      h2 {
+          max-width: 30rem;
+          font-size: 1.25rem;
+      }
+  }
 }
 
 .banner {

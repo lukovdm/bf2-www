@@ -1,45 +1,36 @@
 {% extends "page.html" %}
-{% load i18n static %}
-
-{% block extracss %}
-    <link href="{% static 'events/fullcalendar/main.css' %}" rel='stylesheet'/>
-{% endblock extracss %}
-
-{% block extrajs %}
-    <script src="{% static 'events/fullcalendar/main.js' %}"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                events: [
-                    {% for event in object_list %}
-                        {
-                            title: '{{ event.name }}',
-                            start: '{{ event.start_date.isoformat }}',
-                            end: '{{ event.end_date.isoformat }}',
-                            url: '{% url 'events:detail' pk=event.pk %}'
-                        }{% if not loop.last %},{% endif %}
-                    {% endfor %}
-                ],
-                initialView: 'timeGridWeek',
-                headerToolbar: {
-                    left: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
-                    center: 'title',
-                    right: 'prevYear,prev,next,nextYear'
-                },
-                footerToolbar: {
-                    left: '',
-                    center: '',
-                    right: 'prev,next'
-                },
-            });
-            calendar.render();
-        });
-    </script>
-{% endblock extrajs %}
+{% load i18n static cms_tags %}
 
 {% block pagetitle %}{% trans "Events" %}{% endblock pagetitle %}
 
 {% block content %}
-    <div id='calendar'></div>
+    <div class="accordion" id="eventsAccordion">
+        {% for event in object_list %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="header{{ event.pk }}">
+                <button class="accordion-button collapsed py-0" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#content{{ event.pk }}" aria-expanded="true"
+                        aria-controls="{{ event.pk }}">
+                    <div class="border-end border-2 pe-2 py-3 date-prefix">
+                        {{ event.start_date|date:"j F" }}
+                    </div>
+                    <div class="ps-2 py-3">
+                        {{ event.name }}
+                    </div>
+                </button>
+            </h2>
+            <div id="content{{ event.pk }}" class="accordion-collapse collapse"
+                 aria-labelledby="header{{ event.pk }}" data-bs-parent="#eventsAccordion">
+                <div class="accordion-body">
+                    <div class="mb-3">
+                        {% render_placeholder event.description %}
+                    </div>
+                    <a class="btn btn-primary" href="{% url 'events:detail' pk=event.pk %}" role="button">
+                        {% trans "See details" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 {% endblock content %}

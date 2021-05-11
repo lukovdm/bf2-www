@@ -1,9 +1,0 @@
-{
-	"version": 3,
-	"file": "registrationform.css",
-	"sources": [
-		"registrationform.scss"
-	],
-	"names": [],
-	"mappings": "AAAA,AAAA,YAAY,CAAA,EACR,aAAa,EAAE,GAAG,GACrB"
-}

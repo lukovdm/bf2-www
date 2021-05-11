@@ -7,30 +7,71 @@
 {% block content %}
     <form method="post">{% csrf_token %}
         <!--{% bootstrap_form form %}-->
-        <div class="row g-3">
+        <div class="row g-3 mb-5">
             <div class="col">
-                <div class="form-group mb-4">
-                    <label for="id_firstname" class="form-label">{% trans "First name" %}</label>
-                    <input type="text" class="form-control" name="firstname" placeholder="{% trans "First name" %}" " aria-label="First name">
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.firstname.id_for_label }}" class="form-label">{% trans "first name"|capfirst %}</label>
+                    <input type="text" class="form-control" name="{{ form.firstname.html_name }}" placeholder="{% trans "first name"|capfirst %}" required >
                 </div>
-                <div class="form-group mb-4">
-                    <label for="id_lastname" class="form-label">{% trans " Last name" %}</label>
-                    <input type="text" class="form-control" name="lastname" placeholder="{% trans "Last name" %}" " aria-label="Last name">
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.lastname.id_for_label }}" class="form-label">{% trans "last name"|capfirst %}</label>
+                    <input type="text" class="form-control" name="{{ form.lastname.html_name }}" placeholder="{% trans "last name"|capfirst %}" required >
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.birthday.id_for_label }}" class="form-label">{{ form.birthday.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.birthday.html_name }}" placeholder="{% trans "dd-mm-yyyy" %}" required >
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.phone_number.id_for_label }}" class="form-label">{{ form.phone_number.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.phone_number.html_name }}" placeholder="{{ form.phone_number.label }}" required >
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.street_address.id_for_label }}" class="form-label">{{ form.street_address.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.street_address.html_name }}" placeholder="{{ form.street_address.label }}" required >
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.postcode.id_for_label }}" class="form-label">{{ form.postcode.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.postcode.html_name }}" placeholder="{{ form.postcode.label }}" required>
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.city.id_for_label }}" class="form-label">{{ form.city.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.city.html_name }}" placeholder="{{ form.city.label }}" required>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group reg_spacing">
-                    <label for="id_graduation_date" class="form-label">{% trans "Expected graduation date" %}</label>
-                    <input type="text" class="form-control" name="graduation_date" placeholder="{% trans "Expected graduation date" %}" aria-label="Expected graduation date">
+                    <label for="{{ form.student_type.id_for_label }}" class="form-label">{{ form.student_type.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.student_type.html_name }}" placeholder="{{ form.student_type.label }}" required>
                 </div>
-                <div class="form-group mb-4">
-                    <label for="id_other_club" class="form-label">{% trans "Other club" %}</label>
-                    <input type="text" class="form-control" name="other_club" placeholder="{% trans "Other club" %}" aria-label="Other ultimate club">
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.sports_card_number.id_for_label }}" class="form-label">{{ form.sports_card_number.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.sports_card_number.html_name }}" placeholder="{{ form.sports_card_number.label }}">
                 </div>
-              
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.graduation_date.id_for_label }}" class="form-label">{{ form.graduation_date.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.graduation_date.html_name }}" placeholder="{% trans "dd-mm-yyyy" %}" >
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.other_club.id_for_label }}" class="form-label">{{ form.other_club.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.other_club.html_name }}" placeholder="{{ form.other_club.label }}">
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.email.html_name }}" placeholder="{{ form.email.label }}" required>
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.password.id_for_label }}" class="form-label">{{ form.password.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.password.html_name }}" placeholder="{{ form.password.label }}">
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.repeat_password.id_for_label }}" class="form-label">{{ form.repeat_password.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.repeat_password.html_name }}" placeholder="{{ form.repeat_password.label }}">
+                </div>         
               
             </div>
-          </div>
-        <input type="submit" value="Submit">
-    </form>
+        </div>
+        <center><h1>
+            <input type="submit" value="{% trans "Become a member" %}!" class="btn btn-primary reg_btn">
+        </h1></center>  
+        </form>
 {% endblock content %}

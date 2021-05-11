@@ -37,11 +37,11 @@
   background-size: cover;
 
   .logo {
-    width: 10%;
+    width: 12%;
     height: auto;
     position: absolute;
-    bottom: 5rem;
-    left: 1rem;
+    bottom: 2rem;
+    left: 2rem;
   }
 
   @include media-breakpoint-up(md) {

@@ -1,10 +1,14 @@
 .navbar-nav {
-  .toplevel:not(:first-child):before {
-    content: "";
-    position: absolute;
-    bottom: 1.1rem;
-    height: 1rem;
-    border-right: 2px solid $primary;
+  .toplevel {
+    position: relative;
+
+    &:not(:first-child):before {
+      content: "";
+      position: absolute;
+      top: 0.8rem;
+      height: 1rem;
+      border-right: 2px solid $primary;
+    }
   }
 
   .nav-item {
@@ -20,10 +24,12 @@
     }
 
     .dropdown-menu {
+      width: calc(100% + 2px);
+      top: calc(100% - 0.7rem);
+
       border-top: 0px;
       border-top-left-radius: 0px;
       border-top-right-radius: 0px;
-      top: calc(100% - 1.1rem);
     }
   }
 }

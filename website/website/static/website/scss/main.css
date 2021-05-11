@@ -2403,7 +2403,7 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 
 .fullpage { min-height: 35rem; padding: 15rem 0; background: linear-gradient(0deg, #FFF 5rem, rgba(255, 255, 255, 0) 16rem, rgba(255, 255, 255, 0) 100%), url(/static/website/images/header_brosa.jpg); background-position: center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover; }
 
-.fullpage .logo { width: 10%; height: auto; position: absolute; bottom: 5rem; left: 1rem; }
+.fullpage .logo { width: 12%; height: auto; position: absolute; bottom: 2rem; left: 2rem; }
 
 @media (min-width: 768px) { .fullpage h1, .fullpage .h1 { font-size: 4rem; line-height: 4rem; } }
 
@@ -2417,7 +2417,9 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 
 @media (min-width: 992px) { .banner { height: 15rem; padding: 0; } .banner h1, .banner .h1 { font-size: 3rem; line-height: 3rem; letter-spacing: 0.2rem; } .banner h2, .banner .h2 { max-width: 30rem; font-size: 1.25rem; } }
 
-.navbar-nav .toplevel:not(:first-child):before { content: ""; position: absolute; bottom: 1.1rem; height: 1rem; border-right: 2px solid #FF8023; }
+.navbar-nav .toplevel { position: relative; }
+
+.navbar-nav .toplevel:not(:first-child):before { content: ""; position: absolute; top: 0.8rem; height: 1rem; border-right: 2px solid #FF8023; }
 
 .navbar-nav .nav-item { font-family: "sports_world", serif; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); }
 
@@ -2425,6 +2427,6 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 
 .navbar-nav .nav-item .home:hover { color: #233D7A; }
 
-.navbar-nav .nav-item .dropdown-menu { border-top: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; top: calc(100% - 1.1rem); }
+.navbar-nav .nav-item .dropdown-menu { width: calc(100% + 2px); top: calc(100% - 0.7rem); border-top: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; }
 
 /*# sourceMappingURL=main.css.map */

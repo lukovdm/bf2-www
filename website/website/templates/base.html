@@ -1,4 +1,4 @@
-{% load cms_tags static sekizai_tags menu_tags i18n bootstrap5 sass_tags %}
+{% load cms_tags static sekizai_tags i18n bootstrap5 sass_tags %}
 
 <!doctype html>
 <html>
@@ -10,53 +10,11 @@
         {% render_block "css" %}
         {% block extracss %}{% endblock extracss %}
     </head>
-    <body class= "bg-secondary">
+    <body class="bg-secondary d-flex flex-column min-vh-100">
         {% cms_toolbar %}
         {% bootstrap_messages %}
-        <header class="masthead">
-            <div class="container-fluid d-flex flex-column h-100 justify-content-end">
-                <div class="mx-auto text-center">
-                    <h1>BFrisBee2<span class="highlight">’</span>s</h1>
-                </div><br/>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="/">BFrisBee2's</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                {% show_menu 0 1 100 100 "menu.html" %}
-                            </ul>
-                            <form action="{% url 'set_language' %}" method="post" class="d-flex">{% csrf_token %}
-                                <input name="next" type="hidden" value="{{ redirect_to }}">
-                                <select name="language" class="form-select" aria-label="Language select">
-                                    {% get_current_language as LANGUAGE_CODE %}
-                                    {% get_available_languages as LANGUAGES %}
-                                    {% get_language_info_list for LANGUAGES as languages %}
-                                    {% for language in languages %}
-                                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %}
-                                                selected{% endif %}>
-                                            {{ language.name_local }} ({{ language.code }})
-                                        </option>
-                                    {% endfor %}
-                                </select>
-                                <input type="submit" value="Go" class="btn btn-primary">
-                            </form>
-                            {% if user.is_authenticated %}
-                                <a class="nav-link" href="{% url 'logout' %}">{% trans 'Sign out' %}</a>
-                            {% else %}
-                                <a class="nav-link" href="{% url 'become-a-member' %}">{% trans 'Become a member' %}</a>
-                                <a class="nav-link" href="{% url 'login' %}">{% trans 'Sign in' %}</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <div class="container-fluid bg-fade pt-5">
+        {% block header %}{% endblock header %}
+        <div class="container-fluid bg-fade py-5">
             <div class="container bg-light shadow rounded mt-4 mb-4 p-5">
                 <div class= "border-bottom border-primary border-2 row col-6 offset-3 mb-5">
                     <h1 class="text-center section-title">{% block pagetitle %}{% endblock pagetitle %}</h1>
@@ -66,12 +24,20 @@
                 </div>
             </div>
         </div>
-        <footer class="container-fluid py-5 bg-dark text-white">
-
-            {% trans 'Follow us:' %}
-            <a href="https://www.facebook.com/BFrisBee2s/"><img src="{% static 'website/images/fb.png' %}" alt="{% trans 'Follow us on Facebook' %}" style="width:24px; height:auto; display:inline; margin-right:20px;"></a>
-            <a href="https://www.instagram.com/nsfv_bfrisbee2s/"><img src="{% static 'website/images/insta.png' %}" alt="{% trans 'Follow us on Instagram' %}" style="width:24px; height:auto; display:inline; margin-right:20px;"></a>
-
+        <footer class="container-fluid p-5 bg-ternary text-white mt-auto position-relative">
+            <div class="row">
+                <div class="col-6">
+                    <h5>Contact</h5>
+                    {% static_placeholder "contact" %}
+                </div>
+                <div class="col-6">
+                    {% trans 'Follow us:' %}
+                    <a href="https://www.facebook.com/BFrisBee2s/"><img src="{% static 'website/images/fb.png' %}" alt="{% trans 'Follow us on Facebook' %}" style="width:24px; height:auto; display:inline; margin-right:20px;"></a>
+                    <a href="https://www.instagram.com/nsfv_bfrisbee2s/"><img src="{% static 'website/images/insta.png' %}" alt="{% trans 'Follow us on Instagram' %}" style="width:24px; height:auto; display:inline; margin-right:20px;"></a>
+                    <p class="text-muted">copyright</p>
+                </div>
+            </div>
+            <h6 class="align-bottom position-absolute bottom-0 end-0">Made by Webmasters</h6>
         </footer>
         {% bootstrap_javascript %}
         {% render_block "js" %}

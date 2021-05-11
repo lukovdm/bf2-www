@@ -34,6 +34,19 @@ class Member(models.Model):
 
     birthday = models.DateField(verbose_name=_("birthday"))
 
+    gender = models.CharField(max_length=64, verbose_name=_("gender"))
+    
+    MALE = "Male"
+    FEMALE = "Female"
+    OTHER = "Other"
+    UNSPECIFIED = "Unspecified"
+    GENDER_CHOICES = [
+        (MALE, _("male")),
+        (FEMALE, _("female")),
+        (OTHER, _("other")),
+        (UNSPECIFIED, _("unspecified")),
+    ]
+
     phone_number = models.CharField(max_length=16, verbose_name=_("phone number"))
 
     street_address = models.CharField(
@@ -70,6 +83,14 @@ class Member(models.Model):
     preferred_language = models.CharField(
         choices=settings.LANGUAGES, default="nl", max_length=3
     )
+
+    YES = "Yes"
+    NO = "No"
+    BOOL_CHOICES = [
+        (YES , _("Yes")),
+        (NO, _("No")),
+    ]
+    picture_publication_acceptation = models.BooleanField(choices=BOOL_CHOICES)
 
     class Meta:
         permissions = (("can_accept_or_reject", _("can accept or reject")),)

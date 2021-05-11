@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Calibri';
+  src: url(unquote(get-setting(STATIC_URL) + 'website/fonts/calibri.woff2')) format('woff2'),
+       url(unquote(get-setting(STATIC_URL) + 'website/fonts/calibri.woff')) format('woff'),
+       url(unquote(get-setting(STATIC_URL) + 'website/fonts/calibri.ttf')) format('truetype');
+}

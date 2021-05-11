@@ -1,0 +1,5 @@
+.navbar-nav {
+  .nav-item:not(:last-child) {
+    border-right: 2px solid $orange;
+  }
+}

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'sports_world';
+    src: url(unquote(get-setting(STATIC_URL) + 'website/fonts/sports_world-regular-webfont.woff2')) format('woff2'),
+         url(unquote(get-setting(STATIC_URL) + 'website/fonts/sports_world-regular-webfont.woff')) format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

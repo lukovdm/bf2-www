@@ -1,0 +1,32 @@
+$blue: #233D7A;
+$orange: #FF8023;
+$white: #FFF;
+$black: #000;
+$gray-dark: #4A4A4A;
+$red: #FC0101;
+$gray-light: #E6E6E6;
+$gray-middle: #939292;
+
+$primary: $orange;
+$secondary: $gray-light;
+$danger: $red;
+$info: $gray-middle;
+$light: $white;
+
+$btn-border-radius: 2rem;
+$border-radius: 12px;
+$input-border-radius:2rem;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 900px,
+  xl: 900px,
+  xxl: 1320px
+);
+
+$enable-shadows: true;
+$btn-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+
+$font-family-special: "sports_world", serif;
+$font-family-base: "Calibri", sans-serif;

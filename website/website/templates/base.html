@@ -37,10 +37,16 @@
                     <p class="text-muted">copyright</p>
                 </div>
             </div>
-            <h6 class="align-bottom position-absolute bottom-0 end-0">Made by Webmasters</h6>
+            <h6 class="align-bottom position-absolute bottom-0 end-0" onclick="play()">Made by Webmasters</h6>
         </footer>
         {% bootstrap_javascript %}
         {% render_block "js" %}
+        <script>
+            function play() {
+              var audio = new Audio('{% static 'website/sounds/seagull.mp3' %}');
+              audio.play();
+            }
+        </script>
         {% block extrajs %}{% endblock extrajs %}
     </body>
 </html>

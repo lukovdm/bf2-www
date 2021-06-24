@@ -25,10 +25,6 @@ class BecomeAMemberForm(ModelForm):
         model = Member
         exclude = ["user"]
 
-    def clean(self):
-        cleaned_data = super().clean()
-        return cleaned_data
-
     def save(self, commit=True):
         member = super().save(commit=False)
         user = User.objects.create_user(
@@ -61,15 +57,20 @@ class BecomeAMemberForm(ModelForm):
             else:
                 mail_admins(
                     """No template or configuration for sign up""",
-                    """Either the configuration or template for sign up is missing or 
-                not connected. Please solve this problem now!""",
+                    """Someone signed up using the sign up form on the website. But either the configuration is missing or there is no 
+                    template connected to this configuration. Please solve this problem now!""",
                 )
                 if not Configuration.objects.filter(process="new_member").exists():
                     Configuration.objects.create(
                         process="new_member",
                         description="""This configuration is used to send a mail to the secretary when a new member signed up.
-                        You can use the following variables:
-                        {name}: the name of the new member
+                        You can use the following variables: \n
+                        {name}: the name of the new member \n
+                        {phone_number}: the phone number of the member \n
+                        {email}: the email o the member \n
+                        {birthday}: the birthday of the member \n
+                        {sports_card_number}: the sports card number of the member \n 
+                        {link_to_member}: the link the this specific member \n
                         """,
                     )
         return member

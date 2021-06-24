@@ -30,12 +30,13 @@ class EventDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        try:
-            context["registration"] = Registration.objects.get(
-                user=self.request.user, event=context["event"]
-            )
-        except Registration.DoesNotExist:
-            pass
+        if self.request.user.is_authenticated:
+            try:
+                context["registration"] = Registration.objects.get(
+                    user=self.request.user, event=context["event"]
+                )
+            except Registration.DoesNotExist:
+                pass
 
         return context
 

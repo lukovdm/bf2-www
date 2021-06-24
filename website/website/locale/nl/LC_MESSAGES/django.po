@@ -16,32 +16,28 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.1\n"
 
-#: templates/base.html:47
-msgid "Sign out"
-msgstr "Log uit"
-
-#: templates/base.html:49
-msgid "Become a member"
-msgstr "Word lid"
-
-#: templates/base.html:50 templates/registration/login.html:7
-#: templates/registration/login.html:42
-msgid "Sign in"
-msgstr "Log in"
-
-#: templates/base.html:57
+#: templates/base.html:34
 msgid "Follow us:"
 msgstr "Volg ons:"
 
-#: templates/base.html:58
+#: templates/base.html:35
 msgid "Follow us on Facebook"
 msgstr "Volg ons op Facebook"
 
-#: templates/base.html:59
+#: templates/base.html:36
 msgid "Follow us on Instagram"
 msgstr "Volg ons op Instagram"
+
+#: templates/fullpage.html:8 templates/page.html:8
+msgid "BFrisBee2's logo"
+msgstr "BFrisBee2's logo"
+
+#: templates/registration/login.html:5 templates/registration/login.html:42
+#: templates/topbar.html:35
+msgid "Sign in"
+msgstr "Log in"
 
 #: templates/registration/login.html:11
 msgid ""
@@ -67,6 +63,14 @@ msgstr "Gebruikersnaam"
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: templates/registration/login.html:44
+#: templates/registration/login.html:47
 msgid "Forgot password"
 msgstr "Wachtwoord vergeten"
+
+#: templates/topbar.html:32
+msgid "Sign out"
+msgstr "Log uit"
+
+#: templates/topbar.html:34
+msgid "Become a member"
+msgstr "Word lid"

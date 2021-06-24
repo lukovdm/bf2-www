@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-from django.contrib.messages import constants as message_constants
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,8 +33,8 @@ CMS_PAGE_CACHE = False
 CMS_PERMISSION = True
 
 CMS_TEMPLATES = [
-    ("page.html", "Page"),
-    ("feature.html", "Page with Feature"),
+    ("page_cms.html", "Page"),
+    ("fullpage_cms.html", "Page full page header"),
 ]
 
 THUMBNAIL_HIGH_RESOLUTION = True
@@ -47,14 +45,6 @@ THUMBNAIL_PROCESSORS = (
     "filer.thumbnail_processors.scale_and_crop_with_subject_location",
     "easy_thumbnails.processors.filters",
 )
-
-MESSAGE_TAGS = {
-    message_constants.DEBUG: "dark",
-    message_constants.INFO: "info",
-    message_constants.SUCCESS: "success",
-    message_constants.WARNING: "warning",
-    message_constants.ERROR: "danger",
-}
 
 # Application definition
 
@@ -85,31 +75,17 @@ INSTALLED_APPS = [
     "djangocms_snippet",
     "djangocms_style",
     "djangocms_column",
-    "djangocms_icon",
-    "djangocms_bootstrap4",
-    "djangocms_bootstrap4.contrib.bootstrap4_alerts",
-    "djangocms_bootstrap4.contrib.bootstrap4_badge",
-    "djangocms_bootstrap4.contrib.bootstrap4_card",
-    "djangocms_bootstrap4.contrib.bootstrap4_carousel",
-    "djangocms_bootstrap4.contrib.bootstrap4_collapse",
-    "djangocms_bootstrap4.contrib.bootstrap4_content",
-    "djangocms_bootstrap4.contrib.bootstrap4_grid",
-    "djangocms_bootstrap4.contrib.bootstrap4_jumbotron",
-    "djangocms_bootstrap4.contrib.bootstrap4_link",
-    "djangocms_bootstrap4.contrib.bootstrap4_listgroup",
-    "djangocms_bootstrap4.contrib.bootstrap4_media",
-    "djangocms_bootstrap4.contrib.bootstrap4_picture",
-    "djangocms_bootstrap4.contrib.bootstrap4_tabs",
-    "djangocms_bootstrap4.contrib.bootstrap4_utilities",
+    # installed libraries
+    "import_export",
+    "ckeditor",
+    "django_mail_template",
+    "bootstrap5",
+    "sass_processor",
     # custom applications
     "website",
     "members",
     "events",
     "boards",
-    # installed libraries
-    "import_export",
-    "ckeditor",
-    "django_mail_template",
 ]
 
 MIDDLEWARE = [
@@ -175,6 +151,18 @@ AUTH_PASSWORD_VALIDATORS = [
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 IMPORT_EXPORT_IMPORT_PERMISSION_CODE = ("add",)
 IMPORT_EXPORT_EXPORT_PERMISSION_CODE = ("view",)
+
+# Django sass processor
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "sass_processor.finders.CssFinder",
+]
+
+SASS_PRECISION = 8
+
+# TODO remove when no longer needed in future update
+SASS_OUTPUT_STYLE = "compact"
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

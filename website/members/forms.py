@@ -4,6 +4,7 @@ from django.forms import (
     CharField,
     EmailField,
     PasswordInput,
+    BooleanField,
 )
 from django_mail_template.models import Configuration
 from django.core.exceptions import ValidationError
@@ -19,6 +20,7 @@ class BecomeAMemberForm(ModelForm):
     lastname = CharField()
     email = EmailField()
     password = CharField(widget=PasswordInput())
+    data_registration = BooleanField(required=True)
 
     class Meta:
         model = Member

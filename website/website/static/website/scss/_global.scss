@@ -1,0 +1,16 @@
+h1 {
+  text-shadow: 4px 4px 4px rgba($black,0.25);
+}
+
+.btn{
+  color: $light;
+}
+
+.bg-fade{
+  background: linear-gradient(
+                  180deg,
+                  $white .5rem,
+                  #{fade-out($white, 1)} 5rem,
+                  #{fade-out($white, 1)} 100%
+    );
+}

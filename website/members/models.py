@@ -63,7 +63,7 @@ class Member(models.Model):
         max_length=64,
         validators=[
             RegexValidator(
-                regex="^[\\s\\da-zA-Z]*$",
+                regex="^[\\s\\da-zA-Z]+$",
                 message=_("postcode can only contain spaces, digits and letters"),
                 code="invalid_postcode",
             )
@@ -83,7 +83,7 @@ class Member(models.Model):
         verbose_name=_("sports card number"),
         validators=[
             RegexValidator(
-                regex="^[sueSUE]?(\\d{6}|\\d{7}|\\d{8})$",
+                regex="^[sueSUE]?\\d{6,8}$",
                 message=_("sports card number has invalid form"),
                 code="invalid_sports_card_number",
             ),
@@ -124,4 +124,5 @@ class Member(models.Model):
             raise ValidationError({"birthday": _("Your birthday must lay in the past")})
 
     def save(self, commit=True):
+        super().save(commit)
         self.sports_card_number = self.sports_card_number.lower()

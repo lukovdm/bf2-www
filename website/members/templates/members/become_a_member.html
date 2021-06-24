@@ -10,12 +10,12 @@
         <div class="row g-3 mb-5">
             <div class="col">
                 <div class="form-group reg_spacing">
-                    <label for="{{ form.firstname.id_for_label }}" class="form-label">{% trans "first name"|capfirst %}</label>
-                    <input type="text" class="form-control" name="{{ form.firstname.html_name }}" placeholder="{% trans "first name"|capfirst %}" required >
+                    <label for="{{ form.firstname.id_for_label }}" class="form-label">{{form.firstname.label}}</label>
+                    <input type="text" class="form-control" name="{{ form.firstname.html_name }}" placeholder="{{form.firstname.label}}" required >
                 </div>
                 <div class="form-group reg_spacing">
-                    <label for="{{ form.lastname.id_for_label }}" class="form-label">{% trans "last name"|capfirst %}</label>
-                    <input type="text" class="form-control" name="{{ form.lastname.html_name }}" placeholder="{% trans "last name"|capfirst %}" required >
+                    <label for="{{ form.lastname.id_for_label }}" class="form-label">{{form.lastname.label}}</label>
+                    <input type="text" class="form-control" name="{{ form.lastname.html_name }}" placeholder="{{form.lastname.label}}" required >
                 </div>
                 <div class="form-group reg_spacing">
                     <label for="{{ form.birthday.id_for_label }}" class="form-label">{{ form.birthday.label }}</label>

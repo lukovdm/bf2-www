@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-02 13:15+0000\n"
-"PO-Revision-Date: 2021-04-02 15:15+0200\n"
+"POT-Creation-Date: 2021-06-24 12:27+0000\n"
+"PO-Revision-Date: 2021-06-24 14:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 2.4.3\n"
 
 #: admin.py:75
 msgid "Personal"
@@ -52,55 +52,104 @@ msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: models.py:10 models.py:67
+#: models.py:12 models.py:102
 msgid "other club"
 msgstr "andere club"
 
-#: models.py:28
+#: models.py:30
 msgid "Radboud University"
 msgstr "Radboud Universiteit"
 
-#: models.py:29
+#: models.py:31
 msgid "HAN"
 msgstr "HAN"
 
-#: models.py:30
+#: models.py:32
 msgid "Not a student"
 msgstr "Geen student"
 
-#: models.py:35
+#: models.py:37
 msgid "birthday"
 msgstr "verjaardag"
 
-#: models.py:37
+#: models.py:39
+msgid "gender"
+msgstr "geslacht"
+
+#: models.py:46
+msgid "male"
+msgstr "man"
+
+#: models.py:47
+msgid "female"
+msgstr "vrouw"
+
+#: models.py:48
+msgid "other"
+msgstr "anders"
+
+#: models.py:49
+msgid "unspecified"
+msgstr "niet gespecificeerd"
+
+#: models.py:53
+msgid "pronouns"
+msgstr "voornaamwoorden"
+
+#: models.py:56
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: models.py:40
+#: models.py:59
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: models.py:46
+#: models.py:67
+msgid "postcode can only contain spaces, digits and letters"
+msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
+
+#: models.py:71
 msgid "zipcode"
 msgstr "postcode"
 
-#: models.py:49
+#: models.py:74
 msgid "city"
 msgstr "stad"
 
-#: models.py:57
+#: models.py:83
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:60
+#: models.py:87
+msgid "sports card number has invalid form"
+msgstr "sportkaartnummer heeft een ongeldige vorm"
+
+#: models.py:94
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:75
+#: models.py:109
+msgid "google email"
+msgstr "google e-mail"
+
+#: models.py:114
+msgid "Yes"
+msgstr "Ja"
+
+#: models.py:115
+msgid "No"
+msgstr "Nee"
+
+#: models.py:120
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 
+#: models.py:124
+msgid "Your birthday must lay in the past"
+msgstr "Je verjaardag moet in het verleden liggen"
+
 #: templates/members/become_a_member.html:4
+#: templates/members/become_a_member.html:5
 msgid "Become a member"
 msgstr "Word lid"
 

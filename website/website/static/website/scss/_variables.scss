@@ -30,6 +30,15 @@ $container-max-widths: (
   xxl: 1320px
 );
 
+$accordion-bg: $ternary;
+$accordion-button-active-bg: $accordion-bg;
+$accordion-color: $white;
+$accordion-button-active-color: $accordion-color;
+$accordion-button-focus-border-color: $accordion-bg;
+$accordion-button-focus-box-shadow: 0 0 0 0.25rem rgba($accordion-bg, 0.25);
+
+$navbar-nav-link-padding-x: 1.2rem;
+
 $navbar-nav-link-padding-x: 1.2rem;
 $dropdown-border-color: $primary;
 $dropdown-border-width: 2px;
@@ -38,6 +47,6 @@ $enable-shadows: true;
 $btn-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 
 $font-family-special: "sports_world", serif;
-$font-family-base: "Calibri", sans-serif;
+$font-family-base: Calibri, sans-serif;
 
 $headings-font-family: $font-family-special;

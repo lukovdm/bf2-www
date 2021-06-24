@@ -8,10 +8,13 @@ from django.db.models import (
     CASCADE,
     BooleanField,
     ForeignKey,
+    ImageField,
+    SET_NULL,
 )
 from django.urls import reverse
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
+from filer.fields.image import FilerImageField
 
 from utils.translations import ModelTranslateMeta, MultilingualField
 
@@ -20,6 +23,9 @@ class Event(Model, metaclass=ModelTranslateMeta):
     """An event with no registrations in itself"""
 
     name = MultilingualField(CharField, max_length=255, verbose_name=_("name"))
+    image = FilerImageField(
+        verbose_name=_("image"), null=True, blank=True, on_delete=SET_NULL
+    )
     start_date = DateTimeField(verbose_name=_("start date"))
     end_date = DateTimeField(verbose_name=_("end date"))
     location = CharField(max_length=255, verbose_name=_("location"))

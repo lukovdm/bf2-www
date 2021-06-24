@@ -7,21 +7,22 @@
         <title>{% block title %}{% endblock title %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="{% sass_src 'website/scss/main.scss' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'website/bootstrap-icons-1.5.0/bootstrap-icons.css' %}" rel="stylesheet" type="text/css">
         {% render_block "css" %}
         {% block extracss %}{% endblock extracss %}
     </head>
     <body class="bg-secondary d-flex flex-column min-vh-100">
         {% cms_toolbar %}
-        {% bootstrap_messages %}
+        <div class="fixed-top w-25">
+            {% bootstrap_messages %}
+        </div>
         {% block header %}{% endblock header %}
         <div class="container-fluid bg-fade py-5">
-            <div class="container bg-light shadow rounded mt-4 mb-4 p-5">
+            <div class="container bg-light shadow rounded mt-4 mb-4 p-5 container-padding">
                 <div class= "border-bottom border-primary border-2 row col-6 offset-3 mb-5">
                     <h1 class="text-center section-title">{% block pagetitle %}{% endblock pagetitle %}</h1>
                 </div>
-                <div class="row">
-                    {% block content %}{% endblock content %}
-                </div>
+                {% block content %}{% endblock content %}
             </div>
         </div>
         <footer class="container-fluid p-5 bg-ternary text-white mt-auto position-relative">
@@ -37,10 +38,16 @@
                     <p class="text-muted">copyright</p>
                 </div>
             </div>
-            <h6 class="align-bottom position-absolute bottom-0 end-0">Made by Webmasters</h6>
+            <h6 class="align-bottom position-absolute bottom-0 end-0" onclick="play()">Made by Webmasters</h6>
         </footer>
         {% bootstrap_javascript %}
         {% render_block "js" %}
+        <script>
+            function play() {
+              var audio = new Audio('{% static 'website/sounds/seagull.mp3' %}');
+              audio.play();
+            }
+        </script>
         {% block extrajs %}{% endblock extrajs %}
     </body>
 </html>

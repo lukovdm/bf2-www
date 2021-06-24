@@ -4,6 +4,7 @@ from django.forms import (
     CharField,
     EmailField,
     PasswordInput,
+    BooleanField,
 )
 
 from members.models import Member
@@ -14,6 +15,7 @@ class BecomeAMemberForm(ModelForm):
     lastname = CharField()
     email = EmailField()
     password = CharField(widget=PasswordInput())
+    data_registration = BooleanField(required=True)
 
     class Meta:
         model = Member

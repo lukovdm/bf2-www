@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 12:19+0000\n"
-"PO-Revision-Date: 2021-06-24 14:24+0200\n"
+"POT-Creation-Date: 2021-06-24 12:27+0000\n"
+"PO-Revision-Date: 2021-06-24 14:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -74,7 +74,7 @@ msgstr "verjaardag"
 
 #: models.py:39
 msgid "gender"
-msgstr "geslacht "
+msgstr "geslacht"
 
 #: models.py:46
 msgid "male"
@@ -106,7 +106,7 @@ msgstr "straatnaam en huisnummer"
 
 #: models.py:67
 msgid "postcode can only contain spaces, digits and letters"
-msgstr "Een postcode kan alleen spaties, cijfers en letters bevatten"
+msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
 
 #: models.py:71
 msgid "zipcode"
@@ -121,10 +121,8 @@ msgid "sports card number"
 msgstr "sportkaartnummer"
 
 #: models.py:87
-#, fuzzy
-#| msgid "sports card number"
 msgid "sports card number has invalid form"
-msgstr "sportkaartnummer"
+msgstr "sportkaartnummer heeft een ongeldige vorm"
 
 #: models.py:94
 msgid "graduation date"

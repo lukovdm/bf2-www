@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-02-24 20:38+0000\n"
-"PO-Revision-Date: 2021-02-24 21:42+0100\n"
+"PO-Revision-Date: 2021-06-24 18:06+0200\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,11 +64,11 @@ msgstr "functie"
 
 #: models.py:74
 msgid "email"
-msgstr "email"
+msgstr "e-mail"
 
 #: models.py:81 models.py:82
 msgid "Either member or name have to be filled in, not both"
-msgstr "Of bestuur of naam moeten zijn ingevuld, maar niet beide"
+msgstr "Of bestuur of naam moet zijn ingevuld, maar niet beide"
 
 #: models.py:89 models.py:90
 msgid "Either member or name is required"

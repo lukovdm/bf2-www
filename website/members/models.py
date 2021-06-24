@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from filer.fields.file import FilerFileField
 from django.utils import timezone
 from django.core.exceptions import ValidationError
 
@@ -116,9 +117,6 @@ class Member(models.Model):
     ]
     picture_publication_acceptation = models.BooleanField(choices=BOOL_CHOICES)
 
-    class Meta:
-        permissions = (("can_accept_or_reject", _("can accept or reject")),)
-
     def clean(self) -> None:
         if self.birthday and self.birthday > timezone.now().date():
             raise ValidationError({"birthday": _("Your birthday must lay in the past")})
@@ -126,3 +124,22 @@ class Member(models.Model):
     def save(self, commit=True):
         super().save(commit)
         self.sports_card_number = self.sports_card_number.lower()
+
+    class Meta:
+        permissions = (("can_accept_or_reject", _("can accept or reject")),)
+
+    def __str__(self):
+        return "Member: {}".format(self.user.first_name)
+
+
+class MemberSettings(models.Model):
+    privacyFile = FilerFileField(null=True, blank=True, on_delete=models.CASCADE)
+
+    def save(self):
+        if MemberSettings.objects.exists():
+            raise ValueError("This model already has its record.")
+        else:
+            super().save()
+
+    def __str__(self):
+        return "Settings"

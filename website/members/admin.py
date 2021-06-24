@@ -14,7 +14,7 @@ from import_export.admin import ImportExportMixin
 from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied, ValidationError
 
-from .models import Member, OtherClub
+from .models import Member, OtherClub, MemberSettings
 from .tokens import AccountActivationTokenGenerator
 
 
@@ -250,4 +250,9 @@ admin.site.register(User, UserAdmin)
 
 @admin.register(OtherClub)
 class OtherClubAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(MemberSettings)
+class PrivacyFileAdmin(admin.ModelAdmin):
     pass

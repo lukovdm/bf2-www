@@ -16,19 +16,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0\n"
 
-#: templates/base.html:34
+#: templates/base.html:35
 msgid "Follow us:"
 msgstr "Volg ons:"
 
-#: templates/base.html:35
+#: templates/base.html:58
 msgid "Follow us on Facebook"
 msgstr "Volg ons op Facebook"
 
-#: templates/base.html:36
+#: templates/base.html:59
 msgid "Follow us on Instagram"
 msgstr "Volg ons op Instagram"
+
+#: templates/bootstrap5/messages.html:4
+msgid "close"
+msgstr "sluit"
 
 #: templates/fullpage.html:8 templates/page.html:8
 msgid "BFrisBee2's logo"

@@ -1,5 +1,19 @@
 .accordion-header {
   .date-prefix {
-    width: 10%;
+    width: 30%;
+  }
+}
+
+.alternating-color{
+  &:nth-of-type(odd) {
+    .accordion-button{
+      background-color: $ternary;
+    }
+  }
+
+  &:nth-of-type(even) {
+    .accordion-button{
+      background-color: lighten($ternary, 10);
+    }
   }
 }

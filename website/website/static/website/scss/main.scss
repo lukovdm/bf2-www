@@ -13,5 +13,5 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import "masthead";
 @import "navbar";
 
-//@import "../../events/scss/events";
+@import "../../../../events/static/events/scss/events";
 

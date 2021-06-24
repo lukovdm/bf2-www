@@ -49,12 +49,12 @@ class BecomeAMemberForm(ModelForm):
                     {
                         "name": user.get_full_name(),
                         "phone_number": member.phone_number(),
-                        "email": user.email(),                        
-                        "google_email": member.google_email(), 
+                        "email": user.email(),
+                        "google_email": member.google_email(),
                         "birthday": member.birthday(),
                         "sports_card_number": member.sports_card_number(),
                         "link_to_member": link,
-                        "pronouns": member.pronouns()
+                        "pronouns": member.pronouns(),
                     }
                 )
             else:

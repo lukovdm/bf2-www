@@ -251,6 +251,3 @@ admin.site.register(User, UserAdmin)
 @admin.register(OtherClub)
 class OtherClubAdmin(admin.ModelAdmin):
     pass
-
-
-

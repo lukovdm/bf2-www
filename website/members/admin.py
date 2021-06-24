@@ -252,6 +252,7 @@ admin.site.register(User, UserAdmin)
 class OtherClubAdmin(admin.ModelAdmin):
     pass
 
+
 @admin.register(MemberSettings)
 class PrivacyFileAdmin(admin.ModelAdmin):
     pass

@@ -76,12 +76,12 @@ class Member(models.Model):
         permissions = (("can_accept_or_reject", _("can accept or reject")),)
 
     def __str__(self):
-        return 'Member: {}'.format(self.user.first_name)
+        return "Member: {}".format(self.user.first_name)
 
 
 class MemberSettings(models.Model):
-    privacyFile = FilerFileField(null=True, blank=True, on_delete = models.CASCADE)
-    
+    privacyFile = FilerFileField(null=True, blank=True, on_delete=models.CASCADE)
+
     def save(self):
         if MemberSettings.objects.exists():
             raise ValueError("This model already has its record.")

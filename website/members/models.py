@@ -2,6 +2,10 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
+from django.core.exceptions import ValidationError
+
+
 
 
 class OtherClub(models.Model):
@@ -47,6 +51,13 @@ class Member(models.Model):
         (UNSPECIFIED, _("unspecified")),
     ]
 
+    pronouns = models.CharField(
+        blank = True,
+        null = True,  
+        max_length = 256,
+        verbose_name = _('pronouns') 
+    )
+
     phone_number = models.CharField(max_length=16, verbose_name=_("phone number"))
 
     street_address = models.CharField(
@@ -54,8 +65,13 @@ class Member(models.Model):
     )
 
     postcode = models.CharField(
-        max_length=7,
-        validators=[RegexValidator("^\\d{4} ?[A-Za-z]{2}$")],
+        max_length=64,
+        validators=[RegexValidator(
+            regex = "^[\\s\\da-zA-Z]*$",
+            message = _('postcode can only contain spaces, digits and letters'),
+            code = 'invalid_postcode',
+            )
+        ],
         verbose_name=_("zipcode"),
     )
 
@@ -67,10 +83,21 @@ class Member(models.Model):
     )
 
     sports_card_number = models.CharField(
-        max_length=10, verbose_name=_("sports card number")
+        max_length=10, 
+        verbose_name=_("sports card number"), 
+        validators=[
+           RegexValidator(
+              regex='^[sueSUE]?(\\d{6}|\\d{7}|\\d{8})$',
+              message=_('sports card number has invalid form'),
+              code='invalid_sports_card_number',
+           ),
+        ]
     )
 
-    graduation_date = models.DateField(verbose_name=_("graduation date"))
+    graduation_date = models.DateField(
+        verbose_name=_("graduation date"), 
+        blank=True, 
+        null=True)
 
     other_club = models.ForeignKey(
         OtherClub,
@@ -84,6 +111,10 @@ class Member(models.Model):
         choices=settings.LANGUAGES, default="nl", max_length=3
     )
 
+    google_email = models.EmailField(
+        verbose_name=_("google email")
+    )
+
     YES = "Yes"
     NO = "No"
     BOOL_CHOICES = [
@@ -94,3 +125,11 @@ class Member(models.Model):
 
     class Meta:
         permissions = (("can_accept_or_reject", _("can accept or reject")),)
+
+    def clean(self) -> None:
+        if self.birthday and self.birthday > timezone.now().date():
+            raise ValidationError({'birthday': _('Your birthday must lay in the past')})
+
+
+    def save(self, commit=True):
+        self.sports_card_number = self.sports_card_number.lower()

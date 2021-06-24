@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-24 12:38+0000\n"
-"PO-Revision-Date: 2021-06-24 14:41+0200\n"
+"PO-Revision-Date: 2021-06-24 15:37+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -135,7 +135,5 @@ msgid "You successfully registered."
 msgstr "Je bent succesvol geregistreerd."
 
 #: views.py:81
-#, fuzzy
-#| msgid "You successfully registered."
 msgid "You successfully unregistered."
-msgstr "Je bent succesvol geregistreerd."
+msgstr "Je bent succesvol afgemeld."

@@ -70,10 +70,12 @@ class BecomeAMemberForm(ModelForm):
                         You can use the following variables: \n
                         {name}: the name of the new member \n
                         {phone_number}: the phone number of the member \n
-                        {email}: the email o the member \n
+                        {email}: the email of the member \n
+                        {google_email}: the google email of the member \n
                         {birthday}: the birthday of the member \n
                         {sports_card_number}: the sports card number of the member \n 
                         {link_to_member}: the link the this specific member \n
+                        {pronouns}: the pronouns of the member \n
                         """,
                     )
         return member

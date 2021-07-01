@@ -33,8 +33,8 @@ CMS_PAGE_CACHE = False
 CMS_PERMISSION = True
 
 CMS_TEMPLATES = [
-    ("page.html", "Page"),
-    ("feature.html", "Page with Feature"),
+    ("page_cms.html", "Page"),
+    ("fullpage_cms.html", "Page full page header"),
 ]
 
 THUMBNAIL_HIGH_RESOLUTION = True

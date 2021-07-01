@@ -890,7 +890,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 
 .dropdown-toggle:empty::after { margin-left: 0; }
 
-.dropdown-menu { position: absolute; top: 100%; z-index: 1000; display: none; min-width: 10rem; padding: 0.5rem 0; margin: 0; font-size: 1rem; color: #212529; text-align: left; list-style: none; background-color: #FFF; background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0.15); border-radius: 12px; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+.dropdown-menu { position: absolute; top: 100%; z-index: 1000; display: none; min-width: 10rem; padding: 0.5rem 0; margin: 0; font-size: 1rem; color: #212529; text-align: left; list-style: none; background-color: #FFF; background-clip: padding-box; border: 2px solid #FF8023; border-radius: 12px; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
 
 .dropdown-menu[data-bs-popper] { left: 0; margin-top: 0.125rem; }
 
@@ -944,7 +944,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 
 .dropstart .dropdown-toggle::before { vertical-align: 0; }
 
-.dropdown-divider { height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid rgba(0, 0, 0, 0.15); }
+.dropdown-divider { height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #FF8023; }
 
 .dropdown-item { display: block; width: 100%; padding: 0.25rem 1rem; clear: both; font-weight: 400; color: #212529; text-align: inherit; text-decoration: none; white-space: nowrap; background-color: transparent; border: 0; }
 
@@ -960,7 +960,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 
 .dropdown-item-text { display: block; padding: 0.25rem 1rem; color: #212529; }
 
-.dropdown-menu-dark { color: #dee2e6; background-color: #343a40; border-color: rgba(0, 0, 0, 0.15); }
+.dropdown-menu-dark { color: #dee2e6; background-color: #343a40; border-color: #FF8023; }
 
 .dropdown-menu-dark .dropdown-item { color: #dee2e6; }
 
@@ -970,7 +970,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 
 .dropdown-menu-dark .dropdown-item.disabled, .dropdown-menu-dark .dropdown-item:disabled { color: #adb5bd; }
 
-.dropdown-menu-dark .dropdown-divider { border-color: rgba(0, 0, 0, 0.15); }
+.dropdown-menu-dark .dropdown-divider { border-color: #FF8023; }
 
 .dropdown-menu-dark .dropdown-item-text { color: #dee2e6; }
 
@@ -2419,6 +2419,14 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 
 @media (min-width: 992px) { .banner { height: 15rem; padding: 0; } .banner h1, .banner .h1 { font-size: 3rem; line-height: 3rem; letter-spacing: 0.2rem; } .banner h2, .banner .h2 { max-width: 30rem; font-size: 1.25rem; } }
 
+.banner { min-height: 10rem; padding: 2rem 0; background: linear-gradient(0deg, #FFF 0.5rem, rgba(255, 255, 255, 0) 8rem, rgba(255, 255, 255, 0) 100%), url(/static/website/images/banner_iedereen.jpg); background-position: center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover; }
+
+.banner .logo { width: 130px; height: auto; position: absolute; bottom: .5rem; left: 1rem; }
+
+@media (min-width: 768px) { .banner { height: 5rem; } .banner h1, .banner .h1 { font-size: 2rem; line-height: 2rem; } }
+
+@media (min-width: 992px) { .banner { height: 15rem; padding: 0; } .banner h1, .banner .h1 { font-size: 3rem; line-height: 3rem; letter-spacing: 0.2rem; } .banner h2, .banner .h2 { max-width: 30rem; font-size: 1.25rem; } }
+
 .navbar-nav .nav-item { font-family: "sports_world", serif; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); }
 
 .navbar-nav .nav-item .home { color: #233D7A !important; }
@@ -2428,12 +2436,6 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 @media (min-width: 992px) { .navbar-nav .nav-item .dropdown-menu { border-top: 0px; border-width: 2px; border-color: #FF8023; border-top-left-radius: 0px; border-top-right-radius: 0px; top: calc(100% - 1.1rem); } }
 
 @media (min-width: 992px) { .navbar-nav .toplevel:not(:first-child):before { content: ""; position: absolute; bottom: 1.1rem; height: 1rem; border-right: 2px solid #FF8023; } }
-
-.accordion-header .date-prefix { width: 30%; }
-
-.alternating-color:nth-of-type(odd) .accordion-button { background-color: #233D7A; }
-
-.alternating-color:nth-of-type(even) .accordion-button { background-color: #2e51a2; }
 
 .reg_spacing { margin-bottom: 1.5rem; width: 95%; }
 

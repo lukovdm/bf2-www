@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% load i18n bootstrap5 sass_tags %}
+{% extends "page.html" %}
+{% load i18n bootstrap5 sass_tags static %}
 
 {% block title %}{% trans "Become a member" %}{% endblock title %}
 {% block pagetitle %}{% trans "Become a member" %}{% endblock pagetitle %}
@@ -20,6 +20,18 @@
                 <div class="form-group reg_spacing">
                     <label for="{{ form.birthday.id_for_label }}" class="form-label">{{ form.birthday.label }}</label>
                     <input type="text" class="form-control" name="{{ form.birthday.html_name }}" placeholder="{% trans "dd-mm-yyyy" %}" required >
+                </div>
+                <div class="form-group reg_spacing" >
+                    <label for="{{ form.gender.id_for_label }}" class="form-label">{{ form.gender.label }}</label>
+                    <select class="form-select custom-select" name="{{ form.gender.html_name }}" id="gender" onchange="hideField()" required>
+                        {% for choice in form.gender %}
+                            {{ choice }}
+                        {% endfor %}
+                      </select>
+                </div>
+                <div class="form-group reg_spacing" id="pronouns">
+                    <label for="{{ form.pronouns.id_for_label }}" class="form-label">{{ form.pronouns.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.pronouns.html_name }}" placeholder="{{ form.pronouns.label }}" >
                 </div>
                 <div class="form-group reg_spacing">
                     <label for="{{ form.phone_number.id_for_label }}" class="form-label">{{ form.phone_number.label }}</label>
@@ -60,6 +72,10 @@
                     <input type="text" class="form-control" name="{{ form.email.html_name }}" placeholder="{{ form.email.label }}" required>
                 </div>
                 <div class="form-group reg_spacing">
+                    <label for="{{ form.google_email.id_for_label }}" class="form-label">{{ form.google_email.label }}</label>
+                    <input type="text" class="form-control" name="{{ form.google_email.html_name }}" placeholder="...@gmail.com" required>
+                </div>
+                <div class="form-group reg_spacing">
                     <label for="{{ form.password.id_for_label }}" class="form-label">{{ form.password.label }}</label>
                     <input type="text" class="form-control" name="{{ form.password.html_name }}" placeholder="{{ form.password.label }}">
                 </div>
@@ -69,10 +85,39 @@
                 </div>         
               
             </div>
+
+            <div class="form-group reg_spacing">
+                <div><label>{% trans "Pictures and videos that include me may be used on our social media." %}</label></div>
+                    {% for choice in form.picture_publication_acceptation %}
+                        {% if not forloop.first %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="radios" value="choice"> <!--is it saved correctly here?-->
+                                <label class="form-check-label">{{ choice }}</label>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+
+            <div class="form-group reg_spacing">
+                <div>
+                    <label>{% trans "By checking the box below, you agree to the " %}
+                    <a href = "{{ privacyFile.url }}"> {% trans "privacy statement" %} </a>
+                    .</label>
+                </div>
+                <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="{{ form.data_registration.html_name }}" required>
+                <label class="form-check-label" for="{{ form.data_registration.id_for_label }}">{% trans "I agree with the privacy statement" %}</label>
+            </div>
         </div>
+        
+        
         <center><h1>
-            <a href = "{{ privacyFile.url }}"> {{ privacyFile }} </a>
             <input type="submit" value="{% trans "Become a member" %}!" class="btn btn-primary reg_btn">
         </h1></center>  
         </form>
+
 {% endblock content %}
+
+{% block extrajs %}
+    <script src="{% static 'members/js/functional_form.js' %}"></script>
+{% endblock extrajs %}
+

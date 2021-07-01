@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 16:14+0000\n"
-"PO-Revision-Date: 2021-07-01 13:14+0200\n"
+"POT-Creation-Date: 2021-07-01 13:16+0000\n"
+"PO-Revision-Date: 2021-07-01 15:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -22,11 +22,11 @@ msgstr ""
 msgid "Follow us:"
 msgstr "Volg ons:"
 
-#: templates/base.html:58
+#: templates/base.html:36
 msgid "Follow us on Facebook"
 msgstr "Volg ons op Facebook"
 
-#: templates/base.html:59
+#: templates/base.html:37
 msgid "Follow us on Instagram"
 msgstr "Volg ons op Instagram"
 
@@ -38,7 +38,7 @@ msgstr "sluit"
 msgid "BFrisBee2's logo"
 msgstr "BFrisBee2's logo"
 
-#: templates/registration/login.html:5 templates/registration/login.html:42
+#: templates/registration/login.html:5 templates/registration/login.html:58
 #: templates/registration/password_reset_complete.html:12
 #: templates/topbar.html:35
 msgid "Sign in"
@@ -56,19 +56,15 @@ msgstr ""
 msgid "Please sign in to see this page."
 msgstr "Log alstublieft in om deze pagina te bekijken."
 
-#: templates/registration/login.html:24
-msgid "Invalid username or password."
-msgstr "Ongeldige gebruikersnaam of wachtwoord."
-
-#: templates/registration/login.html:33
+#: templates/registration/login.html:29
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: templates/registration/login.html:38
+#: templates/registration/login.html:39
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: templates/registration/login.html:47
+#: templates/registration/login.html:63
 #: templates/registration/password_reset_form.html:4
 #: templates/registration/password_reset_form.html:5
 msgid "Forgot password"
@@ -95,15 +91,15 @@ msgstr "Wachtwoord resetten"
 msgid "Please enter your new password below."
 msgstr "Vul het nieuwe wachtwoord hieronder in."
 
-#: templates/registration/password_reset_confirm.html:18
+#: templates/registration/password_reset_confirm.html:17
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
-#: templates/registration/password_reset_confirm.html:24
+#: templates/registration/password_reset_confirm.html:29
 msgid "Confirm password"
 msgstr "Wachtwoord bevestigen"
 
-#: templates/registration/password_reset_confirm.html:28
+#: templates/registration/password_reset_confirm.html:50
 msgid "Change my password"
 msgstr "Wachtwoord veranderen"
 
@@ -128,7 +124,7 @@ msgstr ""
 "Vul je e-mail adres hieronder in, en dan zullen we je per e-mail instructies "
 "sturen voor een nieuw wachtwoord."
 
-#: templates/registration/password_reset_form.html:23
+#: templates/registration/password_reset_form.html:39
 msgid "Send email"
 msgstr "Verstuur e-mail"
 

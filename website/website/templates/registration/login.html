@@ -20,23 +20,39 @@
                 </p>
             {% endif %}
 
-            {% if form.errors %}
-                {% trans "Invalid username or password." as error_text %}
-            {% endif %}
-
             <form method="post" action="{% url 'login' %}" class="col-lg-4 offset-lg-4">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ next }}">
 
                 <div class="row mb-2" >
-                    <input name="{{ form.username.name }}" autofocus class="form-control"
+                    <input name="{{ form.username.name }}" autofocus class="form-control {% if form.username.errors %}is-invalid{% endif %}"
                            placeholder="{% trans "Username" %}">
+                    {% if form.username.errors %}
+                         <div class="invalid-tooltip">
+                            {{ form.username.errors }}
+                         </div>
+                    {% endif %}
                 </div>
 
                 <div class="row mb-3">
-                    <input name="{{ form.password.name }}" class="form-control" type="password"
+                    <input name="{{ form.password.name }}" class="form-control {% if form.password.errors %}is-invalid{% endif %}" type="password"
                            placeholder="{% trans "Password" %}">
+                    {% if form.password.errors %}
+                         <div class="invalid-tooltip">
+                            {{ form.username.errors }}
+                         </div>
+                    {% endif %}
                 </div>
+
+                {% if form.non_field_errors %}
+                    <div class="row mb-3">
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                {{ error }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
 
                 <div class="row mb-2">
                     <input type="submit"  value="{% trans "Sign in" %}" class="btn btn-primary float-right">
@@ -44,7 +60,7 @@
 
                 <div class="row mb-3">
                     <a href="{% url 'password_reset' %}"
-                       class="forgot btn float-left btn-info"">{% trans "Forgot password" %}</a>
+                       class="forgot btn float-left btn-info">{% trans "Forgot password" %}</a>
                 </div>
             </form>
 {% endblock content %}

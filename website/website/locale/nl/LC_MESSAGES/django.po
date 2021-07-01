@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-06-24 16:14+0000\n"
-"PO-Revision-Date: 2021-06-24 18:35+0200\n"
+"PO-Revision-Date: 2021-07-01 13:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,17 +18,21 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: templates/base.html:34
+#: templates/base.html:35
 msgid "Follow us:"
 msgstr "Volg ons:"
 
-#: templates/base.html:35
+#: templates/base.html:58
 msgid "Follow us on Facebook"
 msgstr "Volg ons op Facebook"
 
-#: templates/base.html:36
+#: templates/base.html:59
 msgid "Follow us on Instagram"
 msgstr "Volg ons op Instagram"
+
+#: templates/bootstrap5/messages.html:4
+msgid "close"
+msgstr "sluit"
 
 #: templates/fullpage.html:8 templates/page.html:8
 msgid "BFrisBee2's logo"

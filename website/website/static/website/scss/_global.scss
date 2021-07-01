@@ -14,3 +14,12 @@ h1 {
                   #{fade-out($white, 1)} 100%
     );
 }
+
+.container-padding {
+  padding-right: 10rem !important;
+  padding-left: 10rem !important;
+}
+
+.ws-nowrap {
+  white-space: nowrap;
+}

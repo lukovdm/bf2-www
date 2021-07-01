@@ -2,6 +2,9 @@ from django.conf import settings
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from filer.fields.file import FilerFileField
+from django.utils import timezone
+from django.core.exceptions import ValidationError
 
 
 class OtherClub(models.Model):
@@ -34,6 +37,23 @@ class Member(models.Model):
 
     birthday = models.DateField(verbose_name=_("birthday"))
 
+    gender = models.CharField(max_length=64, verbose_name=_("gender"))
+
+    MALE = "Male"
+    FEMALE = "Female"
+    OTHER = "Other"
+    UNSPECIFIED = "Unspecified"
+    GENDER_CHOICES = [
+        (MALE, _("male")),
+        (FEMALE, _("female")),
+        (OTHER, _("other")),
+        (UNSPECIFIED, _("unspecified")),
+    ]
+
+    pronouns = models.CharField(
+        blank=True, null=True, max_length=256, verbose_name=_("pronouns")
+    )
+
     phone_number = models.CharField(max_length=16, verbose_name=_("phone number"))
 
     street_address = models.CharField(
@@ -41,8 +61,14 @@ class Member(models.Model):
     )
 
     postcode = models.CharField(
-        max_length=7,
-        validators=[RegexValidator("^\\d{4} ?[A-Za-z]{2}$")],
+        max_length=64,
+        validators=[
+            RegexValidator(
+                regex="^[\\s\\da-zA-Z]+$",
+                message=_("postcode can only contain spaces, digits and letters"),
+                code="invalid_postcode",
+            )
+        ],
         verbose_name=_("zipcode"),
     )
 
@@ -54,10 +80,20 @@ class Member(models.Model):
     )
 
     sports_card_number = models.CharField(
-        max_length=10, verbose_name=_("sports card number")
+        max_length=10,
+        verbose_name=_("sports card number"),
+        validators=[
+            RegexValidator(
+                regex="^[sueSUE]?\\d{6,8}$",
+                message=_("sports card number has invalid form"),
+                code="invalid_sports_card_number",
+            ),
+        ],
     )
 
-    graduation_date = models.DateField(verbose_name=_("graduation date"))
+    graduation_date = models.DateField(
+        verbose_name=_("graduation date"), blank=True, null=True
+    )
 
     other_club = models.ForeignKey(
         OtherClub,
@@ -71,5 +107,39 @@ class Member(models.Model):
         choices=settings.LANGUAGES, default="nl", max_length=3
     )
 
+    google_email = models.EmailField(verbose_name=_("google email"))
+
+    YES = "Yes"
+    NO = "No"
+    BOOL_CHOICES = [
+        (YES, _("Yes")),
+        (NO, _("No")),
+    ]
+    picture_publication_acceptation = models.BooleanField(choices=BOOL_CHOICES)
+
+    def clean(self) -> None:
+        if self.birthday and self.birthday > timezone.now().date():
+            raise ValidationError({"birthday": _("Your birthday must lay in the past")})
+
+    def save(self, commit=True):
+        super().save(commit)
+        self.sports_card_number = self.sports_card_number.lower()
+
     class Meta:
         permissions = (("can_accept_or_reject", _("can accept or reject")),)
+
+    def __str__(self):
+        return "Member: {}".format(self.user.first_name)
+
+
+class MemberSettings(models.Model):
+    privacyFile = FilerFileField(null=True, blank=True, on_delete=models.CASCADE)
+
+    def save(self):
+        if MemberSettings.objects.exists():
+            raise ValueError("This model already has its record.")
+        else:
+            super().save()
+
+    def __str__(self):
+        return "Settings"

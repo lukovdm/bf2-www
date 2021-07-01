@@ -1,9 +1,9 @@
+import datetime
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import timezone
-from django.utils.dateparse import parse_datetime
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView, DetailView
@@ -18,7 +18,7 @@ class EventListView(ListView):
 
     def get_queryset(self):
         events = super().get_queryset()
-        events = events.order_by("start_date")
+        events = events.filter(end_date__gt=timezone.now()).order_by("start_date")
         return events
 
 
@@ -30,12 +30,13 @@ class EventDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        try:
-            context["registration"] = Registration.objects.get(
-                user=self.request.user, event=context["event"]
-            )
-        except Registration.DoesNotExist:
-            pass
+        if self.request.user.is_authenticated:
+            try:
+                context["registration"] = Registration.objects.get(
+                    user=self.request.user, event=context["event"]
+                )
+            except Registration.DoesNotExist:
+                pass
 
         return context
 
@@ -65,5 +66,18 @@ class EventRegisterView(LoginRequiredMixin, View):
                 event=event, user=request.user, has_payed=False if event.cost else None
             )
             messages.success(request, _("You successfully registered."))
+
+        return redirect(event)
+
+
+class EventUnregisterView(LoginRequiredMixin, View):
+    http_method_names = ["post"]
+
+    def post(self, request, *args, **kwargs):
+        event = get_object_or_404(Event, pk=kwargs["pk"])
+        registration = get_object_or_404(Registration, event=event, user=request.user)
+
+        registration.delete()
+        messages.success(request, _("You successfully unregistered."))
 
         return redirect(event)

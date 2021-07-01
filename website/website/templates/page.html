@@ -1,11 +1,15 @@
 {% extends "base.html" %}
-{% load cms_tags %}
+{% load static i18n %}
 
-
-{% block title %}{% page_attribute "page_title" %}{% endblock title %}
-{% block pagetitle %}{% page_attribute "page_title" %}{% endblock pagetitle %}
-
-{% block content %}
-    {% placeholder "content" %}
-{% endblock content %}
-
+{% block header %}
+    <header class="masthead banner">
+        <div class="container-fluid d-flex flex-column h-100 justify-content-end">
+            {% include 'language_changer.html' %}
+            <img class="logo" src="{% static "website/images/logo.png" %}" alt="{% trans "BFrisBee2's logo" %}">
+            <div class="mx-auto text-center">
+                <h1>BFrisBee2<span class="highlight">’</span>s</h1>
+            </div>
+        </div>
+    </header>
+    {% include "topbar.html" %}
+{% endblock header %}

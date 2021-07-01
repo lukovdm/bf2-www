@@ -1,0 +1,15 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<form method="post" action="{% url 'set_language' %}" class="lang_change">
+    {% csrf_token %}
+    <input type="hidden" value="{{ request.get_full_path }}" name="next"/>
+    <input type="hidden" value="{% if LANGUAGE_CODE == 'en' %}nl{% else %}en{% endif %}" name="language"/>
+    <button type="submit" class="btn btn-link">
+        <img src="
+            {% if LANGUAGE_CODE == 'en' %}
+                {% static 'website/images/flag-nl.svg' %}
+            {% else %}
+                {% static 'website/images/flag-en.svg' %}
+            {% endif %}" alt="flag">
+    </button>
+</form>

@@ -20,8 +20,6 @@
                 </p>
             {% endif %}
 
-{#            {% bootstrap_form form %}#}
-
             <form method="post" action="{% url 'login' %}" class="col-lg-4 offset-lg-4">
                 {% csrf_token %}
                 <input type="hidden" name="next" value="{{ next }}">

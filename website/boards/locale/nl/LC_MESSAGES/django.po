@@ -7,69 +7,72 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-24 20:38+0000\n"
+"POT-Creation-Date: 2021-07-09 11:40+0000\n"
 "PO-Revision-Date: 2021-02-24 21:42+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Last-Translator: \n"
-"Language-Team: \n"
 "X-Generator: Poedit 2.4.1\n"
 
-#: models.py:10
+#: boards/models.py:11
 msgid "start"
 msgstr "start"
 
-#: models.py:11
+#: boards/models.py:12
 msgid "end"
 msgstr "einde"
 
-#: models.py:13 models.py:75
+#: boards/models.py:14 boards/models.py:76
 msgid "picture"
 msgstr "afbeelding"
 
-#: models.py:19
+#: boards/models.py:20
 msgid "Start date should be before end date."
 msgstr "De startdatum moet voor de einddatum vallen."
 
-#: models.py:37 models.py:40
+#: boards/models.py:38 boards/models.py:41
 msgid "A boards start and end cannot overlap with another board"
-msgstr "Een startdatum en einddatum van een bestuur mogen niet overlappen met een ander bestuur"
+msgstr ""
+"Een startdatum en einddatum van een bestuur mogen niet overlappen met een "
+"ander bestuur"
 
-#: models.py:50
+#: boards/models.py:51
 msgid "A boards start cannot fall in another board"
 msgstr "Bestuur mag niet tijdens een ander bestuur vallen"
 
-#: models.py:54 templates/current_board_plugin.html:4
+#: boards/models.py:55 boards/templates/current_board_plugin.html:3
+#: boards/templates/previous_board_plugin.html:3
 msgid "Board of"
 msgstr "Bestuur van"
 
-#: models.py:58
+#: boards/models.py:59
 msgid "board"
 msgstr "bestuur"
 
-#: models.py:65
+#: boards/models.py:66
 msgid "member"
 msgstr "lid"
 
-#: models.py:68
+#: boards/models.py:69
 msgid "name"
 msgstr "naam"
 
-#: models.py:72
+#: boards/models.py:73
 msgid "function"
 msgstr "functie"
 
-#: models.py:74
+#: boards/models.py:75
 msgid "email"
 msgstr "email"
 
-#: models.py:81 models.py:82
+#: boards/models.py:82 boards/models.py:83
 msgid "Either member or name have to be filled in, not both"
 msgstr "Of bestuur of naam moeten zijn ingevuld, maar niet beide"
 
-#: models.py:89 models.py:90
+#: boards/models.py:90 boards/models.py:91
 msgid "Either member or name is required"
 msgstr "Of lid of naam is verplicht"

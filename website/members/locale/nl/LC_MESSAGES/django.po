@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 12:27+0000\n"
-"PO-Revision-Date: 2021-06-24 14:28+0200\n"
+"POT-Creation-Date: 2021-07-09 11:40+0000\n"
+"PO-Revision-Date: 2021-07-09 13:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: admin.py:75
+#: members/admin.py:75
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: admin.py:88
+#: members/admin.py:88
 msgid "Permissions"
 msgstr "Rechten"
 
-#: admin.py:117 admin.py:200
+#: members/admin.py:117 members/admin.py:200
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: admin.py:135 admin.py:220
+#: members/admin.py:135 members/admin.py:220
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -44,138 +44,130 @@ msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
 
-#: admin.py:154 admin.py:158
+#: members/admin.py:154 members/admin.py:158
 msgid "You don't have permission to accept a user"
 msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 
-#: admin.py:161
+#: members/admin.py:161
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: models.py:12 models.py:102
+#: members/models.py:13 members/models.py:103
 msgid "other club"
 msgstr "andere club"
 
-#: models.py:30
+#: members/models.py:31
 msgid "Radboud University"
 msgstr "Radboud Universiteit"
 
-#: models.py:31
+#: members/models.py:32
 msgid "HAN"
 msgstr "HAN"
 
-#: models.py:32
+#: members/models.py:33
 msgid "Not a student"
 msgstr "Geen student"
 
-#: models.py:37
+#: members/models.py:38
 msgid "birthday"
 msgstr "verjaardag"
 
-#: models.py:39
+#: members/models.py:40
 msgid "gender"
 msgstr "geslacht"
 
-#: models.py:46
+#: members/models.py:47
 msgid "male"
 msgstr "man"
 
-#: models.py:47
+#: members/models.py:48
 msgid "female"
 msgstr "vrouw"
 
-#: models.py:48
+#: members/models.py:49
 msgid "other"
 msgstr "anders"
 
-#: models.py:49
+#: members/models.py:50
 msgid "unspecified"
 msgstr "niet gespecificeerd"
 
-#: models.py:53
+#: members/models.py:54
 msgid "pronouns"
 msgstr "voornaamwoorden"
 
-#: models.py:56
+#: members/models.py:57
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: models.py:59
+#: members/models.py:60
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: models.py:67
+#: members/models.py:68
 msgid "postcode can only contain spaces, digits and letters"
 msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
 
-#: models.py:71
+#: members/models.py:72
 msgid "zipcode"
 msgstr "postcode"
 
-#: models.py:74
+#: members/models.py:75
 msgid "city"
 msgstr "stad"
 
-#: models.py:83
+#: members/models.py:84
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:87
+#: members/models.py:88
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: models.py:94
+#: members/models.py:95
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:109
+#: members/models.py:110
 msgid "google email"
 msgstr "google e-mail"
 
-#: models.py:114
-msgid "Yes"
-msgstr "Ja"
-
-#: models.py:115
-msgid "No"
-msgstr "Nee"
-
-#: models.py:120
-msgid "can accept or reject"
-msgstr "kan accepteren of afwijzen"
-
-#: models.py:124
+#: members/models.py:116
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: templates/members/become_a_member.html:4
-#: templates/members/become_a_member.html:5
+#: members/models.py:123
+msgid "can accept or reject"
+msgstr "kan accepteren of afwijzen"
+
+#: members/templates/members/become_a_member.html:4
+#: members/templates/members/become_a_member.html:5
 msgid "Become a member"
 msgstr "Word lid"
 
-#: templates/members/passwerd_set.html:4
+#: members/templates/members/passwerd_set.html:4
 msgid "Activate your account"
 msgstr "Activeer uw account"
 
-#: templates/members/passwerd_set.html:9
+#: members/templates/members/passwerd_set.html:9
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr "Voer uw nieuwe wachtwoord in en check of je het goed hebt ingetyped."
 
-#: templates/members/passwerd_set.html:15
+#: members/templates/members/passwerd_set.html:15
 msgid "New password:"
 msgstr "Nieuwe wachtwoord:"
 
-#: templates/members/passwerd_set.html:20
+#: members/templates/members/passwerd_set.html:20
 msgid "Confirm password:"
 msgstr "Herhaal wachtwoord:"
 
-#: templates/members/passwerd_set.html:23
+#: members/templates/members/passwerd_set.html:23
 msgid "Change my password"
 msgstr "Verander mijn wachtwoord"
 
-#: templates/members/passwerd_set.html:29
+#: members/templates/members/passwerd_set.html:29
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."

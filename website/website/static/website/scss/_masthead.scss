@@ -22,7 +22,8 @@
 
 .fullpage {
   min-height: 35rem;
-  padding: 15rem 0;
+  height: calc(100vh - #{$navbar-padding-y * 4 + $font-size-base} );
+  padding: 0;
   background: linear-gradient(
                   0deg,
                   $white 5rem,
@@ -37,27 +38,48 @@
   background-size: cover;
 
   .logo {
-    width: 10%;
     height: auto;
     position: absolute;
-    bottom: 5rem;
     left: 1rem;
   }
 
+  @include media-breakpoint-down(sm) {
+    .logo {
+      width: 3rem;
+    }
+    h1 {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    .logo {
+      width: 4rem;
+    }
+    h1 {
+      font-size: 3rem;
+      line-height: 3rem;
+    }
+  }
   @include media-breakpoint-up(md) {
-        h1 {
-            font-size: 4rem;
-            line-height: 4rem;
-        }
+    .logo {
+      width: 6rem;
+    }
+    h1 {
+        font-size: 4rem;
+        line-height: 4rem;
+    }
   }
   @include media-breakpoint-up(lg) {
-      height: calc(100vh - #{$navbar-padding-y * 4 + $font-size-base} );
-      padding: 0;
-      h1 {
-          font-size: 6.5rem;
-          line-height: 6.5rem;
-          letter-spacing: 0.8rem;
-      }
+    .logo {
+      width: 9rem;
+    }
+    h1 {
+        font-size: 6.5rem;
+        line-height: 6.5rem;
+        letter-spacing: 0.8rem;
+    }
       h2 {
           max-width: 30rem;
           font-size: 1.25rem;
@@ -67,7 +89,7 @@
 
 .banner {
   min-height: 10rem;
-  padding: 2rem 0;
+  padding: 0;
   background: linear-gradient(
                   0deg,
                   $white 0.5rem,
@@ -83,78 +105,41 @@
   background-size: cover;
 
   .logo {
-    width: 130px;
     height: auto;
     position: absolute;
     bottom: .5rem;
     left: 1rem;
   }
 
-  @include media-breakpoint-up(md) {
-        height: 5rem;
-        h1 {
-            font-size: 2rem;
-            line-height: 2rem;
-        }
+  @include media-breakpoint-down(md) {
+    height: 2rem;
+    .logo {
+      width: 50px;
     }
-    @include media-breakpoint-up(lg) {
-        height: 15rem;
-        padding: 0;
-        h1 {
-            font-size: 3rem;
-            line-height: 3rem;
-            letter-spacing: 0.2rem;
-        }
-        h2 {
-            max-width: 30rem;
-            font-size: 1.25rem;
-        }
-    }
-}
-
-.banner {
-  min-height: 10rem;
-  padding: 2rem 0;
-  background: linear-gradient(
-                  0deg,
-                  $white 0.5rem,
-                  #{fade-out($white, 1)} 8rem,
-                  #{fade-out($white, 1)} 100%
-
-    ),
-    url(unquote(get-setting(STATIC_URL) + "website/images/banner_iedereen.jpg"));
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-
-  .logo {
-    width: 130px;
-    height: auto;
-    position: absolute;
-    bottom: .5rem;
-    left: 1rem;
   }
-
   @include media-breakpoint-up(md) {
-        height: 5rem;
-        h1 {
-            font-size: 2rem;
-            line-height: 2rem;
-        }
+    height: 5rem;
+    h1 {
+        font-size: 2rem;
+        line-height: 2rem;
     }
-    @include media-breakpoint-up(lg) {
-        height: 15rem;
-        padding: 0;
-        h1 {
-            font-size: 3rem;
-            line-height: 3rem;
-            letter-spacing: 0.2rem;
-        }
-        h2 {
-            max-width: 30rem;
-            font-size: 1.25rem;
-        }
+    .logo {
+      width: 100px;
     }
+  }
+  @include media-breakpoint-up(lg) {
+    height: 15rem;
+    h1 {
+        font-size: 3rem;
+        line-height: 3rem;
+        letter-spacing: 0.2rem;
+    }
+    h2 {
+        max-width: 30rem;
+        font-size: 1.25rem;
+    }
+    .logo {
+      width: 150px;
+    }
+  }
 }

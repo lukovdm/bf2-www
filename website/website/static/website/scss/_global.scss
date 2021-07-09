@@ -16,10 +16,20 @@ h1 {
 }
 
 .container-padding {
-  padding-right: 10rem !important;
-  padding-left: 10rem !important;
+  @include media-breakpoint-up(md) {
+    padding: 2.5rem 10rem;
+  }
+  @include media-breakpoint-down(md) {
+    padding: 1rem;
+  }
 }
 
 .ws-nowrap {
   white-space: nowrap;
+}
+
+.page-content {
+  img {
+    max-width: 100%;
+  }
 }

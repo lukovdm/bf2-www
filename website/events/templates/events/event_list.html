@@ -11,7 +11,7 @@
                 <button class="accordion-button collapsed py-0" type="button" data-bs-toggle="collapse"
                         data-bs-target="#content{{ event.pk }}" aria-expanded="true"
                         aria-controls="{{ event.pk }}">
-                    <div class="border-end border-2 pe-3 py-3 date-prefix border-grey">
+                    <div class="border-end border-2 pe-3 py-3 date-prefix border-grey flex-shrink-0">
                         {% daterange event.start_date event.end_date %}
                     </div>
                     <div class="ps-3 py-3">

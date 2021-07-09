@@ -109,13 +109,7 @@ class Member(models.Model):
 
     google_email = models.EmailField(verbose_name=_("google email"))
 
-    YES = "Yes"
-    NO = "No"
-    BOOL_CHOICES = [
-        (YES, _("Yes")),
-        (NO, _("No")),
-    ]
-    picture_publication_acceptation = models.BooleanField(choices=BOOL_CHOICES)
+    picture_publication_acceptation = models.BooleanField()
 
     def clean(self) -> None:
         if self.birthday and self.birthday > timezone.now().date():

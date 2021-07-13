@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-24 12:27+0000\n"
-"PO-Revision-Date: 2021-06-24 14:28+0200\n"
+"POT-Creation-Date: 2021-07-13 18:23+0000\n"
+"PO-Revision-Date: 2021-07-13 20:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 
 #: admin.py:75
 msgid "Personal"
@@ -52,106 +52,130 @@ msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: models.py:12 models.py:102
+#: models.py:13 models.py:103
 msgid "other club"
 msgstr "andere club"
 
-#: models.py:30
+#: models.py:31
 msgid "Radboud University"
 msgstr "Radboud Universiteit"
 
-#: models.py:31
+#: models.py:32
 msgid "HAN"
 msgstr "HAN"
 
-#: models.py:32
+#: models.py:33
 msgid "Not a student"
 msgstr "Geen student"
 
-#: models.py:37
+#: models.py:38
 msgid "birthday"
 msgstr "verjaardag"
 
-#: models.py:39
-msgid "gender"
-msgstr "geslacht"
-
-#: models.py:46
+#: models.py:45
 msgid "male"
 msgstr "man"
 
-#: models.py:47
+#: models.py:46
 msgid "female"
 msgstr "vrouw"
 
-#: models.py:48
+#: models.py:47
 msgid "other"
 msgstr "anders"
 
-#: models.py:49
+#: models.py:48
 msgid "unspecified"
 msgstr "niet gespecificeerd"
 
-#: models.py:53
+#: models.py:51
+msgid "gender"
+msgstr "geslacht"
+
+#: models.py:54
 msgid "pronouns"
 msgstr "voornaamwoorden"
 
-#: models.py:56
+#: models.py:57
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: models.py:59
+#: models.py:60
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: models.py:67
+#: models.py:68
 msgid "postcode can only contain spaces, digits and letters"
 msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
 
-#: models.py:71
+#: models.py:72
 msgid "zipcode"
 msgstr "postcode"
 
-#: models.py:74
+#: models.py:75
 msgid "city"
 msgstr "stad"
 
-#: models.py:83
+#: models.py:84
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:87
+#: models.py:88
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: models.py:94
+#: models.py:95
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:109
+#: models.py:110
 msgid "google email"
 msgstr "google e-mail"
 
-#: models.py:114
+#: models.py:115
 msgid "Yes"
 msgstr "Ja"
 
-#: models.py:115
+#: models.py:116
 msgid "No"
 msgstr "Nee"
 
-#: models.py:120
-msgid "can accept or reject"
-msgstr "kan accepteren of afwijzen"
-
-#: models.py:124
+#: models.py:122
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
+#: models.py:129
+msgid "can accept or reject"
+msgstr "kan accepteren of afwijzen"
+
 #: templates/members/become_a_member.html:4
 #: templates/members/become_a_member.html:5
+#: templates/members/become_a_member.html:114
 msgid "Become a member"
 msgstr "Word lid"
+
+#: templates/members/become_a_member.html:22
+#: templates/members/become_a_member.html:64
+msgid "dd-mm-yyyy"
+msgstr "dd-mm-jj"
+
+#: templates/members/become_a_member.html:90
+msgid "Pictures and videos that include me may be used on our social media."
+msgstr ""
+"Foto's en video's met mij erop mogen gebruikt worden voor onze social "
+"media."
+
+#: templates/members/become_a_member.html:103
+msgid "By checking the box below, you agree to the "
+msgstr "Door het vakje hieronder aan te vinken gaat u akkoord met de "
+
+#: templates/members/become_a_member.html:104
+msgid "privacy statement"
+msgstr "privacy verklaring"
+
+#: templates/members/become_a_member.html:108
+msgid "I agree with the privacy statement"
+msgstr "Ik ga akkoord met de privacy verklaring"
 
 #: templates/members/passwerd_set.html:4
 msgid "Activate your account"

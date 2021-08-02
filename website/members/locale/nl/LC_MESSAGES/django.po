@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-13 18:23+0000\n"
-"PO-Revision-Date: 2021-07-13 20:44+0200\n"
+"POT-Creation-Date: 2021-08-02 10:40+0000\n"
+"PO-Revision-Date: 2021-08-02 12:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -132,19 +132,11 @@ msgstr "afstudeerdatum"
 msgid "google email"
 msgstr "google e-mail"
 
-#: models.py:115
-msgid "Yes"
-msgstr "Ja"
-
 #: models.py:116
-msgid "No"
-msgstr "Nee"
-
-#: models.py:122
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: models.py:129
+#: models.py:123
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 
@@ -162,8 +154,7 @@ msgstr "dd-mm-jj"
 #: templates/members/become_a_member.html:90
 msgid "Pictures and videos that include me may be used on our social media."
 msgstr ""
-"Foto's en video's met mij erop mogen gebruikt worden voor onze social "
-"media."
+"Foto's en video's met mij erop mogen gebruikt worden voor onze social media."
 
 #: templates/members/become_a_member.html:103
 msgid "By checking the box below, you agree to the "

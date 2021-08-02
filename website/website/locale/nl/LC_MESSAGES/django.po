@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-24 20:50+0000\n"
-"PO-Revision-Date: 2021-06-24 17:51+0200\n"
+"POT-Creation-Date: 2021-07-09 11:40+0000\n"
+"PO-Revision-Date: 2021-07-01 15:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,65 +16,123 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 
-#: templates/base.html:35
+#: website/templates/base.html:35
 msgid "Follow us:"
 msgstr "Volg ons:"
 
-#: templates/base.html:58
+#: website/templates/base.html:36
 msgid "Follow us on Facebook"
 msgstr "Volg ons op Facebook"
 
-#: templates/base.html:59
+#: website/templates/base.html:37
 msgid "Follow us on Instagram"
 msgstr "Volg ons op Instagram"
 
-#: templates/bootstrap5/messages.html:4
+#: website/templates/bootstrap5/messages.html:4
 msgid "close"
 msgstr "sluit"
 
-#: templates/fullpage.html:8 templates/page.html:8
+#: website/templates/fullpage.html:8 website/templates/page.html:8
 msgid "BFrisBee2's logo"
 msgstr "BFrisBee2's logo"
 
-#: templates/registration/login.html:5 templates/registration/login.html:42
-#: templates/topbar.html:35
+#: website/templates/registration/login.html:5
+#: website/templates/registration/login.html:58
+#: website/templates/registration/password_reset_complete.html:12
+#: website/templates/topbar.html:35
 msgid "Sign in"
 msgstr "Log in"
 
-#: templates/registration/login.html:11
+#: website/templates/registration/login.html:11
 msgid ""
 "Your account does not have access to this page. To proceed, please sign in "
 "with an account that has access."
 msgstr ""
 "Uw account heeft nog geen toegang tot deze pagina. Om door te gaan, log "
-"alstublieft in met een account dat wel toegang heeft."
+"alstublieft in met een account dat toegang heeft."
 
-#: templates/registration/login.html:16
+#: website/templates/registration/login.html:16
 msgid "Please sign in to see this page."
 msgstr "Log alstublieft in om deze pagina te bekijken."
 
-#: templates/registration/login.html:24
-msgid "Invalid username or password."
-msgstr "Ongeldige gebruikersnaam of wachtwoord."
-
-#: templates/registration/login.html:33
+#: website/templates/registration/login.html:29
 msgid "Username"
 msgstr "Gebruikersnaam"
 
-#: templates/registration/login.html:38
+#: website/templates/registration/login.html:39
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: templates/registration/login.html:47
+#: website/templates/registration/login.html:63
+#: website/templates/registration/password_reset_form.html:4
+#: website/templates/registration/password_reset_form.html:5
 msgid "Forgot password"
 msgstr "Wachtwoord vergeten"
 
-#: templates/topbar.html:32
+#: website/templates/registration/password_reset_complete.html:4
+#: website/templates/registration/password_reset_complete.html:5
+#: website/templates/registration/password_reset_done.html:4
+#: website/templates/registration/password_reset_done.html:5
+msgid "Password reset complete"
+msgstr "Wachtwoord reset voltooid"
+
+#: website/templates/registration/password_reset_complete.html:9
+msgid "Your password has been set. You can sign in with your new password now!"
+msgstr ""
+"Het wachtwoord is gereset. Je kan nu inloggen met het nieuwe wachtwoord!"
+
+#: website/templates/registration/password_reset_confirm.html:4
+#: website/templates/registration/password_reset_confirm.html:5
+msgid "Reset password"
+msgstr "Wachtwoord resetten"
+
+#: website/templates/registration/password_reset_confirm.html:10
+msgid "Please enter your new password below."
+msgstr "Vul het nieuwe wachtwoord hieronder in."
+
+#: website/templates/registration/password_reset_confirm.html:17
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+#: website/templates/registration/password_reset_confirm.html:29
+msgid "Confirm password"
+msgstr "Wachtwoord bevestigen"
+
+#: website/templates/registration/password_reset_confirm.html:50
+msgid "Change my password"
+msgstr "Wachtwoord veranderen"
+
+#: website/templates/registration/password_reset_done.html:9
+msgid ""
+"We’ve emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly. <br> If "
+"you don’t receive an email, please make sure you’ve entered the address you "
+"registered with, and check your spam folder."
+msgstr ""
+"We hebben je instructies verstuurd voor het resetten van je wachtwoord als "
+"er een account bestaat met de e-mail die is ingevuld. Je  zou hem binnenkort "
+"binnen moeten krijgen. <br> Als je geen e-mail binnenkrijgt, controleer of "
+"je het juiste e-mailadres hebt ingevuld waaraan een account gekoppeld is, en "
+"controleer je spam folder."
+
+#: website/templates/registration/password_reset_form.html:10
+msgid ""
+"Enter your email address below, and we’ll email instructions for setting a "
+"new one."
+msgstr ""
+"Vul je e-mail adres hieronder in, en dan zullen we je per e-mail instructies "
+"sturen voor een nieuw wachtwoord."
+
+#: website/templates/registration/password_reset_form.html:39
+msgid "Send email"
+msgstr "Verstuur e-mail"
+
+#: website/templates/topbar.html:32
 msgid "Sign out"
 msgstr "Log uit"
 
-#: templates/topbar.html:34
+#: website/templates/topbar.html:34
 msgid "Become a member"
 msgstr "Word lid"

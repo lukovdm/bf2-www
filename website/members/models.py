@@ -48,7 +48,9 @@ class Member(models.Model):
         (UNSPECIFIED, _("unspecified")),
     ]
 
-    gender = models.CharField(max_length=64, verbose_name=_("gender"), choices=GENDER_CHOICES)
+    gender = models.CharField(
+        max_length=64, verbose_name=_("gender"), choices=GENDER_CHOICES
+    )
 
     pronouns = models.CharField(
         blank=True, null=True, max_length=256, verbose_name=_("pronouns")

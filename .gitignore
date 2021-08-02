@@ -134,6 +134,7 @@ dmypy.json
 website/*.sqlite3
 **/media/*
 database/
+*.sqlite
 
 # secrets
 config/secrets.env

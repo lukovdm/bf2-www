@@ -10,6 +10,7 @@ from django.db.models import (
     ForeignKey,
     ImageField,
     SET_NULL,
+    DecimalField,
 )
 from django.urls import reverse
 from django.utils.timezone import now
@@ -32,7 +33,9 @@ class Event(Model, metaclass=ModelTranslateMeta):
     description = PlaceholderField("description", verbose_name=_("description"))
 
     limit = IntegerField(null=True, blank=True, verbose_name=_("participant limit"))
-    cost = IntegerField(null=True, blank=True, verbose_name=_("cost"))
+    cost = DecimalField(
+        null=True, blank=True, verbose_name=_("cost"), max_digits=7, decimal_places=2
+    )
     registration_start = DateTimeField(
         null=True, blank=True, verbose_name=_("registration start")
     )

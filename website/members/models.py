@@ -106,7 +106,7 @@ class Member(models.Model):
         choices=settings.LANGUAGES,
         default="nl",
         max_length=3,
-        verbose_name=_("preferred_language"),
+        verbose_name=_("preferred language"),
     )
 
     google_email = models.EmailField(verbose_name=_("google email"))

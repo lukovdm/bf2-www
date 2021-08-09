@@ -2,7 +2,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import (
     get_password_validators,
-    password_validators_help_text_html, validate_password,
+    password_validators_help_text_html,
+    validate_password,
 )
 from django.core.exceptions import ValidationError
 from django.forms import (
@@ -34,7 +35,7 @@ class BecomeAMemberForm(ModelForm):
         exclude = ["user"]
 
     def clean_password(self):
-        validate_password(self.data['password'], self.instance)
+        validate_password(self.data["password"], self.instance)
 
     def save(self, commit=True):
         member = super().save(commit=False)

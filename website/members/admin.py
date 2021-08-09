@@ -27,6 +27,8 @@ class UserResource(resources.ModelResource):
             "last_name",
             "email",
             "member__birthday",
+            "member__gender",
+            "member__pronouns",
             "member__phone_number",
             "member__street_address",
             "member__postcode",
@@ -34,18 +36,22 @@ class UserResource(resources.ModelResource):
             "member__student_type",
             "member__sports_card_number",
             "member__graduation_date",
-            "member__other_club",
             "member__preferred_language",
+            "member__google_email",
+            "member__picture_publication_acceptation",
         )
 
     def init_instance(self, row=None):
         user = User.objects.create_user(
             username=row["email"],
         )
+        user.is_active = False
         user.save()
         Member.objects.create(
             user=user,
             birthday=parse_date(row["member__birthday"]),
+            gender=row["member__gender"],
+            pronouns=row["member__pronouns"] if row["member__pronouns"] != "" else None,
             phone_number=row["member__phone_number"],
             street_address=row["member__street_address"],
             postcode=row["member__postcode"],
@@ -53,6 +59,11 @@ class UserResource(resources.ModelResource):
             student_type=row["member__student_type"],
             sports_card_number=row["member__sports_card_number"],
             graduation_date=parse_date(row["member__graduation_date"]),
+            preferred_language=row["member__preferred_language"],
+            google_email=row["member__google_email"],
+            picture_publication_acceptation=row[
+                "member__picture_publication_acceptation"
+            ],
         )
         return user
 
@@ -239,7 +250,6 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
             templates[lang].send({"name": user.get_full_name(), "link": link})
 
             user.is_active = True
-            user.set_unusable_password()
             user.save()
 
 

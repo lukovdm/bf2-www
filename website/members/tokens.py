@@ -32,8 +32,8 @@ class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
             # with:
             #   return False
             if not constant_time_compare(
-                    self._make_token_with_timestamp(user, ts, legacy=True),
-                    token,
+                self._make_token_with_timestamp(user, ts, legacy=True),
+                token,
             ):
                 return False
 

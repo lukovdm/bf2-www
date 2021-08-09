@@ -15,7 +15,7 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied, ValidationError
 
 from .models import Member, OtherClub, MemberSettings
-from .tokens import AccountActivationTokenGenerator
+from .tokens import default_activate_token_generator
 
 
 class UserResource(resources.ModelResource):
@@ -42,7 +42,6 @@ class UserResource(resources.ModelResource):
         user = User.objects.create_user(
             username=row["email"],
         )
-        user.set_unusable_password()
         user.save()
         Member.objects.create(
             user=user,
@@ -182,7 +181,7 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
         use_https = "https" if request.is_secure() else "http"
         base = f"{use_https}://{domain}"
 
-        token_generator = AccountActivationTokenGenerator()
+        token_generator = default_activate_token_generator
 
         templates = {}
         success = True

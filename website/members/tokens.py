@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime, time
 
 from django.conf import settings
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
@@ -16,6 +16,8 @@ class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
         # Parse the token
         try:
             ts_b36, _ = token.split("-")
+            # RemovedInDjango40Warning.
+            legacy_token = len(ts_b36) < 4
         except ValueError:
             return False
 
@@ -26,21 +28,33 @@ class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
 
         # Check that the timestamp/uid has not been tampered with
         if not constant_time_compare(self._make_token_with_timestamp(user, ts), token):
-            return False
+            # RemovedInDjango40Warning: when the deprecation ends, replace
+            # with:
+            #   return False
+            if not constant_time_compare(
+                    self._make_token_with_timestamp(user, ts, legacy=True),
+                    token,
+            ):
+                return False
 
-        # Check the timestamp is within limit. Timestamps are rounded to
-        # midnight (server time) providing a resolution of only 1 day. If a
-        # link is generated 5 minutes before midnight and used 6 minutes later,
-        # that counts as 1 day. Therefore, PASSWORD_RESET_TIMEOUT_DAYS = 1 means
-        # "at least 1 day, could be up to 2."
-        if (self._num_days(self._today()) - ts) > settings.ACCOUNT_ACTIVATION_TIMEOUT:
+        # RemovedInDjango40Warning: convert days to seconds and round to
+        # midnight (server time) for pre-Django 3.1 tokens.
+        now = self._now()
+        if legacy_token:
+            ts *= 24 * 60 * 60
+            ts += int((now - datetime.combine(now.date(), time.min)).total_seconds())
+        # Check the timestamp is within limit.
+        if (self._num_seconds(now) - ts) > settings.ACCOUNT_ACTIVATION_TIMEOUT:
             return False
 
         return True
 
-    def _num_days(self, dt):
-        return (dt - date(2001, 1, 1)).days
+    def _num_seconds(self, dt):
+        return int((dt - datetime(2001, 1, 1)).total_seconds())
 
-    def _today(self):
+    def _now(self):
         # Used for mocking in tests
-        return date.today()
+        return datetime.now()
+
+
+default_activate_token_generator = AccountActivationTokenGenerator()

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-02 10:40+0000\n"
-"PO-Revision-Date: 2021-08-02 12:41+0200\n"
+"POT-Creation-Date: 2021-08-09 11:16+0000\n"
+"PO-Revision-Date: 2021-08-09 13:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -52,7 +52,7 @@ msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: models.py:13 models.py:103
+#: models.py:13 models.py:105
 msgid "other club"
 msgstr "andere club"
 
@@ -88,83 +88,91 @@ msgstr "anders"
 msgid "unspecified"
 msgstr "niet gespecificeerd"
 
-#: models.py:51
+#: models.py:52
 msgid "gender"
 msgstr "geslacht"
 
-#: models.py:54
+#: models.py:56
 msgid "pronouns"
 msgstr "voornaamwoorden"
 
-#: models.py:57
+#: models.py:59
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: models.py:60
+#: models.py:62
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: models.py:68
+#: models.py:70
 msgid "postcode can only contain spaces, digits and letters"
 msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
 
-#: models.py:72
+#: models.py:74
 msgid "zipcode"
 msgstr "postcode"
 
-#: models.py:75
+#: models.py:77
 msgid "city"
 msgstr "stad"
 
-#: models.py:84
+#: models.py:86
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:88
+#: models.py:90
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: models.py:95
+#: models.py:97
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:110
+#: models.py:112
 msgid "google email"
 msgstr "google e-mail"
 
-#: models.py:116
+#: models.py:118
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: models.py:123
+#: models.py:125
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 
 #: templates/members/become_a_member.html:4
 #: templates/members/become_a_member.html:5
-#: templates/members/become_a_member.html:114
+#: templates/members/become_a_member.html:219
 msgid "Become a member"
 msgstr "Word lid"
 
-#: templates/members/become_a_member.html:22
-#: templates/members/become_a_member.html:64
+#: templates/members/become_a_member.html:42
+#: templates/members/become_a_member.html:133
 msgid "dd-mm-yyyy"
 msgstr "dd-mm-jj"
 
-#: templates/members/become_a_member.html:90
+#: templates/members/become_a_member.html:185
 msgid "Pictures and videos that include me may be used on our social media."
 msgstr ""
 "Foto's en video's met mij erop mogen gebruikt worden voor onze social media."
 
-#: templates/members/become_a_member.html:103
+#: templates/members/become_a_member.html:188
+msgid "yes"
+msgstr "ja"
+
+#: templates/members/become_a_member.html:192
+msgid "no"
+msgstr "nee"
+
+#: templates/members/become_a_member.html:203
 msgid "By checking the box below, you agree to the "
 msgstr "Door het vakje hieronder aan te vinken gaat u akkoord met de "
 
-#: templates/members/become_a_member.html:104
+#: templates/members/become_a_member.html:204
 msgid "privacy statement"
 msgstr "privacy verklaring"
 
-#: templates/members/become_a_member.html:108
+#: templates/members/become_a_member.html:208
 msgid "I agree with the privacy statement"
 msgstr "Ik ga akkoord met de privacy verklaring"
 

@@ -8,6 +8,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="{% sass_src 'website/scss/main.scss' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'website/bootstrap-icons-1.5.0/bootstrap-icons.css' %}" rel="stylesheet" type="text/css">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static "website/images/icons/apple-touch-icon.png" %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static "website/images/icons/favicon-32x32.png" %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static "website/images/icons/favicon-16x16.png" %}">
+        <link rel="manifest" href="{% static "website/images/icons/site.webmanifest" %}">
+        <link rel="mask-icon" href="{% static "website/images/icons/safari-pinned-tab.svg" %}" color="#233d7a">
+        <meta name="msapplication-TileColor" content="#233d7a">
+        <meta name="theme-color" content="#233d7a">
+
         {% render_block "css" %}
         {% block extracss %}{% endblock extracss %}
     </head>
@@ -18,7 +27,7 @@
         </div>
         {% block header %}{% endblock header %}
         <div class="container-fluid bg-fade py-5">
-            <div class="container bg-light shadow rounded mt-4 mb-4 p-5 container-padding">
+            <div class="container bg-light shadow rounded mt-4 mb-4 container-padding page-content">
                 <div class= "border-bottom border-primary border-2 row col-8 offset-2 mb-5">
                     <h1 class="text-center section-title">{% block pagetitle %}{% endblock pagetitle %}</h1>
                 </div>
@@ -38,7 +47,7 @@
                     <p class="text-muted">copyright</p>
                 </div>
             </div>
-            <h6 class="align-bottom position-absolute bottom-0 end-0" onclick="play()">Made by Webmasters</h6>
+            <h6 class="align-bottom position-absolute bottom-0 end-0 pe-2" onclick="play()">Made by Webmasters</h6>
         </footer>
         {% bootstrap_javascript %}
         {% render_block "js" %}

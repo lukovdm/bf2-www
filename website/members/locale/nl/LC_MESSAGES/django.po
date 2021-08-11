@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-11 14:13+0000\n"
-"PO-Revision-Date: 2021-08-11 16:13+0200\n"
+"PO-Revision-Date: 2021-08-11 16:21+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -72,12 +72,16 @@ msgstr "Geen student"
 msgid "birthday"
 msgstr "verjaardag"
 
-#: models.py:45
-msgid "male"
+#: models.py:40
+msgid "gender"
+msgstr "geslacht"
+
+#: models.py:47
+msgid "man"
 msgstr "man"
 
-#: models.py:46
-msgid "female"
+#: members/models.py:46
+msgid "woman"
 msgstr "vrouw"
 
 #: models.py:47
@@ -88,11 +92,7 @@ msgstr "anders"
 msgid "unspecified"
 msgstr "niet gespecificeerd"
 
-#: models.py:52
-msgid "gender"
-msgstr "geslacht"
-
-#: models.py:56
+#: models.py:54
 msgid "pronouns"
 msgstr "voornaamwoorden"
 

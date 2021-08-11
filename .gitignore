@@ -140,3 +140,5 @@ database/
 config/secrets.env
 
 .vscode/
+
+**/main.css

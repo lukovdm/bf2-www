@@ -14,7 +14,10 @@ echo "Postgres database is up"
 echo "Performing migrations"
 ./manage.py migrate --no-input
 
-#echo "Collecting static files"
+echo "compiling scss to css"
+./manage.py compilescss
+
+echo "Collecting static files"
 ./manage.py collectstatic --no-input
 
 chown --recursive www-data:www-data /bf2-www/

@@ -49,6 +49,8 @@ services:
       - certbot_etc:/etc/letsencrypt
       - certbot_var:/var/lib/letsencrypt
       - web_root:/var/www/html
+    networks:
+      - nginx_network
     depends_on:
       - nginx
     command: certonly --webroot --webroot-path=/var/www/html --email sport@luko.dev --agree-tos --no-eff-email --force-renewal -d bf2.luko.dev
@@ -61,10 +63,25 @@ networks:
 
 volumes:
   database_volume:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./db-vol/
+      o: bind
   static_volume:
   media_volume:
   certbot_etc:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./cb-etc/
+      o: bind
   certbot_var:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./cb-var/
+      o: bind
   web_root:
   dhparam:
     driver: local

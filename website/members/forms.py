@@ -1,4 +1,11 @@
+from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import (
+    get_password_validators,
+    password_validators_help_text_html,
+    validate_password,
+)
+from django.core.exceptions import ValidationError
 from django.forms import (
     ModelForm,
     CharField,
@@ -7,9 +14,7 @@ from django.forms import (
     BooleanField,
 )
 from django_mail_template.models import Configuration
-from django.core.exceptions import ValidationError
 from django.core.mail import mail_admins
-from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
 from members.models import Member
@@ -19,20 +24,27 @@ class BecomeAMemberForm(ModelForm):
     firstname = CharField()
     lastname = CharField()
     email = EmailField()
-    password = CharField(widget=PasswordInput())
+    password = CharField(
+        widget=PasswordInput(),
+        help_text=password_validators_help_text_html(),
+    )
     data_registration = BooleanField(required=True)
 
     class Meta:
         model = Member
         exclude = ["user"]
 
-    def save(self, commit=True):
+    def clean_password(self):
+        validate_password(self.data["password"], self.instance)
+        return self.data["password"]
+
+    def save(self, commit=True, *args, **kwargs):
         member = super().save(commit=False)
         user = User.objects.create_user(
             self.cleaned_data["email"],
             self.cleaned_data["email"],
-            self.cleaned_data["password"],
         )
+        user.set_password(self.cleaned_data["password"])
         user.first_name = self.cleaned_data["firstname"]
         user.last_name = self.cleaned_data["lastname"]
         user.is_active = False

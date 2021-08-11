@@ -1,13 +1,231 @@
 {% extends "page.html" %}
-{% load i18n bootstrap5 %}
+{% load i18n bootstrap5 sass_tags static %}
 
 {% block title %}{% trans "Become a member" %}{% endblock title %}
 {% block pagetitle %}{% trans "Become a member" %}{% endblock pagetitle %}
 
 {% block content %}
-    <form method="post">{% csrf_token %}
-        {% bootstrap_form form %}
-        <a href = "{{ privacyFile.url }}"> {{ privacyFile }} </a>
-        <input type="submit" value="Submit">
-    </form>
+    <form method="post" autocomplete="on">{% csrf_token %}
+        <div class="row g-3 mb-5">
+            {% if form.non_field_errors %}
+                <div class="row mb-3">
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="col-lg">
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.firstname.id_for_label }}" class="form-label">{{form.firstname.label}}</label>
+                    <input type="text" class="form-control {% if form.firstname.errors %}is-invalid{% endif %}" name="{{ form.firstname.html_name }}" placeholder="{{form.firstname.label}}" required >
+                    {% if form.firstname.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.firstname.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.lastname.id_for_label }}" class="form-label">{{form.lastname.label}}</label>
+                    <input type="text" class="form-control {% if form.lastname.errors %}is-invalid{% endif %}" name="{{ form.lastname.html_name }}" placeholder="{{form.lastname.label}}" required >
+                    {% if form.lastname.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.lastname.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.birthday.id_for_label }}" class="form-label">{{ form.birthday.label }}</label>
+                    <input type="text" class="form-control {% if form.birthday.errors %}is-invalid{% endif %}" name="{{ form.birthday.html_name }}" placeholder="{% trans "dd/mm/yyyy" %}" required >
+                    {% if form.birthday.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.birthday.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing" >
+                    <label for="{{ form.gender.id_for_label }}" class="form-label">{{ form.gender.label }}</label>
+                    <select class="form-select custom-select {% if form.gender.errors %}is-invalid{% endif %}" name="{{ form.gender.html_name }}" id="gender" onchange="hideField()" required>
+                        {% for choice in form.gender %}
+                            {{ choice }}
+                        {% endfor %}
+                    </select>
+                    {% if form.gender.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.gender.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing" id="pronouns">
+                    <label for="{{ form.pronouns.id_for_label }}" class="form-label">{{ form.pronouns.label }}</label>
+                    <input type="text" class="form-control {% if form.pronouns.errors %}is-invalid{% endif %}" name="{{ form.pronouns.html_name }}" placeholder="{{ form.pronouns.label }}" >
+                    {% if form.pronouns.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.pronouns.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.phone_number.id_for_label }}" class="form-label">{{ form.phone_number.label }}</label>
+                    <input type="text" class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}" name="{{ form.phone_number.html_name }}" placeholder="{{ form.phone_number.label }}" required >
+                    {% if form.phone_number.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.phone_number.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.street_address.id_for_label }}" class="form-label">{{ form.street_address.label }}</label>
+                    <input type="text" class="form-control {% if form.street_address.errors %}is-invalid{% endif %}" name="{{ form.street_address.html_name }}" placeholder="{{ form.street_address.label }}" required >
+                    {% if form.street_adress.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.street_adress.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.postcode.id_for_label }}" class="form-label">{{ form.postcode.label }}</label>
+                    <input type="text" class="form-control {% if form.postcode.errors %}is-invalid{% endif %}" name="{{ form.postcode.html_name }}" placeholder="{{ form.postcode.label }}" required>
+                    {% if form.postcode.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.postcode.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.city.id_for_label }}" class="form-label">{{ form.city.label }}</label>
+                    <input type="text" class="form-control {% if form.city.errors %}is-invalid{% endif %}" name="{{ form.city.html_name }}" placeholder="{{ form.city.label }}" required>
+                    {% if form.city.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.city.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg">
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.student_type.id_for_label }}" class="form-label">{{ form.student_type.label }}</label>
+                    <select class="form-select custom-select {% if form.student_type.errors %}is-invalid{% endif %}" name="{{ form.student_type.html_name }}" id="gender" required>
+                        {% for choice in form.student_type %}
+                            {{ choice }}
+                        {% endfor %}
+                    </select>
+                    {% if form.student_type.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.student_type.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.sports_card_number.id_for_label }}" class="form-label">{{ form.sports_card_number.label }}</label>
+                    <input type="text" class="form-control {% if form.sports_card_number.errors %}is-invalid{% endif %}" name="{{ form.sports_card_number.html_name }}" placeholder="{{ form.sports_card_number.label }}">
+                    {% if form.sports_card_number.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.sports_card_number.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.graduation_date.id_for_label }}" class="form-label">{{ form.graduation_date.label }}</label>
+                    <input type="text" class="form-control {% if form.graduation_date.errors %}is-invalid{% endif %}" name="{{ form.graduation_date.html_name }}" placeholder="{% trans "dd/mm/yyyy" %}" >
+                    {% if form.graduation_date.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.graduation_date.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.preferred_language.id_for_label }}" class="form-label">{{ form.preferred_language.label }}</label>
+                    <select class="form-select custom-select {% if form.preferred_language.errors %}is-invalid{% endif %}" name="{{ form.preferred_language.html_name }}" id="gender" required>
+                        {% for choice in form.preferred_language %}
+                            {{ choice }}
+                        {% endfor %}
+                    </select>
+                    {% if form.preferred_language.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.preferred_language.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.other_club.id_for_label }}" class="form-label">{% trans "Are now you already part of another frisbee club?" %}</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input {% if form.other_club.errors %}is-invalid{% endif %}" type="radio" name="{{ form.other_club.html_name }}" value="on">
+                        <label class="form-check-label">{% trans "yes" %}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input {% if form.other_club.errors %}is-invalid{% endif %}" type="radio" name="{{ form.other_club.html_name }}" value="off" checked>
+                        <label class="form-check-label">{% trans "no" %}</label>
+                    </div>
+                    {% if form.other_club.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.other_club.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
+                    <input type="text" class="form-control {% if form.email.errors %}is-invalid{% endif %}" name="{{ form.email.html_name }}" placeholder="{{ form.email.label }}" required>
+                    {% if form.email.errors %}
+                         <div class="invalid-feedback">
+                            {{ form.email.errors }}
+                         </div>
+                    {% endif %}
+                </div>
+                <div class="form-group reg_spacing">
+                    {% bootstrap_field form.google_email placeholder="...@gmail.com" %}
+                </div>
+                <div class="form-group reg_spacing">
+                    {% bootstrap_field form.password %}
+                </div>
+              
+            </div>
+
+            <div class="form-group reg_spacing">
+                <div><label>{% trans "Pictures and videos that include me may be used on our social media." %}</label></div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input {% if form.picture_publication_acceptation.errors %}is-invalid{% endif %}" type="radio" name="{{ form.picture_publication_acceptation.html_name }}" value="on">
+                    <label class="form-check-label">{% trans "yes" %}</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input {% if form.picture_publication_acceptation.errors %}is-invalid{% endif %}" type="radio" name="{{ form.picture_publication_acceptation.html_name }}" value="off">
+                    <label class="form-check-label">{% trans "no" %}</label>
+                </div>
+                {% if form.picture_publication_acceptation.errors %}
+                     <div class="invalid-feedback">
+                        {{ form.picture_publication_acceptation.errors }}
+                     </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group reg_spacing">
+                <div>
+                    <label>{% trans "By checking the box below, you agree to the " %}
+                    <a href = "{{ privacyFile.url }}"> {% trans "privacy statement" %} </a>
+                    .</label>
+                </div>
+                <input class="form-check-input {% if form.data_registration.errors %}is-invalid{% endif %}" type="checkbox" id="flexCheckDefault" name="{{ form.data_registration.html_name }}" required>
+                <label class="form-check-label" for="{{ form.data_registration.id_for_label }}">{% trans "I agree with the privacy statement" %}</label>
+                {% if form.data_registration.errors %}
+                     <div class="invalid-feedback">
+                        {{ form.data_registration.errors }}
+                     </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        
+        <center><h1>
+            <input type="submit" value="{% trans "Become a member" %}!" class="btn btn-primary reg_btn">
+        </h1></center>  
+        </form>
+
 {% endblock content %}
+
+{% block extrajs %}
+    <script src="{% static 'members/js/functional_form.js' %}"></script>
+{% endblock extrajs %}
+

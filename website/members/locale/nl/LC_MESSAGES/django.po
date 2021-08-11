@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-09 14:30+0000\n"
-"PO-Revision-Date: 2021-08-11 14:27+0200\n"
+"POT-Creation-Date: 2021-08-11 15:22+0000\n"
+"PO-Revision-Date: 2021-08-11 17:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: admin.py:85
+#: admin.py:87
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: admin.py:98
+#: admin.py:100
 msgid "Permissions"
 msgstr "Rechten"
 
-#: admin.py:127 admin.py:210
+#: admin.py:129 admin.py:212
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: admin.py:145 admin.py:230
+#: admin.py:147 admin.py:232
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -44,118 +44,155 @@ msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
 
-#: admin.py:164 admin.py:168
+#: admin.py:166 admin.py:170
 msgid "You don't have permission to accept a user"
 msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 
-#: admin.py:171
+#: admin.py:173
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: models.py:13 models.py:102
-msgid "other club"
-msgstr "andere club"
-
-#: models.py:31
+#: models.py:17
 msgid "Radboud University"
 msgstr "Radboud Universiteit"
 
-#: models.py:32
+#: models.py:18
 msgid "HAN"
 msgstr "HAN"
 
-#: models.py:33
+#: models.py:19
 msgid "Not a student"
 msgstr "Geen student"
 
-#: models.py:38
+#: models.py:24
 msgid "birthday"
 msgstr "verjaardag"
 
-#: models.py:40
-msgid "gender"
-msgstr "geslacht"
-
-#: members/models.py:47
+#: models.py:31
 msgid "man"
 msgstr "man"
 
-#: members/models.py:48
+#: models.py:32
 msgid "woman"
 msgstr "vrouw"
 
-#: models.py:49
+#: models.py:33
 msgid "other"
 msgstr "anders"
 
-#: models.py:50
+#: models.py:34
 msgid "unspecified"
 msgstr "niet gespecificeerd"
 
-#: models.py:54
+#: models.py:38
+msgid "gender"
+msgstr "geslacht"
+
+#: models.py:42
 msgid "pronouns"
 msgstr "voornaamwoorden"
 
-#: models.py:57
+#: models.py:45
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: models.py:60
+#: models.py:48
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: models.py:68
+#: models.py:56
 msgid "postcode can only contain spaces, digits and letters"
 msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
 
-#: models.py:72
+#: models.py:60
 msgid "zipcode"
 msgstr "postcode"
 
-#: models.py:75
+#: models.py:63
 msgid "city"
 msgstr "stad"
 
-#: models.py:78
+#: models.py:66
 msgid "type of student"
 msgstr "type student"
 
-#: models.py:83
+#: models.py:71
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:87
+#: models.py:75
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: models.py:94
+#: models.py:82
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:109
+#: models.py:85
+msgid "other club"
+msgstr "andere club"
+
+#: models.py:91
 msgid "preferred language"
 msgstr "voorkeurs taal"
 
-#: models.py:112
+#: models.py:94
 msgid "google email"
 msgstr "google e-mail"
 
-#: models.py:115
+#: models.py:97
 msgid "allowed to publish pictures of"
 msgstr "toegestaan om foto's van te publiceren"
 
-#: models.py:120
+#: models.py:102
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: models.py:127
+#: models.py:109
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 
 #: templates/members/become_a_member.html:4
 #: templates/members/become_a_member.html:5
+#: templates/members/become_a_member.html:222
 msgid "Become a member"
 msgstr "Word lid"
+
+#: templates/members/become_a_member.html:41
+#: templates/members/become_a_member.html:132
+msgid "dd/mm/yyyy"
+msgstr "dd/mm/jjjj"
+
+#: templates/members/become_a_member.html:153
+msgid "Are now you already part of another frisbee club?"
+msgstr "Bent u nu al lid van een andere frisbee vereniging?"
+
+#: templates/members/become_a_member.html:157
+#: templates/members/become_a_member.html:191
+msgid "yes"
+msgstr "ja"
+
+#: templates/members/become_a_member.html:161
+#: templates/members/become_a_member.html:195
+msgid "no"
+msgstr "nee"
+
+#: templates/members/become_a_member.html:188
+msgid "Pictures and videos that include me may be used on our social media."
+msgstr ""
+"Foto's en video's met mij erop mogen gebruikt worden voor onze social media."
+
+#: templates/members/become_a_member.html:206
+msgid "By checking the box below, you agree to the "
+msgstr "Door het vakje hieronder aan te vinken gaat u akkoord met de "
+
+#: templates/members/become_a_member.html:207
+msgid "privacy statement"
+msgstr "privacy verklaring"
+
+#: templates/members/become_a_member.html:211
+msgid "I agree with the privacy statement"
+msgstr "Ik ga akkoord met de privacy verklaring"
 
 #: templates/members/passwerd_set.html:4
 msgid "Activate your account"

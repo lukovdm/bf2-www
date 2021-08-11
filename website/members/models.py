@@ -23,8 +23,6 @@ class Member(models.Model):
 
     birthday = models.DateField(verbose_name=_("birthday"))
 
-    gender = models.CharField(max_length=64, verbose_name=_("gender"))
-
     MAN = "Man"
     WOMAN = "Woman"
     OTHER = "Other"
@@ -35,6 +33,10 @@ class Member(models.Model):
         (OTHER, _("other")),
         (UNSPECIFIED, _("unspecified")),
     ]
+
+    gender = models.CharField(
+        max_length=64, verbose_name=_("gender"), choices=GENDER_CHOICES
+    )
 
     pronouns = models.CharField(
         blank=True, null=True, max_length=256, verbose_name=_("pronouns")

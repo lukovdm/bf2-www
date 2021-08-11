@@ -6,7 +6,6 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('members', '0023_alter_member_picture_publication_acceptation'),
         ('members', '0023_auto_20210701_1243'),
     ]
 

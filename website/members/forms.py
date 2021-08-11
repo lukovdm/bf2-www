@@ -36,14 +36,15 @@ class BecomeAMemberForm(ModelForm):
 
     def clean_password(self):
         validate_password(self.data["password"], self.instance)
+        return self.data["password"]
 
-    def save(self, commit=True):
+    def save(self, commit=True, *args, **kwargs):
         member = super().save(commit=False)
         user = User.objects.create_user(
             self.cleaned_data["email"],
             self.cleaned_data["email"],
-            self.cleaned_data["password"],
         )
+        user.set_password(self.cleaned_data["password"])
         user.first_name = self.cleaned_data["firstname"]
         user.last_name = self.cleaned_data["lastname"]
         user.is_active = False

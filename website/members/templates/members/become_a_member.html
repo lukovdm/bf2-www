@@ -6,7 +6,6 @@
 
 {% block content %}
     <form method="post" autocomplete="on">{% csrf_token %}
-{#        <!--{% bootstrap_form form %}-->#}
         <div class="row g-3 mb-5">
             {% if form.non_field_errors %}
                 <div class="row mb-3">
@@ -18,7 +17,7 @@
                 </div>
             {% endif %}
 
-            <div class="col">
+            <div class="col-lg">
                 <div class="form-group reg_spacing">
                     <label for="{{ form.firstname.id_for_label }}" class="form-label">{{form.firstname.label}}</label>
                     <input type="text" class="form-control {% if form.firstname.errors %}is-invalid{% endif %}" name="{{ form.firstname.html_name }}" placeholder="{{form.firstname.label}}" required >
@@ -39,7 +38,7 @@
                 </div>
                 <div class="form-group reg_spacing">
                     <label for="{{ form.birthday.id_for_label }}" class="form-label">{{ form.birthday.label }}</label>
-                    <input type="text" class="form-control {% if form.birthday.errors %}is-invalid{% endif %}" name="{{ form.birthday.html_name }}" placeholder="{% trans "dd-mm-yyyy" %}" required >
+                    <input type="text" class="form-control {% if form.birthday.errors %}is-invalid{% endif %}" name="{{ form.birthday.html_name }}" placeholder="{% trans "dd/mm/yyyy" %}" required >
                     {% if form.birthday.errors %}
                          <div class="invalid-feedback">
                             {{ form.birthday.errors }}
@@ -105,7 +104,7 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col">
+            <div class="col-lg">
                 <div class="form-group reg_spacing">
                     <label for="{{ form.student_type.id_for_label }}" class="form-label">{{ form.student_type.label }}</label>
                     <select class="form-select custom-select {% if form.student_type.errors %}is-invalid{% endif %}" name="{{ form.student_type.html_name }}" id="gender" required>
@@ -130,7 +129,7 @@
                 </div>
                 <div class="form-group reg_spacing">
                     <label for="{{ form.graduation_date.id_for_label }}" class="form-label">{{ form.graduation_date.label }}</label>
-                    <input type="text" class="form-control {% if form.graduation_date.errors %}is-invalid{% endif %}" name="{{ form.graduation_date.html_name }}" placeholder="{% trans "dd-mm-yyyy" %}" >
+                    <input type="text" class="form-control {% if form.graduation_date.errors %}is-invalid{% endif %}" name="{{ form.graduation_date.html_name }}" placeholder="{% trans "dd/mm/yyyy" %}" >
                     {% if form.graduation_date.errors %}
                          <div class="invalid-feedback">
                             {{ form.graduation_date.errors }}
@@ -151,12 +150,16 @@
                     {% endif %}
                 </div>
                 <div class="form-group reg_spacing">
-                    <label for="{{ form.other_club.id_for_label }}" class="form-label">{{ form.other_club.label }}</label>
-                    <select class="form-select custom-select {% if form.other_club.errors %}is-invalid{% endif %}" name="{{ form.other_club.html_name }}" id="gender">
-                        {% for choice in form.other_club %}
-                            {{ choice }}
-                        {% endfor %}
-                    </select>
+                    <label for="{{ form.other_club.id_for_label }}" class="form-label">{% trans "Are now you already part of another frisbee club?" %}</label>
+                    <br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input {% if form.other_club.errors %}is-invalid{% endif %}" type="radio" name="{{ form.other_club.html_name }}" value="on">
+                        <label class="form-check-label">{% trans "yes" %}</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input {% if form.other_club.errors %}is-invalid{% endif %}" type="radio" name="{{ form.other_club.html_name }}" value="off" checked>
+                        <label class="form-check-label">{% trans "no" %}</label>
+                    </div>
                     {% if form.other_club.errors %}
                          <div class="invalid-feedback">
                             {{ form.other_club.errors }}

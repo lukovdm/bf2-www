@@ -3,11 +3,11 @@
 
 {% block header %}
     <header class="masthead fullpage">
-        <div class="container-fluid d-flex flex-column h-100 justify-content-end">
+        <div class="container-fluid d-flex flex-column h-100 justify-content-end pb-4">
             {% include 'language_changer.html' %}
-            <img class="logo" src="{% static "website/images/logo.svg" %}" alt="{% trans "BFrisBee2's logo" %}">
+            <a href="/"><img class="logo" src="{% static "website/images/logo.svg" %}" alt="{% trans "BFrisBee2's logo" %}"></a>
             <div class="mx-auto text-center">
-                <h1>BFrisBee2<span class="highlight">’</span>s</h1>
+                <a href="/" class="text-decoration-none"><h1>BFrisBee2<span class="highlight">’</span>s</h1></a>
             </div>
         </div>
     </header>

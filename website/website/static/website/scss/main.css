@@ -890,7 +890,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 
 .dropdown-toggle:empty::after { margin-left: 0; }
 
-.dropdown-menu { position: absolute; top: 100%; z-index: 1000; display: none; min-width: 10rem; padding: 0.5rem 0; margin: 0; font-size: 1rem; color: #212529; text-align: left; list-style: none; background-color: #FFF; background-clip: padding-box; border: 1px solid rgba(0, 0, 0, 0.15); border-radius: 12px; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+.dropdown-menu { position: absolute; top: 100%; z-index: 1000; display: none; min-width: 10rem; padding: 0.5rem 0; margin: 0; font-size: 1rem; color: #212529; text-align: left; list-style: none; background-color: #FFF; background-clip: padding-box; border: 2px solid #FF8023; border-radius: 12px; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
 
 .dropdown-menu[data-bs-popper] { left: 0; margin-top: 0.125rem; }
 
@@ -944,7 +944,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 
 .dropstart .dropdown-toggle::before { vertical-align: 0; }
 
-.dropdown-divider { height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid rgba(0, 0, 0, 0.15); }
+.dropdown-divider { height: 0; margin: 0.5rem 0; overflow: hidden; border-top: 1px solid #FF8023; }
 
 .dropdown-item { display: block; width: 100%; padding: 0.25rem 1rem; clear: both; font-weight: 400; color: #212529; text-align: inherit; text-decoration: none; white-space: nowrap; background-color: transparent; border: 0; }
 
@@ -960,7 +960,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 
 .dropdown-item-text { display: block; padding: 0.25rem 1rem; color: #212529; }
 
-.dropdown-menu-dark { color: #dee2e6; background-color: #343a40; border-color: rgba(0, 0, 0, 0.15); }
+.dropdown-menu-dark { color: #dee2e6; background-color: #343a40; border-color: #FF8023; }
 
 .dropdown-menu-dark .dropdown-item { color: #dee2e6; }
 
@@ -970,7 +970,7 @@ textarea.form-control-lg { min-height: calc(1.5em + 1rem + 2px); }
 
 .dropdown-menu-dark .dropdown-item.disabled, .dropdown-menu-dark .dropdown-item:disabled { color: #adb5bd; }
 
-.dropdown-menu-dark .dropdown-divider { border-color: rgba(0, 0, 0, 0.15); }
+.dropdown-menu-dark .dropdown-divider { border-color: #FF8023; }
 
 .dropdown-menu-dark .dropdown-item-text { color: #dee2e6; }
 
@@ -2391,9 +2391,13 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 
 .bg-fade { background: linear-gradient(180deg, #FFF 0.5rem, rgba(255, 255, 255, 0) 5rem, rgba(255, 255, 255, 0) 100%); }
 
-.container-padding { padding-right: 10rem !important; padding-left: 10rem !important; }
+@media (min-width: 768px) { .container-padding { padding: 2.5rem 10rem; } }
+
+@media (max-width: 767.98px) { .container-padding { padding: 2rem; } }
 
 .ws-nowrap { white-space: nowrap; }
+
+.page-content img { max-width: 100%; }
 
 .masthead { position: relative; width: 100%; height: auto; }
 
@@ -2403,31 +2407,43 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 
 .masthead .lang_change button img { width: 30px; height: auto; position: absolute; top: 1rem; right: 1rem; }
 
-.fullpage { min-height: 35rem; padding: 15rem 0; background: linear-gradient(0deg, #FFF 5rem, rgba(255, 255, 255, 0) 16rem, rgba(255, 255, 255, 0) 100%), url(/static/website/images/header_brosa.jpg); background-position: center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover; }
+.fullpage { min-height: 35rem; height: calc(100vh - 3rem - 1rem); padding: 0; background: linear-gradient(0deg, #FFF 5rem, rgba(255, 255, 255, 0) 16rem, rgba(255, 255, 255, 0) 100%), url(/static/website/images/header_brosa.jpg); background-position: center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover; }
 
-.fullpage .logo { width: 10%; height: auto; position: absolute; bottom: 5rem; left: 1rem; }
+.fullpage .logo { height: auto; position: absolute; left: 1rem; }
 
-@media (min-width: 768px) { .fullpage h1, .fullpage .h1 { font-size: 4rem; line-height: 4rem; } }
+@media (max-width: 575.98px) { .fullpage { height: calc(80vh - 3rem) !important; } .fullpage .logo { width: 5rem; left: 77vw; bottom: 38vh; } .fullpage h1, .fullpage .h1 { font-size: 3rem; line-height: 3rem; } }
 
-@media (min-width: 992px) { .fullpage { height: calc(100vh - 3rem); padding: 0; } .fullpage h1, .fullpage .h1 { font-size: 6.5rem; line-height: 6.5rem; letter-spacing: 0.8rem; } .fullpage h2, .fullpage .h2 { max-width: 30rem; font-size: 1.25rem; } }
+@media (min-width: 576px) { .fullpage .logo { width: 4rem; } .fullpage h1, .fullpage .h1 { font-size: 3rem; line-height: 3rem; } }
 
-.banner { min-height: 10rem; padding: 2rem 0; background: linear-gradient(0deg, #FFF 0.5rem, rgba(255, 255, 255, 0) 8rem, rgba(255, 255, 255, 0) 100%), url(/static/website/images/banner_iedereen.jpg); background-position: center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover; }
+@media (min-width: 768px) { .fullpage .logo { width: 6rem; } .fullpage h1, .fullpage .h1 { font-size: 4rem; line-height: 4rem; } }
 
-.banner .logo { width: 130px; height: auto; position: absolute; bottom: .5rem; left: 1rem; }
+@media (min-width: 992px) { .fullpage .logo { width: 9rem; } .fullpage h1, .fullpage .h1 { font-size: 6.5rem; line-height: 6.5rem; letter-spacing: 0.8rem; } .fullpage h2, .fullpage .h2 { max-width: 30rem; font-size: 1.25rem; } }
 
-@media (min-width: 768px) { .banner { height: 5rem; } .banner h1, .banner .h1 { font-size: 2rem; line-height: 2rem; } }
+.banner { min-height: 10rem; padding: 0; background: linear-gradient(0deg, #FFF 0.5rem, rgba(255, 255, 255, 0) 8rem, rgba(255, 255, 255, 0) 100%), url(/static/website/images/banner_iedereen.jpg); background-position: center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover; }
 
-@media (min-width: 992px) { .banner { height: 15rem; padding: 0; } .banner h1, .banner .h1 { font-size: 3rem; line-height: 3rem; letter-spacing: 0.2rem; } .banner h2, .banner .h2 { max-width: 30rem; font-size: 1.25rem; } }
+.banner .logo { height: auto; position: absolute; bottom: .5rem; left: 1rem; }
 
-.navbar-nav .nav-item { font-family: "sports_world", serif; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); }
+@media (max-width: 767.98px) { .banner { height: 2rem; } .banner .logo { width: 50px; } }
+
+@media (min-width: 768px) { .banner { height: 5rem; } .banner h1, .banner .h1 { font-size: 2rem; line-height: 2rem; } .banner .logo { width: 100px; } }
+
+@media (min-width: 992px) { .banner { height: 15rem; } .banner h1, .banner .h1 { font-size: 3rem; line-height: 3rem; letter-spacing: 0.2rem; } .banner h2, .banner .h2 { max-width: 30rem; font-size: 1.25rem; } .banner .logo { width: 150px; } }
+
+@media (max-width: 991.98px) { .reorder-elements { flex-direction: row-reverse; flex-wrap: wrap-reverse !important; } }
+
+@media (min-width: 992px) { .reorder-elements { flex-direction: row; flex-wrap: wrap !important; } }
+
+.navbar-nav .nav-item { position: relative; font-family: "sports_world", serif; text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); }
 
 .navbar-nav .nav-item .home { color: #233D7A !important; }
 
 .navbar-nav .nav-item .home:hover { color: #233D7A; }
 
-@media (min-width: 992px) { .navbar-nav .nav-item .dropdown-menu { border-top: 0px; border-width: 2px; border-color: #FF8023; border-top-left-radius: 0px; border-top-right-radius: 0px; top: calc(100% - 1.1rem); } }
+@media (max-width: 991.98px) { .navbar-nav .nav-item .dropdown-menu { border: 0; box-shadow: none; margin-left: 15px; } .navbar-nav .nav-item .dropdown-menu .nav-item:first-child .border-top { border-top: none !important; } }
 
-@media (min-width: 992px) { .navbar-nav .toplevel:not(:first-child):before { content: ""; position: absolute; bottom: 1.1rem; height: 1rem; border-right: 2px solid #FF8023; } }
+@media (min-width: 992px) { .navbar-nav .nav-item .dropdown-menu { border-top: 0px; border-width: 2px; border-color: #FF8023; border-top-left-radius: 0px; border-top-right-radius: 0px; top: calc(100% - .6rem); width: calc(100% + 2px); } }
+
+@media (min-width: 992px) { .navbar-nav .toplevel:not(:first-child):before { content: ""; position: absolute; bottom: .6rem; height: 1rem; border-right: 2px solid #FF8023; } }
 
 .accordion-header .date-prefix { width: 30%; }
 

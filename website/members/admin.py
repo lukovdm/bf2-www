@@ -14,7 +14,7 @@ from import_export.admin import ImportExportMixin
 from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied, ValidationError
 
-from .models import Member, OtherClub, MemberSettings
+from .models import Member, MemberSettings
 from .tokens import default_activate_token_generator
 
 
@@ -65,6 +65,7 @@ class UserResource(resources.ModelResource):
             picture_publication_acceptation=row[
                 "member__picture_publication_acceptation"
             ],
+            other_club=False,
         )
         return user
 

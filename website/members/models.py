@@ -7,20 +7,6 @@ from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 
-class OtherClub(models.Model):
-    name = models.CharField(
-        max_length=64,
-        verbose_name=_("other club"),
-        unique=True,
-    )
-
-    class Meta:
-        ordering = ("name",)
-
-    def __str__(self):
-        return self.name
-
-
 class Member(models.Model):
     """A model to hold all extra personal information about members."""
 
@@ -39,13 +25,13 @@ class Member(models.Model):
 
     gender = models.CharField(max_length=64, verbose_name=_("gender"))
 
-    MALE = "Male"
-    FEMALE = "Female"
+    MAN = "Man"
+    WOMAN = "Woman"
     OTHER = "Other"
     UNSPECIFIED = "Unspecified"
     GENDER_CHOICES = [
-        (MALE, _("male")),
-        (FEMALE, _("female")),
+        (MAN, _("man")),
+        (WOMAN, _("woman")),
         (OTHER, _("other")),
         (UNSPECIFIED, _("unspecified")),
     ]
@@ -94,13 +80,7 @@ class Member(models.Model):
         verbose_name=_("graduation date"), blank=True, null=True
     )
 
-    other_club = models.ForeignKey(
-        OtherClub,
-        blank=True,
-        null=True,
-        on_delete=models.CASCADE,
-        verbose_name=_("other club"),
-    )
+    other_club = models.BooleanField(verbose_name=_("other club"))
 
     preferred_language = models.CharField(
         choices=settings.LANGUAGES,

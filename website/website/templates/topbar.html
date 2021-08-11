@@ -7,7 +7,7 @@
                 {% show_menu 0 1 100 100 "menu.html" %}
             </ul>
         </div>
-        <div class="navbar-nav mb-2 mb-lg-0 ms-auto flex-row">
+        <div class="navbar-nav mb-2 mb-lg-0 ms-auto flex-row px-3">
             {% if user.is_authenticated %}
                 <div class="nav-item">
                     <a class="nav-link text-primary" href="{% url 'logout' %}">{% trans 'Sign out' %}</a>
@@ -21,7 +21,7 @@
                 </div>
             {% endif %}
         </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        <button class="navbar-toggler px-3" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

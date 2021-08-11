@@ -24,6 +24,18 @@
       }
     }
 
+    @include media-breakpoint-down(lg) {
+      .dropdown-menu {
+        border: 0;
+        box-shadow: none;
+        margin-left: 15px;
+
+        .nav-item:first-child .border-top {
+          border-top: none !important;
+        }
+      }
+    }
+
     @include media-breakpoint-up(lg) {
       .dropdown-menu {
         border-top: 0px;

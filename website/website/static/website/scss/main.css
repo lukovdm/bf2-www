@@ -2393,7 +2393,7 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 
 @media (min-width: 768px) { .container-padding { padding: 2.5rem 10rem; } }
 
-@media (max-width: 767.98px) { .container-padding { padding: 1rem; } }
+@media (max-width: 767.98px) { .container-padding { padding: 2rem; } }
 
 .ws-nowrap { white-space: nowrap; }
 
@@ -2407,11 +2407,11 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 
 .masthead .lang_change button img { width: 30px; height: auto; position: absolute; top: 1rem; right: 1rem; }
 
-.fullpage { min-height: 35rem; height: calc(100vh - 3rem); padding: 0; background: linear-gradient(0deg, #FFF 5rem, rgba(255, 255, 255, 0) 16rem, rgba(255, 255, 255, 0) 100%), url(/static/website/images/header_brosa.jpg); background-position: center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover; }
+.fullpage { min-height: 35rem; height: calc(100vh - 3rem - 1rem); padding: 0; background: linear-gradient(0deg, #FFF 5rem, rgba(255, 255, 255, 0) 16rem, rgba(255, 255, 255, 0) 100%), url(/static/website/images/header_brosa.jpg); background-position: center; background-repeat: no-repeat; background-attachment: scroll; background-size: cover; }
 
 .fullpage .logo { height: auto; position: absolute; left: 1rem; }
 
-@media (max-width: 575.98px) { .fullpage .logo { width: 3rem; } .fullpage h1, .fullpage .h1 { font-size: 2rem; line-height: 2rem; } }
+@media (max-width: 575.98px) { .fullpage { height: calc(80vh - 3rem) !important; } .fullpage .logo { width: 5rem; left: 77vw; bottom: 38vh; } .fullpage h1, .fullpage .h1 { font-size: 3rem; line-height: 3rem; } }
 
 @media (min-width: 576px) { .fullpage .logo { width: 4rem; } .fullpage h1, .fullpage .h1 { font-size: 3rem; line-height: 3rem; } }
 
@@ -2438,6 +2438,8 @@ h1, .h1 { text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); }
 .navbar-nav .nav-item .home { color: #233D7A !important; }
 
 .navbar-nav .nav-item .home:hover { color: #233D7A; }
+
+@media (max-width: 991.98px) { .navbar-nav .nav-item .dropdown-menu { border: 0; box-shadow: none; margin-left: 15px; } .navbar-nav .nav-item .dropdown-menu .nav-item:first-child .border-top { border-top: none !important; } }
 
 @media (min-width: 992px) { .navbar-nav .nav-item .dropdown-menu { border-top: 0px; border-width: 2px; border-color: #FF8023; border-top-left-radius: 0px; border-top-right-radius: 0px; top: calc(100% - .6rem); width: calc(100% + 2px); } }
 

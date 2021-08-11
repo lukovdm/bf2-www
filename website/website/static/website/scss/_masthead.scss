@@ -22,7 +22,7 @@
 
 .fullpage {
   min-height: 35rem;
-  height: calc(100vh - #{$navbar-padding-y * 4 + $font-size-base} );
+  height: calc(100vh - #{$navbar-padding-y * 4 + $font-size-base} - 1rem );
   padding: 0;
   background: linear-gradient(
                   0deg,
@@ -44,12 +44,15 @@
   }
 
   @include media-breakpoint-down(sm) {
+    height: calc(80vh - 3rem) !important;
     .logo {
-      width: 3rem;
+      width: 5rem;
+      left: 77vw;
+      bottom: 38vh;
     }
     h1 {
-      font-size: 2rem;
-      line-height: 2rem;
+      font-size: 3rem;
+      line-height: 3rem;
     }
   }
 

@@ -14,7 +14,7 @@ from import_export.admin import ImportExportMixin
 from django.http import HttpResponseRedirect
 from django.core.exceptions import PermissionDenied, ValidationError
 
-from .models import Member, OtherClub, MemberSettings
+from .models import Member, MemberSettings
 from .tokens import AccountActivationTokenGenerator
 
 
@@ -26,6 +26,7 @@ class UserResource(resources.ModelResource):
             "first_name",
             "last_name",
             "email",
+            "member_google_email",
             "member__birthday",
             "member__phone_number",
             "member__street_address",
@@ -36,6 +37,7 @@ class UserResource(resources.ModelResource):
             "member__graduation_date",
             "member__other_club",
             "member__preferred_language",
+            "gender",
         )
 
     def init_instance(self, row=None):
@@ -246,11 +248,6 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, UserAdmin)
-
-
-@admin.register(OtherClub)
-class OtherClubAdmin(admin.ModelAdmin):
-    pass
 
 
 @admin.register(MemberSettings)

@@ -48,13 +48,14 @@ class BecomeAMemberForm(ModelForm):
                 template.send(
                     {
                         "name": user.get_full_name(),
-                        "phone_number": member.phone_number(),
-                        "email": user.email(),
-                        "google_email": member.google_email(),
-                        "birthday": member.birthday(),
-                        "sports_card_number": member.sports_card_number(),
+                        "phone_number": member.phone_number,
+                        "email": user.email,
+                        "google_email": member.google_email,
+                        "birthday": member.birthday,
+                        "sports_card_number": member.sports_card_number,
                         "link_to_member": link,
-                        "pronouns": member.pronouns(),
+                        "gender": member.gender,
+                        "pronouns": member.pronouns,
                     }
                 )
             else:

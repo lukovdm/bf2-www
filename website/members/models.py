@@ -77,8 +77,7 @@ class Member(models.Model):
     city = models.CharField(max_length=52, verbose_name=_("city"))
 
     student_type = models.CharField(
-        max_length=3,
-        choices=TYPE_STUDENT,
+        max_length=3, choices=TYPE_STUDENT, verbose_name=_("type of student")
     )
 
     sports_card_number = models.CharField(
@@ -106,20 +105,25 @@ class Member(models.Model):
     )
 
     preferred_language = models.CharField(
-        choices=settings.LANGUAGES, default="nl", max_length=3
+        choices=settings.LANGUAGES,
+        default="nl",
+        max_length=3,
+        verbose_name=_("preferred language"),
     )
 
     google_email = models.EmailField(verbose_name=_("google email"))
 
-    picture_publication_acceptation = models.BooleanField()
+    picture_publication_acceptation = models.BooleanField(
+        verbose_name=_("allowed to publish pictures of")
+    )
 
     def clean(self) -> None:
         if self.birthday and self.birthday > timezone.now().date():
             raise ValidationError({"birthday": _("Your birthday must lay in the past")})
 
-    def save(self, commit=True):
-        super().save(commit)
+    def save(self, *args, **kwargs):
         self.sports_card_number = self.sports_card_number.lower()
+        super().save(*args, **kwargs)
 
     class Meta:
         permissions = (("can_accept_or_reject", _("can accept or reject")),)
@@ -131,11 +135,11 @@ class Member(models.Model):
 class MemberSettings(models.Model):
     privacyFile = FilerFileField(null=True, blank=True, on_delete=models.CASCADE)
 
-    def save(self):
+    def save(self, *args, **kwargs):
         if MemberSettings.objects.exists():
             raise ValueError("This model already has its record.")
         else:
-            super().save()
+            super().save(*args, **kwargs)
 
     def __str__(self):
         return "Settings"

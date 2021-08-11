@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-09 11:16+0000\n"
-"PO-Revision-Date: 2021-08-09 13:17+0200\n"
+"POT-Creation-Date: 2021-08-11 14:13+0000\n"
+"PO-Revision-Date: 2021-08-11 16:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: admin.py:75
+#: admin.py:85
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: admin.py:88
+#: admin.py:98
 msgid "Permissions"
 msgstr "Rechten"
 
-#: admin.py:117 admin.py:200
+#: admin.py:127 admin.py:210
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: admin.py:135 admin.py:220
+#: admin.py:145 admin.py:230
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -44,15 +44,15 @@ msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
 
-#: admin.py:154 admin.py:158
+#: admin.py:164 admin.py:168
 msgid "You don't have permission to accept a user"
 msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 
-#: admin.py:161
+#: admin.py:171
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: models.py:13 models.py:105
+#: models.py:13 models.py:104
 msgid "other club"
 msgstr "andere club"
 
@@ -116,27 +116,39 @@ msgstr "postcode"
 msgid "city"
 msgstr "stad"
 
-#: models.py:86
+#: models.py:80
+msgid "type of student"
+msgstr "type student"
+
+#: models.py:85
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: models.py:90
+#: models.py:89
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: models.py:97
+#: models.py:96
 msgid "graduation date"
 msgstr "afstudeerdatum"
 
-#: models.py:112
+#: models.py:111
+msgid "preferred language"
+msgstr "voorkeurs taal"
+
+#: models.py:114
 msgid "google email"
 msgstr "google e-mail"
 
-#: models.py:118
+#: models.py:117
+msgid "allowed to publish pictures of"
+msgstr "toegestaan om foto's van te publiceren"
+
+#: models.py:122
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: models.py:125
+#: models.py:129
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 
@@ -180,28 +192,18 @@ msgstr "Ik ga akkoord met de privacy verklaring"
 msgid "Activate your account"
 msgstr "Activeer uw account"
 
-#: templates/members/passwerd_set.html:9
-msgid ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
-msgstr "Voer uw nieuwe wachtwoord in en check of je het goed hebt ingetyped."
+#: templates/members/passwerd_set.html:10
+msgid "To finish setting up your new account please choose a password."
+msgstr "Om je account setup af te maken, kies alstublieft een wachtwoord."
 
-#: templates/members/passwerd_set.html:15
-msgid "New password:"
-msgstr "Nieuwe wachtwoord:"
+#: templates/members/passwerd_set.html:21
+msgid "Set password"
+msgstr "Zet wachtwoord"
 
-#: templates/members/passwerd_set.html:20
-msgid "Confirm password:"
-msgstr "Herhaal wachtwoord:"
-
-#: templates/members/passwerd_set.html:23
-msgid "Change my password"
-msgstr "Verander mijn wachtwoord"
-
-#: templates/members/passwerd_set.html:29
+#: templates/members/passwerd_set.html:27
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
+"used. Please request a new password reset."
 msgstr ""
 "De wachtwoord reset link was niet valide, hij is misschien al een keer "
 "gebruikt. Vraag alstublieft een nieuwe wachtwoord reset aan."

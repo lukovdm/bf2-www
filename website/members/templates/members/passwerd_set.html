@@ -1,32 +1,30 @@
 {% extends "page.html" %}
-{% load i18n %}
+{% load i18n bootstrap5 %}
 
-{% block title %}{% trans "Activate your account" %}{% endblock title %}
+{% block pagetitle %}{% trans "Activate your account" %}{% endblock pagetitle %}
 
 {% block content %}
-    {% if validlink %}
+{% if validlink %}
 
-    <p>{% trans "Please enter your new password twice so we can verify you typed it in correctly." %}</p>
+    <div class="mb-4 text-center">
+        <p>{% trans "To finish setting up your new account please choose a password." %}</p>
+    </div>
 
-    <form method="post">{% csrf_token %}
-    <fieldset class="module aligned">
-        <div class="form-row field-password1">
-            {{ form.new_password1.errors }}
-            <label for="id_new_password1">{% trans 'New password:' %}</label>
-            {{ form.new_password1 }}
+    <form method="post" class="col-lg-6 offset-lg-3">{% csrf_token %}
+        <div class="row mb-3">
+            {% bootstrap_field form.new_password1 show_label='skip' %}
         </div>
-        <div class="form-row field-password2">
-            {{ form.new_password2.errors }}
-            <label for="id_new_password2">{% trans 'Confirm password:' %}</label>
-            {{ form.new_password2 }}
+        <div class="row mb-3">
+            {% bootstrap_field form.new_password2 show_label='skip' %}
         </div>
-        <input type="submit" value="{% trans 'Change my password' %}">
-    </fieldset>
+        <div class="row mb-3">
+            <input type="submit"  value="{% trans "Set password" %}" class="btn btn-primary float-right">
+        </div>
     </form>
 
     {% else %}
 
-    <p>{% trans "The password reset link was invalid, possibly because it has already been used.  Please request a new password reset." %}</p>
+    <p>{% trans "The password reset link was invalid, possibly because it has already been used. Please request a new password reset." %}</p>
 
     {% endif %}
 {% endblock content %}

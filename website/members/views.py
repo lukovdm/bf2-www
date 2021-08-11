@@ -4,7 +4,7 @@ from django.views.generic import FormView
 
 from members.forms import BecomeAMemberForm
 from members.models import MemberSettings
-from members.tokens import AccountActivationTokenGenerator
+from members.tokens import default_activate_token_generator
 
 
 class BecomeAMemberView(FormView):
@@ -24,5 +24,5 @@ class BecomeAMemberView(FormView):
 
 class PasswordSetView(PasswordResetConfirmView):
     template_name = "members/passwerd_set.html"
-    token_generator = AccountActivationTokenGenerator()
+    token_generator = default_activate_token_generator
     success_url = "/"

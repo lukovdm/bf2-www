@@ -56,6 +56,7 @@ class BecomeAMemberForm(ModelForm):
                         "link_to_member": link,
                         "gender": member.gender,
                         "pronouns": member.pronouns,
+                        "other_club": member.other_club,
                     }
                 )
             else:
@@ -77,6 +78,7 @@ class BecomeAMemberForm(ModelForm):
                         {sports_card_number}: the sports card number of the member \n 
                         {link_to_member}: the link the this specific member \n
                         {pronouns}: the pronouns of the member \n
+                        {other_club}: shows if member is also part of another frisbee club
                         """,
                     )
         return member

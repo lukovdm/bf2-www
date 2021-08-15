@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -173,6 +174,23 @@ LANGUAGES = [
     ("en", "English"),
     ("nl", "Dutch"),
 ]
+
+CMS_LANGUAGES = {
+    1: [
+        {
+            "code": "en",
+            "name": _("English"),
+            "fallbacks": ["nl"],
+            "hide_untranslated": True,
+        },
+        {
+            "code": "nl",
+            "name": _("Dutch"),
+            "fallbacks": ["en"],
+            "hide_untranslated": True,
+        },
+    ]
+}
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 

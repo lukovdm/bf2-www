@@ -59,6 +59,7 @@
   @include media-breakpoint-up(sm) {
     .logo {
       width: 4rem;
+      bottom: 1rem;
     }
     h1 {
       font-size: 3rem;
@@ -68,6 +69,7 @@
   @include media-breakpoint-up(md) {
     .logo {
       width: 6rem;
+      bottom: 1rem;
     }
     h1 {
         font-size: 4rem;
@@ -77,6 +79,7 @@
   @include media-breakpoint-up(lg) {
     .logo {
       width: 9rem;
+      bottom: 1rem;
     }
     h1 {
         font-size: 6.5rem;

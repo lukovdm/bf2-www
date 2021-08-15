@@ -23,6 +23,14 @@ DATABASES = {
     }
 }
 
+EMAIL_HOST = "smtp-relay.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+DEFAULT_FROM_EMAIL = "no-reply@bfrisbee2s.nl"
+
+ADMINS = [("Webmasters", "webmaster@bfrisbee2s.nl")]
+
 STATIC_ROOT = "/bf2-www/static/"
 STATIC_URL = "/static/"
 

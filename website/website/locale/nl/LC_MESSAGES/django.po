@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-09 11:16+0000\n"
-"PO-Revision-Date: 2021-08-11 16:21+0200\n"
+"POT-Creation-Date: 2021-08-15 13:24+0000\n"
+"PO-Revision-Date: 2021-08-15 15:25+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,17 +18,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: templates/base.html:35
-msgid "Follow us:"
-msgstr "Volg ons:"
+#: settings/base.py:182
+msgid "English"
+msgstr "Engels"
 
-#: templates/base.html:36
-msgid "Follow us on Facebook"
-msgstr "Volg ons op Facebook"
-
-#: templates/base.html:37
-msgid "Follow us on Instagram"
-msgstr "Volg ons op Instagram"
+#: settings/base.py:188
+msgid "Dutch"
+msgstr "Nederlands"
 
 #: templates/bootstrap5/messages.html:4
 msgid "close"
@@ -40,7 +36,7 @@ msgstr "BFrisBee2's logo"
 
 #: templates/registration/login.html:5 templates/registration/login.html:58
 #: templates/registration/password_reset_complete.html:12
-#: templates/topbar.html:35
+#: templates/topbar.html:20
 msgid "Sign in"
 msgstr "Log in"
 
@@ -87,19 +83,19 @@ msgstr ""
 msgid "Reset password"
 msgstr "Wachtwoord resetten"
 
-#: templates/registration/password_reset_confirm.html:10
+#: templates/registration/password_reset_confirm.html:9
 msgid "Please enter your new password below."
 msgstr "Vul het nieuwe wachtwoord hieronder in."
 
-#: templates/registration/password_reset_confirm.html:17
+#: templates/registration/password_reset_confirm.html:16
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
-#: templates/registration/password_reset_confirm.html:29
+#: templates/registration/password_reset_confirm.html:28
 msgid "Confirm password"
 msgstr "Wachtwoord bevestigen"
 
-#: templates/registration/password_reset_confirm.html:50
+#: templates/registration/password_reset_confirm.html:49
 msgid "Change my password"
 msgstr "Wachtwoord veranderen"
 
@@ -128,10 +124,10 @@ msgstr ""
 msgid "Send email"
 msgstr "Verstuur e-mail"
 
-#: templates/topbar.html:32
+#: templates/topbar.html:13
 msgid "Sign out"
 msgstr "Log uit"
 
-#: templates/topbar.html:34
+#: templates/topbar.html:17
 msgid "Become a member"
 msgstr "Word lid"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 15:39+0000\n"
-"PO-Revision-Date: 2021-08-22 17:42+0200\n"
+"POT-Creation-Date: 2021-08-22 16:39+0000\n"
+"PO-Revision-Date: 2021-08-22 18:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -64,13 +64,13 @@ msgstr "Achternaam"
 msgid "E-mail"
 msgstr "Email"
 
-#: forms.py:37
+#: forms.py:38
 msgid ""
 "This will be used to gain access to the google drive and might be the same "
 "as your regular e-mail"
 msgstr ""
-"Dit word gebruikt om toegang te krijgen tot de google drive en kan "
-"mogelijk hetzelfde zijn als voorgenoemde email"
+"Dit word gebruikt om toegang te krijgen tot de google drive en kan mogelijk "
+"hetzelfde zijn als voorgenoemde email"
 
 #: models.py:17
 msgid "Radboud University"
@@ -85,8 +85,8 @@ msgid "Not a student"
 msgstr "Geen student"
 
 #: models.py:24
-msgid "birthday"
-msgstr "verjaardag"
+msgid "birth date"
+msgstr "geboortedatum"
 
 #: models.py:31
 msgid "man"
@@ -130,7 +130,7 @@ msgstr "postcode"
 
 #: models.py:63
 msgid "city"
-msgstr "stad"
+msgstr "woonplaats"
 
 #: models.py:66
 msgid "Where do you study?"
@@ -179,8 +179,8 @@ msgid "dd/mm/yyyy"
 msgstr "dd/mm/jjjj"
 
 #: templates/members/become_a_member.html:144
-msgid "Are now you already part of another frisbee club?"
-msgstr "Bent u nu al lid van een andere frisbee vereniging?"
+msgid "Are you currently part of another frisbee association?"
+msgstr "Bent u momenteel ook lid van een andere frisbee vereniging?"
 
 #: templates/members/become_a_member.html:148
 msgid "yes"
@@ -212,7 +212,7 @@ msgstr "Om je account setup af te maken, kies alstublieft een wachtwoord."
 
 #: templates/members/passwerd_set.html:21
 msgid "Set password"
-msgstr "Zet wachtwoord"
+msgstr "Stel een wachtwoord in"
 
 #: templates/members/passwerd_set.html:27
 msgid ""

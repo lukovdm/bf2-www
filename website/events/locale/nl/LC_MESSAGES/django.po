@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-07-09 14:30+0000\n"
-"PO-Revision-Date: 2021-06-24 17:50+0200\n"
+"PO-Revision-Date: 2021-08-22 13:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 
 #: events/models.py:26
 msgid "name"
@@ -80,7 +80,7 @@ msgstr "gratis"
 
 #: events/templates/events/event_detail.html:41
 msgid "unregister"
-msgstr "meld af"
+msgstr "afmelden"
 
 #: events/templates/events/event_detail.html:48
 msgid "Full"
@@ -96,7 +96,7 @@ msgstr "Gesloten"
 
 #: events/templates/events/event_detail.html:54
 msgid "register"
-msgstr "registreer"
+msgstr "registreren"
 
 #: events/templates/events/event_detail.html:74
 msgid "registrations open at"
@@ -124,7 +124,7 @@ msgstr "De registraties voor dit evenement zijn al gesloten."
 
 #: events/views.py:61
 msgid "This event is already full."
-msgstr "Dit evenement is al vol."
+msgstr "Dit evenement zit vol."
 
 #: events/views.py:63
 msgid "You have already registered for this event."

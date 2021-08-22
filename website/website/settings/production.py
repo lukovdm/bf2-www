@@ -23,6 +23,8 @@ DATABASES = {
     }
 }
 
+DJANGOCMS_GOOGLEMAP_API_KEY = os.environ.get("GOOGLE_MAPS_KEY")
+
 EMAIL_HOST = "smtp-relay.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

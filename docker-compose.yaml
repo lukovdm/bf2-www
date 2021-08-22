@@ -30,20 +30,22 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./config/nginx/conf.d:/etc/nginx/conf.d
+      - ./config/nginx/templates:/etc/nginx/templates
       - static_volume:/bf2-www/static/
       - media_volume:/bf2-www/media/
-      - web_root:/var/www/html
-      - certbot_var:/var/lib/letsencrypt
-      - certbot_etc:/etc/letsencrypt
-      - dhparam:/etc/ssl/certs
+      - web_root:/var/www/html/
+      - certbot_var:/var/lib/letsencrypt/
+      - certbot_etc:/etc/letsencrypt/
+      - dhparam:/etc/ssl/certs/
     networks:
       - nginx_network
     depends_on:
       - web
+    env_file:
+      - .env
 
   certbot:
-    image: certbot/certbot:arm64v8-latest
+    image: certbot/certbot
     container_name: certbot
     volumes:
       - certbot_etc:/etc/letsencrypt
@@ -53,7 +55,7 @@ services:
       - nginx_network
     depends_on:
       - nginx
-    command: certonly --webroot --webroot-path=/var/www/html --email sport@luko.dev --agree-tos --no-eff-email --force-renewal -d bf2.luko.dev
+    command: certonly --webroot --webroot-path=/var/www/html --email webmaster@bfrisbee2s.nl --agree-tos --no-eff-email --force-renewal -d ${DOMAIN}
 
 networks:
   nginx_network:
@@ -63,29 +65,14 @@ networks:
 
 volumes:
   database_volume:
-    driver: local
-    driver_opts:
-      type: none
-      device: ./db-vol/
-      o: bind
   static_volume:
   media_volume:
   certbot_etc:
-    driver: local
-    driver_opts:
-      type: none
-      device: ./cb-etc/
-      o: bind
   certbot_var:
-    driver: local
-    driver_opts:
-      type: none
-      device: ./cb-var/
-      o: bind
   web_root:
   dhparam:
     driver: local
     driver_opts:
       type: none
-      device: ./dhparam/
+      device: /home/luko/bf2-www/dhparam
       o: bind

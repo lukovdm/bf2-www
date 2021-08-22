@@ -32,8 +32,21 @@
             </div>
         </div>
         <footer class="container-fluid px-4 py-3 bg-ternary text-white mt-auto position-relative">
-            <div class="row">
-                {% static_placeholder "contact" %}
+            <div class="row font-special">
+                <div class="col-md-3">
+                    {% static_placeholder "footer 1" %}
+                </div>
+                <div class="col-md-3">
+                    {% static_placeholder "footer 2" %}
+                </div>
+                <div class="col-lg-4">
+                    {% static_placeholder "footer 3" %}
+                </div>
+                <div class="col-lg-2">
+                    <div class="float-end">
+                        {% static_placeholder "footer socials" %}
+                    </div>
+                </div>
             </div>
             <h6 class="align-bottom position-absolute bottom-0 end-0 pe-2" onclick="play()">Made by Webmasters</h6>
         </footer>

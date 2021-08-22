@@ -34,7 +34,9 @@ class BecomeAMemberForm(ModelForm):
     class Meta:
         model = Member
         help_texts = {
-            'google_email': _("This will be used to gain access to the google drive and might be the same as your regular e-mail"),
+            "google_email": _(
+                "This will be used to gain access to the google drive and might be the same as your regular e-mail"
+            ),
         }
         exclude = ["user"]
 

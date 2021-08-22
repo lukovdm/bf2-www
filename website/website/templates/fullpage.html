@@ -13,3 +13,7 @@
     </header>
     {% include "topbar.html" %}
 {% endblock header %}
+
+{% block pagecontent %}
+    {% block content %}{% endblock content %}
+{% endblock pagecontent %}

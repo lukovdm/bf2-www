@@ -28,15 +28,25 @@
         {% block header %}{% endblock header %}
         <div class="container-fluid bg-fade py-5">
             <div class="container bg-light shadow rounded mt-4 mb-4 container-padding page-content">
-                <div class= "border-bottom border-primary border-2 row col-8 offset-2 mb-5">
-                    <h1 class="text-center section-title">{% block pagetitle %}{% endblock pagetitle %}</h1>
-                </div>
-                {% block content %}{% endblock content %}
+                {% block pagecontent %}{% endblock pagecontent %}
             </div>
         </div>
         <footer class="container-fluid px-4 py-3 bg-ternary text-white mt-auto position-relative">
-            <div class="row">
-                {% static_placeholder "contact" %}
+            <div class="row font-special">
+                <div class="col-md-3">
+                    {% static_placeholder "footer 1" %}
+                </div>
+                <div class="col-md-3">
+                    {% static_placeholder "footer 2" %}
+                </div>
+                <div class="col-lg-4">
+                    {% static_placeholder "footer 3" %}
+                </div>
+                <div class="col-lg-2">
+                    <div class="float-end">
+                        {% static_placeholder "footer socials" %}
+                    </div>
+                </div>
             </div>
             <h6 class="align-bottom position-absolute bottom-0 end-0 pe-2" onclick="play()">Made by Webmasters</h6>
         </footer>

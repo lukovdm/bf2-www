@@ -15,9 +15,4 @@ class Migration(migrations.Migration):
             name='birthday',
             field=models.DateField(verbose_name='birth date'),
         ),
-        migrations.AlterField(
-            model_name='member',
-            name='graduation_date',
-            field=models.DateField(blank=True, null=True, verbose_name='expected graduation date'),
-        ),
     ]

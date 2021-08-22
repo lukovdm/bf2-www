@@ -21,7 +21,7 @@ class Member(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    birthday = models.DateField(verbose_name=_("birthday"))
+    birthday = models.DateField(verbose_name=_("birth date"))
 
     MAN = "Man"
     WOMAN = "Woman"
@@ -79,7 +79,7 @@ class Member(models.Model):
     )
 
     graduation_date = models.DateField(
-        verbose_name=_("graduation date"), blank=True, null=True
+        verbose_name=_("expected graduation date"), blank=True, null=True
     )
 
     other_club = models.BooleanField(verbose_name=_("other club"))

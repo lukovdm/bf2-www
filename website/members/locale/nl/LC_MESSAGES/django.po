@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-11 15:22+0000\n"
-"PO-Revision-Date: 2021-08-11 17:23+0200\n"
+"POT-Creation-Date: 2021-08-22 11:39+0000\n"
+"PO-Revision-Date: 2021-08-22 13:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -26,7 +26,7 @@ msgstr "Persoonlijk"
 msgid "Permissions"
 msgstr "Rechten"
 
-#: admin.py:129 admin.py:212
+#: admin.py:129 admin.py:213
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: admin.py:147 admin.py:232
+#: admin.py:147 admin.py:233
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -44,11 +44,11 @@ msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
 
-#: admin.py:166 admin.py:170
+#: admin.py:167 admin.py:171
 msgid "You don't have permission to accept a user"
 msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 
-#: admin.py:173
+#: admin.py:174
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
@@ -65,8 +65,8 @@ msgid "Not a student"
 msgstr "Geen student"
 
 #: models.py:24
-msgid "birthday"
-msgstr "verjaardag"
+msgid "birth date"
+msgstr "geboortedatum"
 
 #: models.py:31
 msgid "man"
@@ -110,7 +110,7 @@ msgstr "postcode"
 
 #: models.py:63
 msgid "city"
-msgstr "stad"
+msgstr "woonplaats"
 
 #: models.py:66
 msgid "type of student"
@@ -125,8 +125,8 @@ msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
 #: models.py:82
-msgid "graduation date"
-msgstr "afstudeerdatum"
+msgid "expected graduation date"
+msgstr "verwachte afstudeerdatum"
 
 #: models.py:85
 msgid "other club"
@@ -164,8 +164,8 @@ msgid "dd/mm/yyyy"
 msgstr "dd/mm/jjjj"
 
 #: templates/members/become_a_member.html:153
-msgid "Are now you already part of another frisbee club?"
-msgstr "Bent u nu al lid van een andere frisbee vereniging?"
+msgid "Are you currently part of another frisbee association?"
+msgstr "Bent u momenteel ook lid van een andere frisbee vereniging?"
 
 #: templates/members/become_a_member.html:157
 #: templates/members/become_a_member.html:191
@@ -204,7 +204,7 @@ msgstr "Om je account setup af te maken, kies alstublieft een wachtwoord."
 
 #: templates/members/passwerd_set.html:21
 msgid "Set password"
-msgstr "Zet wachtwoord"
+msgstr "Stel een wachtwoord in"
 
 #: templates/members/passwerd_set.html:27
 msgid ""

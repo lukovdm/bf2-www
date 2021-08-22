@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 11:39+0000\n"
-"PO-Revision-Date: 2021-08-22 13:43+0200\n"
+"POT-Creation-Date: 2021-08-22 16:39+0000\n"
+"PO-Revision-Date: 2021-08-22 18:39+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -64,13 +64,13 @@ msgstr "Achternaam"
 msgid "E-mail"
 msgstr "Email"
 
-#: forms.py:37
+#: forms.py:38
 msgid ""
 "This will be used to gain access to the google drive and might be the same "
 "as your regular e-mail"
 msgstr ""
-"Dit word gebruikt om toegang te krijgen tot de google drive en kan "
-"mogelijk hetzelfde zijn als voorgenoemde email"
+"Dit word gebruikt om toegang te krijgen tot de google drive en kan mogelijk "
+"hetzelfde zijn als voorgenoemde email"
 
 #: models.py:17
 msgid "Radboud University"
@@ -178,7 +178,7 @@ msgstr "Word lid"
 msgid "dd/mm/yyyy"
 msgstr "dd/mm/jjjj"
 
-#: templates/members/become_a_member.html:153
+#: templates/members/become_a_member.html:144
 msgid "Are you currently part of another frisbee association?"
 msgstr "Bent u momenteel ook lid van een andere frisbee vereniging?"
 

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import (
     get_password_validators,
@@ -100,3 +101,7 @@ class BecomeAMemberForm(ModelForm):
                         """,
                     )
         return member
+
+
+class ActivateAccountForm(SetPasswordForm):
+    data_registration = BooleanField(required=True)

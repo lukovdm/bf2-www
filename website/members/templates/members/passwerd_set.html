@@ -17,6 +17,20 @@
         <div class="row mb-3">
             {% bootstrap_field form.new_password2 show_label='skip' %}
         </div>
+        <div class="form-group reg_spacing">
+            <div>
+                <label>{% trans "Because there is a group that apears to not have actively agreed to the privacy agreement we again ask you to confirm you agree with the " %}
+                <a href = "{{ privacyFile.url }}">{% trans "privacy statement" %}</a>
+                .</label>
+            </div>
+            <input class="form-check-input {% if form.data_registration.errors %}is-invalid{% endif %}" type="checkbox" id="flexCheckDefault" name="{{ form.data_registration.html_name }}" required>
+            <label class="form-check-label" for="{{ form.data_registration.id_for_label }}">{% trans "I agree with the privacy statement" %}</label>
+            {% if form.data_registration.errors %}
+                 <div class="invalid-feedback">
+                    {{ form.data_registration.errors }}
+                 </div>
+            {% endif %}
+            </div>
         <div class="row mb-3">
             <input type="submit"  value="{% trans "Set password" %}" class="btn btn-primary float-right">
         </div>

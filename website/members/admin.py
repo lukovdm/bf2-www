@@ -36,10 +36,8 @@ class UserResource(resources.ModelResource):
             "member__city",
             "member__student_type",
             "member__sports_card_number",
-            "member__graduation_date",
             "member__preferred_language",
             "member__google_email",
-            "member__picture_publication_acceptation",
         )
 
     def init_instance(self, row=None):
@@ -59,12 +57,8 @@ class UserResource(resources.ModelResource):
             city=row["member__city"],
             student_type=row["member__student_type"],
             sports_card_number=row["member__sports_card_number"],
-            graduation_date=parse_date(row["member__graduation_date"]),
             preferred_language=row["member__preferred_language"],
             google_email=row["member__google_email"],
-            picture_publication_acceptation=row[
-                "member__picture_publication_acceptation"
-            ],
             other_club=False,
         )
         return user

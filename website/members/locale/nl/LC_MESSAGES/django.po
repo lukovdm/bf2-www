@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-11 15:22+0000\n"
-"PO-Revision-Date: 2021-08-11 17:23+0200\n"
+"POT-Creation-Date: 2021-08-22 15:39+0000\n"
+"PO-Revision-Date: 2021-08-22 17:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: admin.py:87
+#: admin.py:81
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: admin.py:100
+#: admin.py:94
 msgid "Permissions"
 msgstr "Rechten"
 
-#: admin.py:129 admin.py:212
+#: admin.py:123 admin.py:207
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: admin.py:147 admin.py:232
+#: admin.py:141 admin.py:227
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -44,13 +44,33 @@ msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
 
-#: admin.py:166 admin.py:170
+#: admin.py:161 admin.py:165
 msgid "You don't have permission to accept a user"
 msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 
-#: admin.py:173
+#: admin.py:168
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
+
+#: forms.py:25
+msgid "First name"
+msgstr "Voornaam"
+
+#: forms.py:26
+msgid "Last name"
+msgstr "Achternaam"
+
+#: forms.py:27
+msgid "E-mail"
+msgstr "Email"
+
+#: forms.py:37
+msgid ""
+"This will be used to gain access to the google drive and might be the same "
+"as your regular e-mail"
+msgstr ""
+"Dit word gebruikt om toegang te krijgen tot de google drive en kan "
+"mogelijk hetzelfde zijn als voorgenoemde email"
 
 #: models.py:17
 msgid "Radboud University"
@@ -113,8 +133,8 @@ msgid "city"
 msgstr "stad"
 
 #: models.py:66
-msgid "type of student"
-msgstr "type student"
+msgid "Where do you study?"
+msgstr "Waar studeer je?"
 
 #: models.py:71
 msgid "sports card number"
@@ -124,73 +144,61 @@ msgstr "sportkaartnummer"
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: models.py:82
-msgid "graduation date"
-msgstr "afstudeerdatum"
-
-#: models.py:85
+#: models.py:81
 msgid "other club"
 msgstr "andere club"
 
-#: models.py:91
+#: models.py:87
 msgid "preferred language"
 msgstr "voorkeurs taal"
 
-#: models.py:94
+#: models.py:90
 msgid "google email"
 msgstr "google e-mail"
 
-#: models.py:97
-msgid "allowed to publish pictures of"
-msgstr "toegestaan om foto's van te publiceren"
+#: models.py:92
+msgid "remarks"
+msgstr "opmerkingen"
 
-#: models.py:102
+#: models.py:96
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: models.py:109
+#: models.py:103
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 
 #: templates/members/become_a_member.html:4
 #: templates/members/become_a_member.html:5
-#: templates/members/become_a_member.html:222
+#: templates/members/become_a_member.html:207
 msgid "Become a member"
 msgstr "Word lid"
 
 #: templates/members/become_a_member.html:41
-#: templates/members/become_a_member.html:132
 msgid "dd/mm/yyyy"
 msgstr "dd/mm/jjjj"
 
-#: templates/members/become_a_member.html:153
+#: templates/members/become_a_member.html:144
 msgid "Are now you already part of another frisbee club?"
 msgstr "Bent u nu al lid van een andere frisbee vereniging?"
 
-#: templates/members/become_a_member.html:157
-#: templates/members/become_a_member.html:191
+#: templates/members/become_a_member.html:148
 msgid "yes"
 msgstr "ja"
 
-#: templates/members/become_a_member.html:161
-#: templates/members/become_a_member.html:195
+#: templates/members/become_a_member.html:152
 msgid "no"
 msgstr "nee"
 
-#: templates/members/become_a_member.html:188
-msgid "Pictures and videos that include me may be used on our social media."
-msgstr ""
-"Foto's en video's met mij erop mogen gebruikt worden voor onze social media."
-
-#: templates/members/become_a_member.html:206
+#: templates/members/become_a_member.html:180
 msgid "By checking the box below, you agree to the "
 msgstr "Door het vakje hieronder aan te vinken gaat u akkoord met de "
 
-#: templates/members/become_a_member.html:207
+#: templates/members/become_a_member.html:181
 msgid "privacy statement"
 msgstr "privacy verklaring"
 
-#: templates/members/become_a_member.html:211
+#: templates/members/become_a_member.html:185
 msgid "I agree with the privacy statement"
 msgstr "Ik ga akkoord met de privacy verklaring"
 

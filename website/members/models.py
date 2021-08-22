@@ -63,7 +63,7 @@ class Member(models.Model):
     city = models.CharField(max_length=52, verbose_name=_("city"))
 
     student_type = models.CharField(
-        max_length=3, choices=TYPE_STUDENT, verbose_name=_("type of student")
+        max_length=3, choices=TYPE_STUDENT, verbose_name=_("Where do you study?")
     )
 
     sports_card_number = models.CharField(
@@ -78,10 +78,6 @@ class Member(models.Model):
         ],
     )
 
-    graduation_date = models.DateField(
-        verbose_name=_("graduation date"), blank=True, null=True
-    )
-
     other_club = models.BooleanField(verbose_name=_("other club"))
 
     preferred_language = models.CharField(
@@ -93,9 +89,7 @@ class Member(models.Model):
 
     google_email = models.EmailField(verbose_name=_("google email"))
 
-    picture_publication_acceptation = models.BooleanField(
-        verbose_name=_("allowed to publish pictures of")
-    )
+    remarks = models.TextField(blank=True, null=True, verbose_name=_("remarks"))
 
     def clean(self) -> None:
         if self.birthday and self.birthday > timezone.now().date():

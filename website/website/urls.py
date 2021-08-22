@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url
+from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
@@ -22,6 +23,10 @@ from django.urls import path, include
 from members.views import BecomeAMemberView, PasswordSetView
 
 urlpatterns = [
+    path("i18n/", include("django.conf.urls.i18n")),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls),
     path("user/", include("django.contrib.auth.urls")),
     path("become-a-member/", BecomeAMemberView.as_view(), name="become-a-member"),
@@ -30,6 +35,5 @@ urlpatterns = [
         PasswordSetView.as_view(),
         name="activate-account",
     ),
-    path("i18n/", include("django.conf.urls.i18n")),
     url(r"^", include("cms.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)

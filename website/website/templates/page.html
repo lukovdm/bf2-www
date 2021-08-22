@@ -13,3 +13,10 @@
     </header>
     {% include "topbar.html" %}
 {% endblock header %}
+
+{% block pagecontent %}
+    <div class= "border-bottom border-primary border-2 row col-8 offset-2 mb-5">
+        <h1 class="text-center section-title text-break">{% block pagetitle %}{% endblock pagetitle %}</h1>
+    </div>
+    {% block content %}{% endblock content %}
+{% endblock pagecontent %}

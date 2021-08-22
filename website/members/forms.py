@@ -16,14 +16,15 @@ from django.forms import (
 from django_mail_template.models import Configuration
 from django.core.mail import mail_admins
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from members.models import Member
 
 
 class BecomeAMemberForm(ModelForm):
-    firstname = CharField()
-    lastname = CharField()
-    email = EmailField()
+    firstname = CharField(label=_("First name"))
+    lastname = CharField(label=_("Last name"))
+    email = EmailField(label=_("E-mail"))
     password = CharField(
         widget=PasswordInput(),
         help_text=password_validators_help_text_html(),
@@ -32,6 +33,9 @@ class BecomeAMemberForm(ModelForm):
 
     class Meta:
         model = Member
+        help_texts = {
+            'google_email': _("This will be used to gain access to the google drive and might be the same as your regular e-mail"),
+        }
         exclude = ["user"]
 
     def clean_password(self):

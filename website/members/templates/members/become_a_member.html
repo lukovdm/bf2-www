@@ -128,15 +128,6 @@
                     {% endif %}
                 </div>
                 <div class="form-group reg_spacing">
-                    <label for="{{ form.graduation_date.id_for_label }}" class="form-label">{{ form.graduation_date.label }}</label>
-                    <input type="text" class="form-control {% if form.graduation_date.errors %}is-invalid{% endif %}" name="{{ form.graduation_date.html_name }}" placeholder="{% trans "dd/mm/yyyy" %}" >
-                    {% if form.graduation_date.errors %}
-                         <div class="invalid-feedback">
-                            {{ form.graduation_date.errors }}
-                         </div>
-                    {% endif %}
-                </div>
-                <div class="form-group reg_spacing">
                     <label for="{{ form.preferred_language.id_for_label }}" class="form-label">{{ form.preferred_language.label }}</label>
                     <select class="form-select custom-select {% if form.preferred_language.errors %}is-invalid{% endif %}" name="{{ form.preferred_language.html_name }}" id="gender" required>
                         {% for choice in form.preferred_language %}
@@ -185,26 +176,9 @@
             </div>
 
             <div class="form-group reg_spacing">
-                <div><label>{% trans "Pictures and videos that include me may be used on our social media." %}</label></div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input {% if form.picture_publication_acceptation.errors %}is-invalid{% endif %}" type="radio" name="{{ form.picture_publication_acceptation.html_name }}" value="on">
-                    <label class="form-check-label">{% trans "yes" %}</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input {% if form.picture_publication_acceptation.errors %}is-invalid{% endif %}" type="radio" name="{{ form.picture_publication_acceptation.html_name }}" value="off">
-                    <label class="form-check-label">{% trans "no" %}</label>
-                </div>
-                {% if form.picture_publication_acceptation.errors %}
-                     <div class="invalid-feedback">
-                        {{ form.picture_publication_acceptation.errors }}
-                     </div>
-                {% endif %}
-            </div>
-
-            <div class="form-group reg_spacing">
                 <div>
                     <label>{% trans "By checking the box below, you agree to the " %}
-                    <a href = "{{ privacyFile.url }}"> {% trans "privacy statement" %} </a>
+                    <a href = "{{ privacyFile.url }}"> {% trans "privacy statement" %}</a>
                     .</label>
                 </div>
                 <input class="form-check-input {% if form.data_registration.errors %}is-invalid{% endif %}" type="checkbox" id="flexCheckDefault" name="{{ form.data_registration.html_name }}" required>
@@ -212,6 +186,17 @@
                 {% if form.data_registration.errors %}
                      <div class="invalid-feedback">
                         {{ form.data_registration.errors }}
+                     </div>
+                {% endif %}
+            </div>
+            <div class="form-group reg_spacing">
+                <div class="mb-3">
+                    <label class="form-label" for="{{ form.remarks.id_for_label }}">{{ form.remarks.label }}</label>
+                    <textarea name="{{ form.remarks.html_name }}" cols="10" rows="3" class="form-control {% if form.remarks.errors %}is-invalid{% endif %}" title="" id="{{ form.remarks.id_for_label }}"></textarea>
+                </div>
+                {% if form.remarks.errors %}
+                     <div class="invalid-feedback">
+                        {{ form.remarks.errors }}
                      </div>
                 {% endif %}
             </div>

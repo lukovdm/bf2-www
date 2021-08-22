@@ -155,6 +155,7 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
         lang = obj.member.preferred_language
         templates[lang].to = obj.email
         templates[lang].send({"name": obj.get_full_name()})
+        return True
 
     def response_change(self, request, obj):
         if "_accept" in request.POST:

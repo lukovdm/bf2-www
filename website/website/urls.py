@@ -19,11 +19,15 @@ from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from cms.sitemaps import CMSSitemap
+from django.contrib.sitemaps.views import sitemap
 
+from members.sitemaps import BecomeAMemberSitemap
 from members.views import BecomeAMemberView, PasswordSetView
 
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': {'cmspages': CMSSitemap, "member": BecomeAMemberSitemap}}),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(

@@ -4,7 +4,7 @@ from django.utils.translation import activate
 
 
 class BecomeAMemberSitemap(sitemaps.Sitemap):
-    changefreq = "weakly"
+    changefreq = "weekly"
     priority = 0.5
 
     def items(self):

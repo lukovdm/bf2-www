@@ -27,7 +27,11 @@ from members.views import BecomeAMemberView, PasswordSetView
 
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
-    url(r'^sitemap\.xml$', sitemap, {'sitemaps': {'cmspages': CMSSitemap, "member": BecomeAMemberSitemap}}),
+    url(
+        r"^sitemap\.xml$",
+        sitemap,
+        {"sitemaps": {"cmspages": CMSSitemap, "member": BecomeAMemberSitemap}},
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(

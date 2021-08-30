@@ -37,6 +37,7 @@ services:
       - certbot_var:/var/lib/letsencrypt/
       - certbot_etc:/etc/letsencrypt/
       - dhparam:/etc/ssl/certs/
+      - nginx_logs:/var/log/nginx/
     networks:
       - nginx_network
     depends_on:
@@ -74,5 +75,10 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: /home/luko/bf2-www/dhparam/
+      device: ${PWD}/dhparam/
       o: bind
+  nginx_logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/log/nginx/

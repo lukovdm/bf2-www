@@ -82,3 +82,4 @@ volumes:
     driver_opts:
       type: none
       device: ${PWD}/log/nginx/
+      o: bind

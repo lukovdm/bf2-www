@@ -29,7 +29,6 @@
                   $white 5rem,
                   #{fade-out($white, 1)} 16rem,
                   #{fade-out($white, 1)} 100%
-
     );
   background-position: center;
   background-repeat: no-repeat;
@@ -46,8 +45,8 @@
     height: calc(80vh - 3rem) !important;
     .logo {
       width: 5rem;
-      left: 77vw;
-      bottom: 38vh;
+      left: .5rem;
+      top: .5rem;
     }
     h1 {
       font-size: 3rem;

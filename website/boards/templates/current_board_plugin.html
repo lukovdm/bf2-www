@@ -1,11 +1,51 @@
 {% load i18n %}
-<div>
-    <h1>{% trans "Board of" %} {{ year }}</h1>
-    {% if picture %}<img src="{{ picture.url }}"/>{% endif %}
-    <ul>
-        {% for board_member in board_members %}
-            <li>{% if board_member.member %}{{ board_member.member.user.first_name }}{% else %}{{ board_member.name }}{% endif %} {{ board_member.fuction }} {{ board_member.email }}</li>
-        {% endfor %}
-        
-    </ul>
+<div class="row">
+    {% for board in boards %}
+        {% with current=forloop.first %}
+            <div class="col-lg-{% if board.picture %}12{% else %}6{% endif %} row">
+                <div class="col-lg-{% if board.picture %}6{% else %}12{% endif %} mb-3">
+                    <h3>{% trans "Board of" %} {{ board.start.year }}-{{ board.end.year }}</h3>
+                    <ul class="list-group list-group-flush">
+                        {% for board_member in board.boardmembership_set.all %}
+                            {% if board_member.picture or board_member.description %}
+                                <button type="button" role="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#y{{ year }}m{{ board_member.id }}">
+                                    {{ board_member.function }}:
+                                    {% if board_member.member %}{{ board_member.member.user.get_full_name }}{% else %}{{ board_member.name }}{% endif %}
+                                    {% if current %}(<a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>){% endif %}
+                                </button>
+                                <div class="modal fade" id="y{{ year }}m{{ board_member.id }}" tabindex="-1" aria-labelledby="y{{ year }}m{{ board_member.id }}label" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="y{{ year }}m{{ board_member.id }}label">
+                                                    {{ board_member.function }}: {% if board_member.member %}{{ board_member.member.user.first_name }}{% else %}{{ board_member.name }}{% endif %}
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {% if board_member.picture %}<img class="img-fluid rounded shadow mb-3" src="{{ board_member.picture.url }}" />{% endif %}
+                                                {% if board_member.description %}<p>{{ board_member.description }}</p>{% endif %}
+                                                <p>
+                                                    <a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="list-group-item">
+                                    {{ board_member.function }}:
+                                    {% if board_member.member %}{{ board_member.member.user.first_name }}{% else %}{{ board_member.name }}{% endif %}
+                                    {% if current %}(<a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>){% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    {% if board.picture %}<img class="img-fluid rounded shadow" src="{{ board.picture.url }}"/>{% endif %}
+                </div>
+            </div>
+        {% endwith %}
+    {% endfor %}
 </div>

@@ -1,7 +1,9 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from cms.models.pluginmodel import CMSPlugin
+from django.db.models import SET_NULL
 from django.utils.translation import gettext_lazy as _
+from filer.fields.image import FilerImageField
 
 from members.models import Member
 from utils.translations import ModelTranslateMeta, MultilingualField
@@ -9,9 +11,10 @@ from utils.translations import ModelTranslateMeta, MultilingualField
 
 class Board(models.Model):
     start = models.DateField(verbose_name=_("start"))
-    end = models.DateField(blank=True, null=True, verbose_name=_("end"))
-
-    picture = models.ImageField(blank=True, null=True, verbose_name=_("picture"))
+    end = models.DateField(verbose_name=_("end"))
+    picture = FilerImageField(
+        blank=True, null=True, on_delete=SET_NULL, verbose_name=_("picture")
+    )
 
     def clean(self):
         if self.end:
@@ -21,7 +24,7 @@ class Board(models.Model):
                 )
 
             for board in Board.objects.all():
-                if board is self:
+                if board == self:
                     continue
                 if (
                     board.end
@@ -68,12 +71,14 @@ class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
     name = models.CharField(
         max_length=255, blank=True, null=True, verbose_name=_("name")
     )
-
     function = MultilingualField(
         models.CharField, max_length=255, verbose_name=_("function")
     )
     email = models.EmailField(verbose_name=_("email"))
-    picture = models.ImageField(blank=True, null=True, verbose_name=_("picture"))
+    description = models.TextField(blank=True, null=True, verbose_name=_("description"))
+    picture = FilerImageField(
+        blank=True, null=True, on_delete=SET_NULL, verbose_name=_("picture")
+    )
 
     def clean(self):
         if self.member is not None and self.name is not None:

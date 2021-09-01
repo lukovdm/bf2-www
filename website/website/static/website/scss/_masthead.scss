@@ -30,8 +30,7 @@
                   #{fade-out($white, 1)} 16rem,
                   #{fade-out($white, 1)} 100%
 
-    ),
-    url(unquote(get-setting(STATIC_URL) + "website/images/header_brosa.jpg"));
+    );
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;

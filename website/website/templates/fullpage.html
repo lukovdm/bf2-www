@@ -5,6 +5,15 @@
     <header class="masthead fullpage">
         <div class="container-fluid d-flex flex-column h-100 justify-content-end pb-4">
             {% include 'language_changer.html' %}
+            <div id="fullpageCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for slide in slideshow %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ slide.slideshow_image.url }}" class="d-block w-100" alt="{{ slide.image_description }}">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
             <a href="/"><img class="logo" src="{% static "website/images/logo.svg" %}" alt="{% trans "BFrisBee2's logo" %}"></a>
             <div class="mx-auto text-center">
                 <a href="/" class="text-decoration-none"><h1>BFrisBee2<span class="highlight">’</span>s</h1></a>

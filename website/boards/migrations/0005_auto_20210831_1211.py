@@ -14,12 +14,20 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='board',
+            name='picture',
+        ),
+        migrations.AddField(
             model_name='board',
             name='picture',
             field=filer.fields.image.FilerImageField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.FILER_IMAGE_MODEL, verbose_name='picture'),
         ),
-        migrations.AlterField(
+        migrations.RemoveField(
+            model_name='boardmembership',
+            name='picture',
+        ),
+        migrations.AddField(
             model_name='boardmembership',
             name='picture',
             field=filer.fields.image.FilerImageField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.FILER_IMAGE_MODEL, verbose_name='picture'),

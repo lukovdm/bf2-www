@@ -12,7 +12,9 @@ from utils.translations import ModelTranslateMeta, MultilingualField
 class Board(models.Model):
     start = models.DateField(verbose_name=_("start"))
     end = models.DateField(verbose_name=_("end"))
-    picture = FilerImageField(blank=True, null=True, on_delete=SET_NULL, verbose_name=_("picture"))
+    picture = FilerImageField(
+        blank=True, null=True, on_delete=SET_NULL, verbose_name=_("picture")
+    )
 
     def clean(self):
         if self.end:
@@ -74,7 +76,9 @@ class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
     )
     email = models.EmailField(verbose_name=_("email"))
     description = models.TextField(blank=True, null=True, verbose_name=_("description"))
-    picture = FilerImageField(blank=True, null=True, on_delete=SET_NULL, verbose_name=_("picture"))
+    picture = FilerImageField(
+        blank=True, null=True, on_delete=SET_NULL, verbose_name=_("picture")
+    )
 
     def clean(self):
         if self.member is not None and self.name is not None:

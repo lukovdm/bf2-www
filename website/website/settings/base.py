@@ -108,11 +108,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "website.urls"
 
-
-def add_wow_context(request):
-    return {"wow": "wowowo"}
-
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -127,7 +122,6 @@ TEMPLATES = [
                 "django.template.context_processors.i18n",
                 "sekizai.context_processors.sekizai",
                 "cms.context_processors.cms_settings",
-                "website.settings.add_wow_context",
             ],
         },
     },

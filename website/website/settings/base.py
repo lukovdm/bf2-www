@@ -122,6 +122,7 @@ TEMPLATES = [
                 "django.template.context_processors.i18n",
                 "sekizai.context_processors.sekizai",
                 "cms.context_processors.cms_settings",
+                "website.context_processors.add_slideshow_context",
             ],
         },
     },

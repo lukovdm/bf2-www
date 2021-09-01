@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-15 13:24+0000\n"
-"PO-Revision-Date: 2021-08-22 13:25+0200\n"
+"POT-Creation-Date: 2021-09-01 10:29+0000\n"
+"PO-Revision-Date: 2021-09-01 12:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,11 +18,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: settings/base.py:182
+#: models.py:7
+msgid "image"
+msgstr "afbeelding"
+
+#: models.py:8
+msgid "description"
+msgstr "beschrijving"
+
+#: settings/base.py:184
 msgid "English"
 msgstr "Engels"
 
-#: settings/base.py:188
+#: settings/base.py:190
 msgid "Dutch"
 msgstr "Nederlands"
 
@@ -30,7 +38,7 @@ msgstr "Nederlands"
 msgid "close"
 msgstr "sluit"
 
-#: templates/fullpage.html:8 templates/page.html:8
+#: templates/fullpage.html:35 templates/page.html:8
 msgid "BFrisBee2's logo"
 msgstr "BFrisBee2's logo"
 

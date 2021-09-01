@@ -41,3 +41,11 @@ h1 {
 .font-special {
   font-family: $font-family-special;
 }
+
+.keep-above {
+  z-index: 100;
+}
+
+.keep-below {
+  z-index: 0;
+}

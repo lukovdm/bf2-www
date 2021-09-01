@@ -1,12 +1,39 @@
 {% extends "base.html" %}
 {% load cms_tags i18n static %}
 
+{% block extracss %}
+<style>
+{% for slide in slideshow %}
+    .s{{ forloop.counter0 }} {
+        background: linear-gradient(
+                      0deg,
+                      #FFF 5rem,
+                      rgba(255, 255, 255, 0) 16rem,
+                      rgba(255, 255, 255, 0) 100%
+            ),
+            url({{ slide.slideshow_image.url }});
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-size: cover;
+    }
+{% endfor %}
+</style>
+{% endblock %}
+
 {% block header %}
     <header class="masthead fullpage">
         <div class="container-fluid d-flex flex-column h-100 justify-content-end pb-4">
+            <div id="fullpageCarousel" class="carousel slide carousel-fade position-absolute top-0 start-0 w-100 h-100 keep-below" data-bs-ride="carousel">
+                <div class="carousel-inner h-100">
+                    {% for slide in slideshow %}
+                        <div class="carousel-item s{{ forloop.counter0 }} {% if forloop.counter0 == active_index %}active{% endif %} h-100"></div>
+                    {% endfor %}
+                </div>
+            </div>
             {% include 'language_changer.html' %}
             <a href="/"><img class="logo" src="{% static "website/images/logo.svg" %}" alt="{% trans "BFrisBee2's logo" %}"></a>
-            <div class="mx-auto text-center">
+            <div class="mx-auto text-center keep-above">
                 <a href="/" class="text-decoration-none"><h1>BFrisBee2<span class="highlight">’</span>s</h1></a>
             </div>
         </div>

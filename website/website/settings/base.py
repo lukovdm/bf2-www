@@ -88,6 +88,7 @@ INSTALLED_APPS = [
     "members",
     "events",
     "boards",
+    "socialgraph",
 ]
 
 MIDDLEWARE = [

@@ -24,6 +24,7 @@ from django.contrib.sitemaps.views import sitemap
 
 from members.sitemaps import BecomeAMemberSitemap
 from members.views import BecomeAMemberView, PasswordSetView
+from socialgraph.views import RelationView
 
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
@@ -43,5 +44,6 @@ urlpatterns += i18n_patterns(
         PasswordSetView.as_view(),
         name="activate-account",
     ),
+    path("graph/", RelationView.as_view(), name="graph"),
     url(r"^", include("cms.urls")),
 )

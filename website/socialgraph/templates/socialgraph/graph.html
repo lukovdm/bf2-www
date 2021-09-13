@@ -1,0 +1,71 @@
+{% extends 'page.html' %}
+{% load bootstrap5 %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans 'Graph' %}{% endblock title %}
+{% block pagetitle %}{% trans 'Graph' %}{% endblock pagetitle %}
+
+{% block extrajs %}
+    <script src="{% static 'socialgraph/js/vis-network.min.js' %}"></script>
+    <script>
+        // create an array with nodes
+        var nodes = new vis.DataSet([
+            {% for vertex in vertices %}
+                { id: {{ vertex.id }}, label: "{{ vertex.user.get_full_name }}"},
+            {% endfor %}
+        ]);
+
+        // create an array with edges
+        var edges = new vis.DataSet([
+            {% for rel in edges %}
+                {from: {{ rel.member_1.id }}, to: {{ rel.member_2.id }}},
+            {% endfor %}
+        ]);
+
+        // create a network
+        var container = document.getElementById("graph");
+        var data = {
+          nodes: nodes,
+          edges: edges,
+        };
+        var options = {
+            nodes: {
+                shape: "box",
+                size: 30,
+                borderWidth: 2,
+                color: {
+                    border: "#FF8023",
+                    background: "#FFFFFF",
+                },
+                shadow: {
+                    enabled: true,
+                },
+            },
+            edges: {
+                width: 2,
+            }
+        };
+        var network = new vis.Network(container, data, options);
+    </script>
+{% endblock extrajs %}
+
+{% block pagecontent %}
+    <div class="row mb-3">
+        <form method="post" class="row">
+            {% csrf_token %}
+            <div class="col-3 offset-2">
+                {% bootstrap_field form.member_1 show_label=False %}
+            </div>
+            <div class="col-3">
+                {% bootstrap_field form.member_2 show_label=False %}
+            </div>
+            <div class="col-2">
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    <div class="row d-flex align-items-center">
+        <div id="graph" class="shadow rounded border border-2 border-ternary"></div>
+    </div>
+{% endblock %}

@@ -58,6 +58,25 @@
               audio.play();
             }
         </script>
+        <form class="d-none" id="eastereggForm" method="post" action="{% url 'graph' %}">
+            {% csrf_token %}
+        </form>
+        <script>
+            const DesiredSequence = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight",
+                "ArrowLeft", "ArrowRight", "KeyA", "KeyB"];
+            let SequenceIndex = -1;
+            document.addEventListener('keydown', function (e) {
+                if (e.code === DesiredSequence[SequenceIndex + 1]) {
+                    SequenceIndex++;
+                    if (SequenceIndex === DesiredSequence.length - 1) {
+                        document.getElementById("eastereggForm").submit();
+                    }
+                }
+                else {
+                    SequenceIndex = e.which === DesiredSequence[0] ? 0 : -1;
+                }
+            });
+        </script>
         {% block extrajs %}{% endblock extrajs %}
     </body>
 </html>

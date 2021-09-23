@@ -35,7 +35,7 @@
                             {% else %}
                                 <div class="list-group-item">
                                     {{ board_member.function }}:
-                                    {% if board_member.member %}{{ board_member.member.user.first_name }}{% else %}{{ board_member.name }}{% endif %}
+                                    {% if board_member.member %}{{ board_member.member.user.get_full_name }}{% else %}{{ board_member.name }}{% endif %}
                                     {% if current %}(<a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>){% endif %}
                                 </div>
                             {% endif %}

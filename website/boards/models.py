@@ -97,6 +97,16 @@ class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
                 }
             )
 
+    def __str__(self):
+        return (
+            "boardmembership: "
+            + self.name
+            + " "
+            + str(self.board.start.year)
+            + "/"
+            + str(self.board.end.year)
+        )
+
 
 class PreviousBoardModel(CMSPlugin):
     board = models.ForeignKey(Board, on_delete=models.CASCADE)

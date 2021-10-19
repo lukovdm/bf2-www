@@ -9,7 +9,9 @@ class BoardMembershipInline(admin.StackedInline):
     def get_extra(self, request, obj=None, **kwargs):
         extra = 4
         if obj:
-            return extra - obj.boardmembership_set.count()
+            if obj.boardmembership_set.count() <= extra:
+                return extra - obj.boardmembership_set.count()
+            return 0
         return extra
 
 

@@ -28,7 +28,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
         verbose_name=_("image"), null=True, blank=True, on_delete=SET_NULL
     )
     start_date = DateTimeField(verbose_name=_("start date"))
-    end_date = DateTimeField(blank=True, null=True, verbose_name=_("end date"))
+    end_date = DateTimeField(null=True, blank=True, verbose_name=_("end date"))
     location = CharField(max_length=255, verbose_name=_("location"))
     description = PlaceholderField("description", verbose_name=_("description"))
 

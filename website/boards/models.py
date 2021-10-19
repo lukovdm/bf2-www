@@ -99,7 +99,8 @@ class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
 
     def __str__(self):
         return (
-            self.name
+            "boardmembership: "
+            + self.name
             + " "
             + str(self.board.start.year)
             + "/"

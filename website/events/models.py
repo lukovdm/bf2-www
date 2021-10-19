@@ -33,6 +33,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
     description = PlaceholderField("description", verbose_name=_("description"))
 
     limit = IntegerField(null=True, blank=True, verbose_name=_("participant limit"))
+    private_registrations = BooleanField(default=False, verbose_name=_("Don't show who is registered"))
     cost = DecimalField(
         null=True, blank=True, verbose_name=_("cost"), max_digits=7, decimal_places=2
     )

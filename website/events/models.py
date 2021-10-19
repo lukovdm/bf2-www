@@ -1,5 +1,6 @@
 from cms.models import PlaceholderField
 from django.contrib.auth.models import User
+from django.core.validators import URLValidator, RegexValidator
 from django.db.models import (
     Model,
     CharField,
@@ -43,8 +44,32 @@ class Event(Model, metaclass=ModelTranslateMeta):
         null=True, blank=True, verbose_name=_("registration end")
     )
 
+    form_link = CharField(
+        max_length=128,
+        null=True,
+        blank=True,
+        verbose_name=_("Google form link"),
+        validators=[
+            RegexValidator(
+                regex="https:\/\/docs\.google\.com\/forms\/d\/e\/[\w\d_]*\/viewform\?",
+                message=_("Please enter a google form share link"),
+            ),
+        ],
+    )
+
+    def save(self, *args, **kwargs):
+        if self.form_link and not self.form_link.endswith("embedded=true"):
+            embed_form_link = self.form_link.strip()
+            embed_form_link = embed_form_link.removesuffix("usp=sf_link")
+            self.form_link = embed_form_link + "embedded=true"
+
+        super().save(*args, **kwargs)
+
     def get_absolute_url(self):
         return reverse("events:detail", kwargs={"pk": self.pk})
+
+    def __str__(self):
+        return f"{self.name} at {self.start_date}"
 
 
 class Registration(Model):

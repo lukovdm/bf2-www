@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-19 13:54+0000\n"
-"PO-Revision-Date: 2021-10-19 15:57+0200\n"
+"PO-Revision-Date: 2021-10-19 16:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -62,7 +62,7 @@ msgstr "Achternaam"
 
 #: forms.py:28
 msgid "E-mail"
-msgstr "Email"
+msgstr "E-mail"
 
 #: forms.py:39
 msgid ""
@@ -197,12 +197,12 @@ msgstr "Door het vakje hieronder aan te vinken gaat u akkoord met de "
 #: templates/members/become_a_member.html:181
 #: templates/members/passwerd_set.html:23
 msgid "privacy statement"
-msgstr "privacy verklaring"
+msgstr "privacyverklaring"
 
 #: templates/members/become_a_member.html:185
 #: templates/members/passwerd_set.html:27
 msgid "I agree with the privacy statement"
-msgstr "Ik ga akkoord met de privacy verklaring"
+msgstr "Ik ga akkoord met de privacyverklaring"
 
 #: templates/members/passwerd_set.html:4
 msgid "Activate your account"
@@ -210,15 +210,15 @@ msgstr "Activeer uw account"
 
 #: templates/members/passwerd_set.html:10
 msgid "To finish setting up your new account please choose a password."
-msgstr "Om je account setup af te maken, kies alstublieft een wachtwoord."
+msgstr "Kies een wachtwoord om je account compleet te maken."
 
 #: templates/members/passwerd_set.html:22
 msgid ""
 "Because there is a group that apears to not have actively agreed to the "
 "privacy agreement we again ask you to confirm you agree with the "
 msgstr ""
-"Omdat er mensen zijn die nog niet actief akkoord zijn gegaan met de privacy "
-"verklaring, vragen we je om opnieuw akkoord te gaan met de "
+"Omdat er mensen zijn die nog niet actief akkoord zijn gegaan met de "
+"privacyverklaring, vragen we je om opnieuw akkoord te gaan met de "
 
 #: templates/members/passwerd_set.html:35
 msgid "Set password"

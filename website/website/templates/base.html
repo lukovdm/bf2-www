@@ -22,7 +22,7 @@
     </head>
     <body class="bg-secondary d-flex flex-column min-vh-100">
         {% cms_toolbar %}
-        <div class="fixed-top w-25">
+        <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x my-3" style="z-index: 9000">
             {% bootstrap_messages %}
         </div>
         {% block header %}{% endblock header %}

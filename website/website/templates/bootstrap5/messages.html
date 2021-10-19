@@ -1,7 +1,10 @@
 {% load i18n bootstrap5 %}
 {% for message in messages %}
-    <div class="{{ message|bootstrap_message_classes }} alert-dismissible fade show" role="alert">
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{% trans 'close' %}"></button>
-        {{ message }}
+    <div class="toast align-items-center text-center text-white bg-{{ message.tags }} border-0 showing" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body flex-grow-1">
+                {{ message }}
+            </div>
+        </div>
     </div>
 {% endfor %}

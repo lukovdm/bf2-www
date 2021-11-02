@@ -142,6 +142,6 @@ config/secrets.env
 
 .vscode/
 
-**/main.css
+**/main.css*
 
 .direnv/

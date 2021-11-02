@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-22 10:27+0100\n"
+"POT-Creation-Date: 2025-05-19 18:38+0200\n"
 "PO-Revision-Date: 2022-12-19 14:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,39 +18,47 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: website/cms_plugins.py:18
+#: cms_plugins.py:18
 msgid "Better File"
 msgstr "Betere Files"
 
-#: website/models.py:7
+#: models.py:7
 msgid "image"
 msgstr "afbeelding"
 
-#: website/models.py:8
+#: models.py:8
 msgid "description"
 msgstr "beschrijving"
 
-#: website/settings/base.py:193
+#: settings/base.py:193
 msgid "English"
 msgstr "Engels"
 
-#: website/settings/base.py:199
+#: settings/base.py:199
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: website/templates/fullpage.html:35 website/templates/page.html:8
-#: website/templates/page_empty.html:9
+#: templates/404.html:18
+msgid "Oops! This page does not exist..."
+msgstr "Oeps! Deze pagina bestaat niet..."
+
+#: templates/404.html:20
+#, python-format
+msgid " Click <a href= \"%(link)s\">here</a> to go back to the main page."
+msgstr ""
+" Klik <a href= \"%(link)s\">hier</a> om terug te gaan naar de hoofdpagina."
+
+#: templates/fullpage.html:35 templates/page.html:8 templates/page_empty.html:9
 msgid "BFrisBee2's logo"
 msgstr "BFrisBee2's logo"
 
-#: website/templates/registration/login.html:5
-#: website/templates/registration/login.html:58
-#: website/templates/registration/password_reset_complete.html:12
-#: website/templates/topbar.html:23
+#: templates/registration/login.html:5 templates/registration/login.html:60
+#: templates/registration/password_reset_complete.html:12
+#: templates/topbar.html:23
 msgid "Sign in"
 msgstr "Log in"
 
-#: website/templates/registration/login.html:11
+#: templates/registration/login.html:10
 msgid ""
 "Your account does not have access to this page. To proceed, please sign in "
 "with an account that has access."
@@ -58,58 +66,58 @@ msgstr ""
 "Uw account heeft nog geen toegang tot deze pagina. Om door te gaan, log "
 "alstublieft in met een account dat toegang heeft."
 
-#: website/templates/registration/login.html:16
+#: templates/registration/login.html:15
 msgid "Please sign in to see this page."
 msgstr "Log alstublieft in om deze pagina te bekijken."
 
-#: website/templates/registration/login.html:29
+#: templates/registration/login.html:31
 msgid "Email"
 msgstr "Email"
 
-#: website/templates/registration/login.html:39
+#: templates/registration/login.html:41
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: website/templates/registration/login.html:63
-#: website/templates/registration/password_reset_form.html:4
-#: website/templates/registration/password_reset_form.html:5
+#: templates/registration/login.html:65
+#: templates/registration/password_reset_form.html:4
+#: templates/registration/password_reset_form.html:5
 msgid "Forgot password"
 msgstr "Wachtwoord vergeten"
 
-#: website/templates/registration/password_reset_complete.html:4
-#: website/templates/registration/password_reset_complete.html:5
-#: website/templates/registration/password_reset_done.html:4
-#: website/templates/registration/password_reset_done.html:5
+#: templates/registration/password_reset_complete.html:4
+#: templates/registration/password_reset_complete.html:5
+#: templates/registration/password_reset_done.html:4
+#: templates/registration/password_reset_done.html:5
 msgid "Password reset complete"
 msgstr "Wachtwoord reset voltooid"
 
-#: website/templates/registration/password_reset_complete.html:9
+#: templates/registration/password_reset_complete.html:9
 msgid "Your password has been set. You can sign in with your new password now!"
 msgstr ""
 "Het wachtwoord is gereset. Je kan nu inloggen met het nieuwe wachtwoord!"
 
-#: website/templates/registration/password_reset_confirm.html:4
-#: website/templates/registration/password_reset_confirm.html:5
+#: templates/registration/password_reset_confirm.html:4
+#: templates/registration/password_reset_confirm.html:5
 msgid "Reset password"
 msgstr "Wachtwoord resetten"
 
-#: website/templates/registration/password_reset_confirm.html:9
+#: templates/registration/password_reset_confirm.html:9
 msgid "Please enter your new password below."
 msgstr "Vul je nieuwe wachtwoord hieronder in."
 
-#: website/templates/registration/password_reset_confirm.html:16
+#: templates/registration/password_reset_confirm.html:16
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
-#: website/templates/registration/password_reset_confirm.html:28
+#: templates/registration/password_reset_confirm.html:28
 msgid "Confirm password"
 msgstr "Wachtwoord bevestigen"
 
-#: website/templates/registration/password_reset_confirm.html:49
+#: templates/registration/password_reset_confirm.html:49
 msgid "Change my password"
 msgstr "Wachtwoord veranderen"
 
-#: website/templates/registration/password_reset_done.html:9
+#: templates/registration/password_reset_done.html:9
 msgid ""
 "We’ve emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly. <br> If "
@@ -122,7 +130,7 @@ msgstr ""
 "je het juiste e-mailadres hebt ingevuld waaraan een account gekoppeld is, en "
 "controleer je spam folder."
 
-#: website/templates/registration/password_reset_form.html:10
+#: templates/registration/password_reset_form.html:10
 msgid ""
 "Enter your email address below, and we’ll email instructions for setting a "
 "new one."
@@ -130,18 +138,18 @@ msgstr ""
 "Vul je e-mail adres hieronder in, en dan zullen we je per e-mail instructies "
 "sturen voor een nieuw wachtwoord."
 
-#: website/templates/registration/password_reset_form.html:39
+#: templates/registration/password_reset_form.html:39
 msgid "Send email"
 msgstr "Verstuur e-mail"
 
-#: website/templates/topbar.html:13
+#: templates/topbar.html:13
 msgid "Edit profile"
 msgstr "Bewerk profiel"
 
-#: website/templates/topbar.html:16
+#: templates/topbar.html:16
 msgid "Sign out"
 msgstr "Log uit"
 
-#: website/templates/topbar.html:20
+#: templates/topbar.html:20
 msgid "Become a member"
 msgstr "Word lid"

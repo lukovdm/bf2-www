@@ -24,14 +24,18 @@ from django.contrib.sitemaps.views import sitemap
 from members.sitemaps import BecomeAMemberSitemap
 from members.views import BecomeAMemberView, PasswordSetView
 
-urlpatterns = [
-    path("i18n/", include("django.conf.urls.i18n")),
-    path(
-        "sitemap.xml",
-        sitemap,
-        {"sitemaps": {"cmspages": CMSSitemap, "member": BecomeAMemberSitemap}},
-    ),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns = (
+    [
+        path("i18n/", include("django.conf.urls.i18n")),
+        url(
+            r"^sitemap\.xml$",
+            sitemap,
+            {"sitemaps": {"cmspages": CMSSitemap, "member": BecomeAMemberSitemap}},
+        ),
+    ]
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
 
 urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls),

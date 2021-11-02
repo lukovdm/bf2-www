@@ -8,7 +8,6 @@ from django.db.models import (
     CASCADE,
     BooleanField,
     ForeignKey,
-    ImageField,
     SET_NULL,
     DecimalField,
 )
@@ -33,6 +32,9 @@ class Event(Model, metaclass=ModelTranslateMeta):
     description = PlaceholderField("description", verbose_name=_("description"))
 
     limit = IntegerField(null=True, blank=True, verbose_name=_("participant limit"))
+    private_registrations = BooleanField(
+        default=False, verbose_name=_("Don't show who is registered")
+    )
     cost = DecimalField(
         null=True, blank=True, verbose_name=_("cost"), max_digits=7, decimal_places=2
     )
@@ -42,6 +44,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
     registration_end = DateTimeField(
         null=True, blank=True, verbose_name=_("registration end")
     )
+    show_end_date = BooleanField(default=True, verbose_name=_("Show end date"))
 
     def get_absolute_url(self):
         return reverse("events:detail", kwargs={"pk": self.pk})

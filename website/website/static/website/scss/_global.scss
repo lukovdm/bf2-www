@@ -2,11 +2,13 @@ h1 {
   text-shadow: 4px 4px 4px rgba($black,0.25);
 }
 
-.btn{
-  color: $light;
+.btn-primary, .btn-secondary, .btn-info {
+  &, &:hover {
+    color: $light;
+  }
 }
 
-.btn:hover {
+.btn-outline-primary:hover {
   color: $light;
 }
 

@@ -6,31 +6,35 @@
 {% block content %}
     <div class="accordion" id="eventsAccordion">
         {% for event in object_list %}
-        <div class="accordion-item alternating-color">
-            <h2 class="accordion-header" id="header{{ event.pk }}">
-                <button class="accordion-button collapsed py-0" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#content{{ event.pk }}" aria-expanded="true"
-                        aria-controls="{{ event.pk }}">
-                    <div class="border-end border-2 pe-3 py-3 date-prefix border-grey flex-shrink-0">
-                        {% daterange event.start_date event.end_date %}
+            <div class="accordion-item alternating-color">
+                <h2 class="accordion-header" id="header{{ event.pk }}">
+                    <button class="accordion-button collapsed py-0" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#content{{ event.pk }}" aria-expanded="true"
+                            aria-controls="{{ event.pk }}">
+                        <div class="border-end border-2 pe-3 py-3 date-prefix border-grey flex-shrink-0">
+                            {% if event.show_end_date %}
+                                {% daterange event.start_date event.end_date %}
+                            {% else %}
+                                {{ event.start_date|date:"d F" }}
+                            {% endif %}
+                        </div>
+                        <div class="ps-3 py-3">
+                            {{ event.name }}
+                        </div>
+                    </button>
+                </h2>
+                <div id="content{{ event.pk }}" class="accordion-collapse collapse"
+                     aria-labelledby="header{{ event.pk }}" data-bs-parent="#eventsAccordion">
+                    <div class="accordion-body">
+                        <div class="mb-3">
+                            {% render_placeholder event.description %}
+                        </div>
+                        <a class="btn btn-primary" href="{% url 'events:detail' pk=event.pk %}" role="button">
+                            {% trans "See details" %}
+                        </a>
                     </div>
-                    <div class="ps-3 py-3">
-                        {{ event.name }}
-                    </div>
-                </button>
-            </h2>
-            <div id="content{{ event.pk }}" class="accordion-collapse collapse"
-                 aria-labelledby="header{{ event.pk }}" data-bs-parent="#eventsAccordion">
-                <div class="accordion-body">
-                    <div class="mb-3">
-                        {% render_placeholder event.description %}
-                    </div>
-                    <a class="btn btn-primary" href="{% url 'events:detail' pk=event.pk %}" role="button">
-                        {% trans "See details" %}
-                    </a>
                 </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 {% endblock content %}

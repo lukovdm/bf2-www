@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-01 10:29+0000\n"
-"PO-Revision-Date: 2021-09-01 12:29+0200\n"
+"POT-Creation-Date: 2021-11-02 16:25+0000\n"
+"PO-Revision-Date: 2021-11-02 17:26+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -33,6 +33,16 @@ msgstr "Engels"
 #: settings/base.py:190
 msgid "Dutch"
 msgstr "Nederlands"
+
+#: templates/404.html:18
+msgid "Oops! This page does not exist..."
+msgstr "Oeps! Deze pagina bestaat niet..."
+
+#: templates/404.html:20
+#, python-format
+msgid " Click <a href= \"%(link)s\">here</a> to go back to the main page."
+msgstr ""
+" Klik <a href= \"%(link)s\">hier</a> om terug te gaan naar de hoofdpagina."
 
 #: templates/bootstrap5/messages.html:4
 msgid "close"

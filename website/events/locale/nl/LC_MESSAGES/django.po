@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-19 15:14+0000\n"
-"PO-Revision-Date: 2021-10-19 17:14+0200\n"
+"POT-Creation-Date: 2021-11-02 15:40+0000\n"
+"PO-Revision-Date: 2021-11-02 16:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,49 +18,53 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: models.py:26
+#: models.py:25
 msgid "name"
 msgstr "naam"
 
-#: models.py:28
+#: models.py:27
 msgid "image"
 msgstr "foto"
 
-#: models.py:30
+#: models.py:29
 msgid "start date"
 msgstr "start datum"
 
-#: models.py:31
+#: models.py:30
 msgid "end date"
 msgstr "eind datum"
 
-#: models.py:32
+#: models.py:31
 msgid "location"
 msgstr "locatie"
 
-#: models.py:33
+#: models.py:32
 msgid "description"
 msgstr "beschrijving"
 
-#: models.py:35
+#: models.py:34
 msgid "participant limit"
 msgstr "deelnemerslimiet"
 
-#: models.py:37
+#: models.py:36
 msgid "Don't show who is registered"
 msgstr "Laat niet zien wie is geregistreerd"
 
-#: models.py:40
+#: models.py:39
 msgid "cost"
 msgstr "kosten"
 
-#: models.py:43
+#: models.py:42
 msgid "registration start"
 msgstr "start registratie"
 
-#: models.py:46
+#: models.py:45
 msgid "registration end"
 msgstr "einde registratie"
+
+#: models.py:47
+msgid "Show end date"
+msgstr "Laat eind datum zien"
 
 #: models.py:56
 msgid "event"
@@ -78,35 +82,35 @@ msgstr "registratie datum"
 msgid "has paid"
 msgstr "heeft betaald"
 
-#: templates/events/event_detail.html:29
+#: templates/events/event_detail.html:39
 msgid "free"
 msgstr "gratis"
 
-#: templates/events/event_detail.html:41
+#: templates/events/event_detail.html:51
 msgid "unregister"
 msgstr "afmelden"
 
-#: templates/events/event_detail.html:48
+#: templates/events/event_detail.html:58
 msgid "Full"
 msgstr "Vol"
 
-#: templates/events/event_detail.html:50
+#: templates/events/event_detail.html:60
 msgid "Not opend"
 msgstr "Niet geopend"
 
-#: templates/events/event_detail.html:52
+#: templates/events/event_detail.html:62
 msgid "Closed"
 msgstr "Gesloten"
 
-#: templates/events/event_detail.html:54
+#: templates/events/event_detail.html:64
 msgid "register"
 msgstr "registreren"
 
-#: templates/events/event_detail.html:74
+#: templates/events/event_detail.html:87
 msgid "registrations open at"
 msgstr "registratie opent op"
 
-#: templates/events/event_detail.html:76
+#: templates/events/event_detail.html:89
 msgid "registrations close at"
 msgstr "registratie sluit op"
 
@@ -114,7 +118,7 @@ msgstr "registratie sluit op"
 msgid "Events"
 msgstr "Evenementen"
 
-#: templates/events/event_list.html:29
+#: templates/events/event_list.html:33
 msgid "See details"
 msgstr "Zie details"
 

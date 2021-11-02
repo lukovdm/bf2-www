@@ -3,7 +3,13 @@
 
 {% block pagetitle %}
     {{ object.name }}
-    <h4 class="text-center">{% daterange object.start_date object.end_date %}</h4>
+    <h4 class="text-center">
+        {% if object.show_end_date %}
+            {% daterange object.start_date object.end_date %}
+        {% else %}
+            {{ object.start_date|date:"d F" }}
+        {% endif %}
+    </h4>
 {% endblock pagetitle %}
 
 {% block content %}
@@ -16,7 +22,11 @@
         <div class="col-4 d-flex align-items-center">
             <i class="bi bi-clock pe-2 fs-3"></i>
             <p class="fw-bold fst-italic fs-6 m-0">
-                {% datetimerange object.start_date object.end_date %}
+                {% if object.show_end_date %}
+                    {% datetimerange object.start_date object.end_date %}
+                {% else %}
+                    {{ object.start_date|date:"G:i" }}
+                {% endif %}
             </p>
         </div>
         <div class="col-4 d-flex align-items-center">
@@ -30,29 +40,29 @@
             </p>
         </div>
     </div>
-    <div class="row mb-3">
+    <div class="row ms-0 mb-3 p-3 bg-secondary rounded">
         {% render_placeholder object.description %}
     </div>
     <div class="row mb-3">
         {% if user.is_authenticated %}
             {% if registration %}
                 <form action="{% url "events:unregister" object.pk %}" method="post">{% csrf_token %}
-                    <button class="btn btn-primary" name="unregister" value="unregister">
+                    <button class="btn btn-outline-primary fw-bold w-100" name="unregister" value="unregister">
                         {% trans "unregister"|capfirst %}
                     </button>
                 </form>
             {% else %}
                 <form action="{% url "events:register" object.pk %}" method="post">{% csrf_token %}
-                    <button class="btn btn-primary" name="register" value="register"
-                    {% if object.registration_set.all|length >= object.limit %} disabled>
-                        {% trans "Full" %}
-                    {% elif object.registration_start and object.registration_start > now %} disabled>
-                        {% trans "Not opend" %}
-                    {% elif object.registration_end and object.registration_end < now %} disabled>
-                        {% trans "Closed" %}
-                    {% else %}>
-                        {% trans "register"|capfirst %}
-                    {% endif %}
+                    <button class="btn btn-outline-primary fw-bold w-100" name="register" value="register"
+                            {% if object.registration_set.all|length >= object.limit %} disabled>
+                                {% trans "Full" %}
+                            {% elif object.registration_start and object.registration_start > now %} disabled>
+                                {% trans "Not opend" %}
+                            {% elif object.registration_end and object.registration_end < now %} disabled>
+                                {% trans "Closed" %}
+                            {% else %}>
+                                {% trans "register"|capfirst %}
+                            {% endif %}
                     </button>
                 </form>
             {% endif %}
@@ -60,8 +70,11 @@
     </div>
     <div class="row">
         {% if object.limit %}
-            <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}"><i class="bi bi-people fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}{% if user.is_authenticated and not object.private_registrations %}:
-                    {% for reg in object.registration_set.all %}{% if not forloop.first %},{% endif %} {{ reg.user.first_name }}
+            <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
+                <i class="bi bi-people fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
+                {% if user.is_authenticated and not object.private_registrations %}:
+                    {% for reg in object.registration_set.all %}{% if not forloop.first %},{% endif %}
+                        {{ reg.user.first_name }}
                     {% endfor %}
                 {% endif %}
             </p>

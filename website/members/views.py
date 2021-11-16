@@ -1,4 +1,3 @@
-from cms.models import settingmodels
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.views.generic import FormView
 
@@ -27,3 +26,9 @@ class PasswordSetView(PasswordResetConfirmView):
     token_generator = default_activate_token_generator
     success_url = "/"
     form_class = ActivateAccountForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.user:
+            context["user"] = self.user
+        return context

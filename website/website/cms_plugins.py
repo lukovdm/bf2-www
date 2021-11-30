@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 @plugin_pool.register_plugin
-class ParentCMSPlugin(CMSPluginBase):
+class OnlyLoggedInPlugin(CMSPluginBase):
     render_template = "ShowLoggedIn.html"
     name = "ShowLoggedIn"
     allow_children = True

@@ -12,6 +12,7 @@ class OnlyLoggedInPlugin(CMSPluginBase):
     allow_children = True
     cache = False
 
+
 @plugin_pool.register_plugin
 class BetterFilePlugin(FilePlugin):
     name = _("Better File")

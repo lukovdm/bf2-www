@@ -1,6 +1,16 @@
+from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
-from django.utils.translation import ugettext_lazy as _
+from cms.models.pluginmodel import CMSPlugin
+from django.utils.translation import gettext_lazy as _
 from djangocms_file.cms_plugins import FilePlugin
+
+
+@plugin_pool.register_plugin
+class OnlyLoggedInPlugin(CMSPluginBase):
+    render_template = "ShowLoggedIn.html"
+    name = "ShowLoggedIn"
+    allow_children = True
+    cache = False
 
 
 @plugin_pool.register_plugin

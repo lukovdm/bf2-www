@@ -4,27 +4,113 @@
 {% block pagetitle %}{% trans "Activate your account" %}{% endblock pagetitle %}
 
 {% block content %}
-{% if validlink %}
+    {% if validlink %}
 
-    <div class="mb-4 text-center">
-        <p>{% trans "To finish setting up your new account please choose a password." %}</p>
-    </div>
+        <div class="mb-4 text-center">
+            <p>{% trans "To finish setting up your new account please choose a password." %}</p>
+        </div>
 
-    <form method="post" class="col-lg-6 offset-lg-3">{% csrf_token %}
-        <div class="row mb-3">
-            {% bootstrap_field form.new_password1 show_label='skip' %}
-        </div>
-        <div class="row mb-3">
-            {% bootstrap_field form.new_password2 show_label='skip' %}
-        </div>
-        <div class="row mb-3">
-            <input type="submit"  value="{% trans "Set password" %}" class="btn btn-primary float-right">
-        </div>
-    </form>
+        <form method="post" class="col-lg-6 offset-lg-3">{% csrf_token %}
+            <div class="form-group">
+                {% bootstrap_field form.new_password1 show_label='skip' %}
+            </div>
+            <div class="form-group mb-4">
+                {% bootstrap_field form.new_password2 show_label='skip' %}
+            </div>
+            <div class="form-group reg_spacing">
+                <label class="mb-2">{% trans "Because there is a group that apears to not have actively agreed to the privacy agreement we again ask you to confirm you agree with the " %}
+                    <a href="{{ privacyFile.url }}">{% trans "privacy statement" %}</a>
+                    .</label>
+                <input class="form-check-input {% if form.data_registration.errors %}is-invalid{% endif %}"
+                       type="checkbox" id="flexCheckDefault" name="{{ form.data_registration.html_name }}" required>
+                <label class="form-check-label"
+                       for="{{ form.data_registration.id_for_label }}">{% trans "I agree with the privacy statement" %}</label>
+                {% if form.data_registration.errors %}
+                    <div class="invalid-feedback">
+                        {{ form.data_registration.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="form-group mb-5">
+                <p>
+                    {% blocktrans %}
+                        Lastly we would like to ask you to verify that the information that we have of you is correct.
+                        Could you check the following list and send a message to the secretary if any information is
+                        incorrect.
+                    {% endblocktrans %}
+                </p>
+                <table class="table">
+                    <thead>
+                    <tr></tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{% trans "First name" %}</th>
+                        <td>{{ user.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Last name" %}</th>
+                        <td>{{ user.last_name }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Email address" %}</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Birth date" %}</th>
+                        <td>{{ user.member.birthday }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Gender" %}</th>
+                        <td>{{ user.member.gender }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Phone number" %}</th>
+                        <td>{{ user.member.phone_number }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Street address" %}</th>
+                        <td>{{ user.member.street_address }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Zipcode" %}</th>
+                        <td>{{ user.member.postcode }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "City" %}</th>
+                        <td>{{ user.member.city }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Student type (without x+3)" %}</th>
+                        <td>{{ user.member.student_type }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Sports card number" %}</th>
+                        <td>{{ user.member.sports_card_number }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "You have a competition license from another club" %}</th>
+                        <td>{{ user.member.other_club }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Preferred language" %}</th>
+                        <td>{{ user.member.preferred_language }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{% trans "Google email for the drive" %}</th>
+                        <td>{{ user.member.google_email }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mb-3">
+                <input type="submit" value="{% trans "Set password" %}" class="btn btn-primary float-right">
+            </div>
+        </form>
 
     {% else %}
 
-    <p>{% trans "The password reset link was invalid, possibly because it has already been used. Please request a new password reset." %}</p>
+        <p>{% trans "The password reset link was invalid, possibly because it has already been used. Please request a new password reset." %}</p>
 
     {% endif %}
 {% endblock content %}

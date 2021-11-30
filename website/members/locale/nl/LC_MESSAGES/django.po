@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 16:39+0000\n"
-"PO-Revision-Date: 2021-08-22 18:39+0200\n"
+"POT-Creation-Date: 2021-11-02 16:24+0000\n"
+"PO-Revision-Date: 2021-11-02 17:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -52,19 +52,19 @@ msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: forms.py:25
+#: forms.py:26 templates/members/passwerd_set.html:48
 msgid "First name"
 msgstr "Voornaam"
 
-#: forms.py:26
+#: forms.py:27 templates/members/passwerd_set.html:52
 msgid "Last name"
 msgstr "Achternaam"
 
-#: forms.py:27
+#: forms.py:28
 msgid "E-mail"
-msgstr "Email"
+msgstr "E-mail"
 
-#: forms.py:38
+#: forms.py:39
 msgid ""
 "This will be used to gain access to the google drive and might be the same "
 "as your regular e-mail"
@@ -195,12 +195,14 @@ msgid "By checking the box below, you agree to the "
 msgstr "Door het vakje hieronder aan te vinken gaat u akkoord met de "
 
 #: templates/members/become_a_member.html:181
+#: templates/members/passwerd_set.html:22
 msgid "privacy statement"
-msgstr "privacy verklaring"
+msgstr "privacyverklaring"
 
 #: templates/members/become_a_member.html:185
+#: templates/members/passwerd_set.html:27
 msgid "I agree with the privacy statement"
-msgstr "Ik ga akkoord met de privacy verklaring"
+msgstr "Ik ga akkoord met de privacyverklaring"
 
 #: templates/members/passwerd_set.html:4
 msgid "Activate your account"
@@ -208,13 +210,87 @@ msgstr "Activeer uw account"
 
 #: templates/members/passwerd_set.html:10
 msgid "To finish setting up your new account please choose a password."
-msgstr "Om je account setup af te maken, kies alstublieft een wachtwoord."
+msgstr "Kies een wachtwoord om je account compleet te maken."
 
 #: templates/members/passwerd_set.html:21
+msgid ""
+"Because there is a group that apears to not have actively agreed to the "
+"privacy agreement we again ask you to confirm you agree with the "
+msgstr ""
+"Omdat er mensen zijn die nog niet actief akkoord zijn gegaan met de "
+"privacyverklaring, vragen we je om opnieuw akkoord te gaan met de "
+
+#: templates/members/passwerd_set.html:36
+msgid ""
+"\n"
+"                        Lastly we would like to ask you to verify that the "
+"information that we have of you is correct.\n"
+"                        Could you check the following list and send a "
+"message to the secretary if any information is\n"
+"                        incorrect.\n"
+"                    "
+msgstr ""
+"\n"
+"                         Tenslotte willen wij u vragen na te gaan of de "
+"informatie die wij over u hebben juist is.\\\n"
+"                         Kunt u de volgende lijst controleren en een "
+"bericht sturen naar de secretaris als er informatie is\\n\n"
+"                         onjuist is.\n"
+"                   "
+
+#: templates/members/passwerd_set.html:56
+msgid "Email address"
+msgstr "E-mailaddres"
+
+#: templates/members/passwerd_set.html:60
+msgid "Birth date"
+msgstr "Geboortedatum"
+
+#: templates/members/passwerd_set.html:64
+msgid "Gender"
+msgstr "Geslacht"
+
+#: templates/members/passwerd_set.html:68
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
+#: templates/members/passwerd_set.html:72
+msgid "Street address"
+msgstr "Straatnaam en huisnummer"
+
+#: templates/members/passwerd_set.html:76
+msgid "Zipcode"
+msgstr "Postcode"
+
+#: templates/members/passwerd_set.html:80
+msgid "City"
+msgstr "Stad"
+
+#: templates/members/passwerd_set.html:84
+msgid "Student type (without x+3)"
+msgstr "Type student (zonder x+3)"
+
+#: templates/members/passwerd_set.html:88
+msgid "Sports card number"
+msgstr "Sportkaartnummer"
+
+#: templates/members/passwerd_set.html:92
+msgid "You have a competition license from another club"
+msgstr "Je hebt een competitie licentie bij een andere club"
+
+#: templates/members/passwerd_set.html:96
+msgid "Preferred language"
+msgstr "Voorkeurstaal"
+
+#: templates/members/passwerd_set.html:100
+msgid "Google email for the drive"
+msgstr "Google e-mail voor de drive"
+
+#: templates/members/passwerd_set.html:107
 msgid "Set password"
 msgstr "Stel een wachtwoord in"
 
-#: templates/members/passwerd_set.html:27
+#: templates/members/passwerd_set.html:113
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."

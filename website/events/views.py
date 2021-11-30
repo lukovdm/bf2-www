@@ -85,7 +85,7 @@ class EventFormView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        event = get_object_or_404(Event, pk=kwargs['pk'])
+        event = get_object_or_404(Event, pk=kwargs["pk"])
         if not event.form_link:
             raise Http404("Event has no form")
 

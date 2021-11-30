@@ -4,7 +4,8 @@ from events.views import (
     EventListView,
     EventDetailView,
     EventRegisterView,
-    EventUnregisterView, EventFormView,
+    EventUnregisterView,
+    EventFormView,
 )
 
 urlpatterns = [

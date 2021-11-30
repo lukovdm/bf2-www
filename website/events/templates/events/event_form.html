@@ -1,0 +1,14 @@
+{% extends 'page.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "form for" %}{{ event.name }}{% endblock title %}
+{% block pagetitle %}{% trans "form for" %} {{ event.name }}{% endblock pagetitle %}
+
+{% block content %}
+    <div class="row d-flex">
+        <iframe onload="resizeIframe(this)" class="align-items-center w-100" height="800px" src="{{ event.form_link }}">Loading...</iframe>
+    </div>
+    <div class="row">
+        <a class="btn btn-primary" href="{{ next }}">{% trans "Done" %}</a>
+    </div>
+{% endblock content %}

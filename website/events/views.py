@@ -2,11 +2,13 @@ import datetime
 
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 
 from events.models import Event, Registration
 
@@ -57,6 +59,11 @@ class EventRegisterView(LoginRequiredMixin, View):
                 request,
                 _("The registrations for this event have already closed."),
             )
+        elif event.end_date < timezone.now():
+            messages.error(
+                request,
+                _("This event has already passed."),
+            )
         elif event.limit and len(event.registration_set.all()) >= event.limit:
             messages.error(request, _("This event is already full."))
         elif event.registration_set.all().filter(user=request.user).exists():
@@ -67,7 +74,24 @@ class EventRegisterView(LoginRequiredMixin, View):
             )
             messages.success(request, _("You successfully registered."))
 
+            if event.form_link is not None:
+                return redirect("events:form", pk=event.pk)
+
         return redirect(event)
+
+
+class EventFormView(LoginRequiredMixin, TemplateView):
+    template_name = "events/event_form.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        event = get_object_or_404(Event, pk=kwargs["pk"])
+        if not event.form_link:
+            raise Http404("Event has no form")
+
+        context["event"] = event
+        context["next"] = event.get_absolute_url()
+        return context
 
 
 class EventUnregisterView(LoginRequiredMixin, View):

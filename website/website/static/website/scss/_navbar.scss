@@ -13,12 +13,12 @@
 .navbar-nav {
   .nav-item {
     position: relative;
-    font-family: $font-family-special;
     text-shadow: 2px 2px 2px rgba($black, 0.25);
-    word-break: break-word;
+    font-weight: 800;
 
     .home {
       color: $ternary !important;
+      font-family: $font-family-special;
 
       &:hover {
         color: $ternary;
@@ -64,11 +64,11 @@
 
   @include media-breakpoint-up(lg) {
     .toplevel:not(:first-child):before {
-        content: "";
-        position: absolute;
-        bottom: .6rem;
-        height: 1rem;
-        border-right: 2px solid $primary;
-      }
+      content: "";
+      position: absolute;
+      bottom: .6rem;
+      height: 1rem;
+      border-right: 2px solid $primary;
+    }
   }
 }

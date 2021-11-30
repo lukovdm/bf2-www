@@ -15,7 +15,7 @@ $info: $gray-middle;
 $light: $white;
 
 $custom-colors: (
-  "ternary": $blue
+        "ternary": $blue
 );
 
 $btn-border-radius: 2rem;
@@ -23,11 +23,11 @@ $border-radius: 12px;
 $input-border-radius: 2rem;
 
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 900px,
-  xl: 900px,
-  xxl: 1320px
+        sm: 540px,
+        md: 720px,
+        lg: 900px,
+        xl: 900px,
+        xxl: 1320px
 );
 
 $accordion-bg: $ternary;

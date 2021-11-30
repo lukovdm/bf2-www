@@ -1,5 +1,5 @@
 h1 {
-  text-shadow: 4px 4px 4px rgba($black,0.25);
+  text-shadow: 4px 4px 4px rgba($black, 0.25);
 }
 
 .btn-primary, .btn-secondary, .btn-info {
@@ -12,18 +12,18 @@ h1 {
   color: $light;
 }
 
-.bg-fade{
+.bg-fade {
   background: linear-gradient(
                   180deg,
                   $white .5rem,
                   #{fade-out($white, 1)} 5rem,
                   #{fade-out($white, 1)} 100%
-    );
+  );
 }
 
 .container-padding {
   @include media-breakpoint-up(md) {
-    padding: 2.5rem 10rem;
+    padding: 5rem 10rem;
   }
   @include media-breakpoint-down(md) {
     padding: 2rem;

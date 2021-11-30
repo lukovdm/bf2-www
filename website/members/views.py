@@ -29,6 +29,7 @@ class PasswordSetView(PasswordResetConfirmView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["privacyFile"] = MemberSettings.objects.first().privacyFile
         if self.user:
             context["user"] = self.user
         return context

@@ -19,7 +19,7 @@
             </div>
             <div class="form-group reg_spacing">
                 <label class="mb-2">{% trans "Because there is a group that apears to not have actively agreed to the privacy agreement we again ask you to confirm you agree with the " %}
-                    <a href="{{ privacyFile.url }}">{% trans "privacy statement" %}</a>
+                    <a href="{{ privacyFile.url }}" target="_blank">{% trans "privacy statement" %}</a>
                     .</label>
                 <input class="form-check-input {% if form.data_registration.errors %}is-invalid{% endif %}"
                        type="checkbox" id="flexCheckDefault" name="{{ form.data_registration.html_name }}" required>

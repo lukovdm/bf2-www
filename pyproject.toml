@@ -5,7 +5,7 @@ description = "A website for the BF2 frisbee team"
 authors = ["Luko van der Maas <me@luko.dev>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 django = "^3.2.0"
 django-cms = "^3.9.0"
 djangocms-text-ckeditor = "^3.10.0"

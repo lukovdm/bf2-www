@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     "members",
     "events",
     "boards",
+    "committees"
 ]
 
 MIDDLEWARE = [

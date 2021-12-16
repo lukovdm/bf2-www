@@ -1,6 +1,10 @@
 {% extends 'page.html' %}
 {% load cms_tags i18n static events_datetimerange tz %}
 
+{% block title %}
+    {{ object.name }}
+{% endblock title %}
+
 {% block pagetitle %}
     {{ object.name }}
     <h4 class="text-center">
@@ -47,9 +51,16 @@
         {% if user.is_authenticated %}
             {% if registration %}
                 <form action="{% url "events:unregister" object.pk %}" method="post">{% csrf_token %}
-                    <button class="btn btn-outline-primary fw-bold w-100" name="unregister" value="unregister">
-                        {% trans "unregister"|capfirst %}
-                    </button>
+                    <div class="btn-group w-100">
+                        <button class="btn btn-outline-primary fw-bold" name="unregister" value="unregister">
+                            {% trans "unregister"|capfirst %}
+                        </button>
+                        {% if object.form_link %}
+                            <a class="btn btn-outline-primary fw-bold" href="{% url "events:form" object.pk %}">
+                                {% trans "Change form" %}
+                            </a>
+                        {% endif %}
+                    </div>
                 </form>
             {% else %}
                 <form action="{% url "events:register" object.pk %}" method="post">{% csrf_token %}
@@ -66,6 +77,21 @@
                     </button>
                 </form>
             {% endif %}
+            {% if object.registration_end %}
+                <div class="mt-1">
+                    <p>
+                        {% if object.registration_start and object.registration_start > now %}
+                            <small>
+                                {% trans "registrations open at"|capfirst %} {{ object.registration_start }}
+                            </small>
+                            <br>
+                        {% endif %}
+                        <small>
+                            {% trans "registrations close at"|capfirst %} {{ object.registration_end }}
+                        </small>
+                    </p>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
     <div class="row">
@@ -79,16 +105,6 @@
                 {% endif %}
             </p>
         {% endif %}
-    </div>
-
-    <div class="row">
-        <p>
-            {% if object.registration_start and object.registration_start > now %}
-                {% trans "registrations open at"|capfirst %} {{ object.registration_start }}
-            {% elif object.registration_start and object.registration_start < now and object.registration_end and object.registration_end > now %}
-                {% trans "registrations close at"|capfirst %} {{ object.registration_end }}
-            {% endif %}
-        </p>
     </div>
 
 {% endblock content %}

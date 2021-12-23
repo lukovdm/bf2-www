@@ -1,0 +1,29 @@
+{% extends "page.html" %}
+{% load i18n static cms_tags events_datetimerange thumbnail %}
+
+{% block title %}{% trans "Members" %}{% endblock title %}
+{% block pagetitle %}{% trans "Members" %}{% endblock pagetitle %}
+
+{% block content %}
+    <div class="row mb-4">
+        <div class="col px-3 pt-3 bg-secondary rounded">
+            {% static_placeholder "General member list description" %}
+        </div>
+    </div>
+    <div class="row row-cols-auto g-4 justify-content-center">
+        {% for member in object_list %}
+            <div class="col">
+                <div class="card clickable">
+                    <div class="d-flex justify-content-center">
+                        <img src="{% thumbnail member.profile_picture 300x200 crop upscale %}" width="300px" height="200px" class="card-img-top"
+                             alt="{% trans 'image for' %} {{ member.user.get_full_name }}">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ member.user.get_full_name }}</h5>
+                        <a href="{{ member.get_absolute_url }}" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

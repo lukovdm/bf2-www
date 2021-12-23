@@ -1,0 +1,47 @@
+{% extends "page.html" %}
+{% load i18n static cms_tags events_datetimerange thumbnail %}
+
+{% block title %}{{ object.name }}{% endblock title %}
+{% block pagetitle %}{{ object.name }}{% endblock pagetitle %}
+
+{% block content %}
+    <div class="row mb-3">
+        <div class="w-100 d-flex justify-content-center">
+            <img src="{{ object.image.url }}" class="rounded img-fluid shadow"
+                 alt="{% trans 'image for' %} {{ committee.name }}">
+        </div>
+    </div>
+    <div class="row ms-0 mb-3 p-3 bg-secondary rounded">
+        {% render_placeholder object.description %}
+        {% if user.is_authenticated %}
+            <p class="fw-bold fs-6 mb-0">
+                <a href="mailto:{{ object.email }}" class="link-dark stretched-link">
+                    <i class="fa-regular fa-envelope pe-2 fs-6"></i>{{ object.email }}
+                </a>
+            </p>
+        {% endif %}
+    </div>
+    {% if user.is_authenticated and object.show_members %}
+        <div class="row row-cols-auto g-4 justify-content-center">
+        {% for membership in committee_memberships %}
+            <div class="col">
+                <div class="card clickable">
+                    <div class="d-flex justify-content-center">
+                        <img src="{% thumbnail membership.user.member.profile_picture|default:object.image 300x200 crop upscale %}" width="300px" height="200px" class="card-img-top"
+                             alt="{% trans 'image for' %} {{ object.name }}">
+                        {% if membership.chair %}
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <i class="fa-solid fa-{% trans 'chair' %} icon-shadow fs-3 text-white"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ membership.user.get_full_name }}</h5>
+                        <a href="{{ membership.user.member.get_absolute_url }}" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endblock content %}

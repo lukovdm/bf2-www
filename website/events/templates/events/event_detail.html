@@ -1,6 +1,7 @@
 {% extends 'page.html' %}
 {% load cms_tags i18n static events_datetimerange tz %}
 
+{% block title %}{{ object.name }}{% endblock title %}
 {% block pagetitle %}
     {{ object.name }}
     <h4 class="text-center">
@@ -20,7 +21,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-4 d-flex align-items-center">
-            <i class="bi bi-clock pe-2 fs-3"></i>
+            <i class="fa-regular fa-clock pe-2 fs-3"></i>
             <p class="fw-bold fst-italic fs-6 m-0">
                 {% if object.show_end_date %}
                     {% datetimerange object.start_date object.end_date %}
@@ -30,11 +31,11 @@
             </p>
         </div>
         <div class="col-4 d-flex align-items-center">
-            <i class="bi bi-geo-alt pe-2 fs-3"></i>
+            <i class="fa-regular fa-location-dot pe-2 fs-3"></i>
             <p class="fw-bold fst-italic fs-6 m-0">{{ object.location }}</p>
         </div>
         <div class="col-4 d-flex align-items-center">
-            <i class="bi bi-currency-euro pe-2 fs-3"></i>
+            <i class="fa-regular fa-euro-sign pe-2 fs-3"></i>
             <p class="fw-bold fst-italic fs-6 m-0">
                 {% if object.cost %}{{ object.cost }}{% else %}{% trans "free"|capfirst %}{% endif %}
             </p>
@@ -71,7 +72,7 @@
     <div class="row">
         {% if object.limit %}
             <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
-                <i class="bi bi-people fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
+                <i class="fa-regular fa-user fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
                 {% if user.is_authenticated and not object.private_registrations %}:
                     {% for reg in object.registration_set.all %}{% if not forloop.first %},{% endif %}
                         {{ reg.user.first_name }}

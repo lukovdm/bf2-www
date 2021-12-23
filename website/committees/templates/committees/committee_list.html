@@ -1,0 +1,29 @@
+{% extends "page.html" %}
+{% load i18n static cms_tags events_datetimerange thumbnail %}
+
+{% block title %}{% trans "Committees" %}{% endblock title %}
+{% block pagetitle %}{% trans "Committees" %}{% endblock pagetitle %}
+
+{% block content %}
+    <div class="row mb-4">
+        <div class="col px-3 pt-3 bg-secondary rounded">
+            {% static_placeholder "General committee description" %}
+        </div>
+    </div>
+    <div class="row row-cols-auto g-4 justify-content-center">
+        {% for committee in object_list %}
+            <div class="col">
+                <div class="card clickable">
+                    <div class="d-flex justify-content-center">
+                        <img src="{% thumbnail committee.image 300x200 crop upscale %}" width="300px" height="200px" class="card-img-top"
+                             alt="{% trans 'image for' %} {{ committee.name }}">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ committee.name }}</h5>
+                        <a href="{{ committee.get_absolute_url }}" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

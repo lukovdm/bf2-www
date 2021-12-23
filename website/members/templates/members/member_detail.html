@@ -1,0 +1,34 @@
+{% extends "page.html" %}
+{% load i18n static cms_tags events_datetimerange thumbnail %}
+
+{% block title %}{{ object.user.get_full_name }}{% endblock title %}
+{% block pagetitle %}{{ object.user.get_full_name }}{% endblock pagetitle %}
+
+{% block content %}
+    <div class="row mb-3">
+        <div class="w-100 d-flex justify-content-center ps-0">
+            <img src="{{ object.profile_picture.url }}" class="rounded img-fluid shadow"
+                 alt="{% trans 'image for' %} {{ object.user.get_full_name }}">
+        </div>
+    </div>
+    {% if object.bio %}
+    <div class="row ms-0 mb-3 p-3 bg-secondary rounded">
+        <p>
+            {{ object.bio }}
+        </p>
+    </div>
+    {% endif %}
+    {% if user.is_authenticated %}
+        <div class="row">
+            <ul class="list-group">
+                {% for membership in committee_memberships %}
+                    <li class="list-group-item {% if membership.until is None %}active{% endif %}">
+                        {% trans 'Member of' %} {{ membership.committee.name }}{% if membership.chair %} {% trans 'as chair' %}{% endif %}:
+                        {{ membership.since }}
+                        {% if membership.until %}- {{ membership.until }}{% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock content %}

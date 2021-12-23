@@ -1,10 +1,11 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
+from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from filer.fields.file import FilerFileField
-from django.utils import timezone
-from django.core.exceptions import ValidationError
 
 
 class Member(models.Model):
@@ -91,6 +92,9 @@ class Member(models.Model):
 
     remarks = models.TextField(blank=True, null=True, verbose_name=_("remarks"))
 
+    bio = models.TextField(blank=True, null=True, verbose_name=_("bio"))
+    profile_picture = models.ImageField(blank=True, null=True)
+
     def clean(self) -> None:
         if self.birthday and self.birthday > timezone.now().date():
             raise ValidationError({"birthday": _("Your birthday must lay in the past")})
@@ -101,6 +105,9 @@ class Member(models.Model):
 
     class Meta:
         permissions = (("can_accept_or_reject", _("can accept or reject")),)
+
+    def get_absolute_url(self):
+        return reverse('members:detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return "Member: {}".format(self.user.first_name)

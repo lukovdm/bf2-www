@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordResetConfirmView
-from django.views.generic import FormView, DetailView, ListView
+from django.views.generic import FormView, DetailView, ListView, UpdateView
 
 from members.forms import BecomeAMemberForm, ActivateAccountForm
 from members.models import MemberSettings, Member
@@ -16,7 +16,7 @@ class MemberListView(ListView, LoginRequiredMixin):
         return members
 
 
-class MemberDetailView(DetailView, LoginRequiredMixin):
+class MemberDetailView(LoginRequiredMixin, DetailView):
     model = Member
 
     def get_context_data(self, **kwargs):
@@ -25,6 +25,14 @@ class MemberDetailView(DetailView, LoginRequiredMixin):
             "committee_memberships"
         ] = self.object.user.committeemembership_set.order_by("since").all()
         return context
+
+
+class MemberEditView(LoginRequiredMixin, UpdateView):
+    model = Member
+    fields = ("profile_picture", "bio")
+
+    def get_object(self, queryset=None):
+        return self.request.user.member
 
 
 class BecomeAMemberView(FormView):

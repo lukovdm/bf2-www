@@ -1,0 +1,16 @@
+{% extends "page.html" %}
+{% load i18n bootstrap5 %}
+
+{% block title %}{{ object.user.get_full_name }}{% endblock title %}
+{% block pagetitle %}{{ object.user.get_full_name }}{% endblock pagetitle %}
+
+{% block content %}
+    <form action="{% url "members:edit" %}" method="post" class="form">
+      {% csrf_token %}
+
+      {% bootstrap_form form %}
+
+      {% bootstrap_button button_type="submit" content="OK" %}
+
+    </form>
+{% endblock content %}

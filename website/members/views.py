@@ -7,7 +7,7 @@ from members.models import MemberSettings, Member
 from members.tokens import default_activate_token_generator
 
 
-class MemberListView(ListView, LoginRequiredMixin):
+class MemberListView(LoginRequiredMixin, ListView):
     model = Member
 
     def get_queryset(self):

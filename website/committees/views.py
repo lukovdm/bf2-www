@@ -22,9 +22,11 @@ class CommitteeDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context["committee_memberships"] = self.object.committeemembership_set.exclude(
-            until__lte=timezone.now()
-        ).order_by("since").select_related('user__member')
+        context["committee_memberships"] = (
+            self.object.committeemembership_set.exclude(until__lte=timezone.now())
+            .order_by("since")
+            .select_related("user__member")
+        )
 
         # There is a bug in the reverse such that we can't get the member pk in the url
         context["user_member_table"] = {u.pk: u.member.pk for u in User.objects.all()}

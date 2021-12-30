@@ -6,29 +6,32 @@
 
 {% block content %}
     <div class="row mb-3">
-        <div class="w-100 d-flex justify-content-center ps-0">
+        <div class="w-100 d-flex justify-content-center px-0">
             <img src="{{ object.profile_picture.url }}" class="rounded img-fluid shadow"
                  alt="{% trans 'image for' %} {{ object.user.get_full_name }}">
         </div>
     </div>
     {% if object.bio %}
-    <div class="row ms-0 mb-3 p-3 bg-secondary rounded">
+    <div class="row mb-3 p-3 bg-secondary rounded">
         <p>
             {{ object.bio }}
         </p>
     </div>
-    {% endif %}
-    {% if user.is_authenticated %}
-        <div class="row">
-            <ul class="list-group">
-                {% for membership in committee_memberships %}
-                    <li class="list-group-item {% if membership.until is None %}active{% endif %}">
-                        {% trans 'Member of' %} {{ membership.committee.name }}{% if membership.chair %} {% trans 'as chair' %}{% endif %}:
-                        {{ membership.since }}
-                        {% if membership.until %}- {{ membership.until }}{% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
+    {% if object.user == request.user %}
+        <div class="row mb-3">
+            <a class="btn btn-outline-primary" href="{% url "members:edit" %}">{% trans "Edit profile" %}</a>
         </div>
     {% endif %}
+    {% endif %}
+    <div class="row mb-3">
+        <ul class="list-group pe-0">
+            {% for membership in committee_memberships %}
+                <li class="list-group-item {% if membership.until is None %}active{% endif %}">
+                    {% trans 'Member of' %} {{ membership.committee.name }}{% if membership.chair %} {% trans 'as chair' %}{% endif %}:
+                    {{ membership.since }}
+                    {% if membership.until %}- {{ membership.until }}{% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock content %}

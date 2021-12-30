@@ -107,7 +107,7 @@ class Member(models.Model):
         permissions = (("can_accept_or_reject", _("can accept or reject")),)
 
     def get_absolute_url(self):
-        return reverse('members:detail', kwargs={'pk': self.pk})
+        return reverse("members:detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return "Member: {}".format(self.user.first_name)

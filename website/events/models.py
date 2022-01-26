@@ -1,6 +1,6 @@
 from cms.models import PlaceholderField
 from django.contrib.auth.models import User
-from django.core.validators import URLValidator, RegexValidator
+from django.core.validators import RegexValidator
 from django.db.models import (
     Model,
     CharField,
@@ -54,7 +54,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
         verbose_name=_("Google form link"),
         validators=[
             RegexValidator(
-                regex="https:\/\/docs\.google\.com\/forms\/d\/e\/[\w\d_]*\/viewform\?",
+                regex="https:\/\/docs\.google\.com\/forms\/d\/e\/[\w\d_-]*\/viewform\?",
                 message=_("Please enter a google form share link"),
             ),
         ],

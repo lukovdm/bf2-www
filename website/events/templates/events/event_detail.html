@@ -48,7 +48,7 @@
         {% render_placeholder object.description %}
     </div>
     <div class="row mb-3">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and object.limit %}
             {% if registration %}
                 <form action="{% url "events:unregister" object.pk %}" method="post">{% csrf_token %}
                     <div class="btn-group w-100">

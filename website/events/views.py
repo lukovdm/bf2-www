@@ -26,8 +26,8 @@ class EventListView(ListView):
             try:
                 for event in events:
                     event.registration = Registration.objects.get(
-                            user=self.request.user, event=event
-                        )
+                        user=self.request.user, event=event
+                    )
             except Registration.DoesNotExist:
                 pass
 

@@ -1,6 +1,13 @@
 .accordion-header {
-  .date-prefix {
-    width: 30%;
+  @include media-breakpoint-down(lg) {
+    .date-prefix {
+      width: 40%;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    .date-prefix {
+      width: 30%;
+    }
   }
 }
 

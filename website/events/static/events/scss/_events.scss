@@ -4,6 +4,10 @@
   }
 }
 
+.highlight-accordion-button {
+  background-color: $primary !important;
+}
+
 .alternating-color{
   &:nth-of-type(odd) {
     .accordion-button{

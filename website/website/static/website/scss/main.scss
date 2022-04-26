@@ -14,3 +14,4 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import "navbar";
 
 @import "../../../../members/static/members/scss/registrationform";
+@import "../../../../events/static/events/scss/events";

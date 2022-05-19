@@ -13,7 +13,7 @@ class BecomeAMemberView(FormView):
     form_class = BecomeAMemberForm
     success_url = "/"
 
-    @method_decorator(sensitive_post_parameters('password'))
+    @method_decorator(sensitive_post_parameters("password"))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
 

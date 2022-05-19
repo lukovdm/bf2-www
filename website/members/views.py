@@ -1,4 +1,5 @@
 from django.contrib.auth.views import PasswordResetConfirmView
+from django.utils.decorators import method_decorator
 from django.views.generic import FormView
 from django.views.decorators.debug import sensitive_post_parameters
 
@@ -12,7 +13,10 @@ class BecomeAMemberView(FormView):
     form_class = BecomeAMemberForm
     success_url = "/"
 
-    @sensitive_post_parameters("password")
+    @method_decorator(sensitive_post_parameters('password'))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)

@@ -1,5 +1,6 @@
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.views.generic import FormView
+from django.views.decorators.debug import sensitive_variables
 
 from members.forms import BecomeAMemberForm, ActivateAccountForm
 from members.models import MemberSettings
@@ -11,6 +12,7 @@ class BecomeAMemberView(FormView):
     form_class = BecomeAMemberForm
     success_url = "/"
 
+    @sensitive_variables("password")
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)

@@ -26,12 +26,12 @@
             {% bootstrap_messages %}
         </div>
         {% block header %}{% endblock header %}
-        <div class="container-fluid bg-fade py-5">
+        <div class="container-fluid py-5">
             <div class="container bg-light shadow rounded mt-4 mb-4 container-padding page-content">
                 {% block pagecontent %}{% endblock pagecontent %}
             </div>
         </div>
-        <footer class="container-fluid px-4 py-3 bg-ternary text-white mt-auto position-relative">
+        <footer class="container-fluid px-4 py-3 bg-ternary text-white mt-auto position-relative rounded-top shadow">
             <div class="row font-special">
                 <div class="col-md-3">
                     {% static_placeholder "footer 1" %}

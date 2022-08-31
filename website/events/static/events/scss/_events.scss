@@ -27,6 +27,16 @@
   }
 }
 
+.ellipses {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-col {
+  min-width: 0;
+}
+
 .event-description {
   background: $secondary;
   padding: 1rem;

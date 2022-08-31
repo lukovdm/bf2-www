@@ -7,60 +7,56 @@
 
 {% block content %}
     <div class="row">
-        {% with '1 2 3 4 5 6' as l %}
-            {% for _ in l.split %}
-                {% for event in object_list %}
-                    <div class="col">
-                        <a href="{% url 'events:detail' pk=event.pk %}" class="text-decoration-none text-reset">
-                            <div class="card event-card mb-4 shadow">
-                                <div class="event-card-image card-img-top overflow-hidden" style="
-                                        {% if event.image %}
-                                            background-image: url('{{ event.image.url }}');
-                                        {% else %}
-                                            background-image: url('{% static "website/images/logo.svg" %}');
-                                        {% endif %}">
-                                    {% if event.registration %}
-                                        <div class="event-card-image-check">
-                                            <i class="bi bi-check-circle-fill fs-4"></i>
-                                        </div>
+        {% for event in object_list %}
+            <div class="col">
+                <a href="{% url 'events:detail' pk=event.pk %}" class="text-decoration-none text-reset">
+                    <div class="card event-card mb-4 shadow">
+                        <div class="event-card-image card-img-top overflow-hidden" style="
+                                {% if event.image %}
+                                    background-image: url('{{ event.image.url }}');
+                                {% else %}
+                                    background-image: url('{% static "website/images/logo.svg" %}');
+                                {% endif %}">
+                            {% if event.registration %}
+                                <div class="event-card-image-check">
+                                    <i class="bi bi-check-circle-fill fs-4"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <h5 class="card-title">{{ event.name }}</h5>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <i class="bi bi-calendar"></i>
+                                    {% if event.show_end_date %}
+                                        {% daterange event.start_date event.end_date %}
+                                    {% else %}
+                                        {{ event.start_date|date:"d F" }}
                                     {% endif %}
                                 </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <h5 class="card-title">{{ event.name }}</h5>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <i class="bi bi-calendar"></i>
-                                            {% if event.show_end_date %}
-                                                {% daterange event.start_date event.end_date %}
-                                            {% else %}
-                                                {{ event.start_date|date:"d F" }}
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-6">
-                                            <i class="bi bi-clock"></i>
-                                            {% if event.show_end_date %}
-                                                {% datetimerange event.start_date event.end_date %}
-                                            {% else %}
-                                                {{ event.start_date|date:"G:i" }}
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <i class="bi bi-geo-alt"></i>{{ event.location }}
-                                        </div>
-                                        <div class="col-6">
-                                            <i class="bi bi-people fs-5"></i> {{ event.registration_set.all|length }}/{{ event.limit }}
-                                        </div>
-                                    </div>
+                                <div class="col-6">
+                                    <i class="bi bi-clock"></i>
+                                    {% if event.show_end_date %}
+                                        {% datetimerange event.start_date event.end_date %}
+                                    {% else %}
+                                        {{ event.start_date|date:"G:i" }}
+                                    {% endif %}
                                 </div>
                             </div>
-                        </a>
+                            <div class="row">
+                                <div class="col-6">
+                                    <i class="bi bi-geo-alt"></i>{{ event.location }}
+                                </div>
+                                <div class="col-6">
+                                    <i class="bi bi-people fs-5"></i> {{ event.registration_set.all|length }}/{{ event.limit }}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                {% endfor %}
-            {% endfor %}
-        {% endwith %}
+                </a>
+            </div>
+        {% endfor %}
     </div>
 {% endblock content %}

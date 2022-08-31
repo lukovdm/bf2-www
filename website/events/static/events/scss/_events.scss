@@ -1,3 +1,32 @@
+.event-card {
+  min-width: calc(max(20vw, 250px));
+  transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2rem 4rem rgba($black, .3);
+  }
+
+  .event-card-image {
+    aspect-ratio: 16 / 9;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .event-card-image-check {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(132deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 100%);
+
+    .bi {
+      color: lighten(adjust-hue($success, -20deg), 15%);
+      position: absolute;
+      top: 10px;
+      left: 16px;
+    }
+  }
+}
+
 .accordion-header {
   @include media-breakpoint-down(lg) {
     .date-prefix {
@@ -15,15 +44,15 @@
   background-color: $primary !important;
 }
 
-.alternating-color{
+.alternating-color {
   &:nth-of-type(odd) {
-    .accordion-button{
+    .accordion-button {
       background-color: $ternary;
     }
   }
 
   &:nth-of-type(even) {
-    .accordion-button{
+    .accordion-button {
       background-color: lighten($ternary, 10);
     }
   }

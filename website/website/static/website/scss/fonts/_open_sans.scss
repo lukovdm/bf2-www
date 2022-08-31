@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'OpenSans';
+    src: url(unquote(get-setting(STATIC_URL) + 'website/fonts/OpenSans-VariableFont_wdth,wght.ttf')) format('ttf');
+    font-weight: normal;
+    font-style: normal;
+
+}

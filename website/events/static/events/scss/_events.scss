@@ -27,33 +27,13 @@
   }
 }
 
-.accordion-header {
-  @include media-breakpoint-down(lg) {
-    .date-prefix {
-      width: 40%;
-    }
-  }
-  @include media-breakpoint-up(lg) {
-    .date-prefix {
-      width: 30%;
-    }
-  }
-}
+.event-description {
+  background: $secondary;
+  padding: 1rem;
 
-.highlight-accordion-button {
-  background-color: $primary !important;
-}
-
-.alternating-color {
-  &:nth-of-type(odd) {
-    .accordion-button {
-      background-color: $ternary;
-    }
-  }
-
-  &:nth-of-type(even) {
-    .accordion-button {
-      background-color: lighten($ternary, 10);
-    }
+  &:empty {
+    display: none;
+    background: transparent;
+    padding: 0;
   }
 }

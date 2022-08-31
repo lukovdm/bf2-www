@@ -19,7 +19,7 @@
 {% block content %}
     <div class="row mb-3">
         <div class="w-100">
-            <img src="{{ object.image.url }}" class="rounded img-fluid shadow">
+            <img src="{{ object.image.url }}" class="rounded img-fluid shadow w-100">
         </div>
     </div>
     <div class="row mb-3">
@@ -44,8 +44,8 @@
             </p>
         </div>
     </div>
-    <div class="row ms-0 mb-3 p-3 bg-secondary rounded">
-        {% render_placeholder object.description %}
+    <div class="row ms-0 me-1 mb-3">
+        <div class="rounded event-description">{% render_placeholder object.description %}</div>
     </div>
     <div class="row mb-3">
         {% if user.is_authenticated and object.limit %}
@@ -67,9 +67,9 @@
                     <button class="btn btn-outline-primary fw-bold w-100" name="register" value="register"
                             {% if object.registration_set.all|length >= object.limit %} disabled>
                                 {% trans "Full" %}
-                            {% elif object.registration_start and object.registration_start > now %} disabled>
+                                {% elif object.registration_start and object.registration_start > now %} disabled>
                                 {% trans "Not opend" %}
-                            {% elif object.registration_end and object.registration_end < now %} disabled>
+                                {% elif object.registration_end and object.registration_end < now %} disabled>
                                 {% trans "Closed" %}
                             {% else %}>
                                 {% trans "register"|capfirst %}
@@ -99,7 +99,8 @@
             <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
                 <i class="bi bi-people fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
                 {% if user.is_authenticated and not object.private_registrations %}:
-                    {% for reg in object.registration_set.all %}{% if not forloop.first %}, {% endif %}{{ reg.user.first_name }}{% endfor %}
+                    {% for reg in object.registration_set.all %}{% if not forloop.first %}, {% endif %}
+                        {{ reg.user.first_name }}{% endfor %}
                 {% endif %}
             </p>
         {% endif %}

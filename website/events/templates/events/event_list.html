@@ -8,7 +8,7 @@
 {% block content %}
     <div class="row">
         {% for event in object_list %}
-            <div class="col">
+            <div class="col card-col">
                 <a href="{% url 'events:detail' pk=event.pk %}" class="text-decoration-none text-reset">
                     <div class="card event-card mb-4 shadow">
                         <div class="event-card-image card-img-top overflow-hidden" style="
@@ -24,20 +24,18 @@
                             {% endif %}
                         </div>
                         <div class="card-body">
-                            <div class="text-center">
-                                <h5 class="card-title">{{ event.name }}</h5>
-                            </div>
+                            <h5 class="text-center card-title ellipses">{{ event.name }}</h5>
                             <div class="row">
-                                <div class="col-6">
-                                    <i class="bi bi-calendar"></i>
+                                <div class="col-6 ellipses">
+                                    <i class="bi bi-calendar pe-2"></i>
                                     {% if event.show_end_date %}
                                         {% daterange event.start_date event.end_date %}
                                     {% else %}
                                         {{ event.start_date|date:"d F" }}
                                     {% endif %}
                                 </div>
-                                <div class="col-6">
-                                    <i class="bi bi-clock"></i>
+                                <div class="col-6 ellipses">
+                                    <i class="bi bi-clock pe-2"></i>
                                     {% if event.show_end_date %}
                                         {% datetimerange event.start_date event.end_date %}
                                     {% else %}
@@ -46,11 +44,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6">
-                                    <i class="bi bi-geo-alt"></i>{{ event.location }}
+                                <div class="col-6 ellipses">
+                                    <i class="bi bi-geo-alt pe-2"></i>
+                                    {{ event.location }}
                                 </div>
-                                <div class="col-6">
-                                    <i class="bi bi-people fs-5"></i> {{ event.registration_set.all|length }}/{{ event.limit }}
+                                <div class="col-6 ellipses">
+                                    <i class="bi bi-people fs-5 pe-2"></i>
+                                    {{ event.registration_set.all|length }}/{{ event.limit }}
                                 </div>
                             </div>
                         </div>

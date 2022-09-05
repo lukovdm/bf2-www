@@ -34,7 +34,9 @@
 }
 
 .card-col {
-  min-width: 0;
+  @include media-breakpoint-up(md) {
+    min-width: 0;
+  }
 }
 
 .event-description {

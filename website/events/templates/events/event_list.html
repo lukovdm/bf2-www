@@ -1,39 +1,61 @@
-{% extends "page.html" %}
+{% extends "page_empty.html" %}
 {% load i18n static cms_tags events_datetimerange %}
 
-{% block pagetitle %}{% trans "Events" %}{% endblock pagetitle %}
+{% block title %}
+    {% trans "Events" %}
+{% endblock title %}
 
 {% block content %}
-    <div class="accordion alternating-color" id="eventsAccordion">
+    <div class="row">
         {% for event in object_list %}
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="header{{ event.pk }}">
-                    <button class="accordion-button collapsed py-0 {% if event.registration %}highlight-accordion-button{% endif %}" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#content{{ event.pk }}" aria-expanded="true"
-                            aria-controls="{{ event.pk }}">
-                        <div class="border-end border-2 pe-3 py-3 date-prefix border-grey flex-shrink-0">
-                            {% if event.show_end_date %}
-                                {% daterange event.start_date event.end_date %}
-                            {% else %}
-                                {{ event.start_date|date:"d F" }}
+            <div class="col card-col">
+                <a href="{% url 'events:detail' pk=event.pk %}" class="text-decoration-none text-reset">
+                    <div class="card event-card mb-4 shadow">
+                        <div class="event-card-image card-img-top overflow-hidden" style="
+                                {% if event.image %}
+                                    background-image: url('{{ event.image.url }}');
+                                {% else %}
+                                    background-image: url('{% static "website/images/logo.svg" %}');
+                                {% endif %}">
+                            {% if event.registration %}
+                                <div class="event-card-image-check">
+                                    <i class="bi bi-check-circle-fill fs-4"></i>
+                                </div>
                             {% endif %}
                         </div>
-                        <div class="ps-3 py-3">
-                            {{ event.name }}
+                        <div class="card-body">
+                            <h5 class="text-center card-title ellipses">{{ event.name }}</h5>
+                            <div class="row">
+                                <div class="col-6 ellipses">
+                                    <i class="bi bi-calendar pe-2"></i>
+                                    {% if event.show_end_date %}
+                                        {% daterange event.start_date event.end_date %}
+                                    {% else %}
+                                        {{ event.start_date|date:"d F" }}
+                                    {% endif %}
+                                </div>
+                                <div class="col-6 ellipses">
+                                    <i class="bi bi-clock pe-2"></i>
+                                    {% if event.show_end_date %}
+                                        {% datetimerange event.start_date event.end_date %}
+                                    {% else %}
+                                        {{ event.start_date|date:"G:i" }}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 ellipses">
+                                    <i class="bi bi-geo-alt pe-2"></i>
+                                    {{ event.location }}
+                                </div>
+                                <div class="col-6 ellipses">
+                                    <i class="bi bi-people fs-5 pe-2"></i>
+                                    {{ event.registration_set.all|length }}/{{ event.limit }}
+                                </div>
+                            </div>
                         </div>
-                    </button>
-                </h2>
-                <div id="content{{ event.pk }}" class="accordion-collapse collapse"
-                     aria-labelledby="header{{ event.pk }}" data-bs-parent="#eventsAccordion">
-                    <div class="accordion-body">
-                        <div class="mb-3">
-                            {% render_placeholder event.description %}
-                        </div>
-                        <a class="btn btn-primary" href="{% url 'events:detail' pk=event.pk %}" role="button">
-                            {% trans "See details" %}
-                        </a>
                     </div>
-                </div>
+                </a>
             </div>
         {% endfor %}
     </div>

@@ -16,15 +16,6 @@ h1 {
   color: $primary;
 }
 
-.bg-fade {
-  background: linear-gradient(
-                  180deg,
-                  $white .5rem,
-                  #{fade-out($white, 1)} 5rem,
-                  #{fade-out($white, 1)} 100%
-  );
-}
-
 .container-padding {
   @include media-breakpoint-up(md) {
     padding: 5rem 10rem;

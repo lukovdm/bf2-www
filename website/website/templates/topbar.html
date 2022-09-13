@@ -1,6 +1,6 @@
 {% load i18n menu_tags %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" role="navigation">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top rounded-bottom shadow" role="navigation">
     <div class="container-fluid reorder-elements">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -9,14 +9,14 @@
         </div>
         <div class="navbar-nav mb-2 mb-lg-0 ms-auto flex-row px-3">
             {% if user.is_authenticated %}
-                <div class="nav-item">
+                <div class="nav-item top-level">
                     <a class="nav-link text-primary" href="{% url 'logout' %}">{% trans 'Sign out' %}</a>
                 </div>
             {% else %}
-                <div class="nav-item pe-4">
+                <div class="nav-item top-level me-4">
                     <a class="nav-link text-primary" href="{% url 'become-a-member' %}">{% trans 'Become a member' %}</a>
                 </div>
-                <div class="nav-item">
+                <div class="nav-item top-level">
                     <a class="nav-link text-primary" href="{% url 'login' %}">{% trans 'Sign in' %}</a>
                 </div>
             {% endif %}

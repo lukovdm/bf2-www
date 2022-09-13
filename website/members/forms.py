@@ -102,7 +102,6 @@ class BecomeAMemberForm(ModelForm):
                         """,
                     )
 
-
             templates2 = {}
             success = True
             for lang, display in settings.LANGUAGES:
@@ -113,8 +112,8 @@ class BecomeAMemberForm(ModelForm):
                     process="new_member_confirmation_" + lang
                 ).exists():
                     mail_admins(
-                    """No template for sign up""",
-                    """Someone signed up using the sign up form on the website. But there was no email template, meaning no confirmation 
+                        """No template for sign up""",
+                        """Someone signed up using the sign up form on the website. But there was no email template, meaning no confirmation 
                     mail could be send. Please solve this problem now!""",
                     )
                     success = False
@@ -127,8 +126,8 @@ class BecomeAMemberForm(ModelForm):
                         """,
                     )
                     mail_admins(
-                    """No configuration for sign up""",
-                    """Someone signed up using the sign up form on the website. But the configuration was missing, meaning no confirmation 
+                        """No configuration for sign up""",
+                        """Someone signed up using the sign up form on the website. But the configuration was missing, meaning no confirmation 
                     mail could be send. The configuration has been made but please attach a template to this configuration. Please solve this problem now!""",
                     )
                     success = False

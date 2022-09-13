@@ -9,11 +9,11 @@
         <link href="{% sass_src 'website/scss/main.scss' %}" rel="stylesheet" type="text/css">
         <link href="{% static 'website/bootstrap-icons-1.5.0/bootstrap-icons.css' %}" rel="stylesheet" type="text/css">
 
-        <link rel="apple-touch-icon" sizes="180x180" href="{% static "website/images/icons/apple-touch-icon.png" %}">
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static "website/images/icons/favicon-32x32.png" %}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{% static "website/images/icons/favicon-16x16.png" %}">
-        <link rel="manifest" href="{% static "website/images/icons/site.webmanifest" %}">
-        <link rel="mask-icon" href="{% static "website/images/icons/safari-pinned-tab.svg" %}" color="#233d7a">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'website/images/icons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'website/images/icons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'website/images/icons/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'website/images/icons/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'website/images/icons/safari-pinned-tab.svg' %}" color="#233d7a">
         <meta name="msapplication-TileColor" content="#233d7a">
         <meta name="theme-color" content="#233d7a">
 
@@ -54,7 +54,7 @@
         {% render_block "js" %}
         <script>
             function play() {
-              var audio = new Audio('{% static 'website/sounds/seagull.mp3' %}');
+              var audio = new Audio("{% static 'website/sounds/seagull.mp3' %}");
               audio.play();
             }
         </script>

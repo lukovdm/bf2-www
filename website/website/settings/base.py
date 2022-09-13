@@ -31,6 +31,8 @@ LOGOUT_REDIRECT_URL = "/"
 # about 3 months
 ACCOUNT_ACTIVATION_TIMEOUT = 60 * 60 * 24 * 30 * 3
 
+CSRF_TRUSTED_ORIGINS = ["https://.bfrisbee2s.nl"]
+
 CMS_PAGE_CACHE = False
 
 CMS_PERMISSION = True

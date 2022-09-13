@@ -40,6 +40,10 @@ CMS_TEMPLATES = [
     ("fullpage_cms.html", "Page full page header"),
 ]
 
+CMS_COLOR_SCHEME = "auto"
+
+CMS_COLOR_SCHEME_TOGGLE = True
+
 THUMBNAIL_HIGH_RESOLUTION = True
 
 THUMBNAIL_PROCESSORS = (

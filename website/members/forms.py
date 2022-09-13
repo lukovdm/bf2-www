@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import (
@@ -100,6 +101,42 @@ class BecomeAMemberForm(ModelForm):
                         {other_club}: shows if member is also part of another frisbee club
                         """,
                     )
+
+            templates2 = {}
+            success = True
+            for lang, display in settings.LANGUAGES:
+                t = Configuration.get_mail_template("new_member_confirmation_" + lang)
+                if t:
+                    templates2[lang] = t
+                elif Configuration.objects.filter(
+                    process="new_member_confirmation_" + lang
+                ).exists():
+                    mail_admins(
+                        """No template for sign up""",
+                        """Someone signed up using the sign up form on the website. But there was no email template, meaning no confirmation 
+                    mail could be send. Please solve this problem now!""",
+                    )
+                    success = False
+                else:
+                    Configuration.objects.create(
+                        process="new_member_confirmation_" + lang,
+                        description="""This configuration is used to send accept account email for new users.
+                        You can use the following variables:
+                        {name}: the name of the user
+                        """,
+                    )
+                    mail_admins(
+                        """No configuration for sign up""",
+                        """Someone signed up using the sign up form on the website. But the configuration was missing, meaning no confirmation 
+                    mail could be send. The configuration has been made but please attach a template to this configuration. Please solve this problem now!""",
+                    )
+                    success = False
+            if not success:
+                return False
+            lang = member.preferred_language
+            templates2[lang].to = user.email
+            templates2[lang].send({"name": user.get_full_name()})
+
         return member
 
 

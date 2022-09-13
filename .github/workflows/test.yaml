@@ -9,23 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout
+        uses: actions/checkout@v2
 
       - name: Install python
-        uses: actions/setup-python
+        uses: actions/setup-python@v2
         with:
           python-version: '3.9'
 
       - name: Install poetry
-        uses: abatilo/actions-poetry
-
-      - name: Restore any cached Poetry dependencies
-        uses: actions/cache@v1
-        with:
-          path: ~/.cache/pypoetry/virtualenvs
-          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-poetry-
+        uses: abatilo/actions-poetry@v2.0.0
 
       - name: Install any new dependencies
         run: poetry install

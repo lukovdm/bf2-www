@@ -95,7 +95,7 @@
         {% endif %}
     </div>
     <div class="row">
-        {% if object.limit %}
+        {% if object.registration_end %}
             <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
                 <i class="bi bi-people fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
                 {% if user.is_authenticated and not object.private_registrations %}:

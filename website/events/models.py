@@ -36,7 +36,9 @@ class Event(Model, metaclass=ModelTranslateMeta):
     private_registrations = BooleanField(
         default=False, verbose_name=_("Don't show who is registered")
     )
-    cost = CharField(max_length=255, null=True, verbose_name=_("cost"))
+    cost = MultilingualField(
+        CharField, null=True, max_length=255, verbose_name=_("cost")
+    )
 
     registration_start = DateTimeField(
         null=True, blank=True, verbose_name=_("registration start")

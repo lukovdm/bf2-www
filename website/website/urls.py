@@ -14,11 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import url
 from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, re_path, include
 from cms.sitemaps import CMSSitemap
 from django.contrib.sitemaps.views import sitemap
 
@@ -27,8 +26,8 @@ from members.views import BecomeAMemberView, PasswordSetView
 
 urlpatterns = [
     path("i18n/", include("django.conf.urls.i18n")),
-    url(
-        r"^sitemap\.xml$",
+    path(
+        "sitemap.xml",
         sitemap,
         {"sitemaps": {"cmspages": CMSSitemap, "member": BecomeAMemberSitemap}},
     ),
@@ -43,5 +42,5 @@ urlpatterns += i18n_patterns(
         PasswordSetView.as_view(),
         name="activate-account",
     ),
-    url(r"^", include("cms.urls")),
+    re_path(r"^", include("cms.urls")),
 )

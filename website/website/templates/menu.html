@@ -7,14 +7,14 @@
             <a class="nav-link dropdown-toggle{% if child.selected %} active{% endif %}" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ child.get_menu_title }}
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <ul class="dropdown-menu slideIn" aria-labelledby="navbarDropdownMenuLink">
                 {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
             </ul>
         {% else %}
             <a class="nav-link
                 {% if child.selected %} active{% endif %}
                 {% if child.attr.is_home %} home{% endif %}
-                {% if child.menu_level != 0 %} border-top{% endif %}"
+                {% if child.menu_level != 0 and not forloop.first %} border-top{% endif %}"
                href="{{ child.get_absolute_url }}">{{ child.get_menu_title }}</a>
         {% endif %}
     </li>

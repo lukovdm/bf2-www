@@ -31,6 +31,8 @@ LOGOUT_REDIRECT_URL = "/"
 # about 3 months
 ACCOUNT_ACTIVATION_TIMEOUT = 60 * 60 * 24 * 30 * 3
 
+CSRF_TRUSTED_ORIGINS = ["https://.bfrisbee2s.nl"]
+
 CMS_PAGE_CACHE = False
 
 CMS_PERMISSION = True
@@ -39,6 +41,10 @@ CMS_TEMPLATES = [
     ("page_cms.html", "Page"),
     ("fullpage_cms.html", "Page full page header"),
 ]
+
+CMS_COLOR_SCHEME = "auto"
+
+CMS_COLOR_SCHEME_TOGGLE = True
 
 THUMBNAIL_HIGH_RESOLUTION = True
 
@@ -199,11 +205,37 @@ CMS_LANGUAGES = {
 
 LOCALE_PATHS = (os.path.join(BASE_DIR, "locale"),)
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Europe/Amsterdam"
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
+
+DATE_INPUT_FORMATS = [
+    "%Y-%m-%d",  # '2006-10-25'
+    "%d/%m/%Y",  # '10/25/2006'
+    "%d/%m/%y",  # '10/25/06'
+    "%b %d %Y",  # 'Oct 25 2006'
+    "%b %d, %Y",  # 'Oct 25, 2006'
+    "%d %b %Y",  # '25 Oct 2006'
+    "%d %b, %Y",  # '25 Oct, 2006'
+    "%B %d %Y",  # 'October 25 2006'
+    "%B %d, %Y",  # 'October 25, 2006'
+    "%d %B %Y",  # '25 October 2006'
+    "%d %B, %Y",  # '25 October, 2006'
+]
+
+DATETIME_INPUT_FORMATS = [
+    "%Y-%m-%d %H:%M:%S",  # '2006-10-25 14:30:59'
+    "%Y-%m-%d %H:%M:%S.%f",  # '2006-10-25 14:30:59.000200'
+    "%Y-%m-%d %H:%M",  # '2006-10-25 14:30'
+    "%d/%m/%Y %H:%M:%S",  # '10/25/2006 14:30:59'
+    "%d/%m/%Y %H:%M:%S.%f",  # '10/25/2006 14:30:59.000200'
+    "%d/%m/%Y %H:%M",  # '10/25/2006 14:30'
+    "%d/%m/%y %H:%M:%S",  # '10/25/06 14:30:59'
+    "%d/%m/%y %H:%M:%S.%f",  # '10/25/06 14:30:59.000200'
+    "%d/%m/%y %H:%M",  # '10/25/06 14:30'
+]
 
 USE_TZ = True
 

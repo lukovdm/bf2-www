@@ -6,7 +6,7 @@
                 <div class="col-lg-{% if board.picture %}6{% else %}12{% endif %} mb-3">
                     <h3>{% trans "Board of" %} {{ board.start.year }}-{{ board.end.year }}</h3>
                     <ul class="list-group list-group-flush">
-                        {% for board_member in board.boardmembership_set.all %}
+                        {% for board_member in board.boardmembership_set.all|dictsort:"id" %}
                             {% if board_member.picture or board_member.description %}
                                 <button type="button" role="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#y{{ year }}m{{ board_member.id }}">
                                     {{ board_member.function }}:

@@ -86,6 +86,7 @@
 		"_masthead.scss",
 		"_navbar.scss",
 		"../../../../members/static/members/scss/_registrationform.scss",
+		"../../../../events/static/events/scss/_events.scss",
 		"../../../../committees/static/committees/scss/_committees.scss"
 	],
 	"names": [],

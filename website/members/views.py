@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordResetConfirmView
-from django.views.generic import FormView, DetailView, ListView, UpdateView
+from django.views.generic import DetailView, ListView, UpdateView, FormView
+from django.utils.decorators import method_decorator
+from django.views.decorators.debug import sensitive_post_parameters
 
 from members.forms import BecomeAMemberForm, ActivateAccountForm
 from members.models import MemberSettings, Member
@@ -39,6 +41,10 @@ class BecomeAMemberView(FormView):
     template_name = "members/become_a_member.html"
     form_class = BecomeAMemberForm
     success_url = "/"
+
+    @method_decorator(sensitive_post_parameters("password"))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def form_valid(self, form):
         form.save()

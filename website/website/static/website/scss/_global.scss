@@ -12,13 +12,8 @@ h1 {
   color: $light;
 }
 
-.bg-fade {
-  background: linear-gradient(
-                  180deg,
-                  $white .5rem,
-                  #{fade-out($white, 1)} 5rem,
-                  #{fade-out($white, 1)} 100%
-  );
+.btn-outline-primary {
+  color: $primary;
 }
 
 .container-padding {

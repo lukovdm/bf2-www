@@ -15,3 +15,4 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 @import "../../../../members/static/members/scss/registrationform";
 @import "../../../../committees/static/committees/scss/committees";
+@import "../../../../events/static/events/scss/events";

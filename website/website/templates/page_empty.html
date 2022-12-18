@@ -1,11 +1,12 @@
-{% extends "base_containted.html" %}
+{% extends "base.html" %}
 {% load static i18n %}
 
 {% block header %}
     <header class="masthead banner">
         <div class="container-fluid d-flex flex-column h-100 justify-content-end">
             {% include 'language_changer.html' %}
-            <a href="/"><img class="logo" src="{% static "website/images/logo.png" %}" alt="{% trans "BFrisBee2's logo" %}"></a>
+            <a href="/"><img class="logo" src="{% static "website/images/logo.png" %}"
+                             alt="{% trans "BFrisBee2's logo" %}"></a>
             <div class="mx-auto text-center">
                 <a href="/" class="text-decoration-none"><h1>BFrisBee2<span class="highlight">’</span>s</h1></a>
             </div>
@@ -14,10 +15,8 @@
     {% include "topbar.html" %}
 {% endblock header %}
 
-{% block pagecontent %}
-    <div class= "row col-12">
-        <h1 class="text-center section-title text-break">{% block pagetitle %}{% endblock pagetitle %}</h1>
+{% block middle %}
+    <div class="container py-5">
+        {% block content %}{% endblock content %}
     </div>
-    <div class="border-bottom border-primary border-2  col-8 offset-2 mb-5"></div>
-    {% block content %}{% endblock content %}
-{% endblock pagecontent %}
+{% endblock middle %}

@@ -1,6 +1,10 @@
 {% extends 'page.html' %}
 {% load cms_tags i18n static events_datetimerange tz %}
 
+{% block title %}
+    {{ object.name }}
+{% endblock title %}
+
 {% block pagetitle %}
     {{ object.name }}
     <h4 class="text-center">
@@ -15,7 +19,7 @@
 {% block content %}
     <div class="row mb-3">
         <div class="w-100">
-            <img src="{{ object.image.url }}" class="rounded img-fluid shadow">
+            <img src="{{ object.image.url }}" class="rounded img-fluid shadow w-100">
         </div>
     </div>
     <div class="row mb-3">
@@ -40,25 +44,32 @@
             </p>
         </div>
     </div>
-    <div class="row ms-0 mb-3 p-3 bg-secondary rounded">
-        {% render_placeholder object.description %}
+    <div class="row ms-0 me-1 mb-3">
+        <div class="rounded event-description">{% render_placeholder object.description %}</div>
     </div>
     <div class="row mb-3">
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and object.limit %}
             {% if registration %}
                 <form action="{% url "events:unregister" object.pk %}" method="post">{% csrf_token %}
-                    <button class="btn btn-outline-primary fw-bold w-100" name="unregister" value="unregister">
-                        {% trans "unregister"|capfirst %}
-                    </button>
+                    <div class="btn-group w-100">
+                        <button class="btn btn-outline-primary fw-bold" name="unregister" value="unregister">
+                            {% trans "unregister"|capfirst %}
+                        </button>
+                        {% if object.form_link %}
+                            <a class="btn btn-outline-primary fw-bold" href="{% url "events:form" object.pk %}">
+                                {% trans "Change form" %}
+                            </a>
+                        {% endif %}
+                    </div>
                 </form>
             {% else %}
                 <form action="{% url "events:register" object.pk %}" method="post">{% csrf_token %}
                     <button class="btn btn-outline-primary fw-bold w-100" name="register" value="register"
                             {% if object.registration_set.all|length >= object.limit %} disabled>
                                 {% trans "Full" %}
-                            {% elif object.registration_start and object.registration_start > now %} disabled>
+                                {% elif object.registration_start and object.registration_start > now %} disabled>
                                 {% trans "Not opend" %}
-                            {% elif object.registration_end and object.registration_end < now %} disabled>
+                                {% elif object.registration_end and object.registration_end < now %} disabled>
                                 {% trans "Closed" %}
                             {% else %}>
                                 {% trans "register"|capfirst %}
@@ -66,29 +77,33 @@
                     </button>
                 </form>
             {% endif %}
+            {% if object.registration_end %}
+                <div class="mt-1">
+                    <p>
+                        {% if object.registration_start and object.registration_start > now %}
+                            <small>
+                                {% trans "registrations open at"|capfirst %} {{ object.registration_start }}
+                            </small>
+                            <br>
+                        {% endif %}
+                        <small>
+                            {% trans "registrations close at"|capfirst %} {{ object.registration_end }}
+                        </small>
+                    </p>
+                </div>
+            {% endif %}
         {% endif %}
     </div>
     <div class="row">
-        {% if object.limit %}
+        {% if object.registration_end %}
             <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
                 <i class="bi bi-people fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
                 {% if user.is_authenticated and not object.private_registrations %}:
-                    {% for reg in object.registration_set.all %}{% if not forloop.first %},{% endif %}
-                        {{ reg.user.first_name }}
-                    {% endfor %}
+                    {% for reg in object.registration_set.all %}{% if not forloop.first %}, {% endif %}
+                        {{ reg.user.first_name }}{% endfor %}
                 {% endif %}
             </p>
         {% endif %}
-    </div>
-
-    <div class="row">
-        <p>
-            {% if object.registration_start and object.registration_start > now %}
-                {% trans "registrations open at"|capfirst %} {{ object.registration_start }}
-            {% elif object.registration_start and object.registration_start < now and object.registration_end and object.registration_end > now %}
-                {% trans "registrations close at"|capfirst %} {{ object.registration_end }}
-            {% endif %}
-        </p>
     </div>
 
 {% endblock content %}

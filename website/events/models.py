@@ -1,6 +1,6 @@
 from cms.models import PlaceholderField
 from django.contrib.auth.models import User
-from django.core.validators import URLValidator, RegexValidator
+from django.core.validators import RegexValidator
 from django.db.models import (
     Model,
     CharField,
@@ -36,9 +36,10 @@ class Event(Model, metaclass=ModelTranslateMeta):
     private_registrations = BooleanField(
         default=False, verbose_name=_("Don't show who is registered")
     )
-    cost = DecimalField(
-        null=True, blank=True, verbose_name=_("cost"), max_digits=7, decimal_places=2
+    cost = MultilingualField(
+        CharField, null=True, max_length=255, verbose_name=_("cost")
     )
+
     registration_start = DateTimeField(
         null=True, blank=True, verbose_name=_("registration start")
     )
@@ -54,7 +55,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
         verbose_name=_("Google form link"),
         validators=[
             RegexValidator(
-                regex="https:\/\/docs\.google\.com\/forms\/d\/e\/[\w\d_]*\/viewform\?",
+                regex="https:\/\/docs\.google\.com\/forms\/d\/e\/[\w\d_-]*\/viewform\?",
                 message=_("Please enter a google form share link"),
             ),
         ],

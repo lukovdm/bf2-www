@@ -21,6 +21,16 @@ class EventListView(ListView):
     def get_queryset(self):
         events = super().get_queryset()
         events = events.filter(end_date__gt=timezone.now()).order_by("start_date")
+
+        if self.request.user.is_authenticated:
+            try:
+                for event in events:
+                    event.registration = Registration.objects.get(
+                        user=self.request.user, event=event
+                    )
+            except Registration.DoesNotExist:
+                pass
+
         return events
 
 
@@ -31,6 +41,8 @@ class EventDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        context["now"] = timezone.now()
 
         if self.request.user.is_authenticated:
             try:

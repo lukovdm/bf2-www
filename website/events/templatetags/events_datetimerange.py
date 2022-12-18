@@ -9,6 +9,8 @@ register = template.Library()
 
 @register.simple_tag
 def daterange(start: timezone, end: timezone):
+    start = timezone.localtime(start)
+    end = timezone.localtime(end)
     if end.day == start.day:
         return dateformat.format(start, "d F")
     elif end - start < timedelta(days=365):
@@ -21,6 +23,8 @@ def daterange(start: timezone, end: timezone):
 
 @register.simple_tag
 def datetimerange(start: timezone, end: timezone):
+    start = timezone.localtime(start)
+    end = timezone.localtime(end)
     if end.day == start.day:
         return format_html(
             '<span class="ws-nowrap">{}</span> - <span class="ws-nowrap">{}</span>',

@@ -9,6 +9,9 @@
         </div>
         <div class="navbar-nav mb-2 mb-lg-0 ms-auto flex-row px-3">
             {% if user.is_authenticated %}
+                <div class="nav-item top-level me-4">
+                    <a class="nav-link text-primary" href="{% url 'members:edit' %}">{% trans 'Edit profile' %}</a>
+                </div>
                 <div class="nav-item top-level">
                     <a class="nav-link text-primary" href="{% url 'logout' %}">{% trans 'Sign out' %}</a>
                 </div>

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:58+0200\n"
-"PO-Revision-Date: 2022-08-31 17:00+0200\n"
+"POT-Creation-Date: 2022-12-19 14:18+0100\n"
+"PO-Revision-Date: 2022-12-19 14:12+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -54,39 +54,39 @@ msgstr "Laat niet zien wie is geregistreerd"
 msgid "cost"
 msgstr "kosten"
 
-#: events/models.py:43
+#: events/models.py:44
 msgid "registration start"
 msgstr "start registratie"
 
-#: events/models.py:46
+#: events/models.py:47
 msgid "registration end"
 msgstr "einde registratie"
 
-#: events/models.py:48
+#: events/models.py:49
 msgid "Show end date"
 msgstr "Laat eind datum zien"
 
-#: events/models.py:54
+#: events/models.py:55
 msgid "Google form link"
 msgstr "Google form link"
 
-#: events/models.py:58
+#: events/models.py:59
 msgid "Please enter a google form share link"
 msgstr "Vul a.u.b. een google form deel link in"
 
-#: events/models.py:81
+#: events/models.py:82
 msgid "event"
 msgstr "evenement"
 
-#: events/models.py:82
+#: events/models.py:83
 msgid "user"
 msgstr "gebruiker"
 
-#: events/models.py:84
+#: events/models.py:85
 msgid "registration date"
 msgstr "registratie datum"
 
-#: events/models.py:85
+#: events/models.py:86
 msgid "has paid"
 msgstr "heeft betaald"
 

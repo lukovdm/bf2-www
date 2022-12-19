@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:58+0200\n"
-"PO-Revision-Date: 2022-08-31 17:00+0200\n"
+"POT-Creation-Date: 2022-12-19 14:18+0100\n"
+"PO-Revision-Date: 2022-12-19 14:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -30,11 +30,11 @@ msgstr "afbeelding"
 msgid "description"
 msgstr "beschrijving"
 
-#: website/settings/base.py:186
+#: website/settings/base.py:193
 msgid "English"
 msgstr "Engels"
 
-#: website/settings/base.py:192
+#: website/settings/base.py:199
 msgid "Dutch"
 msgstr "Nederlands"
 
@@ -46,7 +46,7 @@ msgstr "BFrisBee2's logo"
 #: website/templates/registration/login.html:5
 #: website/templates/registration/login.html:58
 #: website/templates/registration/password_reset_complete.html:12
-#: website/templates/topbar.html:20
+#: website/templates/topbar.html:23
 msgid "Sign in"
 msgstr "Log in"
 
@@ -135,9 +135,13 @@ msgid "Send email"
 msgstr "Verstuur e-mail"
 
 #: website/templates/topbar.html:13
+msgid "Edit profile"
+msgstr "Bewerk profiel"
+
+#: website/templates/topbar.html:16
 msgid "Sign out"
 msgstr "Log uit"
 
-#: website/templates/topbar.html:17
+#: website/templates/topbar.html:20
 msgid "Become a member"
 msgstr "Word lid"

@@ -6,12 +6,12 @@
 
 {% block content %}
     <div class="row mb-3">
-        <div class="w-100 d-flex justify-content-center">
-            <img src="{{ object.image.url }}" class="rounded img-fluid shadow"
+        <div class="w-100">
+            <img src="{{ object.image.url }}" class="rounded img-fluid shadow w-100"
                  alt="{% trans 'image for' %} {{ committee.name }}">
         </div>
     </div>
-    <div class="row ms-0 mb-3 p-3 bg-secondary rounded">
+    <div class="row ms-0 mb-4 p-3 bg-secondary rounded">
         {% render_placeholder object.description %}
         {% if user.is_authenticated %}
             <p class="fw-bold fs-6 mb-0">
@@ -22,24 +22,31 @@
         {% endif %}
     </div>
     {% if user.is_authenticated and object.show_members %}
-        <div class="row row-cols-auto g-4 justify-content-center">
+        <div class="row">
+            <h4>Members</h4>
+        </div>
+        <div class="row g-4">
         {% for membership in committee_memberships %}
-            <div class="col">
-                <div class="card clickable">
-                    <div class="d-flex justify-content-center">
-                        <img src="{% thumbnail membership.user.member.profile_picture|default:object.image 300x200 crop upscale %}" width="300px" height="200px" class="card-img-top"
-                             alt="{% trans 'image for' %} {{ object.name }}">
+            <div class="col card-col">
+                <a href="{{ membership.user.member.get_absolute_url }}" class="text-decoration-none text-reset">
+                    <div class="card display-card mb-4 shadow">
+                        <div class="display-card-image card-img-top overflow-hidden" style="
+                                {% if membership.user.member.profile_picture %}
+                                    background-image: url('{{ membership.user.member.profile_picture.url }}');
+                                {% else %}
+                                    background-image: url('{% static "website/images/logo.svg" %}');
+                                {% endif %}">
                         {% if membership.chair %}
-                            <div class="position-absolute top-0 end-0 m-2">
-                                <i class="fa-solid fa-{% trans 'chair' %} icon-shadow fs-3 text-white"></i>
-                            </div>
-                        {% endif %}
+                                <div class="display-card-image-check">
+                                    <i class="fa-solid fa-chair fs-4"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-center card-title ellipses">{{ membership.user.get_full_name }}</h5>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{ membership.user.get_full_name }}</h5>
-                        <a href="{{ membership.user.member.get_absolute_url }}" class="stretched-link"></a>
-                    </div>
-                </div>
+                </a>
             </div>
         {% endfor %}
     </div>

@@ -19,7 +19,7 @@
     background: linear-gradient(132deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0) 100%);
 
     i {
-      color: lighten(adjust-hue($success, -20deg), 15%);
+      color: $primary;
       position: absolute;
       top: 10px;
       left: 16px;

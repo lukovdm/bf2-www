@@ -8,6 +8,10 @@ from django.utils.translation import gettext_lazy as _
 from filer.fields.file import FilerFileField
 
 
+def user_directory_path(instance, filename):
+    return 'profile_pic/user_{0}/{1}'.format(instance.user.id, filename)
+
+
 class Member(models.Model):
     """A model to hold all extra personal information about members."""
 
@@ -92,8 +96,35 @@ class Member(models.Model):
 
     remarks = models.TextField(blank=True, null=True, verbose_name=_("remarks"))
 
-    bio = models.TextField(blank=True, null=True, verbose_name=_("bio"))
-    profile_picture = models.ImageField(blank=True, null=True)
+    bio = models.TextField(
+        blank=True, null=True, verbose_name=_("bio"), max_length=1000
+    )
+    profile_picture = models.ImageField(blank=True, null=True, upload_to=user_directory_path)
+
+    FIRST_NAME = "Firstname"
+    FULL_NAME = "Fullname"
+    INITIALS = "Initials"
+    NICK_NAME = "Nickname"
+    FULL_NAME_NICKNAME = "FullnameNickname"
+    FIRST_NAME_NICKNAME = "FirstnameNickname"
+    DISPLAY_NAME_CHOICES = [
+        (FIRST_NAME, _("First name")),
+        (FULL_NAME, _("Full name")),
+        (INITIALS, _("Initial with last name")),
+        (NICK_NAME, _("Nickname")),
+        (FULL_NAME_NICKNAME, _("Full name with nickname")),
+        (FIRST_NAME_NICKNAME, _("First name with nickname")),
+    ]
+
+    display_name = models.CharField(
+        max_length=64,
+        verbose_name=_("display name"),
+        choices=DISPLAY_NAME_CHOICES,
+        default=FIRST_NAME,
+    )
+    nickname = models.CharField(
+        max_length=64, verbose_name=_("nickname"), blank=True, null=True
+    )
 
     def clean(self) -> None:
         if self.birthday and self.birthday > timezone.now().date():
@@ -106,11 +137,25 @@ class Member(models.Model):
     class Meta:
         permissions = (("can_accept_or_reject", _("can accept or reject")),)
 
+    def name(self) -> str:
+        if self.display_name == self.FIRST_NAME:
+            return self.user.first_name
+        elif self.display_name == self.FULL_NAME:
+            return self.user.get_full_name()
+        elif self.display_name == self.INITIALS:
+            return self.user.first_name[0] + " " + self.user.last_name
+        elif self.display_name == self.NICK_NAME:
+            return f'"{self.nickname}"'
+        elif self.display_name == self.FULL_NAME_NICKNAME:
+            return f'{self.user.first_name} "{self.nickname}" {self.user.last_name}'
+        elif self.display_name == self.FIRST_NAME_NICKNAME:
+            return f'{self.user.first_name} "{self.nickname}"'
+
     def get_absolute_url(self):
         return reverse("members:detail", kwargs={"pk": self.pk})
 
     def __str__(self):
-        return "Member: {}".format(self.user.first_name)
+        return f"Member: {self.name()}"
 
 
 class MemberSettings(models.Model):

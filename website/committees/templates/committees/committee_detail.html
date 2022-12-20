@@ -6,20 +6,26 @@
 
 {% block content %}
     <div class="row mb-3">
-        <div class="w-100">
-            <img src="{{ object.image.url }}" class="rounded img-fluid shadow w-100"
-                 alt="{% trans 'image for' %} {{ committee.name }}">
+        <div class="col">
+            <div class="w-100">
+                <img src="{{ object.image.url }}" class="rounded img-fluid shadow w-100"
+                     alt="{% trans 'image for' %} {{ committee.name }}">
+            </div>
         </div>
     </div>
-    <div class="row ms-0 mb-4 p-3 bg-secondary rounded">
-        {% render_placeholder object.description %}
-        {% if user.is_authenticated %}
-            <p class="fw-bold fs-6 mb-0">
-                <a href="mailto:{{ object.email }}" class="link-dark stretched-link">
-                    <i class="fa-regular fa-envelope pe-2 fs-6"></i>{{ object.email }}
-                </a>
-            </p>
-        {% endif %}
+    <div class="row mb-4">
+        <div class="col">
+            <div class="p-3 bg-secondary rounded">
+            {% render_placeholder object.description %}
+            {% if user.is_authenticated %}
+                <p class="fw-bold fs-6 mb-0">
+                    <a href="mailto:{{ object.email }}" class="link-dark stretched-link">
+                        <i class="fa-regular fa-envelope pe-2 fs-6"></i>{{ object.email }}
+                    </a>
+                </p>
+            {% endif %}
+        </div>
+        </div>
     </div>
     {% if user.is_authenticated and object.show_members %}
         <div class="row">
@@ -43,7 +49,7 @@
                             {% endif %}
                         </div>
                         <div class="card-body">
-                            <h5 class="text-center card-title ellipses">{{ membership.user.get_full_name }}</h5>
+                            <h6 class="text-center card-title ellipses">{{ membership.user.member.name }}</h6>
                         </div>
                     </div>
                 </a>

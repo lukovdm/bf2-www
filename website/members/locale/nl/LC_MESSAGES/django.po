@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-19 14:18+0100\n"
+"POT-Creation-Date: 2022-12-21 00:44+0100\n"
 "PO-Revision-Date: 2022-12-19 14:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,15 +18,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: members/admin.py:81
+#: admin.py:81
 msgid "Personal"
 msgstr "Persoonlijk"
 
-#: members/admin.py:94
+#: admin.py:94
 msgid "Permissions"
 msgstr "Rechten"
 
-#: members/admin.py:123 members/admin.py:207
+#: admin.py:123 admin.py:207
 #, python-format
 msgid ""
 "No email template has been attached to the %s configuration, you have to "
@@ -35,7 +35,7 @@ msgstr ""
 "Er bestaat geen email template voor de %s configuratie, je moet er eerst "
 "zelf een maken"
 
-#: members/admin.py:141 members/admin.py:227
+#: admin.py:141 admin.py:227
 #, python-format
 msgid ""
 "No configuration exists for %s and has been created. You do have to add a "
@@ -44,27 +44,27 @@ msgstr ""
 "Er bestaat geen configuratie voor %s, deze is nu gemaakt. Je moet nog wel "
 "zelf een template maken"
 
-#: members/admin.py:161 members/admin.py:165
+#: admin.py:161 admin.py:165
 msgid "You don't have permission to accept a user"
 msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 
-#: members/admin.py:168
+#: admin.py:168
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: members/forms.py:24 members/templates/members/passwerd_set.html:48
+#: forms.py:24 models.py:111 templates/members/passwerd_set.html:48
 msgid "First name"
 msgstr "Voornaam"
 
-#: members/forms.py:25 members/templates/members/passwerd_set.html:52
+#: forms.py:25 templates/members/passwerd_set.html:52
 msgid "Last name"
 msgstr "Achternaam"
 
-#: members/forms.py:26
+#: forms.py:26
 msgid "E-mail"
 msgstr "E-mail"
 
-#: members/forms.py:37
+#: forms.py:37
 msgid ""
 "This will be used to gain access to the google drive and might be the same "
 "as your regular e-mail"
@@ -72,171 +72,203 @@ msgstr ""
 "Dit word gebruikt om toegang te krijgen tot de google drive en kan mogelijk "
 "hetzelfde zijn als voorgenoemde email"
 
-#: members/models.py:18
+#: models.py:22
 msgid "Radboud University"
 msgstr "Radboud Universiteit"
 
-#: members/models.py:19
+#: models.py:23
 msgid "HAN"
 msgstr "HAN"
 
-#: members/models.py:20
+#: models.py:24
 msgid "Not a student"
 msgstr "Geen student"
 
-#: members/models.py:25
+#: models.py:29
 msgid "birth date"
 msgstr "geboortedatum"
 
-#: members/models.py:32
+#: models.py:36
 msgid "man"
 msgstr "man"
 
-#: members/models.py:33
+#: models.py:37
 msgid "woman"
 msgstr "vrouw"
 
-#: members/models.py:34
+#: models.py:38
 msgid "other"
 msgstr "anders"
 
-#: members/models.py:35
+#: models.py:39
 msgid "unspecified"
 msgstr "niet gespecificeerd"
 
-#: members/models.py:39
+#: models.py:43
 msgid "gender"
 msgstr "geslacht"
 
-#: members/models.py:43
+#: models.py:47
 msgid "pronouns"
 msgstr "voornaamwoorden"
 
-#: members/models.py:46
+#: models.py:50
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: members/models.py:49
+#: models.py:53
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: members/models.py:57
+#: models.py:61
 msgid "postcode can only contain spaces, digits and letters"
 msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
 
-#: members/models.py:61
+#: models.py:65
 msgid "zipcode"
 msgstr "postcode"
 
-#: members/models.py:64
+#: models.py:68
 msgid "city"
 msgstr "woonplaats"
 
-#: members/models.py:67
+#: models.py:71
 msgid "Where do you study?"
 msgstr "Waar studeer je?"
 
-#: members/models.py:72
+#: models.py:76
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: members/models.py:76
+#: models.py:80
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: members/models.py:82
+#: models.py:86
 msgid "other club"
 msgstr "andere club"
 
-#: members/models.py:88
+#: models.py:92
 msgid "preferred language"
 msgstr "voorkeurs taal"
 
-#: members/models.py:91
+#: models.py:95
 msgid "google email"
 msgstr "google e-mail"
 
-#: members/models.py:93
+#: models.py:97
 msgid "remarks"
 msgstr "opmerkingen"
 
-#: members/models.py:95
+#: models.py:100
 msgid "bio"
 msgstr "bio"
 
-#: members/models.py:100
+#: models.py:112
+#, fuzzy
+#| msgid "First name"
+msgid "Full name"
+msgstr "Voornaam"
+
+#: models.py:113
+msgid "Initial with last name"
+msgstr ""
+
+#: models.py:114
+msgid "Nickname"
+msgstr ""
+
+#: models.py:115
+msgid "Full name with nickname"
+msgstr ""
+
+#: models.py:116
+msgid "First name with nickname"
+msgstr ""
+
+#: models.py:121
+#, fuzzy
+#| msgid "First name"
+msgid "display name"
+msgstr "Voornaam"
+
+#: models.py:126
+msgid "nickname"
+msgstr ""
+
+#: models.py:131
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: members/models.py:107
+#: models.py:138
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 
-#: members/templates/members/become_a_member.html:4
-#: members/templates/members/become_a_member.html:5
-#: members/templates/members/become_a_member.html:235
+#: templates/members/become_a_member.html:4
+#: templates/members/become_a_member.html:5
+#: templates/members/become_a_member.html:235
 msgid "Become a member"
 msgstr "Word lid"
 
-#: members/templates/members/become_a_member.html:44
+#: templates/members/become_a_member.html:44
 msgid "dd/mm/yyyy"
 msgstr "dd/mm/jjjj"
 
-#: members/templates/members/become_a_member.html:165
+#: templates/members/become_a_member.html:165
 msgid "Are you currently part of another frisbee association?"
 msgstr "Bent u momenteel ook lid van een andere frisbee vereniging?"
 
-#: members/templates/members/become_a_member.html:170
+#: templates/members/become_a_member.html:170
 msgid "yes"
 msgstr "ja"
 
-#: members/templates/members/become_a_member.html:175
+#: templates/members/become_a_member.html:175
 msgid "no"
 msgstr "nee"
 
-#: members/templates/members/become_a_member.html:204
+#: templates/members/become_a_member.html:204
 msgid "By checking the box below, you agree to the "
 msgstr "Door het vakje hieronder aan te vinken gaat u akkoord met de "
 
-#: members/templates/members/become_a_member.html:205
-#: members/templates/members/passwerd_set.html:22
+#: templates/members/become_a_member.html:205
+#: templates/members/passwerd_set.html:22
 msgid "privacy statement"
 msgstr "privacyverklaring"
 
-#: members/templates/members/become_a_member.html:211
-#: members/templates/members/passwerd_set.html:27
+#: templates/members/become_a_member.html:211
+#: templates/members/passwerd_set.html:27
 msgid "I agree with the privacy statement"
 msgstr "Ik ga akkoord met de privacyverklaring"
 
-#: members/templates/members/member_detail.html:11
+#: templates/members/member_detail.html:12
 msgid "image for"
 msgstr "afbeelding voor"
 
-#: members/templates/members/member_detail.html:22
+#: templates/members/member_detail.html:25
 msgid "Edit profile"
 msgstr "Bewerk profiel"
 
-#: members/templates/members/member_detail.html:30
+#: templates/members/member_detail.html:32
 msgid "Member of"
 msgstr "Lid van"
 
-#: members/templates/members/member_detail.html:30
+#: templates/members/member_detail.html:32
 msgid "as chair"
 msgstr "als voorzitter"
 
-#: members/templates/members/member_list.html:4
+#: templates/members/member_list.html:4
 msgid "Members"
 msgstr "Leden"
 
-#: members/templates/members/passwerd_set.html:4
+#: templates/members/passwerd_set.html:4
 msgid "Activate your account"
 msgstr "Activeer uw account"
 
-#: members/templates/members/passwerd_set.html:10
+#: templates/members/passwerd_set.html:10
 msgid "To finish setting up your new account please choose a password."
 msgstr "Kies een wachtwoord om je account compleet te maken."
 
-#: members/templates/members/passwerd_set.html:21
+#: templates/members/passwerd_set.html:21
 msgid ""
 "Because there is a group that apears to not have actively agreed to the "
 "privacy agreement we again ask you to confirm you agree with the "
@@ -244,7 +276,7 @@ msgstr ""
 "Omdat er mensen zijn die nog niet actief akkoord zijn gegaan met de "
 "privacyverklaring, vragen we je om opnieuw akkoord te gaan met de "
 
-#: members/templates/members/passwerd_set.html:36
+#: templates/members/passwerd_set.html:36
 msgid ""
 "\n"
 "                        Lastly we would like to ask you to verify that the "
@@ -262,59 +294,59 @@ msgstr ""
 "                         onjuist is.\n"
 "                   "
 
-#: members/templates/members/passwerd_set.html:56
+#: templates/members/passwerd_set.html:56
 msgid "Email address"
 msgstr "E-mailaddres"
 
-#: members/templates/members/passwerd_set.html:60
+#: templates/members/passwerd_set.html:60
 msgid "Birth date"
 msgstr "Geboortedatum"
 
-#: members/templates/members/passwerd_set.html:64
+#: templates/members/passwerd_set.html:64
 msgid "Gender"
 msgstr "Geslacht"
 
-#: members/templates/members/passwerd_set.html:68
+#: templates/members/passwerd_set.html:68
 msgid "Phone number"
 msgstr "Telefoonnummer"
 
-#: members/templates/members/passwerd_set.html:72
+#: templates/members/passwerd_set.html:72
 msgid "Street address"
 msgstr "Straatnaam en huisnummer"
 
-#: members/templates/members/passwerd_set.html:76
+#: templates/members/passwerd_set.html:76
 msgid "Zipcode"
 msgstr "Postcode"
 
-#: members/templates/members/passwerd_set.html:80
+#: templates/members/passwerd_set.html:80
 msgid "City"
 msgstr "Stad"
 
-#: members/templates/members/passwerd_set.html:84
+#: templates/members/passwerd_set.html:84
 msgid "Student type (without x+3)"
 msgstr "Type student (zonder x+3)"
 
-#: members/templates/members/passwerd_set.html:88
+#: templates/members/passwerd_set.html:88
 msgid "Sports card number"
 msgstr "Sportkaartnummer"
 
-#: members/templates/members/passwerd_set.html:92
+#: templates/members/passwerd_set.html:92
 msgid "You have a competition license from another club"
 msgstr "Je hebt een competitie licentie bij een andere club"
 
-#: members/templates/members/passwerd_set.html:96
+#: templates/members/passwerd_set.html:96
 msgid "Preferred language"
 msgstr "Voorkeurstaal"
 
-#: members/templates/members/passwerd_set.html:100
+#: templates/members/passwerd_set.html:100
 msgid "Google email for the drive"
 msgstr "Google e-mail voor de drive"
 
-#: members/templates/members/passwerd_set.html:107
+#: templates/members/passwerd_set.html:107
 msgid "Set password"
 msgstr "Stel een wachtwoord in"
 
-#: members/templates/members/passwerd_set.html:113
+#: templates/members/passwerd_set.html:113
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."

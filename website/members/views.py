@@ -31,7 +31,15 @@ class MemberDetailView(LoginRequiredMixin, DetailView):
 
 class MemberEditView(LoginRequiredMixin, UpdateView):
     model = Member
-    fields = ("profile_picture", "bio")
+    fields = (
+        "profile_picture",
+        "nickname",
+        "display_name",
+        "bio",
+        "gender",
+        "pronouns",
+        "preferred_language",
+    )
 
     def get_object(self, queryset=None):
         return self.request.user.member

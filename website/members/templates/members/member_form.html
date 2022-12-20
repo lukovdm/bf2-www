@@ -1,16 +1,53 @@
 {% extends "page.html" %}
 {% load i18n bootstrap5 %}
 
-{% block title %}{{ object.user.get_full_name }}{% endblock title %}
-{% block pagetitle %}{{ object.user.get_full_name }}{% endblock pagetitle %}
+{% block title %}{{ object.name }}{% endblock title %}
+{% block pagetitle %}{{ object.name }}{% endblock pagetitle %}
 
 {% block content %}
-    <form action="{% url "members:edit" %}" method="post" class="form">
-      {% csrf_token %}
+    <form action="{% url "members:edit" %}" enctype="multipart/form-data" method="post" class="form">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="row mb-3">
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
 
-      {% bootstrap_form form %}
+        <div class="row g-5">
+            <div class="col-12 col-lg-6 mb-3">
+                <div class="w-100 d-flex justify-content-center px-0 mb-2">
+                    {% if form.profile_picture.value %}
+                        <img src="{{ form.profile_picture.value.url }}" class="rounded img-fluid shadow">
+                    {% else %}
+                        <svg class="img-fluid fill-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                    {% endif %}
+                </div>
+                <div class="input-group">
+                    {% if form.profile_picture.value %}
+                    <div class="input-group-text">
+                        <label for="profile_picture-clear_id" class="me-2">Clear</label>
+                        <input class="form-check-input mt-0" type="checkbox" name="profile_picture-clear" id="profile_picture-clear_id">
+                    </div>
+                    {% endif %}
+                    <input type="file" name="profile_picture" accept="image/*" class="form-control" title="" id="id_profile_picture">
+                </div>
+            </div>
+            <div class="col-12 col-lg-6 mb-3">
+                {% bootstrap_form form form_group_class="row mb-4" label_class="fw-bold mb-3" field_class="ms-3" exclude="profile_picture,bio" %}
 
-      {% bootstrap_button button_type="submit" content="OK" %}
+                <div class="row mb-4">
+                    <label class="fw-bold mb-3" for="{{ form.bio.id_for_label }}">{{ form.bio.label }}</label>
+                    <div class="ms-3">
+                        <textarea name="{{ form.bio.html_name }}" cols="40" rows="3" maxlength="{{ field.field.max_length }}" class="form-control px-4 py-3" placeholder="{{ form.bio.label }}" id="{{ form.bio.id_for_label }}" spellcheck="true">{{ form.bio.value }}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <center>{% bootstrap_button button_type="submit" content="Save" %}</center>
     </form>
 {% endblock content %}

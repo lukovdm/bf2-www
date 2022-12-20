@@ -94,16 +94,41 @@
             {% endif %}
         {% endif %}
     </div>
+    {% if object.registration_end %}
     <div class="row">
-        {% if object.registration_end %}
+        <div class="col">
+            <h4>{% trans 'registrations'|capfirst %}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
                 <i class="fa-solid fa-people-group fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
-                {% if user.is_authenticated and not object.private_registrations %}:
-                    {% for reg in object.registration_set.all %}{% if not forloop.first %}, {% endif %}
-                        {{ reg.user.first_name }}{% endfor %}
-                {% endif %}
             </p>
-        {% endif %}
+        </div>
     </div>
+    {% if user.is_authenticated and not object.private_registrations %}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        {% for reg in object.registration_set.all %}
+            <div class="col">
+                <a href="{{ reg.user.member.get_absolute_url }}" class="text-decoration-none text-reset">
+                    <div class="card display-card mb-4 shadow">
+                        <div class="display-card-image card-img-top overflow-hidden" style="
+                                {% if reg.user.member.profile_picture %}
+                                    background-image: url('{{ reg.user.member.profile_picture.url }}');
+                                {% else %}
+                                    background-image: url('{% static "website/images/logo.svg" %}');
+                                {% endif %}">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-center card-title ellipses">{{ reg.user.first_name }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endif %}
 
 {% endblock content %}

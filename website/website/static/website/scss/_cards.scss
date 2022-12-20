@@ -33,12 +33,6 @@
   white-space: nowrap;
 }
 
-.card-col {
-  @include media-breakpoint-up(md) {
-    min-width: 300px;
-  }
-}
-
 .display-description {
   background: $secondary;
   padding: 1rem;

@@ -11,9 +11,9 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
         {% for member in object_list %}
-            <div class="col card-col">
+            <div class="col">
                 <a href="{{ member.get_absolute_url }}" class="text-decoration-none text-reset">
                     <div class="card display-card mb-4 shadow">
                         <div class="display-card-image card-img-top overflow-hidden" style="
@@ -24,7 +24,7 @@
                                 {% endif %}">
                         </div>
                         <div class="card-body">
-                            <h5 class="text-center card-title ellipses">{{ member.user.get_full_name }}</h5>
+                            <h5 class="text-center card-title ellipses">{{ member.user.first_name }}</h5>
                         </div>
                     </div>
                 </a>

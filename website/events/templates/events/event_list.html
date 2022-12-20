@@ -6,9 +6,9 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
         {% for event in object_list %}
-            <div class="col card-col">
+            <div class="col">
                 <a href="{% url 'events:detail' pk=event.pk %}" class="text-decoration-none text-reset">
                     <div class="card display-card mb-4 shadow">
                         <div class="display-card-image card-img-top overflow-hidden" style="

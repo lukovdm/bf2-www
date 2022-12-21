@@ -44,7 +44,11 @@ class Member(models.Model):
     )
 
     pronouns = models.CharField(
-        blank=True, null=True, max_length=256, verbose_name=_("pronouns"), help_text=_("Please write this in english")
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("pronouns"),
+        help_text=_("Please write this in english"),
     )
 
     phone_number = models.CharField(max_length=16, verbose_name=_("phone number"))

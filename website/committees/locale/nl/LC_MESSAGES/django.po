@@ -1,0 +1,92 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Luko <luko@bfrisbee2s.nl>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: unnamed project\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-12-21 16:47+0100\n"
+"PO-Revision-Date: 2022-12-21 12:00+0100\n"
+"Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
+"Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 41.0\n"
+
+#: committees/admin.py:36
+msgid "Active members"
+msgstr "Actieve leden"
+
+#: committees/models.py:28
+msgid "name"
+msgstr "naam"
+
+#: committees/models.py:30
+msgid "image"
+msgstr "afbeelding"
+
+#: committees/models.py:32
+msgid "description"
+msgstr "beschrijving"
+
+#: committees/models.py:33
+msgid "contact email"
+msgstr "contact email"
+
+#: committees/models.py:36
+msgid "show members"
+msgstr "bekijk leden"
+
+#: committees/models.py:38
+msgid "active committee"
+msgstr "actieve commissie"
+
+#: committees/models.py:45
+msgid "Permissions"
+msgstr "Toestemmingen"
+
+#: committees/models.py:62
+msgid "User"
+msgstr "Lid"
+
+#: committees/models.py:63
+#: committees/templates/committees/committee_list.html:4
+msgid "committee"
+msgstr "commissie"
+
+#: committees/models.py:65
+msgid "member since"
+msgstr "lid sinds"
+
+#: committees/models.py:66
+msgid "member until"
+msgstr "lid tot"
+
+#: committees/models.py:68
+msgid "chair of committee"
+msgstr "lid van de commissie"
+
+#: committees/models.py:73
+msgid "until date can't be before since date"
+msgstr "tot datum kan niet voor de vanaf datum zijn"
+
+#: committees/models.py:111 committees/models.py:115
+msgid "A committees cannot have two chairs during the same period, namely: "
+msgstr ""
+"Een commissie kan niet twee voorzitters hebben in de zelfde periode namelijk:"
+
+#: committees/models.py:128 committees/models.py:131
+msgid "A user cannot have overlapping memberships in the same committee"
+msgstr ""
+"Een gebruiker kan geen overlappende lidmaadschappen hebben in de zelfde "
+"commissie"
+
+#: committees/templates/committees/committee_detail.html:12
+msgid "image for"
+msgstr "afbeelding voor"

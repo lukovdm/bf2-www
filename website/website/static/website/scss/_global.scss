@@ -39,6 +39,15 @@ h1 {
   font-family: $font-family-special;
 }
 
+.clickable {
+  &:hover {
+    border-color: $primary;
+    box-shadow: $btn-focus-box-shadow;
+    transition: $btn-transition;
+  }
+  transition: $btn-transition;
+}
+
 .keep-above {
   z-index: 100;
 }

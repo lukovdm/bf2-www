@@ -1,0 +1,34 @@
+{% extends "page_empty.html" %}
+{% load i18n static cms_tags events_datetimerange thumbnail %}
+
+{% block title %}{% trans "Members" %}{% endblock title %}
+
+{% block content %}
+    <div class="row mb-4">
+        <div class="col">
+            <div class="p-3 pb-1 bg-white rounded">
+                {% static_placeholder "General member list description" %}
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        {% for member in object_list %}
+            <div class="col">
+                <a href="{{ member.get_absolute_url }}" class="text-decoration-none text-reset">
+                    <div class="card display-card mb-4 shadow">
+                        <div class="display-card-image card-img-top overflow-hidden" style="
+                                {% if member.profile_picture %}
+                                    background-image: url('{{ member.profile_picture.url }}');
+                                {% else %}
+                                    background-image: url('{% static "website/images/logo.svg" %}');
+                                {% endif %}">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-center card-title ellipses">{{ member.name }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

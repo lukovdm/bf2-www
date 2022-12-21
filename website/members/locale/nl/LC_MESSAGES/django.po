@@ -2,16 +2,17 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Luko <luko@bfrisbee2s.nl>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-08-31 16:58+0200\n"
-"PO-Revision-Date: 2022-08-31 17:00+0200\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: nl\n"
+"POT-Creation-Date: 2022-12-21 16:47+0100\n"
+"PO-Revision-Date: 2022-12-21 16:49+0100\n"
+"Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
+"Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,19 +53,20 @@ msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: members/forms.py:26 members/templates/members/passwerd_set.html:48
+#: members/forms.py:24 members/models.py:113
+#: members/templates/members/passwerd_set.html:48
 msgid "First name"
 msgstr "Voornaam"
 
-#: members/forms.py:27 members/templates/members/passwerd_set.html:52
+#: members/forms.py:25 members/templates/members/passwerd_set.html:52
 msgid "Last name"
 msgstr "Achternaam"
 
-#: members/forms.py:28
+#: members/forms.py:26
 msgid "E-mail"
 msgstr "E-mail"
 
-#: members/forms.py:39
+#: members/forms.py:37
 msgid ""
 "This will be used to gain access to the google drive and might be the same "
 "as your regular e-mail"
@@ -72,99 +74,135 @@ msgstr ""
 "Dit word gebruikt om toegang te krijgen tot de google drive en kan mogelijk "
 "hetzelfde zijn als voorgenoemde email"
 
-#: members/models.py:17
+#: members/models.py:22
 msgid "Radboud University"
 msgstr "Radboud Universiteit"
 
-#: members/models.py:18
+#: members/models.py:23
 msgid "HAN"
 msgstr "HAN"
 
-#: members/models.py:19
+#: members/models.py:24
 msgid "Not a student"
 msgstr "Geen student"
 
-#: members/models.py:24
+#: members/models.py:29
 msgid "birth date"
 msgstr "geboortedatum"
 
-#: members/models.py:31
+#: members/models.py:36
 msgid "man"
 msgstr "man"
 
-#: members/models.py:32
+#: members/models.py:37
 msgid "woman"
 msgstr "vrouw"
 
-#: members/models.py:33
+#: members/models.py:38
 msgid "other"
 msgstr "anders"
 
-#: members/models.py:34
+#: members/models.py:39
 msgid "unspecified"
 msgstr "niet gespecificeerd"
 
-#: members/models.py:38
+#: members/models.py:43
 msgid "gender"
 msgstr "geslacht"
 
-#: members/models.py:42
+#: members/models.py:47
 msgid "pronouns"
 msgstr "voornaamwoorden"
 
-#: members/models.py:45
+#: members/models.py:47
+msgid "Please write this in english"
+msgstr "Schrijf dit aub in het engels"
+
+#: members/models.py:50
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: members/models.py:48
+#: members/models.py:53
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: members/models.py:56
+#: members/models.py:61
 msgid "postcode can only contain spaces, digits and letters"
 msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
 
-#: members/models.py:60
+#: members/models.py:65
 msgid "zipcode"
 msgstr "postcode"
 
-#: members/models.py:63
+#: members/models.py:68
 msgid "city"
 msgstr "woonplaats"
 
-#: members/models.py:66
+#: members/models.py:71
 msgid "Where do you study?"
 msgstr "Waar studeer je?"
 
-#: members/models.py:71
+#: members/models.py:76
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: members/models.py:75
+#: members/models.py:80
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: members/models.py:81
+#: members/models.py:86
 msgid "other club"
 msgstr "andere club"
 
-#: members/models.py:87
+#: members/models.py:92
 msgid "preferred language"
 msgstr "voorkeurs taal"
 
-#: members/models.py:90
+#: members/models.py:95
 msgid "google email"
 msgstr "google e-mail"
 
-#: members/models.py:92
+#: members/models.py:97
 msgid "remarks"
 msgstr "opmerkingen"
 
-#: members/models.py:96
+#: members/models.py:100
+msgid "bio"
+msgstr "bio"
+
+#: members/models.py:114
+msgid "Full name"
+msgstr "Volledige naam"
+
+#: members/models.py:115
+msgid "Initial with last name"
+msgstr "Initaal met achternaam"
+
+#: members/models.py:116
+msgid "Nickname"
+msgstr "Bijnaam"
+
+#: members/models.py:117
+msgid "Full name with nickname"
+msgstr "Volledige naam met bijnaam"
+
+#: members/models.py:118
+msgid "First name with nickname"
+msgstr "Voornaam met bijnaam"
+
+#: members/models.py:123
+msgid "display name"
+msgstr "naam weergave"
+
+#: members/models.py:128
+msgid "nickname"
+msgstr "bijnaam"
+
+#: members/models.py:133
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: members/models.py:103
+#: members/models.py:140
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 
@@ -203,6 +241,26 @@ msgstr "privacyverklaring"
 #: members/templates/members/passwerd_set.html:27
 msgid "I agree with the privacy statement"
 msgstr "Ik ga akkoord met de privacyverklaring"
+
+#: members/templates/members/member_detail.html:15
+msgid "image for"
+msgstr "afbeelding voor"
+
+#: members/templates/members/member_detail.html:24
+msgid "Member of"
+msgstr "Lid van"
+
+#: members/templates/members/member_detail.html:24
+msgid "as chair"
+msgstr "als voorzitter"
+
+#: members/templates/members/member_detail.html:40
+msgid "Edit profile"
+msgstr "Bewerk profiel"
+
+#: members/templates/members/member_list.html:4
+msgid "Members"
+msgstr "Leden"
 
 #: members/templates/members/passwerd_set.html:4
 msgid "Activate your account"

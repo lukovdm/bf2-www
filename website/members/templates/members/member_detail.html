@@ -1,0 +1,45 @@
+{% extends "page.html" %}
+{% load i18n static cms_tags events_datetimerange thumbnail %}
+
+{% block title %}{{ object.name }}{% endblock title %}
+{% block pagetitle %}{{ object.name }}{% endblock pagetitle %}
+{% block pagesubtitle %}({{ object.default_pronouns }}){% endblock pagesubtitle %}
+
+{% block content %}
+
+    <div class="row mb-3">
+        <div class="col-6">
+            {% if object.profile_picture %}
+            <div class="w-100 d-flex justify-content-center px-0">
+                <img src="{{ object.profile_picture.url }}" class="rounded img-fluid shadow"
+                     alt="{% trans 'image for' %} {{ object.name }}">
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-6">
+            <div class="row mb-3">
+                <ul class="list-group pe-0">
+                    {% for membership in committee_memberships %}
+                        <li class="list-group-item {% if membership.until is None %}active{% endif %}">
+                            {% trans 'Member of' %} {{ membership.committee.name }}{% if membership.chair %} {% trans 'as chair' %}{% endif %}:
+                            {{ membership.since }}
+                            {% if membership.until %}- {{ membership.until }}{% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if object.bio %}
+                <div class="row mb-3 p-3 bg-secondary rounded">
+                    <p class="m-0">
+                        {{ object.bio }}
+                    </p>
+                </div>
+            {% endif %}
+            {% if object.user == request.user %}
+                <div class="row mb-3">
+                    <a class="btn btn-outline-primary" href="{% url "members:edit" %}">{% trans "Edit profile" %}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

@@ -6,20 +6,20 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="row">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
         {% for event in object_list %}
-            <div class="col card-col">
+            <div class="col">
                 <a href="{% url 'events:detail' pk=event.pk %}" class="text-decoration-none text-reset">
-                    <div class="card event-card mb-4 shadow">
-                        <div class="event-card-image card-img-top overflow-hidden" style="
+                    <div class="card display-card mb-4 shadow">
+                        <div class="display-card-image card-img-top overflow-hidden" style="
                                 {% if event.image %}
                                     background-image: url('{{ event.image.url }}');
                                 {% else %}
                                     background-image: url('{% static "website/images/logo.svg" %}');
                                 {% endif %}">
                             {% if event.registration %}
-                                <div class="event-card-image-check">
-                                    <i class="bi bi-check-circle-fill fs-4"></i>
+                                <div class="display-card-image-check">
+                                    <i class="fa-regular fa-circle-check fs-4"></i>
                                 </div>
                             {% endif %}
                         </div>
@@ -27,7 +27,7 @@
                             <h5 class="text-center card-title ellipses">{{ event.name }}</h5>
                             <div class="row">
                                 <div class="col-6 ellipses">
-                                    <i class="bi bi-calendar pe-2"></i>
+                                    <i class="fa-regular fa-calendar-days pe-2"></i>
                                     {% if event.show_end_date %}
                                         {% daterange event.start_date event.end_date %}
                                     {% else %}
@@ -35,7 +35,7 @@
                                     {% endif %}
                                 </div>
                                 <div class="col-6 ellipses">
-                                    <i class="bi bi-clock pe-2"></i>
+                                    <i class="fa-regular fa-clock pe-2"></i>
                                     {% if event.show_end_date %}
                                         {% datetimerange event.start_date event.end_date %}
                                     {% else %}
@@ -45,11 +45,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-6 ellipses">
-                                    <i class="bi bi-geo-alt pe-2"></i>
+                                    <i class="fa-solid fa-location-dot pe-2"></i>
                                     {{ event.location }}
                                 </div>
                                 <div class="col-6 ellipses">
-                                    <i class="bi bi-people fs-5 pe-2"></i>
+                                    <i class="fa-solid fa-people-group fs-5 pe-2"></i>
                                     {{ event.registration_set.all|length }}/{{ event.limit }}
                                 </div>
                             </div>

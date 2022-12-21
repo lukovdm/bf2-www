@@ -1,0 +1,34 @@
+{% extends "page_empty.html" %}
+{% load i18n static cms_tags events_datetimerange thumbnail %}
+
+{% block title %}{% trans "committee"|capfirst %}{% endblock title %}
+
+{% block content %}
+    <div class="row mb-4">
+        <div class="col">
+            <div class="p-3 pb-1 bg-white rounded">
+                {% static_placeholder "General committee description" %}
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+        {% for committee in object_list %}
+            <div class="col">
+                <a href="{{ committee.get_absolute_url }}" class="text-decoration-none text-reset">
+                    <div class="card display-card mb-4 shadow">
+                        <div class="display-card-image card-img-top overflow-hidden" style="
+                                {% if committee.image %}
+                                    background-image: url('{{ committee.image.url }}');
+                                {% else %}
+                                    background-image: url('{% static "website/images/logo.svg" %}');
+                                {% endif %}">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="text-center card-title ellipses">{{ committee.name }}</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,13 +1,10 @@
 from django.conf import settings
-from django.contrib import messages
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import (
-    get_password_validators,
     password_validators_help_text_html,
     validate_password,
 )
-from django.core.exceptions import ValidationError
 from django.forms import (
     ModelForm,
     CharField,

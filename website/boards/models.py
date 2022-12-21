@@ -1,6 +1,6 @@
+from cms.models.pluginmodel import CMSPlugin
 from django.core.exceptions import ValidationError
 from django.db import models
-from cms.models.pluginmodel import CMSPlugin
 from django.db.models import SET_NULL
 from django.utils.translation import gettext_lazy as _
 from filer.fields.image import FilerImageField
@@ -17,34 +17,8 @@ class Board(models.Model):
     )
 
     def clean(self):
-        if self.end:
-            if self.start > self.end:
-                raise ValidationError(
-                    {"start": _("Start date should be before end date.")}
-                )
-
-            for board in Board.objects.all():
-                if board == self:
-                    continue
-                if (
-                    board.end
-                    and (
-                        self.start < board.end <= self.end
-                        or board.start <= self.start < board.end
-                        or board.start < self.end <= board.end
-                    )
-                    or self.start <= board.start < self.end
-                ):
-                    raise ValidationError(
-                        {
-                            "start": _(
-                                "A boards start and end cannot overlap with another board"
-                            ),
-                            "end": _(
-                                "A boards start and end cannot overlap with another board"
-                            ),
-                        }
-                    )
+        if self.end and self.start > self.end:
+            raise ValidationError({"start": _("Start date should be before end date.")})
         else:
             for board in Board.objects.all():
                 if board is self or board.end is None:
@@ -53,6 +27,31 @@ class Board(models.Model):
                     raise ValidationError(
                         {"start": _("A boards start cannot fall in another board")}
                     )
+
+    def validate_unique(self, **kwargs):
+        super().validate_unique(**kwargs)
+        for board in Board.objects.all():
+            if board == self:
+                continue
+            if (
+                board.end
+                and (
+                    self.start < board.end <= self.end
+                    or board.start <= self.start < board.end
+                    or board.start < self.end <= board.end
+                )
+                or self.start <= board.start < self.end
+            ):
+                raise ValidationError(
+                    {
+                        "start": _(
+                            "A boards start and end cannot overlap with another board"
+                        ),
+                        "end": _(
+                            "A boards start and end cannot overlap with another board"
+                        ),
+                    }
+                )
 
     def __str__(self):
         return _("Board of") + " " + str(self.start.year)
@@ -100,7 +99,7 @@ class BoardMembership(models.Model, metaclass=ModelTranslateMeta):
     def __str__(self):
         return (
             "boardmembership: "
-            + (self.name if self.name else self.member.user.get_full_name())
+            + (self.name if self.name else self.member.name())
             + " "
             + str(self.board.start.year)
             + "/"

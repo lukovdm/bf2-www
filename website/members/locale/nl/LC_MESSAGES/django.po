@@ -2,16 +2,17 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Luko <luko@bfrisbee2s.nl>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-21 00:44+0100\n"
-"PO-Revision-Date: 2022-12-19 14:13+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: nl\n"
+"POT-Creation-Date: 2022-12-21 11:59+0100\n"
+"PO-Revision-Date: 2022-12-21 11:59+0100\n"
+"Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
+"Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -165,36 +166,32 @@ msgid "bio"
 msgstr "bio"
 
 #: models.py:112
-#, fuzzy
-#| msgid "First name"
 msgid "Full name"
-msgstr "Voornaam"
+msgstr "Volledige naam"
 
 #: models.py:113
 msgid "Initial with last name"
-msgstr ""
+msgstr "Initaal met achternaam"
 
 #: models.py:114
 msgid "Nickname"
-msgstr ""
+msgstr "Bijnaam"
 
 #: models.py:115
 msgid "Full name with nickname"
-msgstr ""
+msgstr "Volledige naam met bijnaam"
 
 #: models.py:116
 msgid "First name with nickname"
-msgstr ""
+msgstr "Voornaam met bijnaam"
 
 #: models.py:121
-#, fuzzy
-#| msgid "First name"
 msgid "display name"
-msgstr "Voornaam"
+msgstr "naam weergave"
 
 #: models.py:126
 msgid "nickname"
-msgstr ""
+msgstr "bijnaam"
 
 #: models.py:131
 msgid "Your birthday must lay in the past"

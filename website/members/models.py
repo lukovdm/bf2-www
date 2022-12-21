@@ -44,7 +44,7 @@ class Member(models.Model):
     )
 
     pronouns = models.CharField(
-        blank=True, null=True, max_length=256, verbose_name=_("pronouns")
+        blank=True, null=True, max_length=256, verbose_name=_("pronouns"), help_text=_("Please write this in english")
     )
 
     phone_number = models.CharField(max_length=16, verbose_name=_("phone number"))
@@ -152,6 +152,16 @@ class Member(models.Model):
             return f'{self.user.first_name} "{self.nickname}" {self.user.last_name}'
         elif self.display_name == self.FIRST_NAME_NICKNAME:
             return f'{self.user.first_name} "{self.nickname}"'
+
+    def default_pronouns(self) -> str:
+        if self.pronouns:
+            return self.pronouns
+        elif self.gender == self.MAN:
+            return "he/him"
+        elif self.gender == self.WOMAN:
+            return "she/her"
+        else:
+            return "they/them"
 
     def get_absolute_url(self):
         return reverse("members:detail", kwargs={"pk": self.pk})

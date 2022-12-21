@@ -27,7 +27,4 @@ class CommitteeDetailView(DetailView):
             .order_by("since")
             .select_related("user__member")
         )
-
-        # There is a bug in the reverse such that we can't get the member pk in the url
-        context["user_member_table"] = {u.pk: u.member.pk for u in User.objects.all()}
         return context

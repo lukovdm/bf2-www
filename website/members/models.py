@@ -9,7 +9,7 @@ from filer.fields.file import FilerFileField
 
 
 def user_directory_path(instance, filename):
-    return 'profile_pic/user_{0}/{1}'.format(instance.user.id, filename)
+    return "profile_pic/user_{0}/{1}".format(instance.user.id, filename)
 
 
 class Member(models.Model):
@@ -99,7 +99,9 @@ class Member(models.Model):
     bio = models.TextField(
         blank=True, null=True, verbose_name=_("bio"), max_length=1000
     )
-    profile_picture = models.ImageField(blank=True, null=True, upload_to=user_directory_path)
+    profile_picture = models.ImageField(
+        blank=True, null=True, upload_to=user_directory_path
+    )
 
     FIRST_NAME = "Firstname"
     FULL_NAME = "Fullname"

@@ -14,7 +14,7 @@ class MemberListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         members = super().get_queryset()
-        # members = members.filter(user__active=True)
+        members = members.filter(user__is_active=True).order_by("user__first_name")
         return members
 
 

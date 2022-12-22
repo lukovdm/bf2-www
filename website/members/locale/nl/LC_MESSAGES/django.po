@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-21 16:47+0100\n"
+"POT-Creation-Date: 2022-12-22 10:27+0100\n"
 "PO-Revision-Date: 2022-12-21 16:49+0100\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
@@ -53,7 +53,7 @@ msgstr "Je hebt geen toestemming om een gebruiker te accepteren"
 msgid "You can't deny a person who is already active"
 msgstr "Je kan gebruikers die al actief zijn niet afwijzen"
 
-#: members/forms.py:24 members/models.py:113
+#: members/forms.py:24 members/models.py:117
 #: members/templates/members/passwerd_set.html:48
 msgid "First name"
 msgstr "Voornaam"
@@ -110,99 +110,99 @@ msgstr "niet gespecificeerd"
 msgid "gender"
 msgstr "geslacht"
 
-#: members/models.py:47
+#: members/models.py:50
 msgid "pronouns"
 msgstr "voornaamwoorden"
 
-#: members/models.py:47
+#: members/models.py:51
 msgid "Please write this in english"
 msgstr "Schrijf dit aub in het engels"
 
-#: members/models.py:50
+#: members/models.py:54
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: members/models.py:53
+#: members/models.py:57
 msgid "street name and house number"
 msgstr "straatnaam en huisnummer"
 
-#: members/models.py:61
+#: members/models.py:65
 msgid "postcode can only contain spaces, digits and letters"
 msgstr "een postcode kan alleen spaties, cijfers en letters bevatten"
 
-#: members/models.py:65
+#: members/models.py:69
 msgid "zipcode"
 msgstr "postcode"
 
-#: members/models.py:68
+#: members/models.py:72
 msgid "city"
 msgstr "woonplaats"
 
-#: members/models.py:71
+#: members/models.py:75
 msgid "Where do you study?"
 msgstr "Waar studeer je?"
 
-#: members/models.py:76
+#: members/models.py:80
 msgid "sports card number"
 msgstr "sportkaartnummer"
 
-#: members/models.py:80
+#: members/models.py:84
 msgid "sports card number has invalid form"
 msgstr "sportkaartnummer heeft een ongeldige vorm"
 
-#: members/models.py:86
+#: members/models.py:90
 msgid "other club"
 msgstr "andere club"
 
-#: members/models.py:92
+#: members/models.py:96
 msgid "preferred language"
 msgstr "voorkeurs taal"
 
-#: members/models.py:95
+#: members/models.py:99
 msgid "google email"
 msgstr "google e-mail"
 
-#: members/models.py:97
+#: members/models.py:101
 msgid "remarks"
 msgstr "opmerkingen"
 
-#: members/models.py:100
+#: members/models.py:104
 msgid "bio"
 msgstr "bio"
 
-#: members/models.py:114
+#: members/models.py:118
 msgid "Full name"
 msgstr "Volledige naam"
 
-#: members/models.py:115
+#: members/models.py:119
 msgid "Initial with last name"
 msgstr "Initaal met achternaam"
 
-#: members/models.py:116
+#: members/models.py:120
 msgid "Nickname"
 msgstr "Bijnaam"
 
-#: members/models.py:117
+#: members/models.py:121
 msgid "Full name with nickname"
 msgstr "Volledige naam met bijnaam"
 
-#: members/models.py:118
+#: members/models.py:122
 msgid "First name with nickname"
 msgstr "Voornaam met bijnaam"
 
-#: members/models.py:123
+#: members/models.py:127
 msgid "display name"
 msgstr "naam weergave"
 
-#: members/models.py:128
+#: members/models.py:132
 msgid "nickname"
 msgstr "bijnaam"
 
-#: members/models.py:133
+#: members/models.py:137
 msgid "Your birthday must lay in the past"
 msgstr "Je verjaardag moet in het verleden liggen"
 
-#: members/models.py:140
+#: members/models.py:144
 msgid "can accept or reject"
 msgstr "kan accepteren of afwijzen"
 

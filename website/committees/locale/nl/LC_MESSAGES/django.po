@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-21 16:47+0100\n"
-"PO-Revision-Date: 2022-12-21 12:00+0100\n"
+"POT-Creation-Date: 2022-12-22 10:27+0100\n"
+"PO-Revision-Date: 2022-12-22 10:28+0100\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
 "Language: nl_NL\n"
@@ -87,6 +87,11 @@ msgstr ""
 "Een gebruiker kan geen overlappende lidmaadschappen hebben in de zelfde "
 "commissie"
 
-#: committees/templates/committees/committee_detail.html:12
+#: committees/templates/committees/committee_detail.html:13
 msgid "image for"
 msgstr "afbeelding voor"
+
+#: committees/templates/committees/committee_detail.html:34
+#| msgid "show members"
+msgid "members"
+msgstr "leden"

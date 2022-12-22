@@ -31,7 +31,7 @@
     </div>
     {% if user.is_authenticated and object.show_members %}
         <div class="row">
-            <h4>Members</h4>
+            <h4>{% trans "members"|capfirst %}</h4>
         </div>
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
         {% for membership in committee_memberships %}

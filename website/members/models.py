@@ -110,16 +110,16 @@ class Member(models.Model):
     FIRST_NAME = "Firstname"
     FULL_NAME = "Fullname"
     INITIALS = "Initials"
-    NICK_NAME = "Nickname"
     FULL_NAME_NICKNAME = "FullnameNickname"
     FIRST_NAME_NICKNAME = "FirstnameNickname"
+    LAST_NAME_NICKNAME = "LastnameNickname"
     DISPLAY_NAME_CHOICES = [
         (FIRST_NAME, _("First name")),
         (FULL_NAME, _("Full name")),
         (INITIALS, _("Initial with last name")),
-        (NICK_NAME, _("Nickname")),
         (FULL_NAME_NICKNAME, _("Full name with nickname")),
         (FIRST_NAME_NICKNAME, _("First name with nickname")),
+        (LAST_NAME_NICKNAME, _("Last name with nickname")),
     ]
 
     display_name = models.CharField(
@@ -150,22 +150,24 @@ class Member(models.Model):
             return self.user.get_full_name()
         elif self.display_name == self.INITIALS:
             return self.user.first_name[0] + " " + self.user.last_name
-        elif self.display_name == self.NICK_NAME:
-            return f'"{self.nickname}"'
         elif self.display_name == self.FULL_NAME_NICKNAME:
             return f'{self.user.first_name} "{self.nickname}" {self.user.last_name}'
         elif self.display_name == self.FIRST_NAME_NICKNAME:
             return f'{self.user.first_name} "{self.nickname}"'
+        elif self.display_name == self.LAST_NAME_NICKNAME:
+            return f'"{self.nickname}" {self.user.last_name}'
 
     def default_pronouns(self) -> str:
         if self.pronouns:
             return self.pronouns
         elif self.gender == self.MAN:
-            return "he/him"
+            return "(he/him)"
         elif self.gender == self.WOMAN:
-            return "she/her"
+            return "(she/her)"
+        elif self.gender == self.OTHER:
+            return "(they/them)"
         else:
-            return "they/them"
+            return ""
 
     def get_absolute_url(self):
         return reverse("members:detail", kwargs={"pk": self.pk})

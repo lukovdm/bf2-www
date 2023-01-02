@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-22 11:10+0100\n"
+"POT-Creation-Date: 2023-01-02 22:48+0100\n"
 "PO-Revision-Date: 2022-12-22 11:10+0100\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
@@ -186,7 +186,6 @@ msgid "First name with nickname"
 msgstr "Voornaam met bijnaam"
 
 #: models.py:122
-#| msgid "First name with nickname"
 msgid "Last name with nickname"
 msgstr "Achternaam met bijnaam"
 
@@ -245,14 +244,6 @@ msgstr "Ik ga akkoord met de privacyverklaring"
 #: templates/members/member_detail.html:15
 msgid "image for"
 msgstr "afbeelding voor"
-
-#: templates/members/member_detail.html:24
-msgid "Member of"
-msgstr "Lid van"
-
-#: templates/members/member_detail.html:24
-msgid "as chair"
-msgstr "als voorzitter"
 
 #: templates/members/member_detail.html:40
 msgid "Edit profile"

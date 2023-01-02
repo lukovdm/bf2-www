@@ -21,9 +21,9 @@
                 <ul class="list-group pe-0">
                     {% for membership in committee_memberships %}
                         <li class="list-group-item {% if membership.until is None %}active{% endif %}">
-                            {% trans 'Member of' %} {{ membership.committee.name }}{% if membership.chair %} {% trans 'as chair' %}{% endif %}:
-                            {{ membership.since }}
-                            {% if membership.until %}- {{ membership.until }}{% endif %}
+                            <b>{{ membership.committee.name }}</b>{% if membership.chair %} <i class="fa-solid fa-chair"></i>{% endif %}
+                            <small class="fst-italic ps-2"> {{ membership.since }}
+                            {% if membership.until %}- {{ membership.until }}{% endif %}</small>
                         </li>
                     {% endfor %}
                 </ul>

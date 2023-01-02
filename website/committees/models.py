@@ -137,9 +137,11 @@ class CommitteeMembership(Model):
 
     def save(self, **kwargs):
         super().save(**kwargs)
-        self.user.is_staff = self.user.committeemembership_set.exclude(
-            until__lte=timezone.now(), committee__is_staff=False
-        ).exists()
+        self.user.is_staff = (
+            self.user.committeemembership_set.exclude(until__lte=timezone.now())
+            .exclude(committee__is_staff=False)
+            .exists()
+        )
 
         self.committee.perm_group.user_set.set(
             User.objects.filter(committee=self.committee).exclude(

@@ -45,6 +45,8 @@ class Committee(Model, metaclass=ModelTranslateMeta):
         verbose_name=_("Permissions"),
     )
 
+    is_staff = BooleanField(verbose_name=_("is staff on the site"), default=False)
+
     def save(self, **kwargs):
         if self.perm_group is None:
             self.perm_group = Group.objects.create(name=self.name_en)
@@ -136,7 +138,7 @@ class CommitteeMembership(Model):
     def save(self, **kwargs):
         super().save(**kwargs)
         self.user.is_staff = self.user.committeemembership_set.exclude(
-            until__lte=timezone.now()
+            until__lte=timezone.now(), committee__is_staff=True
         ).exists()
 
         self.committee.perm_group.user_set.set(

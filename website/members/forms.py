@@ -37,7 +37,7 @@ class BecomeAMemberForm(ModelForm):
                 "This will be used to gain access to the google drive and might be the same as your regular e-mail"
             ),
         }
-        exclude = ["user"]
+        exclude = ["user", "bio", "profile_picture", "display_name", "nickname"]
 
     def clean_password(self):
         validate_password(self.data["password"], self.instance)

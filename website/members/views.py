@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordResetConfirmView
 from django.views.generic import DetailView, ListView, UpdateView, FormView
@@ -26,6 +28,10 @@ class MemberDetailView(LoginRequiredMixin, DetailView):
         context[
             "committee_memberships"
         ] = self.object.user.committeemembership_set.order_by("since").all()
+        context["board_memberships"] = self.object.boardmembership_set.order_by(
+            "board__start"
+        ).all()
+        context["today"] = datetime.datetime.today()
         return context
 
 

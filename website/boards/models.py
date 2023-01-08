@@ -1,3 +1,5 @@
+import datetime
+
 from cms.models.pluginmodel import CMSPlugin
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -15,6 +17,10 @@ class Board(models.Model):
     picture = FilerImageField(
         blank=True, null=True, on_delete=SET_NULL, verbose_name=_("picture")
     )
+
+    @property
+    def is_current_board(self):
+        return self.start <= datetime.date.today() < self.end
 
     def clean(self):
         if self.end and self.start > self.end:

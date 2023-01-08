@@ -2,14 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Luko <luko@bfrisbee2s.nl>, 2022.
+# Luko <luko@bfrisbee2s.nl>, 2022-2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-02 22:48+0100\n"
-"PO-Revision-Date: 2022-12-22 11:10+0100\n"
+"POT-Creation-Date: 2023-01-08 22:14+0100\n"
+"PO-Revision-Date: 2023-01-08 22:15+0100\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
 "Language: nl_NL\n"
@@ -245,7 +245,20 @@ msgstr "Ik ga akkoord met de privacyverklaring"
 msgid "image for"
 msgstr "afbeelding voor"
 
-#: templates/members/member_detail.html:40
+#: templates/members/member_detail.html:21
+#| msgid "Committee memberships"
+msgid "Committees"
+msgstr "Commissies"
+
+#: templates/members/member_detail.html:34
+msgid "Boards"
+msgstr "Besturen"
+
+#: templates/members/member_detail.html:38
+msgid "of the board of"
+msgstr "van het bestuur van"
+
+#: templates/members/member_detail.html:53
 msgid "Edit profile"
 msgstr "Bewerk profiel"
 

@@ -18,6 +18,7 @@
         </div>
         <div class="col-6">
             <div class="row mb-3">
+                <h6>{% trans "Committees" %}</h6>
                 <ul class="list-group pe-0">
                     {% for membership in committee_memberships %}
                         <li class="list-group-item {% if membership.until is None %}active{% endif %}">
@@ -28,6 +29,18 @@
                     {% endfor %}
                 </ul>
             </div>
+            {% if board_memberships %}
+                <div class="row mb-3">
+                    <h6>{% trans "Boards" %}</h6>
+                    <ul class="list-group pe-0">
+                        {% for membership in board_memberships %}
+                            <li class="list-group-item {% if membership.board.is_current_board %}active{% endif %}">
+                                <b>{{ membership.function }} {% trans "of the board of" %} {{ membership.board.start.year }}</b>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
             {% if object.bio %}
                 <div class="row mb-3 p-3 bg-secondary rounded">
                     <p class="m-0">

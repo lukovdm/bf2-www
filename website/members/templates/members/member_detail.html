@@ -35,7 +35,7 @@
                     <ul class="list-group pe-0">
                         {% for membership in board_memberships %}
                             <li class="list-group-item {% if membership.board.is_current_board %}active{% endif %}">
-                                <b>{{ membership.function }} {% trans "of the board of" %} {{ membership.board.start.year }}</b>
+                                <b>{{ membership.function }} {% trans "of the board of" %} {{ membership.board.start.year }}-{{ membership.board.end.year }}</b>
                             </li>
                         {% endfor %}
                     </ul>

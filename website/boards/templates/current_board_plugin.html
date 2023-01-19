@@ -8,10 +8,13 @@
                     <ul class="list-group list-group-flush">
                         {% for board_member in board.boardmembership_set.all|dictsort:"id" %}
                             {% if board_member.picture or board_member.description %}
-                                <button type="button" role="button" class="list-group-item list-group-item-action" data-bs-toggle="modal" data-bs-target="#y{{ year }}m{{ board_member.id }}">
-                                    {{ board_member.function }}:
-                                    {% if board_member.member %}{{ board_member.user.get_full_name }}{% else %}{{ board_member.name }}{% endif %}
-                                    {% if current %}(<a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>){% endif %}
+                                <button type="button" role="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" data-bs-toggle="modal" data-bs-target="#y{{ year }}m{{ board_member.id }}">
+                                    <p class="mb-0 me-2 text-body">
+                                        {{ board_member.function }}:
+                                        {% if board_member.member %}{{ board_member.member.user.get_full_name }}{% else %}{{ board_member.name }}{% endif %}
+                                        {% if current %}(<a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>){% endif %}
+                                    </p>
+                                    <span class="badge bg-primary rounded-pill"> > </span>
                                 </button>
                                 <div class="modal fade" id="y{{ year }}m{{ board_member.id }}" tabindex="-1" aria-labelledby="y{{ year }}m{{ board_member.id }}label" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
@@ -34,9 +37,11 @@
                                 </div>
                             {% else %}
                                 <div class="list-group-item">
-                                    {{ board_member.function }}:
-                                    {% if board_member.member %}{{ board_member.user.get_full_name }}{% else %}{{ board_member.name }}{% endif %}
-                                    {% if current %}(<a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>){% endif %}
+                                    <p class="mb-0">
+                                        {{ board_member.function }}:
+                                        {% if board_member.member %}{{ board_member.member.user.get_full_name }}{% else %}{{ board_member.name }}{% endif %}
+                                        {% if current %}(<a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>){% endif %}
+                                    </p>
                                 </div>
                             {% endif %}
                         {% endfor %}

@@ -28,7 +28,7 @@ class CommitteeAdmin(admin.ModelAdmin):
         "image",
         "email",
         ("show_members", "active"),
-        "is_staff",
+        ("is_staff", "show_in_achievements"),
         "perm_group",
     )
 

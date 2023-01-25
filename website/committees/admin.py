@@ -12,7 +12,14 @@ class CommitteeMembershipInline(admin.TabularInline):
 
 @admin.register(Committee)
 class CommitteeAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "active_member_count", "active", "is_staff", "show_in_achievements")
+    list_display = (
+        "name",
+        "email",
+        "active_member_count",
+        "active",
+        "is_staff",
+        "show_in_achievements",
+    )
     list_filter = ("active", "is_staff", "image")
 
     inlines = (CommitteeMembershipInline,)

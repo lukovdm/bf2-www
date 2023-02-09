@@ -118,7 +118,7 @@ class EventUnregisterView(LoginRequiredMixin, View):
         return redirect(event)
 
 
-class EventICSView(LoginRequiredMixin, View):
+class EventICSView(View):
     http_method_names = ["get"]
 
     def get(self, request, *args, **kwargs):

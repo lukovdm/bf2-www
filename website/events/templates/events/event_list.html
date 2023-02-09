@@ -59,4 +59,9 @@
             </div>
         {% endfor %}
     </div>
+    <div class="row mb-4 mt-4">
+        <div class="col d-flex justify-content-center">
+            <a class="btn btn-primary" href="{% url 'events:ics' %}">{% trans "Add these events to your calendar" %}</a>
+        </div>
+    </div>
 {% endblock content %}

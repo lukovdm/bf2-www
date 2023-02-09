@@ -1,14 +1,13 @@
-import datetime
-
+import ics
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView
+from ics import Calendar, Event, Organizer, Geo
 
 from events.models import Event, Registration
 
@@ -117,3 +116,31 @@ class EventUnregisterView(LoginRequiredMixin, View):
         messages.success(request, _("You successfully unregistered."))
 
         return redirect(event)
+
+
+class EventICSView(LoginRequiredMixin, View):
+    http_method_names = ["get"]
+
+    def get(self, request, *args, **kwargs):
+        events = (
+            Event.objects.filter(end_date__gt=timezone.now())
+            .order_by("start_date")
+            .all()
+        )
+
+        c = Calendar(creator="BFrisBee2's")
+        for event in events:
+            e = ics.Event(
+                name=event.name,
+                begin=event.start_date,
+                end=event.end_date,
+                url=request.build_absolute_uri(event.get_absolute_url()),
+                organizer=Organizer(
+                    email="info@bfrisbee2s.nl", common_name="BFrisBee2's"
+                ),
+                description=_("For more details, see the website: ")
+                + request.build_absolute_uri(event.get_absolute_url()),
+            )
+            c.events.add(e)
+
+        return HttpResponse(c.serialize(), content_type="text/calendar")

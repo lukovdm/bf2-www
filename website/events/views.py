@@ -22,13 +22,13 @@ class EventListView(ListView):
         events = events.filter(end_date__gt=timezone.now()).order_by("start_date")
 
         if self.request.user.is_authenticated:
-            try:
-                for event in events:
+            for event in events:
+                try:
                     event.registration = Registration.objects.get(
                         user=self.request.user, event=event
                     )
-            except Registration.DoesNotExist:
-                pass
+                except Registration.DoesNotExist:
+                    pass
 
         return events
 

@@ -48,12 +48,16 @@
         <div class="rounded event-description">{% render_placeholder object.description %}</div>
     </div>
     <div class="row mb-3">
-        {% if user.is_authenticated and object.limit %}
+        {% if user.is_authenticated and object.registration_start %}
             {% if registration %}
                 <form action="{% url "events:unregister" object.pk %}" method="post">{% csrf_token %}
                     <div class="btn-group w-100">
-                        <button class="btn btn-outline-primary fw-bold" name="unregister" value="unregister">
-                            {% trans "unregister"|capfirst %}
+                        <button class="btn btn-outline-primary fw-bold" name="unregister" value="unregister"
+                            {% if object.registration_end and object.registration_end < now %} disabled>
+                                {% trans "Deregistration is closed, contact the committee" %}
+                            {% else %}>
+                                {% trans "unregister"|capfirst %}
+                            {% endif %}
                         </button>
                         {% if object.form_link %}
                             <a class="btn btn-outline-primary fw-bold" href="{% url "events:form" object.pk %}">
@@ -67,9 +71,9 @@
                     <button class="btn btn-outline-primary fw-bold w-100" name="register" value="register"
                             {% if object.registration_set.all|length >= object.limit %} disabled>
                                 {% trans "Full" %}
-                                {% elif object.registration_start and object.registration_start > now %} disabled>
-                                {% trans "Not opend" %}
-                                {% elif object.registration_end and object.registration_end < now %} disabled>
+                            {% elif object.registration_start and object.registration_start > now %} disabled>
+                                {% trans "Not opened" %}
+                            {% elif object.registration_end and object.registration_end < now %} disabled>
                                 {% trans "Closed" %}
                             {% else %}>
                                 {% trans "register"|capfirst %}

@@ -1,14 +1,13 @@
-import datetime
-
+import ics
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView
+from ics import Calendar, Organizer
 
 from events.models import Event, Registration
 
@@ -23,13 +22,13 @@ class EventListView(ListView):
         events = events.filter(end_date__gt=timezone.now()).order_by("start_date")
 
         if self.request.user.is_authenticated:
-            try:
-                for event in events:
+            for event in events:
+                try:
                     event.registration = Registration.objects.get(
                         user=self.request.user, event=event
                     )
-            except Registration.DoesNotExist:
-                pass
+                except Registration.DoesNotExist:
+                    pass
 
         return events
 
@@ -113,7 +112,44 @@ class EventUnregisterView(LoginRequiredMixin, View):
         event = get_object_or_404(Event, pk=kwargs["pk"])
         registration = get_object_or_404(Registration, event=event, user=request.user)
 
+        if event.registration_end and event.registration_end < timezone.now():
+            messages.error(
+                request,
+                _(
+                    "The registrations for this event have already closed, "
+                    "if you still want to deregister contact the committee."
+                ),
+            )
+
         registration.delete()
         messages.success(request, _("You successfully unregistered."))
 
         return redirect(event)
+
+
+class EventICSView(View):
+    http_method_names = ["get"]
+
+    def get(self, request, *args, **kwargs):
+        events = (
+            Event.objects.filter(end_date__gt=timezone.now())
+            .order_by("start_date")
+            .all()
+        )
+
+        c = Calendar(creator="BFrisBee2's")
+        for event in events:
+            e = ics.Event(
+                name=event.name,
+                begin=event.start_date,
+                end=event.end_date,
+                url=request.build_absolute_uri(event.get_absolute_url()),
+                organizer=Organizer(
+                    email="info@bfrisbee2s.nl", common_name="BFrisBee2's"
+                ),
+                description=_("For more details, see the website: ")
+                + request.build_absolute_uri(event.get_absolute_url()),
+            )
+            c.events.add(e)
+
+        return HttpResponse(c.serialize(), content_type="text/calendar")

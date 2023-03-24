@@ -2,171 +2,194 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Luko <luko@bfrisbee2s.nl>, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-22 10:27+0100\n"
-"PO-Revision-Date: 2022-12-20 12:20+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: nl\n"
+"POT-Creation-Date: 2023-03-24 11:11+0100\n"
+"PO-Revision-Date: 2023-03-24 11:14+0100\n"
+"Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
+"Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 41.0\n"
 
-#: events/models.py:26
+#: models.py:26
 msgid "name"
 msgstr "naam"
 
-#: events/models.py:28
+#: models.py:28
 msgid "image"
 msgstr "foto"
 
-#: events/models.py:30
+#: models.py:30
 msgid "start date"
 msgstr "start datum"
 
-#: events/models.py:31
+#: models.py:31
 msgid "end date"
 msgstr "eind datum"
 
-#: events/models.py:32
+#: models.py:32
 msgid "location"
 msgstr "locatie"
 
-#: events/models.py:33
+#: models.py:33
 msgid "description"
 msgstr "beschrijving"
 
-#: events/models.py:35
+#: models.py:35
 msgid "participant limit"
 msgstr "deelnemerslimiet"
 
-#: events/models.py:37
+#: models.py:37
 msgid "Don't show who is registered"
 msgstr "Laat niet zien wie is geregistreerd"
 
-#: events/models.py:40
+#: models.py:40
 msgid "cost"
 msgstr "kosten"
 
-#: events/models.py:44
+#: models.py:44
 msgid "registration start"
 msgstr "start registratie"
 
-#: events/models.py:47
+#: models.py:47
 msgid "registration end"
 msgstr "einde registratie"
 
-#: events/models.py:49
+#: models.py:49
 msgid "Show end date"
 msgstr "Laat eind datum zien"
 
-#: events/models.py:55
+#: models.py:55
 msgid "Google form link"
 msgstr "Google form link"
 
-#: events/models.py:59
+#: models.py:59
 msgid "Please enter a google form share link"
 msgstr "Vul a.u.b. een google form deel link in"
 
-#: events/models.py:82
+#: models.py:82
 msgid "event"
 msgstr "evenement"
 
-#: events/models.py:83
+#: models.py:83
 msgid "user"
 msgstr "gebruiker"
 
-#: events/models.py:85
+#: models.py:85
 msgid "registration date"
 msgstr "registratie datum"
 
-#: events/models.py:86
+#: models.py:86
 msgid "has paid"
 msgstr "heeft betaald"
 
-#: events/templates/events/event_detail.html:43
+#: templates/events/event_detail.html:43
 msgid "free"
 msgstr "gratis"
 
-#: events/templates/events/event_detail.html:56
+#: templates/events/event_detail.html:57
+#| msgid "registrations close at"
+msgid "Deregistration is closed, contact the committee"
+msgstr "Uitschrijven is gesloten, contacteer de commissie"
+
+#: templates/events/event_detail.html:59
 msgid "unregister"
 msgstr "afmelden"
 
-#: events/templates/events/event_detail.html:60
+#: templates/events/event_detail.html:64
 msgid "Change form"
 msgstr "Verander formulier"
 
-#: events/templates/events/event_detail.html:69
+#: templates/events/event_detail.html:73
 msgid "Full"
 msgstr "Vol"
 
-#: events/templates/events/event_detail.html:71
-msgid "Not opend"
+#: templates/events/event_detail.html:75
+#| msgid "Not opend"
+msgid "Not opened"
 msgstr "Niet geopend"
 
-#: events/templates/events/event_detail.html:73
+#: templates/events/event_detail.html:77
 msgid "Closed"
 msgstr "Gesloten"
 
-#: events/templates/events/event_detail.html:75
+#: templates/events/event_detail.html:79
 msgid "register"
 msgstr "registreren"
 
-#: events/templates/events/event_detail.html:85
+#: templates/events/event_detail.html:89
 msgid "registrations open at"
 msgstr "registratie opent op"
 
-#: events/templates/events/event_detail.html:90
+#: templates/events/event_detail.html:94
 msgid "registrations close at"
 msgstr "registratie sluit op"
 
-#: events/templates/events/event_detail.html:100
+#: templates/events/event_detail.html:104
 msgid "registrations"
 msgstr "registraties"
 
-#: events/templates/events/event_form.html:4
-#: events/templates/events/event_form.html:5
+#: templates/events/event_form.html:4 templates/events/event_form.html:5
 msgid "form for"
 msgstr "form voor"
 
-#: events/templates/events/event_form.html:12
+#: templates/events/event_form.html:12
 msgid "Done"
 msgstr "Inleveren"
 
-#: events/templates/events/event_list.html:5
+#: templates/events/event_list.html:5
 msgid "Events"
 msgstr "Evenementen"
 
-#: events/views.py:67
+#: templates/events/event_list.html:64
+msgid "Add these events to your calendar"
+msgstr "Voeg deze evenementen toe aan jouw kalender"
+
+#: views.py:66
 msgid "The registrations for this event have not opened yet."
 msgstr "De registraties voor dit evenement zijn nog niet geopend."
 
-#: events/views.py:72
+#: views.py:71
 msgid "The registrations for this event have already closed."
 msgstr "De registraties voor dit evenement zijn al gesloten."
 
-#: events/views.py:77
+#: views.py:76
 msgid "This event has already passed."
 msgstr "Dit evenement is al geweest."
 
-#: events/views.py:80
+#: views.py:79
 msgid "This event is already full."
 msgstr "Dit evenement zit vol."
 
-#: events/views.py:82
+#: views.py:81
 msgid "You have already registered for this event."
 msgstr "Je bent al geregistreerd voor dit evenement."
 
-#: events/views.py:87
+#: views.py:86
 msgid "You successfully registered."
 msgstr "Je bent succesvol geregistreerd."
 
-#: events/views.py:117
+#: views.py:119
+#| msgid "The registrations for this event have already closed."
+msgid ""
+"The registrations for this event have already closed, if you still want to "
+"deregister contact the committee."
+msgstr ""
+"De registraties voor dit evenement zijn al gesloten, als je je nog wil "
+"uitschrijven, contacteer de commissie"
+
+#: views.py:125
 msgid "You successfully unregistered."
 msgstr "Je bent succesvol afgemeld."
+
+#: views.py:150
+msgid "For more details, see the website: "
+msgstr "Voor meer details, zie de website: "

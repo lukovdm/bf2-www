@@ -36,6 +36,9 @@ class Committee(Model, metaclass=ModelTranslateMeta):
     show_members = BooleanField(verbose_name=_("show members"), default=True)
 
     active = BooleanField(verbose_name=_("active committee"), default=True)
+    show_in_achievements = BooleanField(
+        verbose_name=_("Show committee in personal achievements"), default=True
+    )
 
     perm_group = OneToOneField(
         Group,

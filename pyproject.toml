@@ -7,7 +7,7 @@ authors = ["Luko van der Maas <me@luko.dev>"]
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^4.1.7"
-django-cms = "^4.1.0"
+django-cms = "^3.11.1"
 djangocms-text-ckeditor = "^5.1.2"
 django-filer = "^2.2.4"
 djangocms-link = "^3.1.1"

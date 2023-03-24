@@ -23,4 +23,4 @@ echo "Collecting static files"
 chown --recursive www-data:www-data /bf2-www/
 
 echo "Starting server"
-gunicorn --bind :8000 website.wsgi:application
+gunicorn --bind :8080 website.wsgi:application

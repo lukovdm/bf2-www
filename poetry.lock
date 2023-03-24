@@ -11,7 +11,7 @@ python-dateutil = ">=2.7.0"
 
 [[package]]
 name = "asgiref"
-version = "3.5.2"
+version = "3.6.0"
 description = "ASGI specs, helper code, and adapters"
 category = "main"
 optional = false
@@ -38,7 +38,7 @@ tests_no_zope = ["hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist", "c
 
 [[package]]
 name = "beautifulsoup4"
-version = "4.11.1"
+version = "4.12.0"
 description = "Screen-scraping library"
 category = "main"
 optional = false
@@ -53,19 +53,17 @@ lxml = ["lxml"]
 
 [[package]]
 name = "black"
-version = "22.8.0"
+version = "22.12.0"
 description = "The uncompromising code formatter."
 category = "dev"
 optional = false
-python-versions = ">=3.6.2"
+python-versions = ">=3.7"
 
 [package.dependencies]
 click = ">=8.0.0"
 mypy-extensions = ">=0.4.3"
 pathspec = ">=0.9.0"
 platformdirs = ">=2"
-tomli = {version = ">=1.1.0", markers = "python_full_version < \"3.11.0a7\""}
-typing-extensions = {version = ">=3.10.0.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
 colorama = ["colorama (>=0.4.3)"]
@@ -86,15 +84,15 @@ colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
 name = "colorama"
-version = "0.4.5"
+version = "0.4.6"
 description = "Cross-platform colored terminal text."
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 
 [[package]]
 name = "cssselect2"
-version = "0.6.0"
+version = "0.7.0"
 description = "CSS selectors for Python ElementTree"
 category = "main"
 optional = false
@@ -106,7 +104,7 @@ webencodings = "*"
 
 [package.extras]
 doc = ["sphinx", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-cov", "pytest-flake8", "pytest-isort", "coverage"]
+test = ["pytest", "isort", "flake8"]
 
 [[package]]
 name = "defusedxml"
@@ -126,14 +124,14 @@ python-versions = ">=2.7"
 
 [[package]]
 name = "django"
-version = "4.0"
+version = "4.1.7"
 description = "A high-level Python web framework that encourages rapid development and clean, pragmatic design."
 category = "main"
 optional = false
 python-versions = ">=3.8"
 
 [package.dependencies]
-asgiref = ">=3.4.1,<4"
+asgiref = ">=3.5.2,<4"
 sqlparse = ">=0.2.2"
 tzdata = {version = "*", markers = "sys_platform == \"win32\""}
 
@@ -181,18 +179,18 @@ django-js-asset = ">=2.0"
 
 [[package]]
 name = "django-classy-tags"
-version = "3.0.1"
+version = "4.0.0"
 description = "Class based template tags for Django"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 
 [package.dependencies]
-django = ">=2.2"
+django = ">=3.2"
 
 [[package]]
 name = "django-cms"
-version = "3.11.0"
+version = "3.11.1"
 description = "Lean enterprise content management powered by Django."
 category = "main"
 optional = false
@@ -221,7 +219,7 @@ rjsmin = "1.2.1"
 
 [[package]]
 name = "django-filer"
-version = "2.2.3"
+version = "2.2.4"
 description = "A file management application for django that makes handling of files and images a breeze."
 category = "main"
 optional = false
@@ -236,7 +234,7 @@ Unidecode = ">=0.04,<1.2"
 
 [[package]]
 name = "django-formtools"
-version = "2.3"
+version = "2.4"
 description = "A set of high-level abstractions for Django forms"
 category = "main"
 optional = false
@@ -247,7 +245,7 @@ Django = ">=2.2"
 
 [[package]]
 name = "django-import-export"
-version = "2.8.0"
+version = "3.1.0"
 description = "Django application and library for importing and exporting data with included admin integration."
 category = "main"
 optional = false
@@ -256,7 +254,7 @@ python-versions = ">=3.7"
 [package.dependencies]
 diff-match-patch = "*"
 Django = ">=3.2"
-tablib = {version = ">=3.0.0", extras = ["html", "ods", "xls", "xlsx", "yaml"]}
+tablib = {version = ">=3.2.1", extras = ["html", "ods", "xls", "xlsx", "yaml"]}
 
 [[package]]
 name = "django-js-asset"
@@ -285,7 +283,7 @@ django-ckeditor = "*"
 
 [[package]]
 name = "django-mptt"
-version = "0.13.4"
+version = "0.14.0"
 description = "Utilities for implementing Modified Preorder Tree Traversal with your Django Models and working with trees of Model instances."
 category = "main"
 optional = false
@@ -310,7 +308,7 @@ Django = ">=2.1"
 
 [[package]]
 name = "django-sass-processor"
-version = "1.2.1"
+version = "1.2.2"
 description = "SASS processor to compile SCSS files into *.css, while rendering, or offline."
 category = "main"
 optional = false
@@ -343,8 +341,16 @@ python-versions = ">=3.6"
 Django = ">=2.2"
 
 [[package]]
+name = "djangocms-4-migration"
+version = "0.0.1"
+description = "A django CMS 3 to 4 migration package"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "djangocms-admin-style"
-version = "3.2.0"
+version = "3.2.3"
 description = "Adds pretty CSS styles for the django CMS admin interface."
 category = "main"
 optional = false
@@ -401,7 +407,7 @@ django-filer = ">=1.7"
 
 [[package]]
 name = "djangocms-link"
-version = "3.1.0"
+version = "3.1.1"
 description = "Adds a link plugin to django CMS"
 category = "main"
 optional = false
@@ -410,7 +416,6 @@ python-versions = "*"
 [package.dependencies]
 django-cms = ">=3.7"
 django-filer = ">=1.7"
-django-treebeard = ">=4.3,<4.5"
 djangocms-attributes-field = ">=1"
 
 [[package]]
@@ -456,7 +461,7 @@ djangocms-attributes-field = ">=1"
 
 [[package]]
 name = "djangocms-text-ckeditor"
-version = "5.1.1"
+version = "5.1.2"
 description = "Text Plugin for django CMS with CKEditor support"
 category = "main"
 optional = false
@@ -465,6 +470,7 @@ python-versions = ">=3.7"
 [package.dependencies]
 django-cms = ">=3.6"
 html5lib = ">=1"
+packaging = "*"
 Pillow = "*"
 
 [[package]]
@@ -482,7 +488,7 @@ djangocms-attributes-field = ">=1"
 
 [[package]]
 name = "easy-thumbnails"
-version = "2.8.3"
+version = "2.8.5"
 description = "Easy thumbnails for Django"
 category = "main"
 optional = false
@@ -554,18 +560,15 @@ tatsu = ">4.2"
 
 [[package]]
 name = "libsass"
-version = "0.21.0"
+version = "0.22.0"
 description = "Sass for Python: A straightforward binding of libsass for Python."
 category = "main"
 optional = false
-python-versions = "*"
-
-[package.dependencies]
-six = "*"
+python-versions = ">=3.6"
 
 [[package]]
 name = "lxml"
-version = "4.9.1"
+version = "4.9.2"
 description = "Powerful and Pythonic XML processing library combining libxml2/libxslt with the ElementTree API."
 category = "main"
 optional = false
@@ -587,11 +590,11 @@ python-versions = "*"
 
 [[package]]
 name = "mypy-extensions"
-version = "0.4.3"
-description = "Experimental type system extensions for programs checked with the mypy typechecker."
+version = "1.0.0"
+description = "Type system extensions for programs checked with the mypy type checker."
 category = "dev"
 optional = false
-python-versions = "*"
+python-versions = ">=3.5"
 
 [[package]]
 name = "odfpy"
@@ -606,7 +609,7 @@ defusedxml = "*"
 
 [[package]]
 name = "openpyxl"
-version = "3.0.10"
+version = "3.1.2"
 description = "A Python library to read/write Excel 2010 xlsx/xlsm files"
 category = "main"
 optional = false
@@ -616,8 +619,16 @@ python-versions = ">=3.6"
 et-xmlfile = "*"
 
 [[package]]
+name = "packaging"
+version = "23.0"
+description = "Core utilities for Python packages"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "pathspec"
-version = "0.10.1"
+version = "0.11.1"
 description = "Utility library for gitignore style pattern matching of file paths."
 category = "dev"
 optional = false
@@ -625,23 +636,27 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "pillow"
-version = "8.4.0"
+version = "9.4.0"
 description = "Python Imaging Library (Fork)"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-inline-tabs", "sphinx-issues (>=3.0.1)", "sphinx-removed-in", "sphinxext-opengraph"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
 
 [[package]]
 name = "platformdirs"
-version = "2.5.2"
-description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
+version = "3.1.1"
+description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
 category = "dev"
 optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["furo (>=2021.7.5b38)", "proselint (>=0.10.2)", "sphinx-autodoc-typehints (>=1.12)", "sphinx (>=4)"]
-test = ["appdirs (==1.4.4)", "pytest-cov (>=2.7)", "pytest-mock (>=3.6)", "pytest (>=6)"]
+docs = ["furo (>=2022.12.7)", "proselint (>=0.13)", "sphinx-autodoc-typehints (>=1.22,!=1.23.4)", "sphinx (>=6.1.3)"]
+test = ["appdirs (==1.4.4)", "covdefaults (>=2.2.2)", "pytest-cov (>=4)", "pytest-mock (>=3.10)", "pytest (>=7.2.1)"]
 
 [[package]]
 name = "psycopg2-binary"
@@ -680,17 +695,18 @@ python-versions = "*"
 
 [[package]]
 name = "reportlab"
-version = "3.6.9"
+version = "3.6.12"
 description = "The Reportlab Toolkit"
 category = "main"
 optional = false
-python-versions = ">=3.7, <4"
+python-versions = ">=3.7,<4"
 
 [package.dependencies]
-pillow = ">=4.0.0"
+pillow = ">=9.0.0"
 
 [package.extras]
-rlpycairo = ["rlPyCairo (>=0.0.5)"]
+fttextpath = ["freetype-py (>=2.3.0,<2.4)"]
+rlpycairo = ["rlPyCairo (>=0.1.0)"]
 
 [[package]]
 name = "rjsmin"
@@ -710,15 +726,15 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "soupsieve"
-version = "2.3.2.post1"
+version = "2.4"
 description = "A modern CSS selector implementation for Beautiful Soup."
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [[package]]
 name = "sqlparse"
-version = "0.4.2"
+version = "0.4.3"
 description = "A non-validating SQL parser."
 category = "main"
 optional = false
@@ -726,7 +742,7 @@ python-versions = ">=3.5"
 
 [[package]]
 name = "svglib"
-version = "1.4.1"
+version = "1.5.1"
 description = "A pure-Python library for reading and converting SVG"
 category = "main"
 optional = false
@@ -777,38 +793,22 @@ future-regex = ["regex"]
 
 [[package]]
 name = "tinycss2"
-version = "1.1.1"
+version = "1.2.1"
 description = "A tiny CSS parser"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 webencodings = ">=0.4"
 
 [package.extras]
 doc = ["sphinx", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-cov", "pytest-flake8", "pytest-isort", "coverage"]
-
-[[package]]
-name = "tomli"
-version = "2.0.1"
-description = "A lil' TOML parser"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-
-[[package]]
-name = "typing-extensions"
-version = "4.3.0"
-description = "Backported and Experimental Type Hints for Python 3.7+"
-category = "dev"
-optional = false
-python-versions = ">=3.7"
+test = ["pytest", "isort", "flake8"]
 
 [[package]]
 name = "tzdata"
-version = "2022.2"
+version = "2022.7"
 description = "Provider of IANA time zone data"
 category = "main"
 optional = false
@@ -856,8 +856,8 @@ production = ["gunicorn", "psycopg2-binary"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.9"
-content-hash = "4ea50bbad4cce53472594c565ad113f2ff7218b2fc3a4895a618ffec94b312de"
+python-versions = "^3.11"
+content-hash = "82bd5a6d0394e82c5bca9656304cb5c391fc2a6da42228b4038e0e31f033a556"
 
 [metadata.files]
 arrow = []
@@ -869,10 +869,7 @@ click = [
     {file = "click-8.1.3-py3-none-any.whl", hash = "sha256:bb4d8133cb15a609f44e8213d9b391b0809795062913b383c62be0ee95b1db48"},
     {file = "click-8.1.3.tar.gz", hash = "sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e"},
 ]
-colorama = [
-    {file = "colorama-0.4.5-py2.py3-none-any.whl", hash = "sha256:854bf444933e37f5824ae7bfc1e98d5bce2ebe4160d46b5edf346a89358e99da"},
-    {file = "colorama-0.4.5.tar.gz", hash = "sha256:e6c6b4334fc50988a639d9b98aa429a0b57da6e17b9a44f0451f930b6967b7a4"},
-]
+colorama = []
 cssselect2 = []
 defusedxml = []
 diff-match-patch = []
@@ -893,6 +890,7 @@ django-polymorphic = []
 django-sass-processor = []
 django-sekizai = []
 django-treebeard = []
+djangocms-4-migration = []
 djangocms-admin-style = []
 djangocms-attributes-field = []
 djangocms-column = []
@@ -912,18 +910,13 @@ ics = []
 libsass = []
 lxml = []
 markuppy = []
-mypy-extensions = [
-    {file = "mypy_extensions-0.4.3-py2.py3-none-any.whl", hash = "sha256:090fedd75945a69ae91ce1303b5824f428daf5a028d2f6ab8a299250a846f15d"},
-    {file = "mypy_extensions-0.4.3.tar.gz", hash = "sha256:2d82818f5bb3e369420cb3c4060a7970edba416647068eb4c5343488a6c604a8"},
-]
+mypy-extensions = []
 odfpy = []
 openpyxl = []
+packaging = []
 pathspec = []
 pillow = []
-platformdirs = [
-    {file = "platformdirs-2.5.2-py3-none-any.whl", hash = "sha256:027d8e83a2d7de06bbac4e5ef7e023c02b863d7ea5d079477e722bb41ab25788"},
-    {file = "platformdirs-2.5.2.tar.gz", hash = "sha256:58c8abb07dcb441e6ee4b11d8df0ac856038f944ab98b7be6b27b2a3c7feef19"},
-]
+platformdirs = []
 psycopg2-binary = []
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},
@@ -943,11 +936,6 @@ svglib = []
 tablib = []
 tatsu = []
 tinycss2 = []
-tomli = [
-    {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
-    {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
-]
-typing-extensions = []
 tzdata = []
 unidecode = []
 webencodings = []

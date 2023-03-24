@@ -20,7 +20,7 @@ jobs:
         uses: abatilo/actions-poetry@v2
 
       - name: Install any new dependencies
-        run: poetry install -vvv
+        run: poetry install
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Check migrations

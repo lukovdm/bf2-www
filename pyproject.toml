@@ -29,6 +29,7 @@ django-mail-template = "^0.1.11"
 libsass = "^0.22.0"
 ics = "^0.7.2"
 djangocms-4-migration = "^0.0.1"
+setuptools = "^67.6.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.8.0"

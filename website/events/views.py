@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView
-from ics import Calendar, Event, Organizer, Geo
+from ics import Calendar, Organizer
 
 from events.models import Event, Registration
 
@@ -111,6 +111,15 @@ class EventUnregisterView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         event = get_object_or_404(Event, pk=kwargs["pk"])
         registration = get_object_or_404(Registration, event=event, user=request.user)
+
+        if event.registration_end and event.registration_end < timezone.now():
+            messages.error(
+                request,
+                _(
+                    "The registrations for this event have already closed, "
+                    "if you still want to deregister contact the committee."
+                ),
+            )
 
         registration.delete()
         messages.success(request, _("You successfully unregistered."))

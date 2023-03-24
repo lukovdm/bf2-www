@@ -1,12 +1,10 @@
-import os
-
 from website.settings.base import *
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [".bfrisbee2s.nl", "bf2.luko.dev", "localhost"]
 
@@ -17,6 +15,9 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 SESSION_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 DATABASES = {
     "default": {

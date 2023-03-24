@@ -17,6 +17,7 @@ djangocms-video = "^3.0.0"
 djangocms-snippet = "^3.1.0"
 djangocms-style = "^3.0.0"
 djangocms-column = "^2.0.0"
+djangocms-googlemap = "^2.0.0"
 psycopg2-binary = {version = "^2.9.5", optional = true, extras = ["production"]}
 gunicorn = {version = "^20.1.0", optional = true, extras = ["production"]}
 Pillow = "^9.4.0"

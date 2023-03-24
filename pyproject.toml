@@ -31,6 +31,7 @@ ics = "^0.7.2"
 djangocms-4-migration = "^0.0.1"
 setuptools = "^67.6.0"
 whitenoise = "^6.4.0"
+dj-database-url = "^1.2.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.8.0"

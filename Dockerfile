@@ -7,13 +7,14 @@ ENV PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=off \
     PIP_DISABLE_PIP_VERSION_CHECK=on \
     PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.1.3 \
+    POETRY_VERSION=1.4.0 \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
-    POETRY_NO_INTERACTION=1
+    POETRY_NO_INTERACTION=1 \
+    POETRY_HOME="/opt/poetry"
 # Use production settings
 ENV DJANGO_SETTINGS_MODULE website.settings.production
 # Add poetry to PATH
-ENV PATH="/root/.poetry/bin:$PATH"
+ENV PATH="$POETRY_HOME/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
@@ -25,7 +26,7 @@ RUN apt-get update \
         postgresql-client
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
 WORKDIR /bf2-www
 

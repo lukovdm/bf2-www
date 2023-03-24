@@ -62,7 +62,7 @@
                         </div>
                     {% endif %}
                 </div>
-                <div class="form-group reg_spacing" id="pronouns">
+                <div class="form-group reg_spacing">
                     <label for="{{ form.pronouns.id_for_label }}" class="form-label">{{ form.pronouns.label }}</label>
                     <input type="text" class="form-control {% if form.pronouns.errors %}is-invalid{% endif %}"
                            name="{{ form.pronouns.html_name }}" placeholder="{{ form.pronouns.label }}">
@@ -237,7 +237,3 @@
     </form>
 
 {% endblock content %}
-
-{% block extrajs %}
-    <script src="{% static 'members/js/functional_form.js' %}"></script>
-{% endblock extrajs %}

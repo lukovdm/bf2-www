@@ -17,14 +17,14 @@ jobs:
           python-version: '3.11'
 
       - name: Install poetry
-        uses: abatilo/actions-poetry@v2.0.0
+        uses: abatilo/actions-poetry@v2
 
       - name: Install any new dependencies
         run: poetry install -vvv
         if: steps.cache.outputs.cache-hit != 'true'
 
       - name: Check migrations
-        run: poetry run python website/manage.py makemigrations boards events members website --no-input --check --dry-run
+        run: poetry run python website/manage.py makemigrations --no-input --check --dry-run
 
       - name: Check translations
         shell: bash

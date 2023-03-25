@@ -429,6 +429,21 @@ files = [
 Django = ">=2.1"
 
 [[package]]
+name = "django-prometheus"
+version = "2.2.0"
+description = "Django middlewares to monitor your application with Prometheus.io."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-prometheus-2.2.0.tar.gz", hash = "sha256:240378a1307c408bd5fc85614a3a57f1ce633d4a222c9e291e2bbf325173b801"},
+    {file = "django_prometheus-2.2.0-py2.py3-none-any.whl", hash = "sha256:e6616770d8820b8834762764bf1b76ec08e1b98e72a6f359d488a2e15fe3537c"},
+]
+
+[package.dependencies]
+prometheus-client = ">=0.7"
+
+[[package]]
 name = "django-sass-processor"
 version = "1.2.2"
 description = "SASS processor to compile SCSS files into *.css, while rendering, or offline."
@@ -1055,6 +1070,21 @@ docs = ["furo (>=2022.12.7)", "proselint (>=0.13)", "sphinx (>=6.1.3)", "sphinx-
 test = ["appdirs (==1.4.4)", "covdefaults (>=2.2.2)", "pytest (>=7.2.1)", "pytest-cov (>=4)", "pytest-mock (>=3.10)"]
 
 [[package]]
+name = "prometheus-client"
+version = "0.16.0"
+description = "Python client for the Prometheus monitoring system."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "prometheus_client-0.16.0-py3-none-any.whl", hash = "sha256:0836af6eb2c8f4fed712b2f279f6c0a8bbab29f9f4aa15276b91c7cb0d1616ab"},
+    {file = "prometheus_client-0.16.0.tar.gz", hash = "sha256:a03e35b359f14dd1630898543e2120addfdeacd1a6069c1367ae90fd93ad3f48"},
+]
+
+[package.extras]
+twisted = ["twisted"]
+
+[[package]]
 name = "psycopg2-binary"
 version = "2.9.5"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
@@ -1548,4 +1578,4 @@ production = ["gunicorn", "psycopg2-binary"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "f37338780723d4d7ee51059c029160210b3d27b1ff828614d2fbfc449f5047ba"
+content-hash = "e445165e1f4080e507f0bc507a9ec40afd3b9986121b27047a931a9166bb1b92"

@@ -5,6 +5,10 @@ kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
+[metrics]
+port = 9091 # default for most prometheus clients
+path = "/metrics" # default for most prometheus clients
+
 [env]
 DOMAIN="bfrisbee2s.nl"
 EMAIL_HOST_USER="support@bfrisbee2s.nl"
@@ -33,7 +37,7 @@ EMAIL_HOST_USER="support@bfrisbee2s.nl"
     port = 443
 
   [[services.tcp_checks]]
-    grace_period = "1s"
+    grace_period = "15s"
     interval = "15s"
-    restart_limit = 0
+    restart_limit =  40
     timeout = "2s"

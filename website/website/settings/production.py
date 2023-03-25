@@ -48,3 +48,10 @@ SASS_PROCESSOR_ROOT = STATIC_ROOT
 
 MEDIA_ROOT = "/bf2-www/media"
 MEDIA_URL = "/media/"
+
+INSTALLED_APPS += ['django_prometheus']
+MIDDLEWARE.insert(0, 'django_prometheus.middleware.PrometheusBeforeMiddleware')
+MIDDLEWARE.append('django_prometheus.middleware.PrometheusAfterMiddleware')
+
+PROMETHEUS_METRICS_EXPORT_PORT = 9091
+PROMETHEUS_METRICS_EXPORT_ADDRESS = '0.0.0.0'

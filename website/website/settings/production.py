@@ -14,6 +14,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://bfrisbee2s.nl",
     "http://localhost",
     "https://bf2.luko.dev",
+    "https://bf2-website.fly.dev"
 ]
 
 SESSION_COOKIE_SECURE = True

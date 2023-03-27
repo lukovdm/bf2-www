@@ -42,4 +42,10 @@ COPY config/entrypoint.sh ./
 # Copy the rest of the code. 
 COPY website ./
 
+# Compile scss to css
+#RUN ./manage.py compilescss
+#
+## Collect all static files for serving
+#RUN ./manage.py collectstatic --no-input
+
 ENTRYPOINT ["./entrypoint.sh"]

@@ -33,6 +33,8 @@ setuptools = "^67.6.0"
 whitenoise = "^6.4.0"
 dj-database-url = "^1.2.0"
 django-prometheus = "^2.2.0"
+django-storages = "^1.13.2"
+boto3 = "^1.26.99"
 
 [tool.poetry.dev-dependencies]
 black = "^22.8.0"

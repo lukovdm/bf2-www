@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SITE_ID = 1
 
-X_FRAME_OPTIONS = "DENY"
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 LOGIN_URL = "/user/login/"
 
@@ -117,7 +117,7 @@ MIDDLEWARE = [
     "cms.middleware.utils.ApphookReloadMiddleware",
 ]
 
-CSRF_COOKIE_SECURE=True
+CSRF_COOKIE_SECURE = True
 
 ROOT_URLCONF = "website.urls"
 

@@ -44,9 +44,9 @@ ADMINS = [("Webmasters", "webmasters@bfrisbee2s.nl")]
 
 # Static files
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-AWS_S3_REGION_NAME = "us-west-000"
+AWS_S3_REGION_NAME = "eu-central-003"
 AWS_STORAGE_BUCKET_NAME = "BFrisBee2s-Media"
-AWS_S3_ENDPOINT_URL = "https://s3.us-west-000.backblazeb2.com"
+AWS_S3_ENDPOINT_URL = "https://s3.eu-central-003.backblazeb2.com"
 AWS_PRELOAD_METADATA = False
 
 STATIC_ROOT = "/bf2-www/static/"

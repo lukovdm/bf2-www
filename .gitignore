@@ -143,3 +143,5 @@ config/secrets.env
 **/main.css
 
 .direnv/
+.envrc
+.env

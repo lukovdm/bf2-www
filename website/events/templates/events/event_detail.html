@@ -108,6 +108,9 @@
         <div class="col">
             <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
                 <i class="fa-solid fa-people-group fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
+                {% if user.is_authenticated and not object.private_registrations %}
+                    {% for reg in object.registration_set.all %}{% if not forloop.first %}, {% endif %}{{reg.user.member.name}}{% endfor %}
+                {% endif %}
             </p>
         </div>
     </div>

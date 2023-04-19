@@ -10,10 +10,11 @@ ENV PYTHONUNBUFFERED=1 \
     POETRY_VERSION=1.2.0 \
     POETRY_VIRTUALENVS_IN_PROJECT=true \
     POETRY_NO_INTERACTION=1
+    POETRY_HOME=/root/.poetry
 # Use production settings
 ENV DJANGO_SETTINGS_MODULE website.settings.production
 # Add poetry to PATH
-#ENV PATH="/root/.poetry/bin:$PATH"
+ENV PATH="/root/.poetry/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \

@@ -23,10 +23,11 @@ from members.models import Member
 class BecomeAMemberForm(ModelForm):
     firstname = CharField(label=_("First name"))
     lastname = CharField(label=_("Last name"))
-    email = EmailField(label=_("E-mail"))
+    email = EmailField(label=_("Email address"))
     password = CharField(
         widget=PasswordInput(),
         help_text=password_validators_help_text_html(),
+        label=_("Password"),
     )
     data_registration = BooleanField(required=True)
 
@@ -34,7 +35,7 @@ class BecomeAMemberForm(ModelForm):
         model = Member
         help_texts = {
             "google_email": _(
-                "This will be used to gain access to the google drive and might be the same as your regular e-mail"
+                "This will be used to gain access to the Google Drive and might be the same as your regular e-mail"
             ),
         }
         exclude = ["user", "bio", "profile_picture", "display_name", "nickname"]

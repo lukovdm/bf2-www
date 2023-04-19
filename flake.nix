@@ -17,7 +17,6 @@
           openssl
           httpie
         ];
-        shellHook = "fish";
       };
     });
 }

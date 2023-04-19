@@ -31,7 +31,7 @@ LOGOUT_REDIRECT_URL = "/"
 # about 3 months
 ACCOUNT_ACTIVATION_TIMEOUT = 60 * 60 * 24 * 30 * 3
 
-CSRF_TRUSTED_ORIGINS = ["https://.bfrisbee2s.nl"]
+CSRF_TRUSTED_ORIGINS = ["https://bf2-website.fly.dev", "https://.bfrisbee2s.nl"]
 
 CMS_PAGE_CACHE = False
 
@@ -58,6 +58,7 @@ THUMBNAIL_PROCESSORS = (
 # Application definition
 
 INSTALLED_APPS = [
+    "whitenoise.runserver_nostatic",
     "djangocms_admin_style",
     # Django
     "django.contrib.admin",
@@ -101,6 +102,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -114,6 +116,8 @@ MIDDLEWARE = [
     "cms.middleware.language.LanguageCookieMiddleware",
     "cms.middleware.utils.ApphookReloadMiddleware",
 ]
+
+CSRF_COOKIE_SECURE = True
 
 ROOT_URLCONF = "website.urls"
 
@@ -170,6 +174,8 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
     "sass_processor.finders.CssFinder",
 ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 SASS_PRECISION = 8
 

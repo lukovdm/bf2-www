@@ -5,29 +5,31 @@ description = "A website for the BF2 frisbee team"
 authors = ["Luko van der Maas <me@luko.dev>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-django = "=4.0"
-django-cms = "^3.11.0"
-djangocms-text-ckeditor = "^5.1.1"
-django-filer = "^2.2.3"
-djangocms-link = "^3.1.0"
+python = "^3.11"
+django = "^4.1.7"
+django-cms = "^3.11.1"
+djangocms-text-ckeditor = "^5.1.2"
+django-filer = "^2.2.4"
+djangocms-link = "^3.1.1"
 djangocms-file = "^3.0.0"
 djangocms-picture = "^4.0.0"
 djangocms-video = "^3.0.0"
-djangocms-googlemap = "^2.0.0"
 djangocms-snippet = "^3.1.0"
 djangocms-style = "^3.0.0"
 djangocms-column = "^2.0.0"
-psycopg2-binary = {version = "^2.0.0", optional = true, extras = ["production"]}
-gunicorn = {version = "^20.0.4", optional = true, extras = ["production"]}
-Pillow = "^8.1.0"
-django-import-export = "^2.5.0"
+djangocms-googlemap = "^2.0.0"
+psycopg2-binary = {version = "^2.9.5", optional = true, extras = ["production"]}
+gunicorn = {version = "^20.1.0", optional = true, extras = ["production"]}
+Pillow = "^9.4.0"
+django-import-export = "^3.1.0"
 django-bootstrap-v5 = "^1.0.11"
-django-sass-processor = "^1.2.1"
-django-compressor = {version = "^4.1", extras = ["production"]}
+django-sass-processor = "^1.2.2"
+django-compressor = {version = "^4.3.1", extras = ["production"]}
 django-mail-template = "^0.1.11"
-libsass = "^0.21.0"
+libsass = "^0.22.0"
 ics = "^0.7.2"
+djangocms-4-migration = "^0.0.1"
+setuptools = "^67.6.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.8.0"

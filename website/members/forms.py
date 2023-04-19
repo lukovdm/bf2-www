@@ -27,7 +27,7 @@ class BecomeAMemberForm(ModelForm):
     password = CharField(
         widget=PasswordInput(),
         help_text=password_validators_help_text_html(),
-        label=_("Password")
+        label=_("Password"),
     )
     data_registration = BooleanField(required=True)
 

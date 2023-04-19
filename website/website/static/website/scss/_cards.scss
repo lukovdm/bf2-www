@@ -1,5 +1,4 @@
 .display-card {
-  min-width: calc(max(20vw, 250px));
   transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow;
 
   &:hover {

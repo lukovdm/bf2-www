@@ -4,6 +4,37 @@
 {% block title %}{% trans "Members" %}{% endblock title %}
 
 {% block content %}
+    <div class="row mb-3">
+        <nav aria-label="Page navigation" class="d-flex">
+            <ul class="pagination me-5 mb-0">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for i in pages %}
+                    <li class="page-item {% if page_obj.number == i %}active{% endif %}" aria-current="page">
+                        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <form class="d-flex" action="">
+                <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+        </nav>
+    </div>
     <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3 g-3 g-xxl-4">
         {% for member in object_list %}
             <div class="col">

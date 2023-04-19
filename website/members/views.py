@@ -13,11 +13,22 @@ from members.tokens import default_activate_token_generator
 
 class MemberListView(LoginRequiredMixin, ListView):
     model = Member
+    paginate_by = 20
 
     def get_queryset(self):
         members = super().get_queryset()
+        query = self.request.GET.get('q')
         members = members.filter(user__is_active=True).order_by("user__first_name")
+        if query:
+            return members.filter(user__first_name__icontains=query)
         return members
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['pages'] = range(1, context['page_obj'].paginator.num_pages + 1)
+        return context
 
 
 class MemberDetailView(LoginRequiredMixin, DetailView):

@@ -96,7 +96,7 @@ class Member(models.Model):
         verbose_name=_("preferred language"),
     )
 
-    google_email = models.EmailField(verbose_name=_("google email"))
+    google_email = models.EmailField(verbose_name=_("google email address"))
 
     remarks = models.TextField(blank=True, null=True, verbose_name=_("remarks"))
 

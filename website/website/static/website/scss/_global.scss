@@ -56,6 +56,15 @@ h1 {
   z-index: 0;
 }
 
+img {
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  &.nodeco {
+    border-radius: unset;
+    box-shadow: unset;
+  }
+}
+  
 .fit-content {
   width: fit-content;
 }

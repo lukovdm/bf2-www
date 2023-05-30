@@ -26,7 +26,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                {% if board_member.picture %}<img class="img-fluid rounded shadow mb-3" src="{{ board_member.picture.url }}" />{% endif %}
+                                                {% if board_member.picture %}<img class="img-fluid mb-3" src="{{ board_member.picture.url }}" />{% endif %}
                                                 {% if board_member.description %}<p>{{ board_member.description }}</p>{% endif %}
                                                 <p>
                                                     <a href="mailto:{{ board_member.email }}">{{ board_member.email }}</a>
@@ -48,7 +48,7 @@
                     </ul>
                 </div>
                 <div class="col-lg-6 mb-3">
-                    {% if board.picture %}<img class="img-fluid rounded shadow" src="{{ board.picture.url }}"/>{% endif %}
+                    {% if board.picture %}<img class="img-fluid" src="{{ board.picture.url }}"/>{% endif %}
                 </div>
             </div>
         {% endwith %}

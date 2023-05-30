@@ -5,7 +5,7 @@
     <input type="hidden" value="{{ request.get_full_path }}" name="next"/>
     <input type="hidden" value="{% if LANGUAGE_CODE == 'en' %}nl{% else %}en{% endif %}" name="language"/>
     <button type="submit" class="btn btn-link">
-        <img src="
+        <img class="nodeco" src="
             {% if LANGUAGE_CODE == 'en' %}
                 {% static 'website/images/flag-nl.svg' %}
             {% else %}

@@ -11,7 +11,7 @@
         <div class="col-6">
             {% if object.profile_picture %}
             <div class="w-100 d-flex justify-content-center px-0">
-                <img src="{{ object.profile_picture.url }}" class="rounded img-fluid shadow"
+                <img src="{{ object.profile_picture.url }}" class="img-fluid"
                      alt="{% trans 'image for' %} {{ object.name }}">
             </div>
             {% endif %}

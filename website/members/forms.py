@@ -11,7 +11,9 @@ from django.forms import (
     CharField,
     EmailField,
     PasswordInput,
-    BooleanField, FloatField, HiddenInput,
+    BooleanField,
+    FloatField,
+    HiddenInput,
 )
 from django_mail_template.models import Configuration
 from django.core.mail import mail_admins
@@ -163,10 +165,10 @@ class EditMemberForm(ModelForm):
     def save(self):
         member = super(EditMemberForm, self).save()
 
-        x = self.cleaned_data.get('x')
-        y = self.cleaned_data.get('y')
-        w = self.cleaned_data.get('width')
-        h = self.cleaned_data.get('height')
+        x = self.cleaned_data.get("x")
+        y = self.cleaned_data.get("y")
+        w = self.cleaned_data.get("width")
+        h = self.cleaned_data.get("height")
 
         image = Image.open(member.profile_picture)
         cropped_image = image.crop((x, y, w + x, h + y))

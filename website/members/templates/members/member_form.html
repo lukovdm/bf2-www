@@ -1,8 +1,17 @@
 {% extends "page.html" %}
-{% load i18n bootstrap5 %}
+{% load i18n bootstrap5 static %}
 
 {% block title %}{{ object.name }}{% endblock title %}
 {% block pagetitle %}{{ object.name }}{% endblock pagetitle %}
+
+{% block extrajs %}
+    <script src="{% static 'members/js/cropper.min.js' %}"></script>
+    <script src="{% static 'members/js/edit-profile.js' %}"></script>
+{% endblock extrajs %}
+
+{% block extracss %}
+    <link rel="stylesheet" href="{% static 'members/js/cropper.min.css' %}">
+{% endblock extracss %}
 
 {% block content %}
     <form action="{% url "members:edit" %}" enctype="multipart/form-data" method="post" class="form">
@@ -19,12 +28,8 @@
 
         <div class="row g-5">
             <div class="col-12 col-lg-6 mb-3">
-                <div class="w-100 d-flex justify-content-center px-0 mb-2">
-                    {% if form.profile_picture.value %}
-                        <img src="{{ form.profile_picture.value.url }}" class="img-fluid">
-                    {% else %}
-                        <svg class="img-fluid fill-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
-                    {% endif %}
+                <div class="w-100 d-flex justify-content-center px-0 mb-2"
+                    <img id="profile_image" src="{% if form.profile_picture.value %}{{ form.profile_picture.value.url }}{% else %}data:image/svg+xml;base64,PHN2ZyBjbGFzcz0iaW1nLWZsdWlkIGZpbGwtcHJpbWFyeSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgNDQ4IDUxMiI+PCEtLSEgRm9udCBBd2Vzb21lIFBybyA2LjIuMSBieSBAZm9udGF3ZXNvbWUgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbSBMaWNlbnNlIC0gaHR0cHM6Ly9mb250YXdlc29tZS5jb20vbGljZW5zZSAoQ29tbWVyY2lhbCBMaWNlbnNlKSBDb3B5cmlnaHQgMjAyMiBGb250aWNvbnMsIEluYy4gLS0+PHBhdGggZD0iTTIyNCAyNTZjNzAuNyAwIDEyOC01Ny4zIDEyOC0xMjhTMjk0LjcgMCAyMjQgMFM5NiA1Ny4zIDk2IDEyOHM1Ny4zIDEyOCAxMjggMTI4em0tNDUuNyA0OEM3OS44IDMwNCAwIDM4My44IDAgNDgyLjNDMCA0OTguNyAxMy4zIDUxMiAyOS43IDUxMkg0MTguM2MxNi40IDAgMjkuNy0xMy4zIDI5LjctMjkuN0M0NDggMzgzLjggMzY4LjIgMzA0IDI2OS43IDMwNEgxNzguM3oiLz48L3N2Zz4K{% endif %}" class="img-fluid">
                 </div>
                 <div class="input-group">
                     {% if form.profile_picture.value %}

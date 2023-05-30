@@ -6,7 +6,7 @@ from django.views.generic import DetailView, ListView, UpdateView, FormView
 from django.utils.decorators import method_decorator
 from django.views.decorators.debug import sensitive_post_parameters
 
-from members.forms import BecomeAMemberForm, ActivateAccountForm
+from members.forms import BecomeAMemberForm, ActivateAccountForm, EditMemberForm
 from members.models import MemberSettings, Member
 from members.tokens import default_activate_token_generator
 
@@ -47,16 +47,7 @@ class MemberDetailView(LoginRequiredMixin, DetailView):
 
 
 class MemberEditView(LoginRequiredMixin, UpdateView):
-    model = Member
-    fields = (
-        "profile_picture",
-        "nickname",
-        "display_name",
-        "bio",
-        "gender",
-        "pronouns",
-        "preferred_language",
-    )
+    form_class = EditMemberForm
 
     def get_object(self, queryset=None):
         return self.request.user.member

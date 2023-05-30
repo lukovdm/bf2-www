@@ -78,9 +78,7 @@ class CommitteeMembership(Model):
                 {"until": _("until date can't be before since date")}
             )
         if self.until and self.until > timezone.now():
-            return ValidationError(
-                {"until": _("Until date can't be in the future")}
-            )
+            return ValidationError({"until": _("Until date can't be in the future")})
 
     def overlaps(self, others):
         for other in others:

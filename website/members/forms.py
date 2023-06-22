@@ -1,3 +1,4 @@
+from PIL import Image
 from django.conf import settings
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.models import User
@@ -11,6 +12,8 @@ from django.forms import (
     EmailField,
     PasswordInput,
     BooleanField,
+    FloatField,
+    HiddenInput,
 )
 from django_mail_template.models import Configuration
 from django.core.mail import mail_admins
@@ -140,3 +143,37 @@ class BecomeAMemberForm(ModelForm):
 
 class ActivateAccountForm(SetPasswordForm):
     data_registration = BooleanField(required=True)
+
+
+class EditMemberForm(ModelForm):
+    x = FloatField(widget=HiddenInput())
+    y = FloatField(widget=HiddenInput())
+    width = FloatField(widget=HiddenInput())
+    height = FloatField(widget=HiddenInput())
+
+    class Meta:
+        model = Member
+        fields = (
+            "profile_picture",
+            "nickname",
+            "display_name",
+            "bio",
+            "gender",
+            "pronouns",
+            "preferred_language",
+        )
+
+    def save(self):
+        member = super(EditMemberForm, self).save()
+
+        x = self.cleaned_data.get("x")
+        y = self.cleaned_data.get("y")
+        w = self.cleaned_data.get("width")
+        h = self.cleaned_data.get("height")
+
+        image = Image.open(member.profile_picture)
+        cropped_image = image.crop((x, y, w + x, h + y))
+        resized_image = cropped_image.resize((1280, 720), Image.ANTIALIAS)
+        resized_image.save(member.profile_picture.path)
+
+        return member

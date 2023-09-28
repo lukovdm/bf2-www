@@ -134,6 +134,8 @@ website/*.sqlite3
 **/media/*
 database/
 *.sqlite
+*.sqlite3
+*.backup
 
 # secrets
 config/secrets.env

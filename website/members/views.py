@@ -13,7 +13,7 @@ from members.tokens import default_activate_token_generator
 
 class MemberListView(LoginRequiredMixin, ListView):
     model = Member
-    paginate_by = 20
+    paginate_by = 21
 
     def get_queryset(self):
         members = super().get_queryset()

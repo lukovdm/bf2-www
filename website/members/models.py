@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from filer.fields.file import FilerFileField
+from django.contrib.auth.models import User
 
 
 def user_directory_path(instance, filename):
@@ -187,3 +188,10 @@ class MemberSettings(models.Model):
 
     def __str__(self):
         return "Settings"
+
+
+def get_name(self):
+    return f"User: {self.first_name} {self.last_name}"
+
+
+User.add_to_class("__str__", get_name)

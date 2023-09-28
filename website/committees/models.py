@@ -149,8 +149,10 @@ class CommitteeMembership(Model):
         )
 
         self.committee.perm_group.user_set.set(
-            User.objects.filter(committee=self.committee).exclude(
-                committeemembership__until__lte=timezone.now()
+            User.objects.filter(
+                committeemembership__in=CommitteeMembership.objects.filter(
+                    committee=self.committee, until__isnull=True
+                )
             )
         )
 

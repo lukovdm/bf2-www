@@ -28,7 +28,7 @@ LOGIN_REDIRECT_URL = "/"
 
 LOGOUT_REDIRECT_URL = "/"
 
-# about 3 months
+# Time limit that the account activation link was valid that was sent when migrating to this website, valid for 3 months
 ACCOUNT_ACTIVATION_TIMEOUT = 60 * 60 * 24 * 30 * 3
 
 CSRF_TRUSTED_ORIGINS = ["https://.bfrisbee2s.nl"]

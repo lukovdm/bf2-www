@@ -78,10 +78,10 @@ class Member(models.Model):
 
     sports_card_number = models.CharField(
         max_length=10,
-        verbose_name=_("sports card number"),
+        verbose_name=_("Sport center customer number"),
         validators=[
             RegexValidator(
-                regex="^[sueSUE]?\\d{6,8}$",
+                regex="^\\d{6}$",
                 message=_("sports card number has invalid form"),
                 code="invalid_sports_card_number",
             ),
@@ -157,6 +157,7 @@ class Member(models.Model):
             return f'{self.user.first_name} "{self.nickname}"'
         elif self.display_name == self.LAST_NAME_NICKNAME:
             return f'"{self.nickname}" {self.user.last_name}'
+        else: return ""
 
     def default_pronouns(self) -> str:
         if self.pronouns:
@@ -178,7 +179,7 @@ class Member(models.Model):
 
 
 class MemberSettings(models.Model):
-    privacyFile = FilerFileField(null=True, blank=True, on_delete=models.CASCADE)
+    privacyFile = FilerFileField(null=True, blank=True, on_delete=models.CASCADE) # type: ignore
 
     def save(self, *args, **kwargs):
         if MemberSettings.objects.exists():

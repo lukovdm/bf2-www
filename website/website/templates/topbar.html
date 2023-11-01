@@ -20,7 +20,7 @@
                     <a class="nav-link text-primary" href="{% url 'become-a-member' %}">{% trans 'Become a member' %}</a>
                 </div>
                 <div class="nav-item top-level">
-                    <a class="nav-link text-primary" href="{% url 'login' %}">{% trans 'Sign in' %}</a>
+                    <a class="nav-link text-primary" href="{% url 'login' %}?next={{request.path}}">{% trans 'Sign in' %}</a>
                 </div>
             {% endif %}
         </div>

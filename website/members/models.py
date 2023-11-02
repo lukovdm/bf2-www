@@ -157,7 +157,8 @@ class Member(models.Model):
             return f'{self.user.first_name} "{self.nickname}"'
         elif self.display_name == self.LAST_NAME_NICKNAME:
             return f'"{self.nickname}" {self.user.last_name}'
-        else: return ""
+        else:
+            return ""
 
     def default_pronouns(self) -> str:
         if self.pronouns:
@@ -179,7 +180,7 @@ class Member(models.Model):
 
 
 class MemberSettings(models.Model):
-    privacyFile = FilerFileField(null=True, blank=True, on_delete=models.CASCADE) # type: ignore
+    privacyFile = FilerFileField(null=True, blank=True, on_delete=models.CASCADE)  # type: ignore
 
     def save(self, *args, **kwargs):
         if MemberSettings.objects.exists():

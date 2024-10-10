@@ -4,63 +4,66 @@
 {% block title %}Login{% endblock title %}
 {% block pagetitle %}{% trans "Sign in" %}{% endblock pagetitle %}
 {% block content %}
-
-            {% if next %}
-                <p class="text-center">
-                    {% if user.is_authenticated %}
-                        {% blocktrans trimmed %}
-                            Your account does not have access to this page. To proceed, please sign in with an account
-                            that has access.
-                        {% endblocktrans %}
-                    {% else %}
-                        {% blocktrans trimmed %}
-                            Please sign in to see this page.
-                        {% endblocktrans %}
-                    {% endif %}
-                </p>
+    {% if next %}
+        <p class="text-center">
+            {% if user.is_authenticated %}
+                {% blocktrans trimmed %}
+                    Your account does not have access to this page. To proceed, please sign in with an account
+                    that has access.
+                {% endblocktrans %}
+            {% else %}
+                {% blocktrans trimmed %}
+                    Please sign in to see this page.
+                {% endblocktrans %}
             {% endif %}
+        </p>
+    {% endif %}
 
-            <form method="post" action="{% url 'login' %}" class="col-lg-4 offset-lg-4">
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{ next }}">
+    {% if user.is_authenticated %}
+        <h1>You are already logged in!</h1>
+    {% else %}
+        <form method="post" action="{% url 'login' %}" class="col-lg-4 offset-lg-4">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
 
-                <div class="row mb-2" >
-                    <input name="{{ form.username.name }}" autofocus class="form-control {% if form.username.errors %}is-invalid{% endif %}"
-                           placeholder="{% trans "Email" %}">
-                    {% if form.username.errors %}
-                         <div class="invalid-tooltip">
-                            {{ form.username.errors }}
-                         </div>
-                    {% endif %}
-                </div>
-
-                <div class="row mb-3">
-                    <input name="{{ form.password.name }}" class="form-control {% if form.password.errors %}is-invalid{% endif %}" type="password"
-                           placeholder="{% trans "Password" %}">
-                    {% if form.password.errors %}
-                         <div class="invalid-tooltip">
-                            {{ form.password.errors }}
-                         </div>
-                    {% endif %}
-                </div>
-
-                {% if form.non_field_errors %}
-                    <div class="row mb-3">
-                        {% for error in form.non_field_errors %}
-                            <div class="alert alert-danger">
-                                {{ error }}
-                            </div>
-                        {% endfor %}
+            <div class="row mb-2" >
+                <input name="{{ form.username.name }}" autofocus class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                    placeholder="{% trans "Email" %}">
+                {% if form.username.errors %}
+                    <div class="invalid-tooltip">
+                        {{ form.username.errors }}
                     </div>
                 {% endif %}
+            </div>
 
-                <div class="row mb-2">
-                    <input type="submit"  value="{% trans "Sign in" %}" class="btn btn-primary float-right">
-                </div>
+            <div class="row mb-3">
+                <input name="{{ form.password.name }}" class="form-control {% if form.password.errors %}is-invalid{% endif %}" type="password"
+                    placeholder="{% trans "Password" %}">
+                {% if form.password.errors %}
+                    <div class="invalid-tooltip">
+                        {{ form.password.errors }}
+                    </div>
+                {% endif %}
+            </div>
 
+            {% if form.non_field_errors %}
                 <div class="row mb-3">
-                    <a href="{% url 'password_reset' %}"
-                       class="forgot btn float-left btn-info">{% trans "Forgot password" %}</a>
+                    {% for error in form.non_field_errors %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
                 </div>
-            </form>
+            {% endif %}
+
+            <div class="row mb-2">
+                <input type="submit"  value="{% trans "Sign in" %}" class="btn btn-primary float-right">
+            </div>
+
+            <div class="row mb-3">
+                <a href="{% url 'password_reset' %}"
+                class="forgot btn float-left btn-info">{% trans "Forgot password" %}</a>
+            </div>
+        </form>
+    {% endif %}
 {% endblock content %}

@@ -14,7 +14,7 @@ For any more advanced translation things, look at the documentation. You can hav
 ### Do translations
 To now translate any strings that need translating follow the following steps:
 1. cd to the folder of the app you want to translate
-2. Run `../manage.py makemessages -a --no-obsolete`, this add any new lines to translate to the `locale/nl/LC_MESSAGES/django.po` file.
+2. Run `../manage.py makemessages -a --no-obsolete`, this adds any new lines to translate to the `locale/nl/LC_MESSAGES/django.po` file.
 3. Use the [poedit](https://poedit.net/) program to open the `django.po` file and edit any translation necessary.
 4. Save the file.
 5. Profit

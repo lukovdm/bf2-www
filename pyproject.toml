@@ -3,6 +3,7 @@ name = "bf2-www"
 version = "0.1.0"
 description = "A website for the BF2 frisbee team"
 authors = ["Luko van der Maas <me@luko.dev>"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"

@@ -6,14 +6,13 @@ from website.settings.base import *
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [".bfrisbee2s.nl", "bf2.luko.dev", "localhost"]
+ALLOWED_HOSTS = [".bfrisbee2s.nl", "localhost"]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://bfrisbee2s.nl",
     "http://localhost",
-    "https://bf2.luko.dev",
 ]
 
 SESSION_COOKIE_SECURE = True
@@ -28,8 +27,6 @@ DATABASES = {
         "PASSWORD": os.environ.get("POSTGRES_PASSWORD"),
     }
 }
-
-DJANGOCMS_GOOGLEMAP_API_KEY = os.environ.get("GOOGLE_MAPS_KEY")
 
 EMAIL_HOST = "smtp-relay.gmail.com"
 EMAIL_PORT = 587

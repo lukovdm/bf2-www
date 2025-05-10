@@ -40,6 +40,9 @@ class BecomeAMemberForm(ModelForm):
             "google_email": _(
                 "This will be used to gain access to the Google Drive and might be the same as your regular e-mail"
             ),
+            "sports_card_number": _(
+                'This number is different from your sports card number and can be found when you log in into the radboud sportcenter <a href="https://publiek.usc.ru.nl/publiek/?lang=en" target="_blank" >website</a>'
+            ),
         }
         exclude = ["user", "bio", "profile_picture", "display_name", "nickname"]
 

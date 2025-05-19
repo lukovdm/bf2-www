@@ -399,14 +399,14 @@ django-ckeditor = "*"
 
 [[package]]
 name = "django-mptt"
-version = "0.15.0"
+version = "0.17.0"
 description = "Utilities for implementing Modified Preorder Tree Traversal with your Django Models and working with trees of Model instances."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "django_mptt-0.15.0-py3-none-any.whl", hash = "sha256:2574c014b102a41c642be5921f59356b8437fc83c9866d97644c6a0c5dc8ccc1"},
-    {file = "django_mptt-0.15.0.tar.gz", hash = "sha256:0df19d5a55f34e73df58ee03fbe0d91807493de4bd3a09f6eb00fc62920035d9"},
+    {file = "django_mptt-0.17.0-py3-none-any.whl", hash = "sha256:e77dd4b4d0de14f50239b0900def44c1d31403664ab3682b80b27fa1319fe7f0"},
+    {file = "django_mptt-0.17.0.tar.gz", hash = "sha256:e2dca00536450b91bdc80d8fc1454993b84307728394ae42c72947fc09574d3d"},
 ]
 
 [package.dependencies]
@@ -885,10 +885,11 @@ name = "markuppy"
 version = "1.14"
 description = "An HTML/XML generator"
 optional = false
-python-versions = "*"
+python-versions = ">=2.7"
 groups = ["main"]
 files = [
     {file = "MarkupPy-1.14.tar.gz", hash = "sha256:1adee2c0a542af378fe84548ff6f6b0168f3cb7f426b46961038a2bcfaad0d5f"},
+    {file = "markuppy-1.14-py3-none-any.whl", hash = "sha256:dc893880c5551d8388b688eef1d425dd48bb0b7d5bc74414fae86764ff4660ee"},
 ]
 
 [[package]]
@@ -1493,4 +1494,4 @@ production = ["gunicorn", "psycopg2-binary"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "73a5675ee64802bd6e1d2f1f2f15407559a3cd442a01e7dd25828ddac3045039"
+content-hash = "d55734115b982118fd045069b5638c6524106e8715b83ddbe6cef62bbd7a77fa"

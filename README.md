@@ -14,12 +14,12 @@ For more information on poetry look at the [docs](https://python-poetry.org/docs
 This is a bit hasty but should give the mayor steps
 1. Clone the repo
 2. Open a terminal in the repo
-3. run  `poetry install` to install all the python dependecies
-4. run `poetry shell` to enter the virtual env
+3. run `poetry install` to install all the python dependecies
+4. run `poetry env activate` to  get the command to enter the virtual env
 5. go to the website folder
 6. run first start of the server according to django docs
   a. Run `./manage.py migrate` to create the db and apply migrations
-  b. Run `./manage.py makesuperuser` to add a user to the server
+  b. Run `./manage.py createsuperuser` to add a user to the server
 7. Run `./manage.py runserver` to start the server
 8. Open the website in you browser and do the first setup
 9. Make sure to give yourself a memeber in the admin panel under users

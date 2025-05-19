@@ -314,18 +314,18 @@ rjsmin = "1.2.1"
 
 [[package]]
 name = "django-filer"
-version = "3.0.6"
+version = "3.3.1"
 description = "A file management application for django that makes handling of files and images a breeze."
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "django-filer-3.0.6.tar.gz", hash = "sha256:41fc81756c870ada6335f99adc42d8b658d6f480f002a9c8c74ebbce6bc68671"},
-    {file = "django_filer-3.0.6-py3-none-any.whl", hash = "sha256:dd15a9409ad32afcdb2e983c69080ea7c674dd8f33a3ba8ca42387aa43d3eb80"},
+    {file = "django_filer-3.3.1-py3-none-any.whl", hash = "sha256:aeaf7c665728a0e8c1a839612ccd993956006c6b683e002013b561b7da53b087"},
+    {file = "django_filer-3.3.1.tar.gz", hash = "sha256:397c0b0f313371cc9e0cd92b3f1b0023b8dd213d7ebd038d6e289437df027bd0"},
 ]
 
 [package.dependencies]
-django = ">=3.2,<5"
+django = ">=3.2"
 django-polymorphic = "*"
 easy-thumbnails = {version = "*", extras = ["svg"]}
 
@@ -885,10 +885,11 @@ name = "markuppy"
 version = "1.14"
 description = "An HTML/XML generator"
 optional = false
-python-versions = "*"
+python-versions = ">=2.7"
 groups = ["main"]
 files = [
     {file = "MarkupPy-1.14.tar.gz", hash = "sha256:1adee2c0a542af378fe84548ff6f6b0168f3cb7f426b46961038a2bcfaad0d5f"},
+    {file = "markuppy-1.14-py3-none-any.whl", hash = "sha256:dc893880c5551d8388b688eef1d425dd48bb0b7d5bc74414fae86764ff4660ee"},
 ]
 
 [[package]]

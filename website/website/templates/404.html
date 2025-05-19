@@ -1,0 +1,21 @@
+{% extends "page.html" %}
+{% load cms_tags i18n static events_datetimerange tz %}
+
+{% block title %}
+404
+{% endblock title %}
+
+{% block pagetitle %}
+<h4 class="text-center">
+    {% translate "Page not found" %}
+</h4>
+{% endblock pagetitle %}
+
+
+{% block content %}
+<p class="text-center">
+    <img src="{% static 'website/images/ugly_meeuw.png' %}" class="shadow-none" />
+    <br>
+    {% blocktranslate with link="/" %} Click <a href="{{ link }}">here</a> to go back to the main page.{% endblocktranslate %}
+</p>
+{% endblock content %}

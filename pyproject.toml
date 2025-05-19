@@ -20,7 +20,7 @@ djangocms-style = "^3.0.0"
 djangocms-column = "^2.0.0"
 djangocms-googlemap = "^2.1.1"
 psycopg2-binary = {version = "^2.9.8", optional = true, extras = ["production"]}
-gunicorn = {version = "^21.2.0", optional = true, extras = ["production"]}
+gunicorn = {version = "^23.0.0", optional = true, extras = ["production"]}
 Pillow = "^11.0.0"
 django-import-export = "^3.3.1"
 django-bootstrap-v5 = "^1.0.11"

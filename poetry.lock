@@ -276,22 +276,22 @@ django = ">=3.2"
 
 [[package]]
 name = "django-cms"
-version = "3.11.4"
+version = "3.11.10"
 description = "Lean enterprise content management powered by Django."
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "django-cms-3.11.4.tar.gz", hash = "sha256:58ff8bda97f0012fe365eaa542f1c91a310c6b774030ef5d6c2c3caaabf3cf31"},
-    {file = "django_cms-3.11.4-py2.py3-none-any.whl", hash = "sha256:ed27c0d547695b796483d5de5dcfe4b9cedcd73b688c788f32c0175425b7017a"},
+    {file = "django_cms-3.11.10-py2.py3-none-any.whl", hash = "sha256:868b19d7b74aef16bc05251934aaaf92e151590ecdfe1132989f32a28c42a95d"},
+    {file = "django_cms-3.11.10.tar.gz", hash = "sha256:41fdf1f239c7eaca9283721a9df0198de5b44ef12082cb43f32726cfbb76ec84"},
 ]
 
 [package.dependencies]
-Django = ">=3.2,<5.0"
+Django = ">=3.2"
 django-classy-tags = ">=0.7.2"
 django-formtools = ">=2.1"
 django-sekizai = ">=0.7"
-django-treebeard = ">=4.3"
+django-treebeard = ">=4.3,<4.5 || >4.5"
 djangocms-admin-style = ">=1.2"
 packaging = "*"
 
@@ -885,10 +885,11 @@ name = "markuppy"
 version = "1.14"
 description = "An HTML/XML generator"
 optional = false
-python-versions = "*"
+python-versions = ">=2.7"
 groups = ["main"]
 files = [
     {file = "MarkupPy-1.14.tar.gz", hash = "sha256:1adee2c0a542af378fe84548ff6f6b0168f3cb7f426b46961038a2bcfaad0d5f"},
+    {file = "markuppy-1.14-py3-none-any.whl", hash = "sha256:dc893880c5551d8388b688eef1d425dd48bb0b7d5bc74414fae86764ff4660ee"},
 ]
 
 [[package]]

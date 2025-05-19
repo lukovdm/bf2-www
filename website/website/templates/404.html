@@ -1,26 +1,21 @@
-{% load i18n bootstrap5 sass_tags static %}
- 
- <!DOCTYPE html>
- <html>
- <head>
-     <style>
-         .font-comic{
-             font-family: "Comic Sans", cursive;
-         }
-     </style>
- </head>
- <body>
- <div class = "row">
-     <div class = "column">
-         <img src = "/static/website/images/ugly_meeuw.png" alt="Kakaaaa! I am a meeuw!" align = "left" > 
-     </div>
-     <div class = "column">
-         <h1 class = "font-comic" style="font-size:4vw"><br>{% trans "Oops! This page does not exist..." %}</h1>
-         <p class = "font-comic" style="font-size:2vw"> 
-            {% blocktrans with link="https://www.bfrisbee2s.nl/" %} Click <a href= "{{ link }}">here</a> to go back to the main page.{% endblocktrans %}</p>
-     </div>
- </div>
- 
- </body>
- </html>
- 
+{% extends "page.html" %}
+{% load cms_tags i18n static events_datetimerange tz %}
+
+{% block title %}
+404
+{% endblock title %}
+
+{% block pagetitle %}
+<h4 class="text-center">
+    Page not found
+</h4>
+{% endblock pagetitle %}
+
+
+{% block content %}
+<p class="text-center">
+    <img src="{% static 'website/images/ugly_meeuw.png' %}" class="shadow-none" />
+    <br>
+    {% blocktrans with link="/" %} Click <a href="{{ link }}">here</a> to go back to the main page.{% endblocktrans %}
+</p>
+{% endblock content %}

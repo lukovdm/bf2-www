@@ -7,7 +7,7 @@
 
 {% block pagetitle %}
 <h4 class="text-center">
-    Page not found
+    {% translate "Page not found" %}
 </h4>
 {% endblock pagetitle %}
 
@@ -16,6 +16,6 @@
 <p class="text-center">
     <img src="{% static 'website/images/ugly_meeuw.png' %}" class="shadow-none" />
     <br>
-    {% blocktrans with link="/" %} Click <a href="{{ link }}">here</a> to go back to the main page.{% endblocktrans %}
+    {% blocktranslate with link="/" %} Click <a href="{{ link }}">here</a> to go back to the main page.{% endblocktranslate %}
 </p>
 {% endblock content %}

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-19 18:38+0200\n"
-"PO-Revision-Date: 2022-12-19 14:19+0100\n"
+"POT-Creation-Date: 2025-05-19 20:31+0200\n"
+"PO-Revision-Date: 2025-05-19 20:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.6\n"
 
 #: cms_plugins.py:18
 msgid "Better File"
@@ -38,13 +38,13 @@ msgstr "Engels"
 msgid "Dutch"
 msgstr "Nederlands"
 
-#: templates/404.html:18
-msgid "Oops! This page does not exist..."
-msgstr "Oeps! Deze pagina bestaat niet..."
+#: templates/404.html:10
+msgid "Page not found"
+msgstr "Pagina niet gevonden"
 
-#: templates/404.html:20
+#: templates/404.html:19
 #, python-format
-msgid " Click <a href= \"%(link)s\">here</a> to go back to the main page."
+msgid " Click <a href=\"%(link)s\">here</a> to go back to the main page."
 msgstr ""
 " Klik <a href= \"%(link)s\">hier</a> om terug te gaan naar de hoofdpagina."
 

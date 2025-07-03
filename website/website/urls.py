@@ -20,20 +20,36 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from cms.sitemaps import CMSSitemap
 from django.contrib.sitemaps.views import sitemap
+from django.views.defaults import page_not_found, server_error
 
 from members.sitemaps import BecomeAMemberSitemap
 from members.views import BecomeAMemberView, PasswordSetView
 
-urlpatterns = [
-    path("i18n/", include("django.conf.urls.i18n")),
-    path(
-        "sitemap.xml",
-        sitemap,
-        {"sitemaps": {"cmspages": CMSSitemap, "member": BecomeAMemberSitemap}},
-    ),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+def custom_page_not_found(request):
+    return page_not_found(request, None)
+
+
+def custom_server_error(request):
+    return server_error(request)
+
+
+urlpatterns = (
+    [
+        path("i18n/", include("django.conf.urls.i18n")),
+        path(
+            "sitemap.xml",
+            sitemap,
+            {"sitemaps": {"cmspages": CMSSitemap, "member": BecomeAMemberSitemap}},
+        ),
+    ]
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+)
 
 urlpatterns += i18n_patterns(
+    path("404/", custom_page_not_found),
+    path("500/", custom_server_error),
     path("admin/", admin.site.urls),
     path("user/", include("django.contrib.auth.urls")),
     path("become-a-member/", BecomeAMemberView.as_view(), name="become-a-member"),

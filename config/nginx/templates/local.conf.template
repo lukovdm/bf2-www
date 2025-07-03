@@ -59,6 +59,9 @@ server {
 
     if ( $host !~* ^(${DOMAIN})$ ) {return 444;}
 
+    error_page 500 /500;
+
+
     location / {
         proxy_pass http://djangoapp;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -74,5 +77,9 @@ server {
 
     location /media/ {
         alias /bf2-www/media/;
+    }
+
+    location = /500 {
+        alias /bf2-www/static/website/500.html;
     }
 }

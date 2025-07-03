@@ -60,8 +60,6 @@ THUMBNAIL_PROCESSORS = (
 INSTALLED_APPS = [
     "djangocms_admin_style",
     # Django
-    "django.contrib.admin",
-    "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -106,6 +104,7 @@ INSTALLED_APPS = [
     "import_export",
     "ckeditor",
     "django_mail_template",
+    "django_bootstrap5",
     "sass_processor",
     # custom applications
     "website",
@@ -113,6 +112,9 @@ INSTALLED_APPS = [
     "events",
     "boards",
     "committees",
+    # auth
+    "django.contrib.admin",
+    "django.contrib.auth",
 ]
 
 MIDDLEWARE = [

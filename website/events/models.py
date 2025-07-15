@@ -89,8 +89,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
                     ),
                 }
             )
-        print(self.start_date)
-        print(self.end_date)
+
         if self.start_date > self.end_date:
             raise ValidationError(
                 {

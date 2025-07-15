@@ -134,7 +134,7 @@ website/*.sqlite3
 **/media/*
 database/
 *.sqlite
-*.sqlite3
+*.sqlite3*
 *.backup
 
 # secrets

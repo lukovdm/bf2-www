@@ -60,8 +60,6 @@ THUMBNAIL_PROCESSORS = (
 INSTALLED_APPS = [
     "djangocms_admin_style",
     # Django
-    "django.contrib.admin",
-    "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
@@ -77,19 +75,35 @@ INSTALLED_APPS = [
     "filer",
     "easy_thumbnails",
     "mptt",
-    "djangocms_link",
+    "djangocms_4_migration",
+    "djangocms_versioning",
+    "djangocms_alias",
+    "djangocms_frontend",
+    "djangocms_frontend.contrib.accordion",
+    "djangocms_frontend.contrib.alert",
+    "djangocms_frontend.contrib.badge",
+    "djangocms_frontend.contrib.card",
+    "djangocms_frontend.contrib.carousel",
+    "djangocms_frontend.contrib.collapse",
+    "djangocms_frontend.contrib.content",
+    "djangocms_frontend.contrib.grid",
+    "djangocms_frontend.contrib.image",
+    "djangocms_frontend.contrib.jumbotron",
+    "djangocms_frontend.contrib.link",
+    "djangocms_frontend.contrib.listgroup",
+    "djangocms_frontend.contrib.media",
+    "djangocms_frontend.contrib.tabs",
+    "djangocms_frontend.contrib.utilities",
     "djangocms_file",
     "djangocms_picture",
     "djangocms_video",
     "djangocms_googlemap",
-    "djangocms_snippet",
     "djangocms_style",
-    "djangocms_column",
     # installed libraries
     "import_export",
     "ckeditor",
     "django_mail_template",
-    "bootstrap5",
+    "django_bootstrap5",
     "sass_processor",
     # custom applications
     "website",
@@ -97,6 +111,9 @@ INSTALLED_APPS = [
     "events",
     "boards",
     "committees",
+    # auth
+    "django.contrib.admin",
+    "django.contrib.auth",
 ]
 
 MIDDLEWARE = [
@@ -248,3 +265,5 @@ MESSAGE_TAGS = {
     messages.WARNING: "warning",
     messages.ERROR: "danger",
 }
+
+CMS_CONFIRM_VERSION4 = True

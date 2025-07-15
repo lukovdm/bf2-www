@@ -1,5 +1,6 @@
 from cms.models import PlaceholderField
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db.models import (
     Model,
@@ -60,6 +61,42 @@ class Event(Model, metaclass=ModelTranslateMeta):
             ),
         ],
     )
+
+    def clean(self) -> None:
+        if (self.registration_start is None) != (self.registration_end is None):
+            raise ValidationError(
+                {
+                    "registration_start": _(
+                        "Either both registration start and end need to be set, or neither."
+                    ),
+                    "registration_end": _(
+                        "Either both registration start and end need to be set, or neither."
+                    ),
+                }
+            )
+
+        if (
+            self.registration_start is not None
+            and self.registration_start > self.registration_end
+        ):
+            raise ValidationError(
+                {
+                    "registration_start": _(
+                        "Registration start must be before registration end."
+                    ),
+                    "registration_end": _(
+                        "Registration start must be before registration end."
+                    ),
+                }
+            )
+
+        if self.start_date > self.end_date:
+            raise ValidationError(
+                {
+                    "start_date": _("Start date must be before the end date."),
+                    "end_date": _("Start date must be before the end date."),
+                }
+            )
 
     def save(self, *args, **kwargs):
         if self.form_link and not self.form_link.endswith("embedded=true"):

@@ -672,6 +672,22 @@ files = [
 django-cms = ">=3.7"
 
 [[package]]
+name = "djangocms-column"
+version = "2.1.0"
+description = "Column Plugin for django CMS"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "djangocms_column-2.1.0-py3-none-any.whl", hash = "sha256:ef3b7839f3f05d6858a61bd0972828c62de6e2536e67cab585741be015d96a0d"},
+    {file = "djangocms_column-2.1.0.tar.gz", hash = "sha256:b73867f7ba487e759cc62da1b3d4dafc6fed5244ddf1b04485eda22bb50ac68a"},
+]
+
+[package.dependencies]
+Django = ">=2.2"
+django-cms = ">=3.8.0"
+
+[[package]]
 name = "djangocms-file"
 version = "3.0.1"
 description = "Adds file plugin to django CMS"
@@ -732,6 +748,22 @@ django-filer = ">=1.7"
 django-treebeard = ">=4.3"
 
 [[package]]
+name = "djangocms-link"
+version = "5.1.0"
+description = "Adds a link plugin to django CMS"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "djangocms_link-5.1.0-py3-none-any.whl", hash = "sha256:cc3bb274e70d9ac7993c2cafc4911e82e7862cae48dd81a083ad94839aae22e8"},
+    {file = "djangocms_link-5.1.0.tar.gz", hash = "sha256:99a0bc27fe72afb5047ab2092d333ded41bbbaa094e8406bb61351313411bbc3"},
+]
+
+[package.dependencies]
+django-cms = ">=3.7,<4.1 || >4.1,<4.1.1 || >4.1.1,<4.1.2 || >4.1.2"
+djangocms-attributes-field = ">=1"
+
+[[package]]
 name = "djangocms-picture"
 version = "4.1.1"
 description = "Adds an image plugin to django CMS"
@@ -748,6 +780,24 @@ django-cms = ">=3.7"
 django-filer = ">=1.7"
 djangocms-attributes-field = ">=1"
 easy-thumbnails = "*"
+
+[[package]]
+name = "djangocms-snippet"
+version = "5.0.1"
+description = "Adds snippet plugin to django CMS."
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "djangocms_snippet-5.0.1-py3-none-any.whl", hash = "sha256:e7835831209bc661d8ff8c574112eaa93aee6a72a7df572aab2e41d49391a58d"},
+    {file = "djangocms_snippet-5.0.1.tar.gz", hash = "sha256:2c38f988c6095f5289855d57d2042945625328b0d584e6409ae8f86279375319"},
+]
+
+[package.dependencies]
+django-cms = ">=3.7"
+
+[package.extras]
+static-ace = ["djangocms-static-ace"]
 
 [[package]]
 name = "djangocms-style"
@@ -1752,4 +1802,4 @@ production = ["gunicorn", "psycopg2-binary"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "f981b9a7c4d0935452dd90c4df5e999228510aa4b5071e3e6f0be2d7dbf54c27"
+content-hash = "f6f260eb24481c5702fd983b652d911890506f3abc9d172e3691b1675b82cc9a"

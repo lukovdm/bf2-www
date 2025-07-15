@@ -98,7 +98,6 @@ INSTALLED_APPS = [
     "djangocms_picture",
     "djangocms_video",
     "djangocms_googlemap",
-    "djangocms_snippet",
     "djangocms_style",
     # installed libraries
     "import_export",

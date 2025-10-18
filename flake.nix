@@ -17,7 +17,12 @@
           openssl
           httpie
           stdenv.cc.cc.lib
+          gcc
         ];
+        # Make GCC's C++ runtime visible to dynamically loaded wheels (e.g., libsass)
+        shellHook = ''
+          export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib ]}:$LD_LIBRARY_PATH
+        '';
       };
     });
 }

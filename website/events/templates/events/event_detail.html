@@ -17,35 +17,37 @@
 {% endblock pagetitle %}
 
 {% block content %}
-    <div class="row mb-3">
-        <div class="w-100">
-            <img src="{{ object.image.url }}" class="img-fluid w-100">
+    {% render_model_block object %}
+        <div class="row mb-3">
+            <div class="w-100">
+                <img src="{{ instance.image.url }}" class="img-fluid w-100">
+            </div>
         </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-4 d-flex align-items-center">
-            <i class="fa-regular fa-clock pe-2 fs-3"></i>
-            <p class="fw-bold fst-italic fs-6 m-0">
-                {% if object.show_end_date %}
-                    {% datetimerange object.start_date object.end_date %}
-                {% else %}
-                    {{ object.start_date|date:"G:i" }}
-                {% endif %}
-            </p>
+        <div class="row mb-3">
+            <div class="col-4 d-flex align-items-center">
+                <i class="fa-regular fa-clock pe-2 fs-3"></i>
+                <p class="fw-bold fst-italic fs-6 m-0">
+                    {% if instance.show_end_date %}
+                        {% datetimerange instance.start_date instance.end_date %}
+                    {% else %}
+                        {{ instance.start_date|date:"G:i" }}
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-4 d-flex align-items-center">
+                <i class="fa-solid fa-location-dot pe-2 fs-3"></i>
+                <p class="fw-bold fst-italic fs-6 m-0">{{ instance.location }}</p>
+            </div>
+            <div class="col-4 d-flex align-items-center">
+                <i class="fa-solid fa-euro-sign pe-2 fs-3"></i>
+                <p class="fw-bold fst-italic fs-6 m-0">
+                    {% if instance.cost %}{{ instance.cost }}{% else %}{% trans "free"|capfirst %}{% endif %}
+                </p>
+            </div>
         </div>
-        <div class="col-4 d-flex align-items-center">
-            <i class="fa-solid fa-location-dot pe-2 fs-3"></i>
-            <p class="fw-bold fst-italic fs-6 m-0">{{ object.location }}</p>
-        </div>
-        <div class="col-4 d-flex align-items-center">
-            <i class="fa-solid fa-euro-sign pe-2 fs-3"></i>
-            <p class="fw-bold fst-italic fs-6 m-0">
-                {% if object.cost %}{{ object.cost }}{% else %}{% trans "free"|capfirst %}{% endif %}
-            </p>
-        </div>
-    </div>
+    {% endrender_model_block %}
     <div class="row ms-0 me-1 mb-3">
-        <div class="rounded event-description">{% render_placeholder object.description %}</div>
+        <div class="rounded event-description">{% render_placeholder object.description_placeholder %}</div>
     </div>
     <div class="row mb-3">
         {% if user.is_authenticated and object.registration_start %}

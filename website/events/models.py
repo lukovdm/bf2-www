@@ -1,4 +1,6 @@
-from cms.models import PlaceholderField
+from cms.admin.placeholderadmin import FrontendEditableAdminMixin
+from cms.models import PlaceholderRelationField
+from cms.utils.placeholder import get_placeholder_from_slot
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
@@ -11,9 +13,9 @@ from django.db.models import (
     BooleanField,
     ForeignKey,
     SET_NULL,
-    DecimalField,
 )
 from django.urls import reverse
+from django.utils.functional import cached_property
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 from filer.fields.image import FilerImageField
@@ -31,7 +33,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
     start_date = DateTimeField(verbose_name=_("start date"))
     end_date = DateTimeField(verbose_name=_("end date"))
     location = CharField(max_length=255, verbose_name=_("location"))
-    description = PlaceholderField("description", verbose_name=_("description"))
+    description = PlaceholderRelationField()
 
     limit = IntegerField(null=True, blank=True, verbose_name=_("participant limit"))
     private_registrations = BooleanField(
@@ -61,6 +63,13 @@ class Event(Model, metaclass=ModelTranslateMeta):
             ),
         ],
     )
+
+    @cached_property
+    def description_placeholder(self):
+        return get_placeholder_from_slot(self.description, "description")
+
+    def get_template(self):
+        return "events/event_structure.html"
 
     def clean(self) -> None:
         if (self.registration_start is None) != (self.registration_end is None):

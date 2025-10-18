@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-19 20:31+0200\n"
-"PO-Revision-Date: 2025-05-19 20:32+0200\n"
+"POT-Creation-Date: 2025-07-15 18:32+0200\n"
+"PO-Revision-Date: 2025-07-15 18:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -18,10 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: cms_plugins.py:18
-msgid "Better File"
-msgstr "Betere Files"
-
 #: models.py:7
 msgid "image"
 msgstr "afbeelding"
@@ -30,11 +26,11 @@ msgstr "afbeelding"
 msgid "description"
 msgstr "beschrijving"
 
-#: settings/base.py:193
+#: settings/base.py:211
 msgid "English"
 msgstr "Engels"
 
-#: settings/base.py:199
+#: settings/base.py:217
 msgid "Dutch"
 msgstr "Nederlands"
 

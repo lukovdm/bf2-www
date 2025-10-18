@@ -16,6 +16,7 @@
           flyctl
           openssl
           httpie
+          stdenv.cc.cc.lib
         ];
       };
     });

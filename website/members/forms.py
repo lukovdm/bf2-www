@@ -146,10 +146,10 @@ class ActivateAccountForm(SetPasswordForm):
 
 
 class EditMemberForm(ModelForm):
-    x = FloatField(widget=HiddenInput())
-    y = FloatField(widget=HiddenInput())
-    width = FloatField(widget=HiddenInput())
-    height = FloatField(widget=HiddenInput())
+    x = FloatField(widget=HiddenInput(), required=False)
+    y = FloatField(widget=HiddenInput(), required=False)
+    width = FloatField(widget=HiddenInput(), required=False)
+    height = FloatField(widget=HiddenInput(), required=False)
 
     class Meta:
         model = Member
@@ -163,17 +163,21 @@ class EditMemberForm(ModelForm):
             "preferred_language",
         )
 
-    def save(self):
-        member = super(EditMemberForm, self).save()
+    def save(self, commit=True):
+        member = super().save(commit=commit)
 
         x = self.cleaned_data.get("x")
         y = self.cleaned_data.get("y")
         w = self.cleaned_data.get("width")
         h = self.cleaned_data.get("height")
 
-        image = Image.open(member.profile_picture)
-        cropped_image = image.crop((x, y, w + x, h + y))
-        resized_image = cropped_image.resize((1280, 720), Image.ANTIALIAS)
-        resized_image.save(member.profile_picture.path)
+        if member.profile_picture and None not in (x, y, w, h):
+            # Convert to ints to avoid PIL type issues
+            x_i, y_i, w_i, h_i = map(int, (x, y, w, h))
+            if w_i > 0 and h_i > 0:
+                image = Image.open(member.profile_picture)
+                cropped_image = image.crop((x_i, y_i, x_i + w_i, y_i + h_i))
+                resized_image = cropped_image.resize((1280, 720))
+                resized_image.save(member.profile_picture.path)
 
         return member

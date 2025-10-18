@@ -56,7 +56,9 @@ class BecomeAMemberForm(ModelForm):
         except User.DoesNotExist:
             return email
         raise ValidationError(
-            _("Email already registered. If you are having trouble logging in, you can reset your password.")
+            _(
+                "Email already registered. If you are having trouble logging in, you can reset your password."
+            )
         )
 
     def save(self, commit=True, *args, **kwargs):

@@ -1,3 +1,4 @@
+# nix
 {
   description = "BF2 djangocms website";
   inputs.flake-utils.url = "github:numtide/flake-utils";
@@ -7,7 +8,10 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       devShell = pkgs.mkShell {
-        nativeBuildInputs = [ pkgs.bashInteractive ];
+        nativeBuildInputs = with pkgs; [
+          bashInteractive
+          gettext
+        ];
         buildInputs = with pkgs; [
           python311
           gtranslator
@@ -17,7 +21,12 @@
           openssl
           httpie
           stdenv.cc.cc.lib
+          gcc
         ];
+        shellHook = ''
+          # GCC runtime for dynamically loaded wheels
+          export LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib ]}:$LD_LIBRARY_PATH
+        '';
       };
     });
 }

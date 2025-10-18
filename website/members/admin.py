@@ -173,8 +173,9 @@ class UserAdmin(ImportExportMixin, BaseUserAdmin):
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
         extra_context = extra_context or {}
-        extra_context["show_accept_reject_buttons"] = request.user.has_perm(
-            "members.can_accept_or_reject"
+        extra_context["show_accept_reject_buttons"] = (
+            request.user.has_perm("members.can_accept_or_reject")
+            and not User.objects.get(id=object_id).is_active
         )
         return super(UserAdmin, self).change_view(
             request,

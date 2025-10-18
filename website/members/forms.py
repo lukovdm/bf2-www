@@ -1,4 +1,5 @@
 from PIL import Image
+from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.models import User
@@ -46,6 +47,19 @@ class BecomeAMemberForm(ModelForm):
     def clean_password(self):
         validate_password(self.data["password"], self.instance)
         return self.data["password"]
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+
+        try:
+            User._default_manager.get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise ValidationError(
+            _(
+                "Email already registered. If you are having trouble logging in, you can reset your password."
+            )
+        )
 
     def save(self, commit=True, *args, **kwargs):
         member = super().save(commit=False)

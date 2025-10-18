@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-15 16:35+0200\n"
-"PO-Revision-Date: 2025-07-15 16:39+0200\n"
+"POT-Creation-Date: 2025-10-18 12:00+0200\n"
+"PO-Revision-Date: 2025-10-18 12:00+0200\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
 "Language: nl_NL\n"
@@ -19,131 +19,127 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: models.py:27
+#: models.py:29
 msgid "name"
 msgstr "naam"
 
-#: models.py:29
+#: models.py:31
 msgid "image"
 msgstr "foto"
 
-#: models.py:31
+#: models.py:33
 msgid "start date"
 msgstr "start datum"
 
-#: models.py:32
+#: models.py:34
 msgid "end date"
 msgstr "eind datum"
 
-#: models.py:33
+#: models.py:35
 msgid "location"
 msgstr "locatie"
 
-#: models.py:34
-msgid "description"
-msgstr "beschrijving"
-
-#: models.py:36
+#: models.py:38
 msgid "participant limit"
 msgstr "deelnemerslimiet"
 
-#: models.py:38
+#: models.py:40
 msgid "Don't show who is registered"
 msgstr "Laat niet zien wie is geregistreerd"
 
-#: models.py:41
+#: models.py:43
 msgid "cost"
 msgstr "kosten"
 
-#: models.py:45
+#: models.py:47
 msgid "registration start"
 msgstr "start registratie"
 
-#: models.py:48
+#: models.py:50
 msgid "registration end"
 msgstr "einde registratie"
 
-#: models.py:50
+#: models.py:52
 msgid "Show end date"
 msgstr "Laat eind datum zien"
 
-#: models.py:56
+#: models.py:58
 msgid "Google form link"
 msgstr "Google form link"
 
-#: models.py:60
+#: models.py:62
 msgid "Please enter a google form share link"
 msgstr "Vul a.u.b. een google form deel link in"
 
-#: models.py:70 models.py:73
+#: models.py:79 models.py:82
 msgid "Either both registration start and end need to be set, or neither."
 msgstr "Of de start en einddatum moeten worden gezet, of allebei niet."
 
-#: models.py:85 models.py:88
+#: models.py:94 models.py:97
 msgid "Registration start must be before registration end."
 msgstr "De registratie start moet voor het registratie eind zijn."
 
-#: models.py:96 models.py:97
+#: models.py:105 models.py:106
 msgid "Start date must be before the end date."
 msgstr "Start datum moet voor de einddatum zijn."
 
-#: models.py:119
+#: models.py:128
 msgid "event"
 msgstr "evenement"
 
-#: models.py:120
+#: models.py:129
 msgid "user"
 msgstr "gebruiker"
 
-#: models.py:122
+#: models.py:131
 msgid "registration date"
 msgstr "registratie datum"
 
-#: models.py:123
+#: models.py:132
 msgid "has paid"
 msgstr "heeft betaald"
 
-#: templates/events/event_detail.html:43
+#: templates/events/event_detail.html:44
 msgid "free"
 msgstr "gratis"
 
-#: templates/events/event_detail.html:57
+#: templates/events/event_detail.html:59
 msgid "Deregistration is closed, contact the committee"
 msgstr "Uitschrijven is gesloten, contacteer de commissie"
 
-#: templates/events/event_detail.html:59
+#: templates/events/event_detail.html:61
 msgid "unregister"
 msgstr "afmelden"
 
-#: templates/events/event_detail.html:64
+#: templates/events/event_detail.html:66
 msgid "Change form"
 msgstr "Verander formulier"
 
-#: templates/events/event_detail.html:73
+#: templates/events/event_detail.html:75
 msgid "Full"
 msgstr "Vol"
 
-#: templates/events/event_detail.html:75
+#: templates/events/event_detail.html:77
 msgid "Not opened"
 msgstr "Niet geopend"
 
-#: templates/events/event_detail.html:77
+#: templates/events/event_detail.html:79
 msgid "Closed"
 msgstr "Gesloten"
 
-#: templates/events/event_detail.html:79
+#: templates/events/event_detail.html:81
 msgid "register"
 msgstr "registreren"
 
-#: templates/events/event_detail.html:89
+#: templates/events/event_detail.html:91
 msgid "registrations open at"
 msgstr "registratie opent op"
 
-#: templates/events/event_detail.html:94
+#: templates/events/event_detail.html:96
 msgid "registrations close at"
 msgstr "registratie sluit op"
 
-#: templates/events/event_detail.html:104
+#: templates/events/event_detail.html:106
 msgid "registrations"
 msgstr "registraties"
 
@@ -163,31 +159,31 @@ msgstr "Evenementen"
 msgid "Add these events to your calendar"
 msgstr "Voeg deze evenementen toe aan jouw kalender"
 
-#: views.py:66
+#: views.py:71
 msgid "The registrations for this event have not opened yet."
 msgstr "De registraties voor dit evenement zijn nog niet geopend."
 
-#: views.py:71
+#: views.py:76
 msgid "The registrations for this event have already closed."
 msgstr "De registraties voor dit evenement zijn al gesloten."
 
-#: views.py:76
+#: views.py:81
 msgid "This event has already passed."
 msgstr "Dit evenement is al geweest."
 
-#: views.py:79
+#: views.py:84
 msgid "This event is already full."
 msgstr "Dit evenement zit vol."
 
-#: views.py:81
+#: views.py:86
 msgid "You have already registered for this event."
 msgstr "Je bent al geregistreerd voor dit evenement."
 
-#: views.py:86
+#: views.py:91
 msgid "You successfully registered."
 msgstr "Je bent succesvol geregistreerd."
 
-#: views.py:119
+#: views.py:124
 msgid ""
 "The registrations for this event have already closed, if you still want to "
 "deregister contact the committee."
@@ -195,10 +191,10 @@ msgstr ""
 "De registraties voor dit evenement zijn al gesloten, als je je nog wil "
 "uitschrijven, contacteer de commissie."
 
-#: views.py:125
+#: views.py:130
 msgid "You successfully unregistered."
 msgstr "Je bent succesvol afgemeld."
 
-#: views.py:150
+#: views.py:155
 msgid "For more details, see the website: "
 msgstr "Voor meer details, zie de website: "

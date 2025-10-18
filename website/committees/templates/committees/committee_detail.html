@@ -21,7 +21,7 @@
             {% render_placeholder object.description %}
             {% if user.is_authenticated %}
                 <p class="fw-bold fs-6 mb-0">
-                    <a href="mailto:{{ object.email }}" class="link-dark stretched-link">
+                    <a href="mailto:{{ object.email }}" class="link-dark">
                         <i class="fa-regular fa-envelope pe-2 fs-6"></i>{{ object.email }}
                     </a>
                 </p>

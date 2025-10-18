@@ -40,6 +40,7 @@ class EventDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        self.request.toolbar.set_object(self.object)
 
         context["now"] = timezone.now()
 
@@ -52,6 +53,10 @@ class EventDetailView(DetailView):
                 pass
 
         return context
+
+
+def event_detail_endpoint_view(request, event):
+    return EventDetailView.as_view()(request, pk=event.pk)
 
 
 class EventRegisterView(LoginRequiredMixin, View):

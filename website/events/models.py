@@ -52,7 +52,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
     show_end_date = BooleanField(default=True, verbose_name=_("Show end date"))
 
     form_link = CharField(
-        max_length=128,
+        max_length=256,
         null=True,
         blank=True,
         verbose_name=_("Google form link"),

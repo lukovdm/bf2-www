@@ -22,7 +22,7 @@ django-compressor = {version = "^4.4", extras = ["production"]}
 django-mail-template = "^0.1.11"
 django-mptt = "^0.15.0"
 django-bootstrap5 = "^25.1"
-django-cms = "^4.1.6"
+django-cms = "^5.0.0"
 djangocms-versioning = "^2.1.0"
 djangocms-alias = "^2.0.1"
 djangocms-admin-style = "^3.3.1"

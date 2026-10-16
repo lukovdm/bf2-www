@@ -37,7 +37,7 @@ djangocms-snippet = "^5.0.1"
 djangocms_link = "^5.1.0"
 
 [tool.poetry.group.dev.dependencies]
-black = "^25.1.0"
+black = "^26.0.0"
 djangocms-4-migration = "0.0.2"
 
 [tool.poetry.extras]

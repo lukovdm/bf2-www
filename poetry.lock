@@ -641,14 +641,14 @@ Django = "*"
 
 [[package]]
 name = "djangocms-alias"
-version = "2.0.4"
+version = "2.0.5"
 description = "An alias is a collection of plugins that is managed centrally."
 optional = false
 python-versions = "*"
 groups = ["main"]
 files = [
-    {file = "djangocms_alias-2.0.4-py3-none-any.whl", hash = "sha256:f4bfa980c8d2786bd43ea7455cc426b3519356d91af0d8f39cd55991a8fdbf4d"},
-    {file = "djangocms_alias-2.0.4.tar.gz", hash = "sha256:7f077cd1c545873f27527c1b19bfbb980949b275bbe38530b243e2cfda776798"},
+    {file = "djangocms_alias-2.0.5-py3-none-any.whl", hash = "sha256:f8545761ab9dc501a5ec13c64d4117eb324b0ca3d8bfd624a3284bf1c687b66b"},
+    {file = "djangocms_alias-2.0.5.tar.gz", hash = "sha256:81e19b22a9e5cd0a633c93289e6b326a9679b0d4a9dfe7036a9cbbd891acbb1f"},
 ]
 
 [package.dependencies]

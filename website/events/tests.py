@@ -237,6 +237,64 @@ class EventAdminTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
+class RegistrationExportTest(TestCase):
+    def setUp(self):
+        self.admin = User.objects.create_superuser("admin", "admin@example.com", "pw")
+        self.event = make_event(name_en="Hat tournament", cost_en="10", cost_nl="10")
+        self.other = make_event(name_en="Pub quiz")
+        for i, event in enumerate([self.event, self.event, self.other]):
+            user = User.objects.create_user(
+                f"user{i}", f"user{i}@example.com", "pw", first_name=f"Name{i}"
+            )
+            Registration.objects.create(event=event, user=user, has_payed=i == 0)
+
+    def rows(self, response):
+        import csv
+        import io
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response["Content-Type"], "text/csv; charset=utf-8")
+        content = response.content.decode("utf-8-sig")
+        return list(csv.reader(io.StringIO(content)))
+
+    def test_export_button(self):
+        self.client.force_login(self.admin)
+        change = self.client.get(
+            reverse("admin:events_event_change", args=[self.event.pk])
+        )
+        url = reverse("admin:events_event_registrations_csv", args=[self.event.pk])
+        self.assertContains(change, url)
+        rows = self.rows(self.client.get(url))
+        self.assertEqual(len(rows), 3)
+        self.assertEqual(
+            rows[1][:4], ["Hat tournament", "Name0", "", "user0@example.com"]
+        )
+        self.assertEqual(rows[1][6], "yes")
+        self.assertEqual(rows[2][6], "no")
+
+    def test_export_action(self):
+        self.client.force_login(self.admin)
+        response = self.client.post(
+            reverse("admin:events_event_changelist"),
+            {
+                "action": "export_registrations",
+                "_selected_action": [self.event.pk, self.other.pk],
+            },
+        )
+        rows = self.rows(response)
+        self.assertEqual(
+            [row[0] for row in rows[1:]], ["Hat tournament"] * 2 + ["Pub quiz"]
+        )
+
+    def test_export_requires_permission(self):
+        staff = User.objects.create_user("staff", "s@example.com", "pw", is_staff=True)
+        self.client.force_login(staff)
+        url = reverse("admin:events_event_registrations_csv", args=[self.event.pk])
+        self.assertEqual(self.client.get(url).status_code, 403)
+        self.client.logout()
+        self.assertEqual(self.client.get(url).status_code, 302)
+
+
 @override_settings(ROOT_URLCONF=__name__)
 class EventRegistrationViewTest(TestCase):
     def setUp(self):

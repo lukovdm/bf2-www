@@ -1,8 +1,18 @@
 {% extends "admin/change_form.html" %}
+{% load i18n %}
 {% comment %}
     Show the dates of the event above the other fields. The other inlines
     (registrations) stay below the fields.
 {% endcomment %}
+
+{% block object-tools-items %}
+    {% if original.pk %}
+        <li>
+            <a href="{% url 'admin:events_event_registrations_csv' original.pk %}">{% trans "Export registrations" %}</a>
+        </li>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
 
 {% block field_sets %}
     {% for inline_admin_formset in inline_admin_formsets %}

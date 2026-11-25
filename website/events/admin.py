@@ -1,5 +1,12 @@
+import csv
+
 from cms.admin.placeholderadmin import FrontendEditableAdminMixin
-from django.contrib.admin import TabularInline, display, register
+from django.contrib.admin import TabularInline, action, display, register
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+from django.urls import path
+from django.utils.text import slugify
 from django.db.models import Count
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -47,6 +54,7 @@ class EventAdmin(FrontendEditableAdminMixin, TranslatedModelAdmin):
         "hidden",
     )
     list_filter = ("hidden",)
+    actions = ["export_registrations"]
     search_fields = ("name_en", "name_nl", "location")
 
     def get_queryset(self, request):
@@ -59,6 +67,25 @@ class EventAdmin(FrontendEditableAdminMixin, TranslatedModelAdmin):
                 registration_count=Count("registration", distinct=True),
             )
         )
+
+    def get_urls(self):
+        return [
+            path(
+                "<int:pk>/registrations.csv",
+                self.admin_site.admin_view(self.registrations_csv_view),
+                name="events_event_registrations_csv",
+            ),
+        ] + super().get_urls()
+
+    def registrations_csv_view(self, request, pk):
+        event = get_object_or_404(Event, pk=pk)
+        if not self.has_view_permission(request, event):
+            raise PermissionDenied
+        return registrations_csv([event], f"registrations-{slugify(event.name)}.csv")
+
+    @action(description=_("Export the registrations of the selected events"))
+    def export_registrations(self, request, queryset):
+        return registrations_csv(queryset, "registrations.csv")
 
     def get_changeform_initial_data(self, request):
         initial = super().get_changeform_initial_data(request)
@@ -89,3 +116,47 @@ class EventAdmin(FrontendEditableAdminMixin, TranslatedModelAdmin):
         if event.limit:
             return f"{event.registration_count}/{event.limit}"
         return str(event.registration_count)
+
+
+def registrations_csv(events, filename):
+    """A csv file with the registrations of the given events."""
+    response = HttpResponse(content_type="text/csv; charset=utf-8")
+    response["Content-Disposition"] = f'attachment; filename="{filename}"'
+    # Excel needs the byte order mark to read utf-8
+    response.write("\ufeff")
+    writer = csv.writer(response)
+    writer.writerow(
+        [
+            _("event"),
+            _("first name"),
+            _("last name"),
+            _("email"),
+            _("phone number"),
+            _("registration date"),
+            _("has paid"),
+        ]
+    )
+    registrations = (
+        Registration.objects.filter(event__in=events)
+        .select_related("event", "user__member")
+        .order_by("event__pk", "date")
+    )
+    for registration in registrations:
+        user = registration.user
+        member = getattr(user, "member", None)
+        if registration.has_payed is None:
+            paid = ""
+        else:
+            paid = _("yes") if registration.has_payed else _("no")
+        writer.writerow(
+            [
+                registration.event.name,
+                user.first_name,
+                user.last_name,
+                user.email,
+                member.phone_number if member else "",
+                timezone.localtime(registration.date).strftime("%Y-%m-%d %H:%M"),
+                paid,
+            ]
+        )
+    return response

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-25 23:50+0100\n"
+"POT-Creation-Date: 2026-11-26 00:02+0100\n"
 "PO-Revision-Date: 2025-10-18 12:00+0200\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
@@ -19,21 +19,61 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: admin.py:75 models.py:221
+#: admin.py:86
+msgid "Export the registrations of the selected events"
+msgstr "Exporteer de registraties van de geselecteerde evenementen"
+
+#: admin.py:102 models.py:221
 msgid "start"
 msgstr "start"
 
-#: admin.py:79 models.py:222
+#: admin.py:106 models.py:222
 msgid "end"
 msgstr "eind"
 
-#: admin.py:83 models.py:243
+#: admin.py:110 models.py:243
 msgid "dates"
 msgstr "data"
 
-#: admin.py:87 templates/events/event_detail.html:149
+#: admin.py:114 templates/events/event_detail.html:149
 msgid "registrations"
 msgstr "registraties"
+
+#: admin.py:130 models.py:220 models.py:269
+msgid "event"
+msgstr "evenement"
+
+#: admin.py:131
+msgid "first name"
+msgstr "voornaam"
+
+#: admin.py:132
+msgid "last name"
+msgstr "achternaam"
+
+#: admin.py:133
+msgid "email"
+msgstr "e-mail"
+
+#: admin.py:134
+msgid "phone number"
+msgstr "telefoonnummer"
+
+#: admin.py:135 models.py:272
+msgid "registration date"
+msgstr "registratie datum"
+
+#: admin.py:136 models.py:273
+msgid "has paid"
+msgstr "heeft betaald"
+
+#: admin.py:150
+msgid "yes"
+msgstr "ja"
+
+#: admin.py:150
+msgid "no"
+msgstr "nee"
 
 #: models.py:56
 msgid "name"
@@ -118,10 +158,6 @@ msgid "The participant limit must be at least 1, leave it empty for no limit."
 msgstr ""
 "Het deelnemerslimiet moet minimaal 1 zijn, laat het leeg voor geen limiet."
 
-#: models.py:220 models.py:269
-msgid "event"
-msgstr "evenement"
-
 #: models.py:223
 msgid "show end"
 msgstr "laat eind zien"
@@ -150,13 +186,9 @@ msgstr "De start moet voor het eind zijn."
 msgid "user"
 msgstr "gebruiker"
 
-#: models.py:272
-msgid "registration date"
-msgstr "registratie datum"
-
-#: models.py:273
-msgid "has paid"
-msgstr "heeft betaald"
+#: templates/admin/events/event/change_form.html:11
+msgid "Export registrations"
+msgstr "Exporteer registraties"
 
 #: templates/events/event_detail.html:26
 msgid "This event is hidden, only staff can see it on the website."

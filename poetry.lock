@@ -783,14 +783,14 @@ easy-thumbnails = "*"
 
 [[package]]
 name = "djangocms-snippet"
-version = "5.0.1"
+version = "5.0.2"
 description = "Adds snippet plugin to django CMS."
 optional = false
 python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "djangocms_snippet-5.0.1-py3-none-any.whl", hash = "sha256:e7835831209bc661d8ff8c574112eaa93aee6a72a7df572aab2e41d49391a58d"},
-    {file = "djangocms_snippet-5.0.1.tar.gz", hash = "sha256:2c38f988c6095f5289855d57d2042945625328b0d584e6409ae8f86279375319"},
+    {file = "djangocms_snippet-5.0.2-py3-none-any.whl", hash = "sha256:42fdf0a37a80175184197315fc20475a1e019b72d01cc1621c04f3cb7d0f797c"},
+    {file = "djangocms_snippet-5.0.2.tar.gz", hash = "sha256:d3b19abc62b8f665e104b7aa5489292b397e46d61fc4f3ee27b7f122d8b8bb65"},
 ]
 
 [package.dependencies]

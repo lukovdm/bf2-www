@@ -1,4 +1,3 @@
-from cms.admin.placeholderadmin import FrontendEditableAdminMixin
 from cms.models import PlaceholderRelationField
 from cms.utils.placeholder import get_placeholder_from_slot
 from django.contrib.auth.models import User
@@ -58,7 +57,7 @@ class Event(Model, metaclass=ModelTranslateMeta):
         verbose_name=_("Google form link"),
         validators=[
             RegexValidator(
-                regex="https:\/\/docs\.google\.com\/forms\/d\/e\/[\w\d_-]*\/viewform\?",
+                regex=r"https:\/\/docs\.google\.com\/forms\/d\/e\/[\w\d_-]*\/viewform\?",
                 message=_("Please enter a google form share link"),
             ),
         ],

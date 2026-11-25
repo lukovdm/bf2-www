@@ -1,6 +1,7 @@
 import datetime
 
-from cms.models import PlaceholderField
+from cms.models import PlaceholderRelationField
+from cms.utils.placeholder import get_placeholder_from_slot
 from django.contrib.auth.models import Permission, User, Group
 from django.core.exceptions import ValidationError
 from django.db.models import (
@@ -18,6 +19,7 @@ from django.db.models import (
 )
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from filer.fields.image import FilerImageField
 
@@ -29,7 +31,7 @@ class Committee(Model, metaclass=ModelTranslateMeta):
     image = FilerImageField(
         verbose_name=_("image"), null=True, blank=True, on_delete=SET_NULL
     )
-    description = PlaceholderField("description", verbose_name=_("description"))
+    description = PlaceholderRelationField()
     email = EmailField(verbose_name=_("contact email"))
 
     members = ManyToManyField(User, through="committees.CommitteeMembership")
@@ -49,6 +51,13 @@ class Committee(Model, metaclass=ModelTranslateMeta):
     )
 
     is_staff = BooleanField(verbose_name=_("is staff on the site"), default=False)
+
+    @cached_property
+    def description_placeholder(self):
+        return get_placeholder_from_slot(self.description, "description")
+
+    def get_template(self):
+        return "committees/committee_detail.html"
 
     def save(self, **kwargs):
         if self.perm_group is None:

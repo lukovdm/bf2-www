@@ -36,9 +36,9 @@ class MemberDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context[
-            "committee_memberships"
-        ] = self.object.user.committeemembership_set.order_by("since").all()
+        context["committee_memberships"] = (
+            self.object.user.committeemembership_set.order_by("since").all()
+        )
         context["board_memberships"] = self.object.boardmembership_set.order_by(
             "board__start"
         ).all()

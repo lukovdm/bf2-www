@@ -71,7 +71,7 @@ INSTALLED_APPS = [
     "menus",
     "treebeard",
     "sekizai",
-    "djangocms_text_ckeditor",
+    "djangocms_text",
     "filer",
     "easy_thumbnails",
     "mptt",
@@ -228,7 +228,9 @@ TIME_ZONE = "Europe/Amsterdam"
 
 USE_I18N = True
 
-USE_L10N = False
+
+# Make the input formats below apply to all languages, see website/formats
+FORMAT_MODULE_PATH = ["website.formats"]
 
 DATE_INPUT_FORMATS = [
     "%Y-%m-%d",  # '2006-10-25'

@@ -315,14 +315,14 @@ django = "*"
 
 [[package]]
 name = "django-bootstrap5"
-version = "25.1"
+version = "25.3"
 description = "Bootstrap 5 for Django"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "django_bootstrap5-25.1-py3-none-any.whl", hash = "sha256:964ad2d970d0495b030b86f31b33033dfdfe839a67b32ea599fa02eb39988ae7"},
-    {file = "django_bootstrap5-25.1.tar.gz", hash = "sha256:e81c77eb710356f94e426a51f4f469890d5720f5e7e53d650f4405d4cc94da04"},
+    {file = "django_bootstrap5-25.3-py3-none-any.whl", hash = "sha256:3d381a5329a1439ac3237456c28cc8170c62b4c56ad3564d57876ffc3d4c5e78"},
+    {file = "django_bootstrap5-25.3.tar.gz", hash = "sha256:cc36f1a19d3200c0f5628c703320edb5c4e39e19bf17607fadf58ddb11828912"},
 ]
 
 [package.dependencies]

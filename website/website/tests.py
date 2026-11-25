@@ -16,7 +16,7 @@ from cms.utils.apphook_reload import reload_urlconf
 from cms.utils.permissions import set_current_user
 from cms.models import PageContent, Placeholder
 from django.contrib import admin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Permission, User
 from django.core import mail
 from django.core.management import call_command
 from django.test import TestCase, override_settings
@@ -456,12 +456,21 @@ class HiddenEventTest(SiteTestCase):
         super().setUp()
         self.event = make_event(name_en="Secret meeting", hidden=True)
         self.member = make_member("member")
+        # Staff without access to events in the admin
         self.staff = make_member("staffmember")
         self.staff.is_staff = True
         self.staff.save()
+        # Committee member that manages the events
+        self.manager = make_member("manager")
+        self.manager.is_staff = True
+        self.manager.save()
+        self.manager.user_permissions.add(
+            Permission.objects.get(codename="view_event"),
+            Permission.objects.get(codename="change_event"),
+        )
 
-    def test_not_shown_to_visitors_and_members(self):
-        for user in (None, self.member):
+    def test_not_shown_without_access_to_events(self):
+        for user in (None, self.member, self.staff):
             if user:
                 self.client.force_login(user)
             self.assertNotContains(
@@ -476,8 +485,8 @@ class HiddenEventTest(SiteTestCase):
             self.assertIn(response.status_code, (302, 404))
         self.assertFalse(Registration.objects.exists())
 
-    def test_shown_greyed_out_to_staff(self):
-        self.client.force_login(self.staff)
+    def test_shown_greyed_out_to_event_managers(self):
+        self.client.force_login(self.manager)
         response = self.client.get(reverse("events:list"))
         self.assertContains(response, "Secret meeting")
         self.assertContains(response, "event-hidden")
@@ -487,9 +496,38 @@ class HiddenEventTest(SiteTestCase):
         self.assertContains(response, "This event is hidden")
 
     def test_not_in_ics(self):
+        self.client.force_login(self.manager)
         self.assertNotIn(
             b"Secret meeting", self.client.get(reverse("events:ics")).content
         )
+
+
+class EventAdminButtonTest(SiteTestCase):
+    def setUp(self):
+        super().setUp()
+        self.event = make_event()
+        self.admin_url = reverse("admin:events_event_change", args=[self.event.pk])
+
+    def test_shown_with_change_permission(self):
+        manager = make_member("manager")
+        manager.is_staff = True
+        manager.save()
+        manager.user_permissions.add(Permission.objects.get(codename="change_event"))
+        self.client.force_login(manager)
+        response = self.client.get(self.event.get_absolute_url())
+        self.assertContains(response, self.admin_url)
+        self.assertEqual(self.client.get(self.admin_url).status_code, 200)
+
+    def test_not_shown_without_change_permission(self):
+        staff = make_member("staffmember")
+        staff.is_staff = True
+        staff.save()
+        staff.user_permissions.add(Permission.objects.get(codename="view_event"))
+        for user in (None, make_member("member"), staff):
+            if user:
+                self.client.force_login(user)
+            response = self.client.get(self.event.get_absolute_url())
+            self.assertNotContains(response, self.admin_url)
 
 
 class CommitteePagesTest(SiteTestCase):

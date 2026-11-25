@@ -14,9 +14,12 @@ from events.models import Event, EventDate, Registration
 
 
 def events_for(user):
-    """The events a user may see on the website, staff also sees hidden events."""
+    """The events a user may see on the website.
+
+    Hidden events are only shown to people with access to events in the admin.
+    """
     events = Event.objects.all()
-    if not user.is_staff:
+    if not user.has_perm("events.view_event"):
         events = events.visible()
     return events
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 00:02+0100\n"
+"POT-Creation-Date: 2026-11-26 00:06+0100\n"
 "PO-Revision-Date: 2025-10-18 12:00+0200\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
@@ -35,7 +35,7 @@ msgstr "eind"
 msgid "dates"
 msgstr "data"
 
-#: admin.py:114 templates/events/event_detail.html:149
+#: admin.py:114 templates/events/event_detail.html:156
 msgid "registrations"
 msgstr "registraties"
 
@@ -190,58 +190,66 @@ msgstr "gebruiker"
 msgid "Export registrations"
 msgstr "Exporteer registraties"
 
-#: templates/events/event_detail.html:26
-msgid "This event is hidden, only staff can see it on the website."
-msgstr "Dit evenement is verborgen, alleen staff kan het op de website zien."
+#: templates/events/event_detail.html:27
+msgid "Edit in admin"
+msgstr "Bewerk in admin"
 
-#: templates/events/event_detail.html:43
+#: templates/events/event_detail.html:33
+msgid ""
+"This event is hidden, only people who manage events can see it on the "
+"website."
+msgstr ""
+"Dit evenement is verborgen, alleen mensen die evenementen beheren kunnen het "
+"op de website zien."
+
+#: templates/events/event_detail.html:50
 #, python-format
 msgid "%(counter)s date"
 msgid_plural "%(counter)s dates"
 msgstr[0] "%(counter)s datum"
 msgstr[1] "%(counter)s data"
 
-#: templates/events/event_detail.html:64
+#: templates/events/event_detail.html:71
 msgid "free"
 msgstr "gratis"
 
-#: templates/events/event_detail.html:85
+#: templates/events/event_detail.html:92
 msgid "ended"
 msgstr "afgelopen"
 
-#: templates/events/event_detail.html:102
+#: templates/events/event_detail.html:109
 msgid "Deregistration is closed, contact the committee"
 msgstr "Uitschrijven is gesloten, contacteer de commissie"
 
-#: templates/events/event_detail.html:104
+#: templates/events/event_detail.html:111
 msgid "unregister"
 msgstr "afmelden"
 
-#: templates/events/event_detail.html:109
+#: templates/events/event_detail.html:116
 msgid "Change form"
 msgstr "Verander formulier"
 
-#: templates/events/event_detail.html:118
+#: templates/events/event_detail.html:125
 msgid "Full"
 msgstr "Vol"
 
-#: templates/events/event_detail.html:120
+#: templates/events/event_detail.html:127
 msgid "Not opened"
 msgstr "Niet geopend"
 
-#: templates/events/event_detail.html:122
+#: templates/events/event_detail.html:129
 msgid "Closed"
 msgstr "Gesloten"
 
-#: templates/events/event_detail.html:124
+#: templates/events/event_detail.html:131
 msgid "register"
 msgstr "registreren"
 
-#: templates/events/event_detail.html:134
+#: templates/events/event_detail.html:141
 msgid "registrations open at"
 msgstr "registratie opent op"
 
-#: templates/events/event_detail.html:139
+#: templates/events/event_detail.html:146
 msgid "registrations close at"
 msgstr "registratie sluit op"
 
@@ -272,35 +280,35 @@ msgstr[1] "+%(counter)s andere data"
 msgid "Add these events to your calendar"
 msgstr "Voeg deze evenementen toe aan jouw kalender"
 
-#: views.py:87
+#: views.py:90
 msgid "This event does not have registrations."
 msgstr "Voor dit evenement kun je je niet registreren."
 
-#: views.py:91
+#: views.py:94
 msgid "The registrations for this event have not opened yet."
 msgstr "De registraties voor dit evenement zijn nog niet geopend."
 
-#: views.py:96
+#: views.py:99
 msgid "The registrations for this event have already closed."
 msgstr "De registraties voor dit evenement zijn al gesloten."
 
-#: views.py:99
+#: views.py:102
 msgid "You have already registered for this event."
 msgstr "Je bent al geregistreerd voor dit evenement."
 
-#: views.py:101
+#: views.py:104
 msgid "This event is already full."
 msgstr "Dit evenement zit vol."
 
-#: views.py:106
+#: views.py:109
 msgid "You successfully registered."
 msgstr "Je bent succesvol geregistreerd."
 
-#: views.py:138
+#: views.py:141
 msgid "You are not registered for this event."
 msgstr "Je bent niet geregistreerd voor dit evenement."
 
-#: views.py:143
+#: views.py:146
 msgid ""
 "The registrations for this event have already closed, if you still want to "
 "deregister contact the committee."
@@ -308,10 +316,10 @@ msgstr ""
 "De registraties voor dit evenement zijn al gesloten, als je je nog wil "
 "uitschrijven, contacteer de commissie."
 
-#: views.py:149
+#: views.py:152
 msgid "You successfully unregistered."
 msgstr "Je bent succesvol afgemeld."
 
-#: views.py:182
+#: views.py:185
 msgid "For more details, see the website: "
 msgstr "Voor meer details, zie de website: "

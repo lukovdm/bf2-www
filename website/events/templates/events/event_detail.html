@@ -21,9 +21,16 @@
 {% endblock pagetitle %}
 
 {% block content %}
+    {% if perms.events.change_event %}
+        <div class="d-flex justify-content-end mb-3">
+            <a class="btn btn-outline-primary fw-bold" href="{% url 'admin:events_event_change' object.pk %}">
+                <i class="fa-solid fa-pen pe-2"></i>{% trans "Edit in admin" %}
+            </a>
+        </div>
+    {% endif %}
     {% if object.hidden %}
         <div class="alert alert-warning fw-bold" role="alert">
-            <i class="fa-solid fa-eye-slash pe-2"></i>{% trans "This event is hidden, only staff can see it on the website." %}
+            <i class="fa-solid fa-eye-slash pe-2"></i>{% trans "This event is hidden, only people who manage events can see it on the website." %}
         </div>
     {% endif %}
     <div class="{% if object.hidden %}event-hidden{% endif %}">

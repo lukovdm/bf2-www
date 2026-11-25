@@ -364,14 +364,14 @@ django = ">=3.2"
 
 [[package]]
 name = "django-cms"
-version = "4.1.6"
+version = "5.0.13"
 description = "Lean enterprise content management powered by Django."
 optional = false
 python-versions = ">=3.8"
 groups = ["main"]
 files = [
-    {file = "django_cms-4.1.6-py2.py3-none-any.whl", hash = "sha256:64d91a28d08843953413a207227fa52e305d730cb5a78c77ffb6777abca72eab"},
-    {file = "django_cms-4.1.6.tar.gz", hash = "sha256:fdba4b4468c32937151ff91eea71d8067e352ddddcecbdac2724cd5d9c31920f"},
+    {file = "django_cms-5.0.13-py2.py3-none-any.whl", hash = "sha256:3725fb9a858531f2e3379c34736f7d7953f84bd3cab488b71f7daecf9fb20f2b"},
+    {file = "django_cms-5.0.13.tar.gz", hash = "sha256:554fa546f97a80a263f4f2056d5a0a95ea60545c84b0401ad30db3062ca64a15"},
 ]
 
 [package.dependencies]
@@ -379,7 +379,7 @@ Django = ">=2.2"
 django-classy-tags = ">=0.7.2"
 django-formtools = ">=2.1"
 django-sekizai = ">=0.7"
-django-treebeard = ">=4.3"
+django-treebeard = ">=4.3,<6"
 djangocms-admin-style = ">=1.2"
 packaging = "*"
 setuptools = "*"
@@ -1847,4 +1847,4 @@ production = ["gunicorn", "psycopg2-binary"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.11"
-content-hash = "f6f260eb24481c5702fd983b652d911890506f3abc9d172e3691b1675b82cc9a"
+content-hash = "69792d6040d660260e81def9d0288c40eef605612bcb138d4f09d569318a1ef0"

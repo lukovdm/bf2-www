@@ -457,16 +457,19 @@ files = [
 Django = ">=3.2"
 
 [[package]]
-name = "django-fsm"
-version = "2.8.2"
+name = "django-fsm-2"
+version = "4.1.0"
 description = "Django friendly finite state machine support."
 optional = false
-python-versions = "*"
+python-versions = "<4.0,>=3.8"
 groups = ["main"]
 files = [
-    {file = "django-fsm-2.8.2.tar.gz", hash = "sha256:fe3be8fa916470360632b2a86aefcb342d67916fa4c5749caaa7760f88c0c49c"},
-    {file = "django_fsm-2.8.2-py2.py3-none-any.whl", hash = "sha256:0b4d346a8de1c2c30c2206ced649e25695f567c072358030544a604fc937d235"},
+    {file = "django_fsm_2-4.1.0-py3-none-any.whl", hash = "sha256:58e20abe633c1375d80aca55fd66ca2431794d32f44751f333f386de869f0e6f"},
+    {file = "django_fsm_2-4.1.0.tar.gz", hash = "sha256:5fbe34839f315a06e29052ded8868292fc469f8f37c8d4d88427ad15a92680ae"},
 ]
+
+[package.dependencies]
+django = ">=4.2"
 
 [[package]]
 name = "django-import-export"
@@ -835,20 +838,19 @@ Pillow = "*"
 
 [[package]]
 name = "djangocms-versioning"
-version = "2.3.2"
+version = "2.8.0"
 description = "Versioning for django CMS"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "djangocms_versioning-2.3.2-py3-none-any.whl", hash = "sha256:e0bad6c3a6a1713980f4dd1ff59586a54dba03ae7fa7dd7e749a1fc43bdac510"},
-    {file = "djangocms_versioning-2.3.2.tar.gz", hash = "sha256:4900d0546a751d2a007984950f7ace6e92e061c51d52ff2511c7cce40b2e7e87"},
+    {file = "djangocms_versioning-2.8.0-py3-none-any.whl", hash = "sha256:4ad9b43692549d11a7b56f294043aa72cd359b74950135149eec80a84d702745"},
+    {file = "djangocms_versioning-2.8.0.tar.gz", hash = "sha256:cc71d2baa139ff3a87b202eef7a25c41993e6807b55ca64f63a921b2a1b80ad0"},
 ]
 
 [package.dependencies]
-Django = ">=4.2"
 django-cms = ">=4.1.1"
-django-fsm = "<3"
+django-fsm-2 = "*"
 packaging = "*"
 
 [[package]]

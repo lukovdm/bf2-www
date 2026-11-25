@@ -20,14 +20,15 @@
     </h4>
 {% endblock pagetitle %}
 
-{% block content %}
+{% block pagesubtitle %}
     {% if perms.events.change_event %}
-        <div class="d-flex justify-content-end mb-3">
-            <a class="btn btn-outline-primary fw-bold" href="{% url 'admin:events_event_change' object.pk %}">
-                <i class="fa-solid fa-pen pe-2"></i>{% trans "Edit in admin" %}
-            </a>
-        </div>
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'admin:events_event_change' object.pk %}">
+            <i class="fa-solid fa-pen pe-1"></i>{% trans "Edit in admin" %}
+        </a>
     {% endif %}
+{% endblock pagesubtitle %}
+
+{% block content %}
     {% if object.hidden %}
         <div class="alert alert-warning fw-bold" role="alert">
             <i class="fa-solid fa-eye-slash pe-2"></i>{% trans "This event is hidden, only people who manage events can see it on the website." %}

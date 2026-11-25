@@ -77,6 +77,7 @@ INSTALLED_APPS = [
     "mptt",
     "djangocms_versioning",
     "djangocms_alias",
+    "parler",
     "djangocms_frontend",
     "djangocms_frontend.contrib.accordion",
     "djangocms_frontend.contrib.alert",

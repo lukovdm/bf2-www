@@ -73,12 +73,10 @@ class CommitteeMembership(Model):
     chair = BooleanField(verbose_name=_("chair of committee"), default=False)
 
     def clean(self):
-        if self.until and self.since >= self.until:
-            return ValidationError(
-                {"until": _("until date can't be before since date")}
-            )
+        if self.until and self.since and self.since >= self.until:
+            raise ValidationError({"until": _("until date can't be before since date")})
         if self.until and self.until > timezone.now().date():
-            return ValidationError({"until": _("Until date can't be in the future")})
+            raise ValidationError({"until": _("Until date can't be in the future")})
 
     def overlaps(self, others):
         for other in others:
@@ -142,22 +140,52 @@ class CommitteeMembership(Model):
 
     def save(self, **kwargs):
         super().save(**kwargs)
-        self.user.is_staff = (
-            self.user.committeemembership_set.exclude(until__lte=timezone.now())
-            .exclude(committee__is_staff=False)
-            .exists()
-        )
-
-        self.committee.perm_group.user_set.set(
-            User.objects.filter(
-                committeemembership__in=CommitteeMembership.objects.filter(
-                    committee=self.committee, until__isnull=True
-                )
-            )
-        )
-
-        self.user.save()
-        self.committee.save()
+        if self.committee.perm_group is None:
+            # Committee.save() creates the permission group
+            self.committee.save()
+        self.rights_changes = sync_committee_rights(self.user, self.committee)
 
     def __str__(self):
         return f"{self.user}{' past' if self.until else ''} member of {self.committee}"
+
+
+def sync_committee_rights(user, committee):
+    """Update the rights ``user`` gets from being a member of ``committee``.
+
+    Only the rights of this specific user are touched: other members of the
+    permission group are left alone, and superusers never lose their staff
+    status. Returns a list of human-readable descriptions of the changes made.
+    """
+    today = timezone.now().date()
+    changes = []
+
+    active_memberships = user.committeemembership_set.exclude(until__lte=today)
+
+    in_group = committee.perm_group.user_set.filter(pk=user.pk).exists()
+    should_be_in_group = active_memberships.filter(committee=committee).exists()
+    if should_be_in_group and not in_group:
+        committee.perm_group.user_set.add(user)
+        changes.append(
+            _("%(user)s was added to the permission group %(group)s")
+            % {"user": user, "group": committee.perm_group}
+        )
+    elif in_group and not should_be_in_group:
+        committee.perm_group.user_set.remove(user)
+        changes.append(
+            _("%(user)s was removed from the permission group %(group)s")
+            % {"user": user, "group": committee.perm_group}
+        )
+
+    should_be_staff = (
+        user.is_superuser
+        or active_memberships.filter(committee__is_staff=True).exists()
+    )
+    if should_be_staff != user.is_staff:
+        user.is_staff = should_be_staff
+        user.save(update_fields=["is_staff"])
+        if should_be_staff:
+            changes.append(_("%(user)s is now staff") % {"user": user})
+        else:
+            changes.append(_("%(user)s is no longer staff") % {"user": user})
+
+    return changes

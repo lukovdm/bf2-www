@@ -18,7 +18,7 @@
     <div class="row mb-4">
         <div class="col">
             <div class="p-3 bg-secondary rounded">
-            {% render_placeholder object.description %}
+            {% render_placeholder object.description_placeholder %}
             {% if user.is_authenticated %}
                 <p class="fw-bold fs-6 mb-0">
                     <a href="mailto:{{ object.email }}" class="link-dark">

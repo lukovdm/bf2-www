@@ -1,4 +1,4 @@
-{% load cms_tags static sekizai_tags i18n sass_tags %}
+{% load cms_tags djangocms_alias_tags static sekizai_tags i18n sass_tags %}
 
 <!doctype html>
 <html>
@@ -30,17 +30,17 @@
         <footer class="container-fluid px-4 py-3 bg-ternary text-white mt-auto position-relative rounded-top shadow">
             <div class="row font-special">
                 <div class="col-md-3">
-                    {% static_placeholder "footer 1" %}
+                    {% static_alias "footer 1" %}
                 </div>
                 <div class="col-md-3">
-                    {% static_placeholder "footer 2" %}
+                    {% static_alias "footer 2" %}
                 </div>
                 <div class="col-lg-4">
-                    {% static_placeholder "footer 3" %}
+                    {% static_alias "footer 3" %}
                 </div>
                 <div class="col-lg-2">
                     <div class="float-end">
-                        {% static_placeholder "footer socials" %}
+                        {% static_alias "footer socials" %}
                     </div>
                 </div>
             </div>

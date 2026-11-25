@@ -41,13 +41,18 @@ class UserResource(resources.ModelResource):
         )
 
     def init_instance(self, row=None):
-        user = User.objects.create_user(
-            username=row["email"],
-        )
-        user.is_active = False
-        user.save()
+        # import-export saves the instance itself (with force_insert), so it
+        # must not be saved here. The member is created in after_save_instance.
+        user = User(username=row["email"], is_active=False)
+        user.set_unusable_password()
+        return user
+
+    def after_save_instance(self, instance, row, **kwargs):
+        super().after_save_instance(instance, row, **kwargs)
+        if Member.objects.filter(user=instance).exists():
+            return
         Member.objects.create(
-            user=user,
+            user=instance,
             birthday=parse_date(row["member__birthday"]),
             gender=row["member__gender"],
             pronouns=row["member__pronouns"] if row["member__pronouns"] != "" else None,
@@ -61,7 +66,6 @@ class UserResource(resources.ModelResource):
             google_email=row["member__google_email"],
             other_club=False,
         )
-        return user
 
 
 class MemberInline(admin.StackedInline):
@@ -72,7 +76,7 @@ class MemberInline(admin.StackedInline):
 
 class UserAdmin(ImportExportMixin, BaseUserAdmin):
     inlines = (MemberInline,)
-    resource_class = UserResource
+    resource_classes = [UserResource]
     change_form_template = "members/admin/change_form.html"
     actions = ["send_password_email"]
 

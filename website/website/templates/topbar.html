@@ -12,9 +12,11 @@
                 <div class="nav-item top-level me-4">
                     <a class="nav-link text-primary" href="{% url 'members:edit' %}">{% trans 'Edit profile' %}</a>
                 </div>
-                <div class="nav-item top-level">
-                    <a class="nav-link text-primary" href="{% url 'logout' %}">{% trans 'Sign out' %}</a>
-                </div>
+                {# Since Django 5 logging out requires a POST request #}
+                <form class="nav-item top-level" method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link text-primary bg-transparent border-0">{% trans 'Sign out' %}</button>
+                </form>
             {% else %}
                 <div class="nav-item top-level me-4">
                     <a class="nav-link text-primary" href="{% url 'become-a-member' %}">{% trans 'Become a member' %}</a>

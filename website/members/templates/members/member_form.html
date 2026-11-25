@@ -42,13 +42,11 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6 mb-3">
-                {% bootstrap_form form form_group_class="row mb-4" label_class="fw-bold mb-3" field_class="ms-3" exclude="profile_picture,bio" %}
+                {% bootstrap_form form wrapper_class="mb-4" label_class="fw-bold mb-3" exclude="profile_picture,bio" %}
 
-                <div class="row mb-4">
+                <div class="mb-4">
                     <label class="fw-bold mb-3" for="{{ form.bio.id_for_label }}">{{ form.bio.label }}</label>
-                    <div class="ms-3">
-                        <textarea name="{{ form.bio.html_name }}" cols="40" rows="3" maxlength="{{ field.field.max_length }}" class="form-control px-4 py-3" placeholder="{{ form.bio.label }}" id="{{ form.bio.id_for_label }}" spellcheck="true">{{ form.bio.value }}</textarea>
-                    </div>
+                    <textarea name="{{ form.bio.html_name }}" cols="40" rows="3" maxlength="{{ form.bio.field.max_length }}" class="form-control px-4 py-3" placeholder="{{ form.bio.label }}" id="{{ form.bio.id_for_label }}" spellcheck="true">{{ form.bio.value|default_if_none:"" }}</textarea>
                 </div>
             </div>
         </div>

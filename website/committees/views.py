@@ -21,6 +21,8 @@ class CommitteeDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        if hasattr(self.request, "toolbar"):
+            self.request.toolbar.set_object(self.object)
 
         context["committee_memberships"] = (
             self.object.committeemembership_set.exclude(until__lte=timezone.now())
@@ -28,3 +30,7 @@ class CommitteeDetailView(DetailView):
             .select_related("user__member")
         )
         return context
+
+
+def committee_detail_endpoint_view(request, committee):
+    return CommitteeDetailView.as_view()(request, pk=committee.pk)

@@ -1,0 +1,14 @@
+// Use the theme colors as highlight colors of the django CMS toolbar.
+// The toolbar itself keeps its own (light or dark) background. The toolbar
+// css is loaded after ours, so `html:root` is used to win from its `:root`.
+html:root {
+  --dca-dark: #{$ternary};
+  --dca-light: #{$primary};
+  // Links, active items and icons
+  --dca-primary: light-dark(#{$ternary}, #{$primary});
+  // Hover and selection backgrounds
+  --dca-secondary: light-dark(#{mix($primary, $white, 20%)}, #{$ternary});
+  // Main action buttons, e.g. "Publish" and "Edit"
+  --dca-action-bg: #{$primary};
+  --dca-action-text: #{$white};
+}

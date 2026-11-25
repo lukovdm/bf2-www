@@ -22,7 +22,7 @@ class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
 
         # Check that the timestamp/uid has not been tampered with
         if not constant_time_compare(
-            self._make_token_with_timestamp(user, ts, secret), token
+            self._make_token_with_timestamp(user, ts, self.secret), token
         ):
             return False
 

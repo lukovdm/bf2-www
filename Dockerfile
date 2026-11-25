@@ -1,45 +1,39 @@
 # Use the official Python image from the Docker Hub
-FROM python:3.11
+FROM python:3.13
 
-# These two environment variables prevent __pycache__/ files.
+# Install uv, see https://docs.astral.sh/uv/guides/integration/docker/
+COPY --from=ghcr.io/astral-sh/uv:0.11 /uv /uvx /bin/
+
+# These environment variables prevent __pycache__/ files and make uv install
+# into the project virtualenv at /bf2-www/.venv
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    PIP_NO_CACHE_DIR=off \
-    PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_DEFAULT_TIMEOUT=100 \
-    POETRY_VERSION=1.3.0 \
-    POETRY_VIRTUALENVS_IN_PROJECT=true \
-    POETRY_NO_INTERACTION=1 \
-    POETRY_HOME=/root/.poetry
+    UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_PYTHON_DOWNLOADS=never \
+    UV_PROJECT_ENVIRONMENT=/bf2-www/.venv
 # Use production settings
 ENV DJANGO_SETTINGS_MODULE website.settings.production
-# Add poetry to PATH
-ENV PATH="/root/.poetry/bin:$PATH"
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
-        # deps for installing poetry
-        curl \
         # deps for building python deps
         build-essential \
         # deps for postgress interaction
         postgresql-client
 
-# install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN curl -sSL https://install.python-poetry.org | python3 -
-
 WORKDIR /bf2-www
 
 # Copy requirements
-COPY pyproject.toml poetry.lock ./
+COPY pyproject.toml uv.lock ./
 
 # Install requirements for production
-RUN poetry install --no-ansi --without dev --extras "production"
+RUN uv sync --locked --no-dev --extra production
 
 # Copy entrypoint
 COPY config/entrypoint.sh ./
 
-# Copy the rest of the code. 
+# Copy the rest of the code.
 COPY website ./
 
 ENTRYPOINT ["./entrypoint.sh"]

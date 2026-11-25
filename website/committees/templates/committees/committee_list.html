@@ -1,5 +1,5 @@
 {% extends "page_empty.html" %}
-{% load i18n static cms_tags events_datetimerange thumbnail %}
+{% load i18n static cms_tags djangocms_alias_tags events_datetimerange thumbnail %}
 
 {% block title %}{% trans "committee"|capfirst %}{% endblock title %}
 
@@ -7,7 +7,7 @@
     <div class="row mb-4">
         <div class="col">
             <div class="p-3 pb-1 bg-white rounded">
-                {% static_placeholder "General committee description" %}
+                {% static_alias "General committee description" %}
             </div>
         </div>
     </div>

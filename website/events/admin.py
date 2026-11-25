@@ -1,5 +1,5 @@
-from cms.admin.placeholderadmin import PlaceholderAdminMixin, FrontendEditableAdminMixin
-from django.contrib.admin import ModelAdmin, register, StackedInline, TabularInline
+from cms.admin.placeholderadmin import FrontendEditableAdminMixin
+from django.contrib.admin import register, TabularInline
 
 from events.models import Event, Registration
 from utils.translations import TranslatedModelAdmin

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-15 18:32+0200\n"
+"POT-Creation-Date: 2026-11-26 00:52+0100\n"
 "PO-Revision-Date: 2025-07-15 18:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,11 +26,11 @@ msgstr "afbeelding"
 msgid "description"
 msgstr "beschrijving"
 
-#: settings/base.py:211
+#: settings/base.py:212
 msgid "English"
 msgstr "Engels"
 
-#: settings/base.py:217
+#: settings/base.py:218
 msgid "Dutch"
 msgstr "Nederlands"
 
@@ -41,8 +41,11 @@ msgstr "Pagina niet gevonden"
 #: templates/404.html:19
 #, python-format
 msgid " Click <a href=\"%(link)s\">here</a> to go back to the main page."
-msgstr ""
-" Klik <a href= \"%(link)s\">hier</a> om terug te gaan naar de hoofdpagina."
+msgstr " Klik <a href= \"%(link)s\">hier</a> om terug te gaan naar de hoofdpagina."
+
+#: templates/djangocms_alias/base.html:9 templates/djangocms_alias/base.html:10
+msgid "Aliases"
+msgstr "Aliassen"
 
 #: templates/fullpage.html:35 templates/page.html:8 templates/page_empty.html:9
 msgid "BFrisBee2's logo"
@@ -50,7 +53,7 @@ msgstr "BFrisBee2's logo"
 
 #: templates/registration/login.html:5 templates/registration/login.html:60
 #: templates/registration/password_reset_complete.html:12
-#: templates/topbar.html:23
+#: templates/topbar.html:25
 msgid "Sign in"
 msgstr "Log in"
 
@@ -120,10 +123,10 @@ msgid ""
 "you don’t receive an email, please make sure you’ve entered the address you "
 "registered with, and check your spam folder."
 msgstr ""
-"We hebben je instructies verstuurd voor het resetten van je wachtwoord als "
-"er een account bestaat met de e-mail die is ingevuld. Je  zou hem binnenkort "
-"binnen moeten krijgen. <br> Als je geen e-mail binnenkrijgt, controleer of "
-"je het juiste e-mailadres hebt ingevuld waaraan een account gekoppeld is, en "
+"We hebben je instructies verstuurd voor het resetten van je wachtwoord als er"
+" een account bestaat met de e-mail die is ingevuld. Je  zou hem binnenkort "
+"binnen moeten krijgen. <br> Als je geen e-mail binnenkrijgt, controleer of je"
+" het juiste e-mailadres hebt ingevuld waaraan een account gekoppeld is, en "
 "controleer je spam folder."
 
 #: templates/registration/password_reset_form.html:10
@@ -142,10 +145,10 @@ msgstr "Verstuur e-mail"
 msgid "Edit profile"
 msgstr "Bewerk profiel"
 
-#: templates/topbar.html:16
+#: templates/topbar.html:18
 msgid "Sign out"
 msgstr "Log uit"
 
-#: templates/topbar.html:20
+#: templates/topbar.html:22
 msgid "Become a member"
 msgstr "Word lid"

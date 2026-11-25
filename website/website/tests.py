@@ -8,6 +8,7 @@ django CMS or any of the other dependencies.
 import csv
 import datetime
 import io
+import re
 from datetime import timedelta
 
 from cms.api import add_plugin, create_page, create_page_content
@@ -243,6 +244,43 @@ class CMSPageTest(SiteTestCase):
         response = self.client.get("/en/")
         self.assertEqual(response.context["active_index"], 0)
         self.assertEqual(list(response.context["slideshow"]), [])
+
+
+class StaticAliasTest(SiteTestCase):
+    """The footers are static aliases since django CMS 5."""
+
+    def make_footer(self):
+        from djangocms_alias.models import Alias, AliasContent, Category
+
+        category = Category.objects.create(name="Static Alias")
+        alias = Alias.objects.create(
+            category=category,
+            static_code="footer 1",
+            creation_method=Alias.CREATION_BY_TEMPLATE,
+        )
+        content = AliasContent.objects.with_user(self.admin).create(
+            alias=alias, name="footer 1", language="en"
+        )
+        add_plugin(content.placeholder, "TextPlugin", "en", body="<p>Footer text</p>")
+        Version.objects.get_for_content(content).publish(self.admin)
+        return content
+
+    def test_footer_on_pages(self):
+        self.make_footer()
+        self.assertContains(self.client.get("/en/"), "Footer text")
+
+    def test_edit_view(self):
+        # The alias edit view renders the alias in the site template, which
+        # was empty because the template block did not exist (see
+        # website/templates/djangocms_alias/base.html)
+        from cms.toolbar.utils import get_object_edit_url
+
+        content = self.make_footer()
+        self.client.force_login(self.admin)
+        response = self.client.get(get_object_edit_url(content), follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "cms-aliases-detail")
+        self.assertContains(response, "Footer text")
 
 
 class PluginTest(SiteTestCase):
@@ -497,6 +535,17 @@ class AuthTest(SiteTestCase):
         self.assertEqual(response.status_code, 302)
         self.assertIn("_auth_user_id", self.client.session)
         self.client.post(reverse("logout"))
+        self.assertNotIn("_auth_user_id", self.client.session)
+
+    def test_sign_out_from_menu(self):
+        self.client.force_login(make_member("erik"))
+        page = self.client.get("/en/").content.decode()
+        logout = reverse("logout")
+        # Since Django 5 the logout view only accepts POST, so it must be a form
+        self.assertNotIn(f'href="{logout}"', page)
+        self.assertRegex(page, rf'<form[^>]*method="post"[^>]*action="{logout}"')
+        response = self.client.post(logout)
+        self.assertEqual(response.status_code, 302)
         self.assertNotIn("_auth_user_id", self.client.session)
 
     def test_password_reset(self):

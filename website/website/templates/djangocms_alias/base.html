@@ -1,0 +1,17 @@
+{% extends "page.html" %}
+{% load i18n %}
+{% comment %}
+    djangocms-alias renders aliases (e.g. the footers) for editing with this
+    template. Its own version extends base.html and fills a "content" block,
+    which only exists in page.html in this project.
+{% endcomment %}
+
+{% block title %}{% translate "Aliases" %}{% endblock title %}
+{% block pagetitle %}{% translate "Aliases" %}{% endblock pagetitle %}
+
+{% block content %}
+    <div class="aliases">
+        {% block aliases_content %}
+        {% endblock aliases_content %}
+    </div>
+{% endblock content %}

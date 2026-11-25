@@ -76,7 +76,7 @@ class MemberInline(admin.StackedInline):
 
 class UserAdmin(ImportExportMixin, BaseUserAdmin):
     inlines = (MemberInline,)
-    resource_class = UserResource
+    resource_classes = [UserResource]
     change_form_template = "members/admin/change_form.html"
     actions = ["send_password_email"]
 

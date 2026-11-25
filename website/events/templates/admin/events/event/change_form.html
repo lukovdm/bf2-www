@@ -1,0 +1,22 @@
+{% extends "admin/change_form.html" %}
+{% comment %}
+    Show the dates of the event above the other fields. The other inlines
+    (registrations) stay below the fields.
+{% endcomment %}
+
+{% block field_sets %}
+    {% for inline_admin_formset in inline_admin_formsets %}
+        {% if inline_admin_formset.formset.prefix == "dates" %}
+            {% include inline_admin_formset.opts.template %}
+        {% endif %}
+    {% endfor %}
+    {{ block.super }}
+{% endblock %}
+
+{% block inline_field_sets %}
+    {% for inline_admin_formset in inline_admin_formsets %}
+        {% if inline_admin_formset.formset.prefix != "dates" %}
+            {% include inline_admin_formset.opts.template %}
+        {% endif %}
+    {% endfor %}
+{% endblock %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 00:52+0100\n"
+"POT-Creation-Date: 2026-11-26 00:53+0100\n"
 "PO-Revision-Date: 2025-07-15 18:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -42,6 +42,10 @@ msgstr "Pagina niet gevonden"
 #, python-format
 msgid " Click <a href=\"%(link)s\">here</a> to go back to the main page."
 msgstr " Klik <a href= \"%(link)s\">hier</a> om terug te gaan naar de hoofdpagina."
+
+#: templates/admin/inc/extrahead.html:3
+msgid "End of day"
+msgstr "Einde van de dag"
 
 #: templates/djangocms_alias/base.html:9 templates/djangocms_alias/base.html:10
 msgid "Aliases"

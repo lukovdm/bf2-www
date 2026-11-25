@@ -29,7 +29,7 @@ from djangocms_versioning.models import Version
 
 from boards.models import Board, BoardMembership
 from committees.models import Committee, CommitteeMembership
-from events.models import Event, Registration
+from events.models import Event, EventDate, Registration
 from members.models import Member, MemberSettings
 from members.tokens import default_activate_token_generator
 from website.models import Slideshow
@@ -99,13 +99,15 @@ def make_event(**kwargs):
         location="Nijmegen",
         cost_en="5 euro",
         cost_nl="5 euro",
-        start_date=now + timedelta(days=7),
-        end_date=now + timedelta(days=8),
         registration_start=now - timedelta(days=1),
         registration_end=now + timedelta(days=1),
     )
     defaults.update(kwargs)
-    return Event.objects.create(**defaults)
+    start = defaults.pop("start_date", now + timedelta(days=7))
+    end = defaults.pop("end_date", now + timedelta(days=8))
+    event = Event.objects.create(**defaults)
+    EventDate.objects.create(event=event, start=start, end=end)
+    return event
 
 
 @override_settings(**STATIC_SETTINGS)
@@ -418,6 +420,27 @@ class EventPagesTest(SiteTestCase):
         self.assertIn(b"BEGIN:VCALENDAR", response.content)
         self.assertIn(b"Tournament", response.content)
 
+    def test_event_with_multiple_dates(self):
+        now = timezone.now()
+        event = make_event(name_en="Weekend tournament", location="Main field")
+        EventDate.objects.create(
+            event=event,
+            start=now + timedelta(days=9),
+            end=now + timedelta(days=9, hours=8),
+            label_en="Finals",
+            label_nl="Finales",
+            location="Stadium",
+        )
+        response = self.client.get(self.event.get_absolute_url())
+        self.assertNotContains(response, "event-date-card")
+        response = self.client.get(event.get_absolute_url())
+        self.assertContains(response, "event-date-card", count=2)
+        self.assertContains(response, "Finals")
+        self.assertContains(response, "Stadium")
+        self.assertContains(response, "2 dates")
+        listing = self.client.get(reverse("events:list"))
+        self.assertContains(listing, "+1 more date")
+
     def test_past_events_hidden(self):
         make_event(
             name_en="Old event",
@@ -426,6 +449,47 @@ class EventPagesTest(SiteTestCase):
         )
         response = self.client.get(reverse("events:list"))
         self.assertNotContains(response, "Old event")
+
+
+class HiddenEventTest(SiteTestCase):
+    def setUp(self):
+        super().setUp()
+        self.event = make_event(name_en="Secret meeting", hidden=True)
+        self.member = make_member("member")
+        self.staff = make_member("staffmember")
+        self.staff.is_staff = True
+        self.staff.save()
+
+    def test_not_shown_to_visitors_and_members(self):
+        for user in (None, self.member):
+            if user:
+                self.client.force_login(user)
+            self.assertNotContains(
+                self.client.get(reverse("events:list")), "Secret meeting"
+            )
+            self.assertEqual(
+                self.client.get(self.event.get_absolute_url()).status_code, 404
+            )
+            response = self.client.post(
+                reverse("events:register", args=[self.event.pk])
+            )
+            self.assertIn(response.status_code, (302, 404))
+        self.assertFalse(Registration.objects.exists())
+
+    def test_shown_greyed_out_to_staff(self):
+        self.client.force_login(self.staff)
+        response = self.client.get(reverse("events:list"))
+        self.assertContains(response, "Secret meeting")
+        self.assertContains(response, "event-hidden")
+        self.assertContains(response, "Hidden")
+        response = self.client.get(self.event.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "This event is hidden")
+
+    def test_not_in_ics(self):
+        self.assertNotIn(
+            b"Secret meeting", self.client.get(reverse("events:ics")).content
+        )
 
 
 class CommitteePagesTest(SiteTestCase):
@@ -752,11 +816,13 @@ class AdminTest(SiteTestCase):
                 "location": "Sportcentrum",
                 "cost_en": "free",
                 "cost_nl": "gratis",
-                "start_date_0": (now + timedelta(days=1)).strftime("%Y-%m-%d"),
-                "start_date_1": "10:00:00",
-                "end_date_0": (now + timedelta(days=1)).strftime("%Y-%m-%d"),
-                "end_date_1": "12:00:00",
-                "show_end_date": "on",
+                "dates-TOTAL_FORMS": "1",
+                "dates-INITIAL_FORMS": "0",
+                "dates-0-start_0": (now + timedelta(days=1)).strftime("%Y-%m-%d"),
+                "dates-0-start_1": "10:00:00",
+                "dates-0-end_0": (now + timedelta(days=1)).strftime("%Y-%m-%d"),
+                "dates-0-end_1": "12:00:00",
+                "dates-0-show_end": "on",
                 "registration_set-TOTAL_FORMS": "0",
                 "registration_set-INITIAL_FORMS": "0",
             },

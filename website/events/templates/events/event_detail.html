@@ -8,35 +8,55 @@
 {% block pagetitle %}
     {{ object.name }}
     <h4 class="text-center">
-        {% if object.show_end_date %}
-            {% daterange object.start_date object.end_date %}
-        {% else %}
-            {{ object.start_date|date:"d F" }}
-        {% endif %}
+        {% with first=dates|first last=dates|last %}
+            {% if dates|length > 1 %}
+                {% daterange first.start last.end %}
+            {% elif first.show_end %}
+                {% daterange first.start first.end %}
+            {% else %}
+                {{ first.start|date:"d F" }}
+            {% endif %}
+        {% endwith %}
     </h4>
 {% endblock pagetitle %}
 
 {% block content %}
-    {% render_model_block object %}
-        <div class="row mb-3">
-            <div class="w-100">
-                <img src="{{ instance.image.url }}" class="img-fluid w-100">
-            </div>
+    {% if object.hidden %}
+        <div class="alert alert-warning fw-bold" role="alert">
+            <i class="fa-solid fa-eye-slash pe-2"></i>{% trans "This event is hidden, only staff can see it on the website." %}
         </div>
+    {% endif %}
+    <div class="{% if object.hidden %}event-hidden{% endif %}">
+    {% render_model_block object %}
+        {% if instance.image %}
+            <div class="row mb-3">
+                <div class="w-100">
+                    <img src="{{ instance.image.url }}" class="img-fluid w-100" alt="{{ instance.name }}">
+                </div>
+            </div>
+        {% endif %}
         <div class="row mb-3">
             <div class="col-4 d-flex align-items-center">
                 <i class="fa-regular fa-clock pe-2 fs-3"></i>
                 <p class="fw-bold fst-italic fs-6 m-0">
-                    {% if instance.show_end_date %}
-                        {% datetimerange instance.start_date instance.end_date %}
+                    {% if dates|length > 1 %}
+                        {% blocktrans count counter=dates|length %}{{ counter }} date{% plural %}{{ counter }} dates{% endblocktrans %}
                     {% else %}
-                        {{ instance.start_date|date:"G:i" }}
+                        {% with date=dates|first %}
+                            {% if date.show_end %}
+                                {% datetimerange date.start date.end %}
+                            {% else %}
+                                {{ date.start|date:"G:i" }}
+                            {% endif %}
+                        {% endwith %}
                     {% endif %}
                 </p>
             </div>
             <div class="col-4 d-flex align-items-center">
                 <i class="fa-solid fa-location-dot pe-2 fs-3"></i>
-                <p class="fw-bold fst-italic fs-6 m-0">{{ instance.location }}</p>
+                <p class="fw-bold fst-italic fs-6 m-0">
+                    {% if dates|length == 1 %}{{ dates.0.location_or_default }}{% else %}{{ instance.location }}{% endif %}
+                </p>
             </div>
             <div class="col-4 d-flex align-items-center">
                 <i class="fa-solid fa-euro-sign pe-2 fs-3"></i>
@@ -46,6 +66,29 @@
             </div>
         </div>
     {% endrender_model_block %}
+    {% if dates|length > 1 %}
+        <div class="row row-cols-2 row-cols-md-3 row-cols-xl-4 g-3 mb-3">
+            {% for date in dates %}
+                <div class="col">
+                    <div class="card h-100 shadow event-date-card{% if date.has_ended %} event-date-ended{% endif %}">
+                        <div class="card-body">
+                            {% if date.label %}<h6 class="card-title fw-bold mb-1">{{ date.label }}</h6>{% endif %}
+                            <p class="mb-1 text-capitalize">
+                                <i class="fa-regular fa-calendar-days pe-2"></i>{{ date.start|date:"l j F" }}
+                            </p>
+                            <p class="mb-1">
+                                <i class="fa-regular fa-clock pe-2"></i>{% if date.show_end %}{% datetimerange date.start date.end %}{% else %}{{ date.start|date:"G:i" }}{% endif %}
+                            </p>
+                            {% if date.location %}
+                                <p class="mb-1"><i class="fa-solid fa-location-dot pe-2"></i>{{ date.location }}</p>
+                            {% endif %}
+                            {% if date.has_ended %}<span class="badge bg-info">{% trans "ended" %}</span>{% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="row ms-0 me-1 mb-3">
         <div class="rounded event-description">{% render_placeholder object.description_placeholder %}</div>
     </div>
@@ -140,4 +183,5 @@
     {% endif %}
     {% endif %}
 
+    </div>
 {% endblock content %}

@@ -8,3 +8,18 @@
     padding: 0;
   }
 }
+
+// Hidden events are only visible for staff, grey them out
+.event-hidden {
+  opacity: 0.55;
+  filter: grayscale(1);
+}
+
+.event-date-card {
+  border-top: 4px solid $primary;
+}
+
+.event-date-ended {
+  opacity: 0.55;
+  border-top-color: $info;
+}

@@ -21,7 +21,8 @@
                 <div class="form-group reg_spacing">
                     <label for="{{ form.firstname.id_for_label }}" class="form-label">{{ form.firstname.label }}</label>
                     <input type="text" class="form-control {% if form.firstname.errors %}is-invalid{% endif %}"
-                           name="{{ form.firstname.html_name }}" placeholder="{{ form.firstname.label }}" required>
+                           name="{{ form.firstname.html_name }}" id="{{ form.firstname.id_for_label }}"
+                           value="{{ form.firstname.value|default_if_none:'' }}" placeholder="{{ form.firstname.label }}" required>
                     {% if form.firstname.errors %}
                         <div class="invalid-feedback">
                             {{ form.firstname.errors }}
@@ -31,7 +32,8 @@
                 <div class="form-group reg_spacing">
                     <label for="{{ form.lastname.id_for_label }}" class="form-label">{{ form.lastname.label }}</label>
                     <input type="text" class="form-control {% if form.lastname.errors %}is-invalid{% endif %}"
-                           name="{{ form.lastname.html_name }}" placeholder="{{ form.lastname.label }}" required>
+                           name="{{ form.lastname.html_name }}" id="{{ form.lastname.id_for_label }}"
+                           value="{{ form.lastname.value|default_if_none:'' }}" placeholder="{{ form.lastname.label }}" required>
                     {% if form.lastname.errors %}
                         <div class="invalid-feedback">
                             {{ form.lastname.errors }}
@@ -41,7 +43,8 @@
                 <div class="form-group reg_spacing">
                     <label for="{{ form.birthday.id_for_label }}" class="form-label">{{ form.birthday.label }}</label>
                     <input type="text" class="form-control {% if form.birthday.errors %}is-invalid{% endif %}"
-                           name="{{ form.birthday.html_name }}" placeholder="{% trans "dd/mm/yyyy" %}" required>
+                           name="{{ form.birthday.html_name }}" id="{{ form.birthday.id_for_label }}"
+                           value="{{ form.birthday.value|default_if_none:'' }}" placeholder="{% trans "dd/mm/yyyy" %}" required>
                     {% if form.birthday.errors %}
                         <div class="invalid-feedback">
                             {{ form.birthday.errors }}
@@ -51,7 +54,7 @@
                 <div class="form-group reg_spacing">
                     <label for="{{ form.gender.id_for_label }}" class="form-label">{{ form.gender.label }}</label>
                     <select class="form-select custom-select {% if form.gender.errors %}is-invalid{% endif %}"
-                            name="{{ form.gender.html_name }}" id="gender" onchange="hideField()" required>
+                            name="{{ form.gender.html_name }}" id="{{ form.gender.id_for_label }}" required>
                         {% for choice in form.gender %}
                             {{ choice }}
                         {% endfor %}
@@ -65,7 +68,8 @@
                 <div class="form-group reg_spacing">
                     <label for="{{ form.pronouns.id_for_label }}" class="form-label">{{ form.pronouns.label }}</label>
                     <input type="text" class="form-control {% if form.pronouns.errors %}is-invalid{% endif %}"
-                           name="{{ form.pronouns.html_name }}" placeholder="{{ form.pronouns.label }}">
+                           name="{{ form.pronouns.html_name }}" id="{{ form.pronouns.id_for_label }}"
+                           value="{{ form.pronouns.value|default_if_none:'' }}" placeholder="{{ form.pronouns.label }}">
                     {% if form.pronouns.errors %}
                         <div class="invalid-feedback">
                             {{ form.pronouns.errors }}
@@ -76,7 +80,8 @@
                     <label for="{{ form.phone_number.id_for_label }}"
                            class="form-label">{{ form.phone_number.label }}</label>
                     <input type="text" class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}"
-                           name="{{ form.phone_number.html_name }}" placeholder="{{ form.phone_number.label }}"
+                           name="{{ form.phone_number.html_name }}" id="{{ form.phone_number.id_for_label }}"
+                           value="{{ form.phone_number.value|default_if_none:'' }}" placeholder="{{ form.phone_number.label }}"
                            required>
                     {% if form.phone_number.errors %}
                         <div class="invalid-feedback">
@@ -88,18 +93,20 @@
                     <label for="{{ form.street_address.id_for_label }}"
                            class="form-label">{{ form.street_address.label }}</label>
                     <input type="text" class="form-control {% if form.street_address.errors %}is-invalid{% endif %}"
-                           name="{{ form.street_address.html_name }}" placeholder="{{ form.street_address.label }}"
+                           name="{{ form.street_address.html_name }}" id="{{ form.street_address.id_for_label }}"
+                           value="{{ form.street_address.value|default_if_none:'' }}" placeholder="{{ form.street_address.label }}"
                            required>
-                    {% if form.street_adress.errors %}
+                    {% if form.street_address.errors %}
                         <div class="invalid-feedback">
-                            {{ form.street_adress.errors }}
+                            {{ form.street_address.errors }}
                         </div>
                     {% endif %}
                 </div>
                 <div class="form-group reg_spacing">
                     <label for="{{ form.postcode.id_for_label }}" class="form-label">{{ form.postcode.label }}</label>
                     <input type="text" class="form-control {% if form.postcode.errors %}is-invalid{% endif %}"
-                           name="{{ form.postcode.html_name }}" placeholder="{{ form.postcode.label }}" required>
+                           name="{{ form.postcode.html_name }}" id="{{ form.postcode.id_for_label }}"
+                           value="{{ form.postcode.value|default_if_none:'' }}" placeholder="{{ form.postcode.label }}" required>
                     {% if form.postcode.errors %}
                         <div class="invalid-feedback">
                             {{ form.postcode.errors }}
@@ -109,7 +116,8 @@
                 <div class="form-group reg_spacing">
                     <label for="{{ form.city.id_for_label }}" class="form-label">{{ form.city.label }}</label>
                     <input type="text" class="form-control {% if form.city.errors %}is-invalid{% endif %}"
-                           name="{{ form.city.html_name }}" placeholder="{{ form.city.label }}" required>
+                           name="{{ form.city.html_name }}" id="{{ form.city.id_for_label }}"
+                           value="{{ form.city.value|default_if_none:'' }}" placeholder="{{ form.city.label }}" required>
                     {% if form.city.errors %}
                         <div class="invalid-feedback">
                             {{ form.city.errors }}
@@ -122,7 +130,7 @@
                     <label for="{{ form.student_type.id_for_label }}"
                            class="form-label">{{ form.student_type.label }}</label>
                     <select class="form-select custom-select {% if form.student_type.errors %}is-invalid{% endif %}"
-                            name="{{ form.student_type.html_name }}" id="gender" required>
+                            name="{{ form.student_type.html_name }}" id="{{ form.student_type.id_for_label }}" required>
                         {% for choice in form.student_type %}
                             {{ choice }}
                         {% endfor %}
@@ -137,7 +145,8 @@
                     <label for="{{ form.sports_card_number.id_for_label }}"
                            class="form-label">{{ form.sports_card_number.label }}</label>
                     <input type="text" class="form-control {% if form.sports_card_number.errors %}is-invalid{% endif %}"
-                           name="{{ form.sports_card_number.html_name }}"
+                           name="{{ form.sports_card_number.html_name }}" id="{{ form.sports_card_number.id_for_label }}"
+                           value="{{ form.sports_card_number.value|default_if_none:'' }}"
                            placeholder="{{ form.sports_card_number.label }}">
                     {% if form.sports_card_number.errors %}
                         <div class="invalid-feedback">
@@ -149,7 +158,7 @@
                     <label for="{{ form.preferred_language.id_for_label }}"
                            class="form-label">{{ form.preferred_language.label }}</label>
                     <select class="form-select custom-select {% if form.preferred_language.errors %}is-invalid{% endif %}"
-                            name="{{ form.preferred_language.html_name }}" id="gender" required>
+                            name="{{ form.preferred_language.html_name }}" id="{{ form.preferred_language.id_for_label }}" required>
                         {% for choice in form.preferred_language %}
                             {{ choice }}
                         {% endfor %}
@@ -166,12 +175,14 @@
                     <br>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input {% if form.other_club.errors %}is-invalid{% endif %}"
-                               type="radio" name="{{ form.other_club.html_name }}" value="on">
+                               type="radio" name="{{ form.other_club.html_name }}" value="true"
+                               {% if form.other_club.value %}checked{% endif %}>
                         <label class="form-check-label">{% trans "yes" %}</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input {% if form.other_club.errors %}is-invalid{% endif %}"
-                               type="radio" name="{{ form.other_club.html_name }}" value="off" checked>
+                               type="radio" name="{{ form.other_club.html_name }}" value="false"
+                               {% if not form.other_club.value %}checked{% endif %}>
                         <label class="form-check-label">{% trans "no" %}</label>
                     </div>
                     {% if form.other_club.errors %}
@@ -183,7 +194,8 @@
                 <div class="form-group reg_spacing">
                     <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
                     <input type="text" class="form-control {% if form.email.errors %}is-invalid{% endif %}"
-                           name="{{ form.email.html_name }}" placeholder="{{ form.email.label }}" required>
+                           name="{{ form.email.html_name }}" id="{{ form.email.id_for_label }}"
+                           value="{{ form.email.value|default_if_none:'' }}" placeholder="{{ form.email.label }}" required>
                     {% if form.email.errors %}
                         <div class="invalid-feedback">
                             {{ form.email.errors }}
@@ -206,7 +218,8 @@
                         .</label>
                 </div>
                 <input class="form-check-input {% if form.data_registration.errors %}is-invalid{% endif %}"
-                       type="checkbox" id="flexCheckDefault" name="{{ form.data_registration.html_name }}" required>
+                       type="checkbox" id="{{ form.data_registration.id_for_label }}" name="{{ form.data_registration.html_name }}"
+                       {% if form.data_registration.value %}checked{% endif %} required>
                 <label class="form-check-label"
                        for="{{ form.data_registration.id_for_label }}">{% trans "I agree with the privacy statement" %}</label>
                 {% if form.data_registration.errors %}
@@ -220,13 +233,13 @@
                     <label class="form-label" for="{{ form.remarks.id_for_label }}">{{ form.remarks.label }}</label>
                     <textarea name="{{ form.remarks.html_name }}" cols="10" rows="3"
                               class="form-control {% if form.remarks.errors %}is-invalid{% endif %}" title=""
-                              id="{{ form.remarks.id_for_label }}"></textarea>
+                              id="{{ form.remarks.id_for_label }}">{{ form.remarks.value|default_if_none:'' }}</textarea>
+                    {% if form.remarks.errors %}
+                        <div class="invalid-feedback">
+                            {{ form.remarks.errors }}
+                        </div>
+                    {% endif %}
                 </div>
-                {% if form.remarks.errors %}
-                    <div class="invalid-feedback">
-                        {{ form.remarks.errors }}
-                    </div>
-                {% endif %}
             </div>
         </div>
 

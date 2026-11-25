@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -40,6 +40,13 @@ class CommitteeAdmin(admin.ModelAdmin):
             formfield.widget.can_add_related = False
 
         return formfield
+
+    def save_formset(self, request, form, formset, change):
+        super().save_formset(request, form, formset, change)
+        saved = list(formset.new_objects) + [obj for obj, _f in formset.changed_objects]
+        for instance in saved:
+            for change_message in getattr(instance, "rights_changes", []):
+                messages.warning(request, change_message)
 
     @admin.display(description=_("Active members"))
     def active_member_count(self, obj: Committee):

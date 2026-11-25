@@ -72,40 +72,51 @@ class Event(Model, metaclass=ModelTranslateMeta):
         return "events/event_structure.html"
 
     def clean(self) -> None:
-        if (self.registration_start is None) != (self.registration_end is None):
-            raise ValidationError(
-                {
-                    "registration_start": _(
-                        "Either both registration start and end need to be set, or neither."
-                    ),
-                    "registration_end": _(
-                        "Either both registration start and end need to be set, or neither."
-                    ),
-                }
+        # Django calls clean() even when individual fields failed validation, in
+        # which case those fields are left as None. Every comparison below must
+        # therefore guard against missing values, otherwise the admin crashes
+        # with a TypeError instead of showing the field errors (see #277).
+        errors = {}
+
+        def add_error(fields, message):
+            for field in fields:
+                errors.setdefault(field, []).append(message)
+
+        # Missing start/end dates are already reported by the field validation.
+        if (
+            self.start_date is not None
+            and self.end_date is not None
+            and self.start_date > self.end_date
+        ):
+            add_error(
+                ("start_date", "end_date"),
+                _("Start date must be before the end date."),
             )
 
-        if (
+        if (self.registration_start is None) != (self.registration_end is None):
+            add_error(
+                ("registration_start", "registration_end"),
+                _("Either both registration start and end need to be set, or neither."),
+            )
+        elif (
             self.registration_start is not None
             and self.registration_start > self.registration_end
         ):
-            raise ValidationError(
-                {
-                    "registration_start": _(
-                        "Registration start must be before registration end."
-                    ),
-                    "registration_end": _(
-                        "Registration start must be before registration end."
-                    ),
-                }
+            add_error(
+                ("registration_start", "registration_end"),
+                _("Registration start must be before registration end."),
             )
 
-        if self.start_date > self.end_date:
-            raise ValidationError(
-                {
-                    "start_date": _("Start date must be before the end date."),
-                    "end_date": _("Start date must be before the end date."),
-                }
+        if self.limit is not None and self.limit < 1:
+            add_error(
+                ("limit",),
+                _(
+                    "The participant limit must be at least 1, leave it empty for no limit."
+                ),
             )
+
+        if errors:
+            raise ValidationError(errors)
 
     def save(self, *args, **kwargs):
         if self.form_link and not self.form_link.endswith("embedded=true"):

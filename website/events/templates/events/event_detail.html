@@ -71,7 +71,7 @@
             {% else %}
                 <form action="{% url "events:register" object.pk %}" method="post">{% csrf_token %}
                     <button class="btn btn-outline-primary fw-bold w-100" name="register" value="register"
-                            {% if object.registration_set.all|length >= object.limit %} disabled>
+                            {% if object.limit and object.registration_set.all|length >= object.limit %} disabled>
                                 {% trans "Full" %}
                             {% elif object.registration_start and object.registration_start > now %} disabled>
                                 {% trans "Not opened" %}
@@ -108,8 +108,8 @@
     </div>
     <div class="row">
         <div class="col">
-            <p class="fw-bold{% if object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
-                <i class="fa-solid fa-people-group fs-5"></i> {{ object.registration_set.all|length }}/{{ object.limit }}
+            <p class="fw-bold{% if object.limit and object.registration_set.all|length >= object.limit and registration is None %} text-danger{% endif %}">
+                <i class="fa-solid fa-people-group fs-5"></i> {{ object.registration_set.all|length }}{% if object.limit %}/{{ object.limit }}{% endif %}
                 {% if user.is_authenticated and not object.private_registrations %}
                     {% for reg in object.registration_set.all %}{% if not forloop.first %}, {% endif %}{{reg.user.member.name}}{% endfor %}
                 {% endif %}

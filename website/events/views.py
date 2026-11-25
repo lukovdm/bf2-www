@@ -64,33 +64,36 @@ class EventRegisterView(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         event = get_object_or_404(Event, pk=kwargs["pk"])
+        now = timezone.now()
 
-        if event.registration_start and event.registration_start > timezone.now():
+        if event.registration_start is None or event.registration_end is None:
+            messages.error(request, _("This event does not have registrations."))
+        elif event.registration_start > now:
             messages.error(
                 request,
                 _("The registrations for this event have not opened yet."),
             )
-        elif event.registration_end and event.registration_end < timezone.now():
+        elif event.registration_end < now:
             messages.error(
                 request,
                 _("The registrations for this event have already closed."),
             )
-        elif event.end_date < timezone.now():
+        elif event.end_date < now:
             messages.error(
                 request,
                 _("This event has already passed."),
             )
-        elif event.limit and len(event.registration_set.all()) >= event.limit:
-            messages.error(request, _("This event is already full."))
-        elif event.registration_set.all().filter(user=request.user).exists():
+        elif event.registration_set.filter(user=request.user).exists():
             messages.error(request, _("You have already registered for this event."))
+        elif event.limit and event.registration_set.count() >= event.limit:
+            messages.error(request, _("This event is already full."))
         else:
             Registration.objects.create(
                 event=event, user=request.user, has_payed=False if event.cost else None
             )
             messages.success(request, _("You successfully registered."))
 
-            if event.form_link is not None:
+            if event.form_link:
                 return redirect("events:form", pk=event.pk)
 
         return redirect(event)
@@ -115,9 +118,13 @@ class EventUnregisterView(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         event = get_object_or_404(Event, pk=kwargs["pk"])
-        registration = get_object_or_404(Registration, event=event, user=request.user)
+        registration = Registration.objects.filter(
+            event=event, user=request.user
+        ).first()
 
-        if event.registration_end and event.registration_end < timezone.now():
+        if registration is None:
+            messages.error(request, _("You are not registered for this event."))
+        elif event.registration_end and event.registration_end < timezone.now():
             messages.error(
                 request,
                 _(
@@ -125,9 +132,9 @@ class EventUnregisterView(LoginRequiredMixin, View):
                     "if you still want to deregister contact the committee."
                 ),
             )
-
-        registration.delete()
-        messages.success(request, _("You successfully unregistered."))
+        else:
+            registration.delete()
+            messages.success(request, _("You successfully unregistered."))
 
         return redirect(event)
 

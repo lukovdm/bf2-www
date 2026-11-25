@@ -13,6 +13,7 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 @import "masthead";
 @import "navbar";
 @import "cards";
+@import "cms_toolbar";
 
 @import "../../../../members/static/members/scss/registrationform";
 @import "../../../../committees/static/committees/scss/committees";

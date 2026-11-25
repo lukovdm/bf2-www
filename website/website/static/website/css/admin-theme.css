@@ -1,0 +1,63 @@
+/*
+ * Theme colors for the admin (djangocms-admin-style), see
+ * website/static/website/scss/_variables.scss for the theme colors.
+ *
+ * Only the highlight colors change: navy in light mode and orange in dark
+ * mode, so text on and next to them stays readable.
+ *
+ * djangocms-admin-style is loaded after this file and sets its colors with
+ * selectors like `:root[data-theme=dark]`. The `:not(#bf2-theme)` below only
+ * raises the specificity, so these rules win. light-dark() can not be used,
+ * because in "auto" mode the admin does not set the color-scheme to dark.
+ */
+
+/* Light mode (default) */
+:root:not(#bf2-theme) {
+  --bf2-blue: #233D7A;
+  --bf2-orange: #FF8023;
+
+  /* djangocms-admin-style: sidebar headers, links, buttons, active items */
+  --dca-primary: var(--bf2-blue);
+
+  /* Plain Django admin colors, used by e.g. the date widgets */
+  --primary: var(--bf2-blue);
+  --secondary: var(--bf2-blue);
+  --accent: var(--bf2-orange);
+  --header-bg: var(--bf2-blue);
+  --breadcrumbs-bg: var(--bf2-blue);
+  --link-fg: var(--bf2-blue);
+  --link-hover-color: var(--bf2-orange);
+  --link-selected-fg: var(--bf2-orange);
+  --button-bg: var(--bf2-blue);
+  --button-hover-bg: var(--bf2-orange);
+  --default-button-bg: var(--bf2-orange);
+  --default-button-hover-bg: var(--bf2-blue);
+  --selected-row: #FFE6D3;
+}
+
+/* Dark mode, chosen explicitly or following the system in "auto" mode */
+:root[data-theme="dark"]:not(#bf2-theme),
+:root[data-color-scheme="dark"]:not(#bf2-theme) {
+  --dca-primary: var(--bf2-orange);
+  --primary: var(--bf2-orange);
+  --link-fg: var(--bf2-orange);
+  --link-hover-color: #FFB27A;
+  --link-selected-fg: #FFB27A;
+  --button-bg: var(--bf2-orange);
+  --button-hover-bg: var(--bf2-blue);
+  --selected-row: #4A2E18;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]):not([data-color-scheme]):not(#bf2-theme),
+  :root[data-theme="auto"]:not(#bf2-theme) {
+    --dca-primary: var(--bf2-orange);
+    --primary: var(--bf2-orange);
+    --link-fg: var(--bf2-orange);
+    --link-hover-color: #FFB27A;
+    --link-selected-fg: #FFB27A;
+    --button-bg: var(--bf2-orange);
+    --button-hover-bg: var(--bf2-blue);
+    --selected-row: #4A2E18;
+  }
+}

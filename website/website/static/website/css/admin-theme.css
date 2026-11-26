@@ -94,3 +94,10 @@
     flex-basis: 100%;
   }
 }
+
+/* Wide text fields (e.g. the location) stay inside the screen on phones */
+:root:not(#bf2-theme) .form-row > .flex-container,
+:root:not(#bf2-theme) .form-row input.vTextField {
+  max-width: 100%;
+  box-sizing: border-box;
+}

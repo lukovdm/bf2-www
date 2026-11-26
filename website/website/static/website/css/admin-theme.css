@@ -101,3 +101,11 @@
   max-width: 100%;
   box-sizing: border-box;
 }
+
+/* Mark required fields with an asterisk, bold labels alone are easy to miss */
+:root:not(#bf2-theme) label.required::after,
+:root:not(#bf2-theme) th.required::after {
+  content: " *";
+  color: var(--error-fg, #ba2121);
+  font-weight: bold;
+}

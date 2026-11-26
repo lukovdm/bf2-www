@@ -55,9 +55,9 @@ def form_link_help_text():
         "{} {}<br><strong>{}</strong>",
         text,
         _(
-            "Then share the form as editor with the address below (the person "
-            "with a plus icon at the top right), so the website can check who "
-            "filled it in:"
+            "Then share the form as editor, not as responder, with the address "
+            "below (the person with a plus icon at the top right), so the "
+            "website can check who filled it in:"
         ),
         email,
     )

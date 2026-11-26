@@ -487,6 +487,20 @@ class GoogleFormsTestMixin:
 
 
 class GoogleFormsHelpersTest(TestCase):
+    def test_embed_link(self):
+        from events.models import embed_link
+
+        expected = (
+            "https://docs.google.com/forms/d/e/1FAIpQLSx-y_z/viewform?embedded=true"
+        )
+        for link in [
+            "https://docs.google.com/forms/d/e/1FAIpQLSx-y_z/viewform?usp=sf_link",
+            "https://docs.google.com/forms/d/e/1FAIpQLSx-y_z/viewform?usp=publish-editor",
+            " https://docs.google.com/forms/d/e/1FAIpQLSx-y_z/viewform?usp=dialog ",
+            expected,
+        ]:
+            self.assertEqual(embed_link(link), expected)
+
     def test_published_id(self):
         from events.google_forms import published_id
 
@@ -639,6 +653,8 @@ class FormSyncTest(GoogleFormsTestMixin, TestCase):
             "website@bf2.iam.gserviceaccount.com", self.event.google_form_error
         )
         self.assertIn("Not connected", form_status_text(self.event))
+        # The common mistake of adding the address as responder
+        self.assertIn("responder", self.event.google_form_error)
 
     def test_connect_adds_question_and_prefills_code(self):
         from events.form_sync import connect_form

@@ -23,6 +23,8 @@ from django.db.models import (
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.timezone import now
+
+from events.google_forms import published_id
 from django.utils.translation import gettext_lazy as _
 from filer.fields.image import FilerImageField
 
@@ -48,6 +50,18 @@ class EventQuerySet(QuerySet):
     def upcoming(self):
         """Events with a date that has not ended yet, sorted by that date."""
         return self.with_dates().filter(last_end__gt=now()).order_by("next_start", "pk")
+
+
+def embed_link(link):
+    """The link of a Google Form to show it in the website.
+
+    Share links come with different parameters (``usp=sf_link``,
+    ``usp=publish-editor``, ...), only the id of the form is kept.
+    """
+    form = published_id(link)
+    if not form:
+        return link.strip()
+    return f"https://docs.google.com/forms/d/e/{form}/viewform?embedded=true"
 
 
 class Event(Model, metaclass=ModelTranslateMeta):
@@ -228,10 +242,8 @@ class Event(Model, metaclass=ModelTranslateMeta):
     def save(self, *args, **kwargs):
         if self.pk:
             self.fill_default_registration_end()
-        if self.form_link and not self.form_link.endswith("embedded=true"):
-            embed_form_link = self.form_link.strip()
-            embed_form_link = embed_form_link.removesuffix("usp=sf_link")
-            self.form_link = embed_form_link + "embedded=true"
+        if self.form_link:
+            self.form_link = embed_link(self.form_link)
 
         super().save(*args, **kwargs)
 

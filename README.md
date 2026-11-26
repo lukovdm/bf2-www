@@ -36,7 +36,7 @@ Events can have a Google Form that members fill in after registering. The websit
 ### For committees
 
 1. Make the form in Google Forms and copy the share link ("Send" > link icon) into the "Google form link" of the event.
-2. Share the form with the email address of the website as **editor** (the person with a plus icon at the top right of Google Forms). The admin page of the event shows this address below the "Google form link" field.
+2. Share the form with the email address of the website as **editor**, not as responder (the person with a plus icon at the top right of Google Forms). The admin page of the event shows this address below the "Google form link" field.
 3. Save the event. The website adds a "Registration code" question at the top of the form, do not remove it. Members get the form with their code filled in.
 
 The registrations in the admin and the csv export show who filled in the form. You can also mark a registration as filled in by hand.

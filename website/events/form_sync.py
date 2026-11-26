@@ -37,8 +37,11 @@ def connect_form(event):
                 event.google_form_id = form_id
             else:
                 event.google_form_error = _(
-                    "The form is not shared with %(email)s. Share the form with this "
-                    "address as editor in Google Forms."
+                    "The website cannot find the form, it is not shared with "
+                    "%(email)s as editor. Note that adding the address as "
+                    "responder is not enough. In Google Forms click the person "
+                    "with a plus icon at the top right, add the address under "
+                    "editors and save the event again."
                 ) % {"email": google_forms.service_account_email()}
         except google_forms.GoogleFormsError as error:
             logger.warning("Cannot connect the form of %s: %s", event, error)
@@ -115,6 +118,6 @@ def form_status_text(event):
     if event.google_form_error:
         return _("Not connected: %(error)s") % {"error": event.google_form_error}
     return _(
-        "Not connected yet. Share the form with %(email)s as editor in Google "
-        "Forms and save the event."
+        "Not connected yet. Share the form with %(email)s as editor (not as "
+        "responder) in Google Forms and save the event again."
     ) % {"email": google_forms.service_account_email()}

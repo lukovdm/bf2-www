@@ -698,6 +698,33 @@ class FormAdminTest(GoogleFormsTestMixin, TestCase):
         self.assertContains(response, "Google Form connection")
         self.assertContains(response, "website@bf2.iam.gserviceaccount.com")
 
+    def test_status_below_form_link(self):
+        response = self.client.get(
+            reverse("admin:events_event_change", args=[self.event.pk])
+        )
+        content = response.content.decode()
+        link = content.index('name="form_link"')
+        status = content.index("Google Form connection")
+        self.assertLess(link, status)
+        # No other field in between
+        self.assertNotIn('name="', content[link + 20 : status])
+
+    def test_form_link_help_shows_share_address(self):
+        response = self.client.get(reverse("admin:events_event_add"))
+        self.assertContains(response, "Add collaborators")
+        self.assertContains(
+            response, "<strong>website@bf2.iam.gserviceaccount.com</strong>", html=True
+        )
+
+    @override_settings(GOOGLE_SERVICE_ACCOUNT_FILE="")
+    def test_form_link_help_without_connection(self):
+        from unittest import mock
+
+        with mock.patch("events.google_forms.service_account_email", return_value=None):
+            response = self.client.get(reverse("admin:events_event_add"))
+        self.assertContains(response, "Paste the share link of the form")
+        self.assertNotContains(response, "Add collaborators")
+
     def test_csv_has_form_status_and_code(self):
         import csv
         import io

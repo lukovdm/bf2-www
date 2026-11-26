@@ -53,4 +53,4 @@ The registrations in the admin and the csv export show who filled in the form. Y
 4. Add `GOOGLE_SERVICE_ACCOUNT_FILE=/bf2-www/google-service-account.json` to `config/secrets.env` and restart.
 5. Tell the committees the email address of the service account (the `client_email` in the key, also shown in the admin of every event with a form).
 
-For local development set `GOOGLE_SERVICE_ACCOUNT_FILE` to the path of a key in your environment.
+For local development put the key at `config/google-service-account.json`, it is used when `GOOGLE_SERVICE_ACCOUNT_FILE` is not set.

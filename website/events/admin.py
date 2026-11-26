@@ -10,8 +10,10 @@ from django.urls import path
 from django.utils.text import slugify
 from django.db.models import Count
 from django.utils import timezone
+from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
+from events import google_forms
 from events.form_sync import connect_form, form_status_text, sync_form
 from events.models import Event, EventDate, Registration
 from utils.translations import TranslatedModelAdmin
@@ -39,6 +41,25 @@ class RegistrationInline(TabularInline):
     extra = 0
     fields = ("user", "date", "has_payed", "form_status", "form_completed_at", "code")
     readonly_fields = ("form_completed_at", "code")
+
+
+def form_link_help_text():
+    """How to add a form, with the address to share it with when configured."""
+    text = _(
+        'Paste the share link of the form, in Google Forms under "Send" > link icon.'
+    )
+    email = google_forms.service_account_email()
+    if not email:
+        return text
+    return format_html(
+        "{} {}<br><strong>{}</strong>",
+        text,
+        _(
+            'Then share the form as editor with the address below ("..." > '
+            '"Add collaborators"), so the website can check who filled it in:'
+        ),
+        email,
+    )
 
 
 @register(Event)
@@ -91,6 +112,23 @@ class EventAdmin(FrontendEditableAdminMixin, TranslatedModelAdmin):
     @action(description=_("Export the registrations of the selected events"))
     def export_registrations(self, request, queryset):
         return registrations_csv(queryset, "registrations.csv")
+
+    def get_fields(self, request, obj=None):
+        # Show the connection status right below the form link
+        fields = [
+            f for f in super().get_fields(request, obj) if f != "google_form_status"
+        ]
+        if "form_link" in fields:
+            fields.insert(fields.index("form_link") + 1, "google_form_status")
+        else:
+            fields.append("google_form_status")
+        return fields
+
+    def get_form(self, request, obj=None, change=False, **kwargs):
+        form = super().get_form(request, obj, change, **kwargs)
+        if "form_link" in form.base_fields:
+            form.base_fields["form_link"].help_text = form_link_help_text()
+        return form
 
     def get_changeform_initial_data(self, request):
         initial = super().get_changeform_initial_data(request)

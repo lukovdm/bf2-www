@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
@@ -274,5 +275,18 @@ CMS_CONFIRM_VERSION4 = True
 
 # Google Forms connection for event forms, see events/google_forms.py and the
 # README. Path to the json key of a Google service account, the connection is
-# disabled when this is empty.
-GOOGLE_SERVICE_ACCOUNT_FILE = os.environ.get("GOOGLE_SERVICE_ACCOUNT_FILE", "")
+# disabled when this is empty. Defaults to config/google-service-account.json
+# in the repository when that file exists, except in the tests (they use a fake
+# Google).
+_default_google_key = os.path.normpath(
+    os.path.join(BASE_DIR, "..", "..", "config", "google-service-account.json")
+)
+_testing = sys.argv[1:2] == ["test"]
+GOOGLE_SERVICE_ACCOUNT_FILE = os.environ.get(
+    "GOOGLE_SERVICE_ACCOUNT_FILE",
+    (
+        _default_google_key
+        if os.path.exists(_default_google_key) and not _testing
+        else ""
+    ),
+)

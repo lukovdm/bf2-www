@@ -718,7 +718,7 @@ class FormAdminTest(GoogleFormsTestMixin, TestCase):
 
     def test_form_link_help_shows_share_address(self):
         response = self.client.get(reverse("admin:events_event_add"))
-        self.assertContains(response, "Add collaborators")
+        self.assertContains(response, "person with a plus icon")
         self.assertContains(
             response, "<strong>website@bf2.iam.gserviceaccount.com</strong>", html=True
         )
@@ -730,7 +730,7 @@ class FormAdminTest(GoogleFormsTestMixin, TestCase):
         with mock.patch("events.google_forms.service_account_email", return_value=None):
             response = self.client.get(reverse("admin:events_event_add"))
         self.assertContains(response, "Paste the share link of the form")
-        self.assertNotContains(response, "Add collaborators")
+        self.assertNotContains(response, "person with a plus icon")
 
     def test_csv_has_form_status_and_code(self):
         import csv

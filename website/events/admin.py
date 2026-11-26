@@ -80,6 +80,21 @@ class EventAdmin(FrontendEditableAdminMixin, TranslatedModelAdmin):
     )
     list_filter = ("hidden",)
     readonly_fields = ("google_form_status",)
+    # The dates inline is shown after the first fieldset, see change_form.html
+    fieldsets = (
+        (None, {"fields": (("name_en", "name_nl"),)}),
+        (None, {"fields": ("location", ("cost_en", "cost_nl"), "hidden")}),
+        (
+            _("Registration"),
+            {
+                "fields": (
+                    ("registration_start", "registration_end"),
+                    ("limit", "private_registrations"),
+                )
+            },
+        ),
+        (_("Google Form"), {"fields": (("form_link", "google_form_status"),)}),
+    )
     actions = ["export_registrations"]
     search_fields = ("name_en", "name_nl", "location")
 
@@ -112,17 +127,6 @@ class EventAdmin(FrontendEditableAdminMixin, TranslatedModelAdmin):
     @action(description=_("Export the registrations of the selected events"))
     def export_registrations(self, request, queryset):
         return registrations_csv(queryset, "registrations.csv")
-
-    def get_fields(self, request, obj=None):
-        # Show the connection status right below the form link
-        fields = [
-            f for f in super().get_fields(request, obj) if f != "google_form_status"
-        ]
-        if "form_link" in fields:
-            fields.insert(fields.index("form_link") + 1, "google_form_status")
-        else:
-            fields.append("google_form_status")
-        return fields
 
     def get_form(self, request, obj=None, change=False, **kwargs):
         form = super().get_form(request, obj, change, **kwargs)

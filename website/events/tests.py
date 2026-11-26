@@ -170,14 +170,18 @@ class EventAdminTest(TestCase):
         response = self.client.get(reverse("admin:events_event_add"))
         self.assertEqual(response.status_code, 200)
         content = response.content.decode()
-        # The dates are shown above the other fields
-        self.assertLess(
-            content.index('id="dates-group"'), content.index('name="name_en"')
-        )
-        self.assertLess(
-            content.index('name="name_en"'),
-            content.index('id="registration_set-group"'),
-        )
+        # Order: name, dates, cost, registration, form, registrations
+        order = [
+            'name="name_en"',
+            'name="name_nl"',
+            'id="dates-group"',
+            'name="cost_en"',
+            'name="registration_start_0"',
+            'name="form_link"',
+            'id="registration_set-group"',
+        ]
+        positions = [content.index(item) for item in order]
+        self.assertEqual(positions, sorted(positions))
         # The registration opens now by default
         self.assertIsNotNone(
             response.context["adminform"].form.initial.get("registration_start")
@@ -706,8 +710,11 @@ class FormAdminTest(GoogleFormsTestMixin, TestCase):
         link = content.index('name="form_link"')
         status = content.index("Google Form connection")
         self.assertLess(link, status)
-        # No other field in between
+        # On the same row, no other field in between
         self.assertNotIn('name="', content[link + 20 : status])
+        self.assertIn(
+            "form-multiline", content[content.rindex("form-row", 0, link) - 200 : link]
+        )
 
     def test_form_link_help_shows_share_address(self):
         response = self.client.get(reverse("admin:events_event_add"))

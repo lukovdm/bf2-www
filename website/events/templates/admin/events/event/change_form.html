@@ -1,8 +1,8 @@
 {% extends "admin/change_form.html" %}
 {% load i18n %}
 {% comment %}
-    Show the dates of the event above the other fields. The other inlines
-    (registrations) stay below the fields.
+    Show the dates of the event below the name, above the other fields. The
+    other inlines (registrations) stay below the fields.
 {% endcomment %}
 
 {% block object-tools-items %}
@@ -15,12 +15,16 @@
 {% endblock %}
 
 {% block field_sets %}
-    {% for inline_admin_formset in inline_admin_formsets %}
-        {% if inline_admin_formset.formset.prefix == "dates" %}
-            {% include inline_admin_formset.opts.template %}
+    {% for fieldset in adminform %}
+        {% include "admin/includes/fieldset.html" with heading_level=2 prefix="fieldset" id_prefix=0 id_suffix=forloop.counter0 %}
+        {% if forloop.first %}
+            {% for inline_admin_formset in inline_admin_formsets %}
+                {% if inline_admin_formset.formset.prefix == "dates" %}
+                    {% include inline_admin_formset.opts.template %}
+                {% endif %}
+            {% endfor %}
         {% endif %}
     {% endfor %}
-    {{ block.super }}
 {% endblock %}
 
 {% block inline_field_sets %}

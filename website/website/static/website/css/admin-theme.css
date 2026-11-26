@@ -61,3 +61,29 @@
     --selected-row: #4A2E18;
   }
 }
+
+/* Fields on one row (e.g. the English and Dutch name) share the width instead
+   of wrapping below each other */
+:root:not(#bf2-theme) .form-multiline {
+  flex-wrap: nowrap;
+  gap: 0 24px;
+}
+:root:not(#bf2-theme) .form-multiline > .fieldBox {
+  flex: 1 1 0;
+  min-width: 0;
+  width: auto;
+  margin-right: 0;
+}
+:root:not(#bf2-theme) .form-multiline > .fieldBox input.vTextField,
+:root:not(#bf2-theme) .form-multiline > .fieldBox input.vURLField {
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 767px) {
+  :root:not(#bf2-theme) .form-multiline {
+    flex-wrap: wrap;
+  }
+  :root:not(#bf2-theme) .form-multiline > .fieldBox {
+    flex-basis: 100%;
+  }
+}

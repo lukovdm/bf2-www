@@ -66,13 +66,20 @@
    of wrapping below each other */
 :root:not(#bf2-theme) .form-multiline {
   flex-wrap: nowrap;
+  justify-content: flex-start;
   gap: 0 24px;
+}
+:root:not(#bf2-theme) .form-multiline::before,
+:root:not(#bf2-theme) .form-multiline::after {
+  /* The clearfix would get a gap before the first field */
+  display: none;
 }
 :root:not(#bf2-theme) .form-multiline > .fieldBox {
   flex: 1 1 0;
   min-width: 0;
+  max-width: none;
   width: auto;
-  margin-right: 0;
+  margin: 0;
 }
 :root:not(#bf2-theme) .form-multiline > .fieldBox input.vTextField,
 :root:not(#bf2-theme) .form-multiline > .fieldBox input.vURLField {

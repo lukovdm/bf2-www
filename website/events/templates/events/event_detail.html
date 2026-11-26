@@ -103,6 +103,22 @@
     <div class="row mb-3">
         {% if user.is_authenticated and object.registration_start %}
             {% if registration %}
+                {% if registration.form_pending %}
+                    <div class="alert alert-danger d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2" role="alert">
+                        <div>
+                            <i class="fa-solid fa-triangle-exclamation pe-2 fs-5"></i>
+                            <strong>{% trans "Your registration is not complete:" %}</strong>
+                            {% trans "you still need to fill in the form." %}
+                        </div>
+                        <a class="btn btn-danger fw-bold" href="{% url "events:form" object.pk %}">
+                            {% trans "Fill in the form" %}
+                        </a>
+                    </div>
+                {% elif object.form_link %}
+                    <p class="text-success fw-bold mb-2">
+                        <i class="fa-solid fa-circle-check pe-2"></i>{% trans "You are registered and filled in the form." %}
+                    </p>
+                {% endif %}
                 <form action="{% url "events:unregister" object.pk %}" method="post">{% csrf_token %}
                     <div class="btn-group w-100">
                         <button class="btn btn-outline-primary fw-bold" name="unregister" value="unregister"
@@ -112,7 +128,7 @@
                                 {% trans "unregister"|capfirst %}
                             {% endif %}
                         </button>
-                        {% if object.form_link %}
+                        {% if object.form_link and not registration.form_pending %}
                             <a class="btn btn-outline-primary fw-bold" href="{% url "events:form" object.pk %}">
                                 {% trans "Change form" %}
                             </a>

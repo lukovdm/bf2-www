@@ -32,6 +32,8 @@ dependencies = [
     "djangocms-snippet>=5.0.2,<6",
     "djangocms-link>=5.2.0,<6",
     "setuptools>=84.2.1",
+    "google-auth>=2.40",
+    "requests>=2.32",
 ]
 
 [project.optional-dependencies]

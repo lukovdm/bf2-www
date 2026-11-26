@@ -271,3 +271,8 @@ MESSAGE_TAGS = {
 }
 
 CMS_CONFIRM_VERSION4 = True
+
+# Google Forms connection for event forms, see events/google_forms.py and the
+# README. Path to the json key of a Google service account, the connection is
+# disabled when this is empty.
+GOOGLE_SERVICE_ACCOUNT_FILE = os.environ.get("GOOGLE_SERVICE_ACCOUNT_FILE", "")

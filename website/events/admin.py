@@ -1,6 +1,7 @@
 import csv
 
 from cms.admin.placeholderadmin import FrontendEditableAdminMixin
+from django.contrib import messages
 from django.contrib.admin import TabularInline, action, display, register
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
@@ -11,6 +12,7 @@ from django.db.models import Count
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from events.form_sync import connect_form, form_status_text, sync_form
 from events.models import Event, EventDate, Registration
 from utils.translations import TranslatedModelAdmin
 
@@ -35,6 +37,8 @@ class RegistrationInline(TabularInline):
 
     model = Registration
     extra = 0
+    fields = ("user", "date", "has_payed", "form_status", "form_completed_at", "code")
+    readonly_fields = ("form_completed_at", "code")
 
 
 @register(Event)
@@ -54,6 +58,7 @@ class EventAdmin(FrontendEditableAdminMixin, TranslatedModelAdmin):
         "hidden",
     )
     list_filter = ("hidden",)
+    readonly_fields = ("google_form_status",)
     actions = ["export_registrations"]
     search_fields = ("name_en", "name_nl", "location")
 
@@ -92,7 +97,30 @@ class EventAdmin(FrontendEditableAdminMixin, TranslatedModelAdmin):
         initial.setdefault("registration_start", timezone.localtime())
         return initial
 
+    @display(description=_("Google Form connection"))
+    def google_form_status(self, event):
+        return form_status_text(event)
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if "form_link" in form.changed_data or (
+            obj.form_link and not obj.form_connected
+        ):
+            connect_form(obj)
+            if obj.form_link:
+                level = messages.SUCCESS if obj.form_connected else messages.WARNING
+                self.message_user(request, form_status_text(obj), level)
+
     def save_related(self, request, form, formsets, change):
+        # Registrations marked as filled in by hand
+        for formset in formsets:
+            if formset.model is Registration:
+                for inline_form in formset.forms:
+                    registration = inline_form.instance
+                    if "form_status" in inline_form.changed_data:
+                        registration.form_completed_at = (
+                            timezone.now() if registration.form_status else None
+                        )
         super().save_related(request, form, formsets, change)
         # The dates are saved now, so the default registration end can be set
         event = form.instance
@@ -125,6 +153,8 @@ def registrations_csv(events, filename):
     # Excel needs the byte order mark to read utf-8
     response.write("\ufeff")
     writer = csv.writer(response)
+    for event in events:
+        sync_form(event, force=True)
     writer.writerow(
         [
             _("event"),
@@ -134,6 +164,8 @@ def registrations_csv(events, filename):
             _("phone number"),
             _("registration date"),
             _("has paid"),
+            _("form"),
+            _("registration code"),
         ]
     )
     registrations = (
@@ -157,6 +189,12 @@ def registrations_csv(events, filename):
                 member.phone_number if member else "",
                 timezone.localtime(registration.date).strftime("%Y-%m-%d %H:%M"),
                 paid,
+                (
+                    registration.get_form_status_display()
+                    if registration.event.form_link
+                    else ""
+                ),
+                registration.code,
             ]
         )
     return response

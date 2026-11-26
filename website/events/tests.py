@@ -422,3 +422,299 @@ class EventDatesMigrationTest(TransactionTestCase):
         executor = MigrationExecutor(connection)
         executor.loader.build_graph()
         executor.migrate(executor.loader.graph.leaf_nodes())
+
+
+class FakeGoogleForms:
+    """In memory replacement of GoogleFormsClient."""
+
+    def __init__(self):
+        self.forms = {}  # published id -> {"id", "question", "codes"}
+        self.calls = 0
+
+    def add_form(self, published, form_id="form-1", question=None):
+        self.forms[published] = {"id": form_id, "question": question, "codes": set()}
+        return self.forms[published]
+
+    def find_form(self, link):
+        from events.google_forms import published_id
+
+        self.calls += 1
+        form = self.forms.get(published_id(link))
+        return form["id"] if form else None
+
+    def _by_id(self, form_id):
+        return next(f for f in self.forms.values() if f["id"] == form_id)
+
+    def ensure_code_question(self, form_id):
+        self.calls += 1
+        form = self._by_id(form_id)
+        form["question"] = form["question"] or "00a1b2c3"
+        return form["question"]
+
+    def submitted_codes(self, form_id, question_id):
+        self.calls += 1
+        return set(self._by_id(form_id)["codes"])
+
+
+FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSdemo/viewform?embedded=true"
+
+
+class GoogleFormsTestMixin:
+    """Enable the Google Forms connection with a fake client."""
+
+    def setUp(self):
+        super().setUp()
+        from unittest import mock
+
+        self.google = FakeGoogleForms()
+        settings = override_settings(GOOGLE_SERVICE_ACCOUNT_FILE="/fake/key.json")
+        settings.enable()
+        self.addCleanup(settings.disable)
+        patches = [
+            mock.patch("events.google_forms.get_client", return_value=self.google),
+            mock.patch(
+                "events.google_forms.service_account_email",
+                return_value="website@bf2.iam.gserviceaccount.com",
+            ),
+        ]
+        for patch in patches:
+            patch.start()
+            self.addCleanup(patch.stop)
+
+
+class GoogleFormsHelpersTest(TestCase):
+    def test_published_id(self):
+        from events.google_forms import published_id
+
+        self.assertEqual(published_id(FORM_LINK), "1FAIpQLSdemo")
+        self.assertIsNone(published_id("https://example.com/form"))
+
+    def test_prefilled_link(self):
+        from events.google_forms import entry_id, prefilled_link
+
+        self.assertEqual(entry_id("00a1b2c3"), str(0xA1B2C3))
+        link = prefilled_link(FORM_LINK, entry_id("00a1b2c3"), "ABCD-EFGH")
+        self.assertTrue(
+            link.startswith("https://docs.google.com/forms/d/e/1FAIpQLSdemo/viewform?")
+        )
+        self.assertIn(f"entry.{0xA1B2C3}=ABCD-EFGH", link)
+        self.assertIn("usp=pp_url", link)
+        self.assertIn("embedded=true", link)
+
+    def test_registration_codes(self):
+        import re
+
+        from events.models import make_registration_code
+
+        codes = {make_registration_code() for _ in range(200)}
+        self.assertEqual(len(codes), 200)
+        for code in codes:
+            self.assertRegex(code, r"^[A-Z2-9]{4}-[A-Z2-9]{4}$")
+            self.assertIsNone(re.search(r"[01IO]", code))
+
+
+class GoogleFormsClientTest(TestCase):
+    """The parsing of the API responses, with recorded example responses."""
+
+    def client_with(self, responses):
+        from unittest import mock
+
+        from events.google_forms import GoogleFormsClient
+
+        client = GoogleFormsClient()
+        client._request = mock.Mock(side_effect=responses)
+        return client
+
+    def test_find_form_over_pages(self):
+        client = self.client_with(
+            [
+                {"files": [{"id": "a"}], "nextPageToken": "next"},
+                {"responderUri": "https://docs.google.com/forms/d/e/other/viewform"},
+                {"files": [{"id": "b"}]},
+                {
+                    "responderUri": "https://docs.google.com/forms/d/e/1FAIpQLSdemo/viewform"
+                },
+            ]
+        )
+        self.assertEqual(client.find_form(FORM_LINK), "b")
+
+    def test_find_form_not_shared(self):
+        client = self.client_with([{"files": []}])
+        self.assertIsNone(client.find_form(FORM_LINK))
+
+    def test_ensure_code_question_adds_question(self):
+        question = {
+            "title": "Registration code",
+            "questionItem": {"question": {"questionId": "0abc1234"}},
+        }
+        client = self.client_with(
+            [
+                {"items": [{"title": "Name", "questionItem": {"question": {}}}]},
+                {},  # batchUpdate
+                {"items": [question]},
+            ]
+        )
+        self.assertEqual(client.ensure_code_question("form"), "0abc1234")
+        method, url = client._request.call_args_list[1].args
+        self.assertEqual(method, "POST")
+        self.assertTrue(url.endswith(":batchUpdate"))
+
+    def test_ensure_code_question_existing(self):
+        client = self.client_with(
+            [
+                {
+                    "items": [
+                        {
+                            "title": "Registration code",
+                            "questionItem": {"question": {"questionId": "0abc1234"}},
+                        }
+                    ]
+                }
+            ]
+        )
+        self.assertEqual(client.ensure_code_question("form"), "0abc1234")
+        self.assertEqual(client._request.call_count, 1)
+
+    def test_submitted_codes(self):
+        client = self.client_with(
+            [
+                {
+                    "responses": [
+                        {
+                            "answers": {
+                                "0abc1234": {
+                                    "textAnswers": {
+                                        "answers": [{"value": " abcd-efgh "}]
+                                    }
+                                }
+                            }
+                        },
+                        {"answers": {}},
+                    ],
+                    "nextPageToken": "next",
+                },
+                {
+                    "responses": [
+                        {
+                            "answers": {
+                                "0abc1234": {
+                                    "textAnswers": {"answers": [{"value": "JKLM-NPQR"}]}
+                                }
+                            }
+                        }
+                    ]
+                },
+            ]
+        )
+        self.assertEqual(
+            client.submitted_codes("form", "0abc1234"), {"ABCD-EFGH", "JKLM-NPQR"}
+        )
+
+    def test_not_configured(self):
+        from events.google_forms import GoogleFormsClient, GoogleFormsError
+
+        with self.assertRaises(GoogleFormsError):
+            GoogleFormsClient().find_form(FORM_LINK)
+
+
+class FormSyncTest(GoogleFormsTestMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.event = make_event(form_link=FORM_LINK)
+        self.user = User.objects.create_user("user", "user@example.com", "pw")
+        self.registration = Registration.objects.create(
+            event=self.event, user=self.user
+        )
+
+    def test_not_shared(self):
+        from events.form_sync import connect_form, form_status_text
+
+        connect_form(self.event)
+        self.assertFalse(self.event.form_connected)
+        self.assertIn(
+            "website@bf2.iam.gserviceaccount.com", self.event.google_form_error
+        )
+        self.assertIn("Not connected", form_status_text(self.event))
+
+    def test_connect_adds_question_and_prefills_code(self):
+        from events.form_sync import connect_form
+
+        self.google.add_form("1FAIpQLSdemo")
+        connect_form(self.event)
+        self.assertTrue(self.event.form_connected)
+        link = self.event.form_link_for(self.registration)
+        self.assertIn(f"={self.registration.code}", link)
+
+    def test_sync_marks_submitted_registrations(self):
+        from events.form_sync import sync_form
+
+        form = self.google.add_form("1FAIpQLSdemo")
+        other = Registration.objects.create(
+            event=self.event, user=User.objects.create_user("other")
+        )
+        form["codes"].add(self.registration.code)
+        sync_form(self.event, force=True)
+        self.registration.refresh_from_db()
+        other.refresh_from_db()
+        self.assertEqual(self.registration.form_status, Registration.FORM_VERIFIED)
+        self.assertIsNotNone(self.registration.form_completed_at)
+        self.assertTrue(other.form_pending)
+
+    def test_sync_is_throttled(self):
+        from events.form_sync import sync_form
+
+        self.google.add_form("1FAIpQLSdemo")
+        sync_form(self.event)
+        calls = self.google.calls
+        sync_form(self.event)
+        self.assertEqual(self.google.calls, calls)
+        sync_form(self.event, force=True)
+        self.assertGreater(self.google.calls, calls)
+
+    def test_sync_without_configuration(self):
+        from events.form_sync import sync_form
+
+        with override_settings(GOOGLE_SERVICE_ACCOUNT_FILE=""):
+            sync_form(self.event, force=True)
+        self.assertEqual(self.google.calls, 0)
+
+    def test_event_without_form(self):
+        event = make_event()
+        registration = Registration.objects.create(event=event, user=self.user)
+        self.assertFalse(registration.form_pending)
+
+
+class FormAdminTest(GoogleFormsTestMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.admin = User.objects.create_superuser("admin", "admin@example.com", "pw")
+        self.client.force_login(self.admin)
+        self.event = make_event(form_link=FORM_LINK)
+
+    def test_status_shown_in_admin(self):
+        response = self.client.get(
+            reverse("admin:events_event_change", args=[self.event.pk])
+        )
+        self.assertContains(response, "Google Form connection")
+        self.assertContains(response, "website@bf2.iam.gserviceaccount.com")
+
+    def test_csv_has_form_status_and_code(self):
+        import csv
+        import io
+
+        form = self.google.add_form("1FAIpQLSdemo")
+        done = Registration.objects.create(
+            event=self.event, user=User.objects.create_user("a", first_name="Done")
+        )
+        Registration.objects.create(
+            event=self.event, user=User.objects.create_user("b", first_name="Todo")
+        )
+        form["codes"].add(done.code)
+        response = self.client.get(
+            reverse("admin:events_event_registrations_csv", args=[self.event.pk])
+        )
+        rows = list(csv.reader(io.StringIO(response.content.decode("utf-8-sig"))))
+        by_name = {row[1]: row for row in rows[1:]}
+        self.assertEqual(by_name["Done"][7], "filled in (checked with Google)")
+        self.assertEqual(by_name["Done"][8], done.code)
+        self.assertEqual(by_name["Todo"][7], "not filled in")

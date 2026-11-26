@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 00:06+0100\n"
+"POT-Creation-Date: 2026-11-26 01:36+0100\n"
 "PO-Revision-Date: 2025-10-18 12:00+0200\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
@@ -19,105 +19,162 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: admin.py:86
+#: admin.py:91
 msgid "Export the registrations of the selected events"
 msgstr "Exporteer de registraties van de geselecteerde evenementen"
 
-#: admin.py:102 models.py:221
+#: admin.py:100
+msgid "Google Form connection"
+msgstr "Google Form koppeling"
+
+#: admin.py:130 models.py:249
 msgid "start"
 msgstr "start"
 
-#: admin.py:106 models.py:222
+#: admin.py:134 models.py:250
 msgid "end"
 msgstr "eind"
 
-#: admin.py:110 models.py:243
+#: admin.py:138 models.py:271
 msgid "dates"
 msgstr "data"
 
-#: admin.py:114 templates/events/event_detail.html:156
+#: admin.py:142 templates/events/event_detail.html:173
 msgid "registrations"
 msgstr "registraties"
 
-#: admin.py:130 models.py:220 models.py:269
+#: admin.py:160 models.py:248 models.py:304
 msgid "event"
 msgstr "evenement"
 
-#: admin.py:131
+#: admin.py:161
 msgid "first name"
 msgstr "voornaam"
 
-#: admin.py:132
+#: admin.py:162
 msgid "last name"
 msgstr "achternaam"
 
-#: admin.py:133
+#: admin.py:163
 msgid "email"
 msgstr "e-mail"
 
-#: admin.py:134
+#: admin.py:164
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: admin.py:135 models.py:272
+#: admin.py:165 models.py:307
 msgid "registration date"
 msgstr "registratie datum"
 
-#: admin.py:136 models.py:273
+#: admin.py:166 models.py:308
 msgid "has paid"
 msgstr "heeft betaald"
 
-#: admin.py:150
+#: admin.py:167 models.py:333
+msgid "form"
+msgstr "formulier"
+
+#: admin.py:168 models.py:326
+msgid "registration code"
+msgstr "registratiecode"
+
+#: admin.py:182
 msgid "yes"
 msgstr "ja"
 
-#: admin.py:150
+#: admin.py:182
 msgid "no"
 msgstr "nee"
 
-#: models.py:56
+#: form_sync.py:40
+#, python-format
+msgid ""
+"The form is not shared with %(email)s. Share the form with this address as "
+"editor in Google Forms."
+msgstr ""
+"Het formulier is niet gedeeld met %(email)s. Deel het formulier met dit adres"
+" als bewerker in Google Forms."
+
+#: form_sync.py:97
+msgid "This event has no form."
+msgstr "Dit evenement heeft geen formulier."
+
+#: form_sync.py:100
+msgid ""
+"The Google Forms connection of the website is not set up, members confirm "
+"themselves that they filled in the form."
+msgstr ""
+"De Google Forms koppeling van de website is niet ingesteld, leden bevestigen "
+"zelf dat ze het formulier hebben ingevuld."
+
+#: form_sync.py:104
+msgid "Connected: the website checks which members filled in the form."
+msgstr ""
+"Gekoppeld: de website controleert welke leden het formulier hebben ingevuld."
+
+#: form_sync.py:106
+#, python-format
+msgid "Last check failed: %(error)s"
+msgstr "Laatste controle mislukt: %(error)s"
+
+#: form_sync.py:111
+#, python-format
+msgid "Not connected: %(error)s"
+msgstr "Niet gekoppeld: %(error)s"
+
+#: form_sync.py:113
+#, python-format
+msgid ""
+"Not connected yet. Share the form with %(email)s as editor in Google Forms "
+"and save the event."
+msgstr ""
+"Nog niet gekoppeld. Deel het formulier met %(email)s als bewerker in Google "
+"Forms en sla het evenement op."
+
+#: models.py:58
 msgid "name"
 msgstr "naam"
 
-#: models.py:58
+#: models.py:60
 msgid "image"
 msgstr "foto"
 
-#: models.py:60 models.py:236
+#: models.py:62 models.py:264
 msgid "location"
 msgstr "locatie"
 
-#: models.py:63
+#: models.py:65
 msgid "hidden"
 msgstr "verborgen"
 
-#: models.py:65
+#: models.py:67
 msgid "Hidden events are not shown anywhere on the website, only in the admin."
 msgstr ""
 "Verborgen evenementen worden nergens op de website getoond, alleen in de "
 "admin."
 
-#: models.py:70
+#: models.py:72
 msgid "participant limit"
 msgstr "deelnemerslimiet"
 
-#: models.py:72
+#: models.py:74
 msgid "Don't show who is registered"
 msgstr "Laat niet zien wie is geregistreerd"
 
-#: models.py:79
+#: models.py:81
 msgid "cost"
 msgstr "kosten"
 
-#: models.py:80
+#: models.py:82
 msgid "Leave empty for a free event."
 msgstr "Laat leeg voor een gratis evenement."
 
-#: models.py:86
+#: models.py:88
 msgid "registration start"
 msgstr "start registratie"
 
-#: models.py:88
+#: models.py:90
 msgid ""
 "When the registration opens, by default now. Leave the registration start and"
 " end empty for an event without registration."
@@ -125,11 +182,11 @@ msgstr ""
 "Wanneer de registratie opent, standaard nu. Laat de registratie start en eind"
 " leeg voor een evenement zonder registratie."
 
-#: models.py:95
+#: models.py:97
 msgid "registration end"
 msgstr "einde registratie"
 
-#: models.py:97
+#: models.py:99
 msgid ""
 "When the registration closes. Leave empty to close the registration when the "
 "event starts."
@@ -137,64 +194,84 @@ msgstr ""
 "Wanneer de registratie sluit. Laat leeg om de registratie te sluiten als het "
 "evenement begint."
 
-#: models.py:106
+#: models.py:108
 msgid "Google form link"
 msgstr "Google form link"
 
-#: models.py:110
+#: models.py:112
 msgid "Please enter a google form share link"
 msgstr "Vul a.u.b. een google form deel link in"
 
-#: models.py:177
+#: models.py:205
 msgid "A registration end requires a registration start."
 msgstr "Een registratie eind heeft een registratie start nodig."
 
-#: models.py:186
+#: models.py:214
 msgid "Registration start must be before registration end."
 msgstr "De registratie start moet voor het registratie eind zijn."
 
-#: models.py:193
+#: models.py:221
 msgid "The participant limit must be at least 1, leave it empty for no limit."
 msgstr ""
 "Het deelnemerslimiet moet minimaal 1 zijn, laat het leeg voor geen limiet."
 
-#: models.py:223
+#: models.py:251
 msgid "show end"
 msgstr "laat eind zien"
 
-#: models.py:229
+#: models.py:257
 msgid "label"
 msgstr "label"
 
-#: models.py:230
+#: models.py:258
 msgid "Optional, e.g. 'Day 1' or 'Finals'."
 msgstr "Optioneel, bijvoorbeeld 'Dag 1' of 'Finales'."
 
-#: models.py:237
+#: models.py:265
 msgid "Leave empty to use the location of the event."
 msgstr "Laat leeg om de locatie van het evenement te gebruiken."
 
-#: models.py:242
+#: models.py:270
 msgid "date"
 msgstr "datum"
 
-#: models.py:257 models.py:258
+#: models.py:285 models.py:286
 msgid "The start must be before the end."
 msgstr "De start moet voor het eind zijn."
 
-#: models.py:270
+#: models.py:305
 msgid "user"
 msgstr "gebruiker"
+
+#: models.py:315
+msgid "not filled in"
+msgstr "niet ingevuld"
+
+#: models.py:316
+msgid "filled in (checked with Google)"
+msgstr "ingevuld (gecontroleerd bij Google)"
+
+#: models.py:317
+msgid "filled in (according to the member)"
+msgstr "ingevuld (volgens het lid)"
+
+#: models.py:318
+msgid "filled in (marked by an admin)"
+msgstr "ingevuld (aangegeven door een admin)"
+
+#: models.py:336
+msgid "form filled in at"
+msgstr "formulier ingevuld op"
 
 #: templates/admin/events/event/change_form.html:11
 msgid "Export registrations"
 msgstr "Exporteer registraties"
 
-#: templates/events/event_detail.html:27
+#: templates/events/event_detail.html:26
 msgid "Edit in admin"
 msgstr "Bewerk in admin"
 
-#: templates/events/event_detail.html:33
+#: templates/events/event_detail.html:34
 msgid ""
 "This event is hidden, only people who manage events can see it on the "
 "website."
@@ -202,64 +279,118 @@ msgstr ""
 "Dit evenement is verborgen, alleen mensen die evenementen beheren kunnen het "
 "op de website zien."
 
-#: templates/events/event_detail.html:50
+#: templates/events/event_detail.html:51
 #, python-format
 msgid "%(counter)s date"
 msgid_plural "%(counter)s dates"
 msgstr[0] "%(counter)s datum"
 msgstr[1] "%(counter)s data"
 
-#: templates/events/event_detail.html:71
+#: templates/events/event_detail.html:72
 msgid "free"
 msgstr "gratis"
 
-#: templates/events/event_detail.html:92
+#: templates/events/event_detail.html:93
 msgid "ended"
 msgstr "afgelopen"
 
-#: templates/events/event_detail.html:109
+#: templates/events/event_detail.html:110
+msgid "Your registration is not complete:"
+msgstr "Je registratie is niet compleet:"
+
+#: templates/events/event_detail.html:111
+msgid "you still need to fill in the form."
+msgstr "je moet het formulier nog invullen."
+
+#: templates/events/event_detail.html:114
+msgid "Fill in the form"
+msgstr "Vul het formulier in"
+
+#: templates/events/event_detail.html:119
+msgid "You are registered and filled in the form."
+msgstr "Je bent geregistreerd en hebt het formulier ingevuld."
+
+#: templates/events/event_detail.html:126
 msgid "Deregistration is closed, contact the committee"
 msgstr "Uitschrijven is gesloten, contacteer de commissie"
 
-#: templates/events/event_detail.html:111
+#: templates/events/event_detail.html:128
 msgid "unregister"
 msgstr "afmelden"
 
-#: templates/events/event_detail.html:116
+#: templates/events/event_detail.html:133
 msgid "Change form"
 msgstr "Verander formulier"
 
-#: templates/events/event_detail.html:125
+#: templates/events/event_detail.html:142
 msgid "Full"
 msgstr "Vol"
 
-#: templates/events/event_detail.html:127
+#: templates/events/event_detail.html:144
 msgid "Not opened"
 msgstr "Niet geopend"
 
-#: templates/events/event_detail.html:129
+#: templates/events/event_detail.html:146
 msgid "Closed"
 msgstr "Gesloten"
 
-#: templates/events/event_detail.html:131
+#: templates/events/event_detail.html:148
 msgid "register"
 msgstr "registreren"
 
-#: templates/events/event_detail.html:141
+#: templates/events/event_detail.html:158
 msgid "registrations open at"
 msgstr "registratie opent op"
 
-#: templates/events/event_detail.html:146
+#: templates/events/event_detail.html:163
 msgid "registrations close at"
 msgstr "registratie sluit op"
 
 #: templates/events/event_form.html:4 templates/events/event_form.html:5
+#: templates/events/event_form.html:22
 msgid "form for"
 msgstr "form voor"
 
+#: templates/events/event_form.html:11
+msgid "Your registration is not complete yet."
+msgstr "Je registratie is nog niet compleet."
+
 #: templates/events/event_form.html:12
-msgid "Done"
-msgstr "Inleveren"
+msgid ""
+"Fill in the form below and press the submit button at the end of the form. "
+"Then confirm with the button below the form."
+msgstr ""
+"Vul het formulier hieronder in en druk op de verzendknop aan het eind van het"
+" formulier. Bevestig daarna met de knop onder het formulier."
+
+#: templates/events/event_form.html:16
+msgid "You already filled in the form, you can change your answers below."
+msgstr ""
+"Je hebt het formulier al ingevuld, hieronder kun je je antwoorden aanpassen."
+
+#: templates/events/event_form.html:22
+msgid "Loading..."
+msgstr "Laden..."
+
+#: templates/events/event_form.html:29
+msgid "I submitted the form"
+msgstr "Ik heb het formulier verzonden"
+
+#: templates/events/event_form.html:32
+msgid "This button works after you submitted the form above."
+msgstr "Deze knop werkt nadat je het formulier hierboven hebt verzonden."
+
+#: templates/events/event_form.html:35
+msgid "Fill in later"
+msgstr "Later invullen"
+
+#: templates/events/event_form.html:36
+msgid "your registration stays incomplete until you filled in the form"
+msgstr "je registratie blijft onvolledig tot je het formulier hebt ingevuld"
+
+#: templates/events/event_form.html:62
+msgid "Back to the event"
+msgstr "Terug naar het evenement"
 
 #: templates/events/event_list.html:5
 msgid "Events"
@@ -269,46 +400,68 @@ msgstr "Evenementen"
 msgid "Hidden"
 msgstr "Verborgen"
 
-#: templates/events/event_list.html:55
+#: templates/events/event_list.html:27
+msgid "Form not filled in"
+msgstr "Formulier niet ingevuld"
+
+#: templates/events/event_list.html:59
 #, python-format
 msgid "+%(counter)s more date"
 msgid_plural "+%(counter)s more dates"
 msgstr[0] "+%(counter)s andere datum"
 msgstr[1] "+%(counter)s andere data"
 
-#: templates/events/event_list.html:78
+#: templates/events/event_list.html:82
 msgid "Add these events to your calendar"
 msgstr "Voeg deze evenementen toe aan jouw kalender"
 
-#: views.py:90
+#: views.py:98
 msgid "This event does not have registrations."
 msgstr "Voor dit evenement kun je je niet registreren."
 
-#: views.py:94
+#: views.py:102
 msgid "The registrations for this event have not opened yet."
 msgstr "De registraties voor dit evenement zijn nog niet geopend."
 
-#: views.py:99
+#: views.py:107
 msgid "The registrations for this event have already closed."
 msgstr "De registraties voor dit evenement zijn al gesloten."
 
-#: views.py:102
+#: views.py:110
 msgid "You have already registered for this event."
 msgstr "Je bent al geregistreerd voor dit evenement."
 
-#: views.py:104
+#: views.py:112
 msgid "This event is already full."
 msgstr "Dit evenement zit vol."
 
-#: views.py:109
+#: views.py:120
 msgid "You successfully registered."
 msgstr "Je bent succesvol geregistreerd."
 
 #: views.py:141
+msgid "Register for the event before filling in the form."
+msgstr "Registreer je voor het evenement voordat je het formulier invult."
+
+#: views.py:181
+msgid ""
+"We have not received your form yet. Fill in all questions and press the "
+"submit button at the end of the form, then try again. If it still does not "
+"work, contact the committee."
+msgstr ""
+"We hebben je formulier nog niet ontvangen. Vul alle vragen in en druk op de "
+"verzendknop aan het eind van het formulier, en probeer het dan opnieuw. Werkt"
+" het nog steeds niet, neem dan contact op met de commissie."
+
+#: views.py:190
+msgid "Thank you, your registration is complete."
+msgstr "Bedankt, je registratie is compleet."
+
+#: views.py:204
 msgid "You are not registered for this event."
 msgstr "Je bent niet geregistreerd voor dit evenement."
 
-#: views.py:146
+#: views.py:209
 msgid ""
 "The registrations for this event have already closed, if you still want to "
 "deregister contact the committee."
@@ -316,10 +469,10 @@ msgstr ""
 "De registraties voor dit evenement zijn al gesloten, als je je nog wil "
 "uitschrijven, contacteer de commissie."
 
-#: views.py:152
+#: views.py:215
 msgid "You successfully unregistered."
 msgstr "Je bent succesvol afgemeld."
 
-#: views.py:185
+#: views.py:248
 msgid "For more details, see the website: "
 msgstr "Voor meer details, zie de website: "

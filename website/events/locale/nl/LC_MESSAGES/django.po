@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 01:42+0100\n"
+"POT-Creation-Date: 2026-11-26 10:09+0100\n"
 "PO-Revision-Date: 2025-10-18 12:00+0200\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
@@ -19,251 +19,282 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: admin.py:91
+#: admin.py:49
+msgid ""
+"Paste the share link of the form, in Google Forms under \"Send\" > link "
+"icon."
+msgstr ""
+"Plak de deellink van het formulier, in Google Forms onder \"Verzenden\" > "
+"link-icoon."
+
+#: admin.py:58
+msgid ""
+"Then share the form as editor, not as responder, with the address below (the"
+" person with a plus icon at the top right), so the website can check who "
+"filled it in:"
+msgstr ""
+"Deel het formulier daarna als bewerker, niet als respondent, met het adres "
+"hieronder (het poppetje met een plusje rechtsboven), zodat de website kan "
+"controleren wie het heeft ingevuld:"
+
+#: admin.py:89
+msgid "Registration"
+msgstr "Inschrijving"
+
+#: admin.py:97
+msgid "Google Form"
+msgstr "Google Form"
+
+#: admin.py:128
 msgid "Export the registrations of the selected events"
 msgstr "Exporteer de registraties van de geselecteerde evenementen"
 
-#: admin.py:100
+#: admin.py:143
 msgid "Google Form connection"
 msgstr "Google Form koppeling"
 
-#: admin.py:130 models.py:249
+#: admin.py:173 models.py:261
 msgid "start"
 msgstr "start"
 
-#: admin.py:134 models.py:250
+#: admin.py:177 models.py:262
 msgid "end"
 msgstr "eind"
 
-#: admin.py:138 models.py:271
+#: admin.py:181 models.py:283
 msgid "dates"
 msgstr "data"
 
-#: admin.py:142 templates/events/event_detail.html:184
+#: admin.py:185 templates/events/event_detail.html:184
 msgid "registrations"
 msgstr "registraties"
 
-#: admin.py:160 models.py:248 models.py:304
+#: admin.py:203 models.py:260 models.py:316
 msgid "event"
 msgstr "evenement"
 
-#: admin.py:161
+#: admin.py:204
 msgid "first name"
 msgstr "voornaam"
 
-#: admin.py:162
+#: admin.py:205
 msgid "last name"
 msgstr "achternaam"
 
-#: admin.py:163
+#: admin.py:206
 msgid "email"
 msgstr "e-mail"
 
-#: admin.py:164
+#: admin.py:207
 msgid "phone number"
 msgstr "telefoonnummer"
 
-#: admin.py:165 models.py:307
+#: admin.py:208 models.py:319
 msgid "registration date"
 msgstr "registratie datum"
 
-#: admin.py:166 models.py:308
+#: admin.py:209 models.py:320
 msgid "has paid"
 msgstr "heeft betaald"
 
-#: admin.py:167 models.py:338
+#: admin.py:210 models.py:350
 msgid "form"
 msgstr "formulier"
 
-#: admin.py:168 models.py:331
+#: admin.py:211 models.py:343
 msgid "registration code"
 msgstr "registratiecode"
 
-#: admin.py:182
+#: admin.py:225
 msgid "yes"
 msgstr "ja"
 
-#: admin.py:182
+#: admin.py:225
 msgid "no"
 msgstr "nee"
 
 #: form_sync.py:40
 #, python-format
 msgid ""
-"The form is not shared with %(email)s. Share the form with this address as "
-"editor in Google Forms."
+"The website cannot find the form, it is not shared with %(email)s as editor."
+" Note that adding the address as responder is not enough. In Google Forms "
+"click the person with a plus icon at the top right, add the address under "
+"editors and save the event again."
 msgstr ""
-"Het formulier is niet gedeeld met %(email)s. Deel het formulier met dit adres"
-" als bewerker in Google Forms."
+"De website kan het formulier niet vinden, het is niet als bewerker gedeeld "
+"met %(email)s. Let op: het adres als respondent toevoegen is niet genoeg. "
+"Klik in Google Forms rechtsboven op het poppetje met een plusje, voeg het "
+"adres toe bij bewerkers en sla het evenement opnieuw op."
 
-#: form_sync.py:102
+#: form_sync.py:105
 msgid "This event has no form."
 msgstr "Dit evenement heeft geen formulier."
 
-#: form_sync.py:105
+#: form_sync.py:108
 msgid ""
 "The Google Forms connection of the website is not set up, members confirm "
 "themselves that they filled in the form."
 msgstr ""
-"De Google Forms koppeling van de website is niet ingesteld, leden bevestigen "
-"zelf dat ze het formulier hebben ingevuld."
+"De Google Forms koppeling van de website is niet ingesteld, leden bevestigen"
+" zelf dat ze het formulier hebben ingevuld."
 
-#: form_sync.py:109
+#: form_sync.py:112
 msgid "Connected: the website checks which members filled in the form."
 msgstr ""
 "Gekoppeld: de website controleert welke leden het formulier hebben ingevuld."
 
-#: form_sync.py:111
+#: form_sync.py:114
 #, python-format
 msgid "Last check failed: %(error)s"
 msgstr "Laatste controle mislukt: %(error)s"
 
-#: form_sync.py:116
+#: form_sync.py:119
 #, python-format
 msgid "Not connected: %(error)s"
 msgstr "Niet gekoppeld: %(error)s"
 
-#: form_sync.py:118
+#: form_sync.py:121
 #, python-format
 msgid ""
-"Not connected yet. Share the form with %(email)s as editor in Google Forms "
-"and save the event."
+"Not connected yet. Share the form with %(email)s as editor (not as "
+"responder) in Google Forms and save the event again."
 msgstr ""
-"Nog niet gekoppeld. Deel het formulier met %(email)s als bewerker in Google "
-"Forms en sla het evenement op."
+"Nog niet gekoppeld. Deel het formulier met %(email)s als bewerker (niet als "
+"respondent) in Google Forms en sla het evenement opnieuw op."
 
-#: models.py:58
+#: models.py:72
 msgid "name"
 msgstr "naam"
 
-#: models.py:60
+#: models.py:74
 msgid "image"
 msgstr "foto"
 
-#: models.py:62 models.py:264
+#: models.py:76 models.py:276
 msgid "location"
 msgstr "locatie"
 
-#: models.py:65
+#: models.py:79
 msgid "hidden"
 msgstr "verborgen"
 
-#: models.py:67
-msgid "Hidden events are not shown anywhere on the website, only in the admin."
+#: models.py:81
+msgid ""
+"Hidden events are not shown anywhere on the website, only in the admin."
 msgstr ""
 "Verborgen evenementen worden nergens op de website getoond, alleen in de "
 "admin."
 
-#: models.py:72
+#: models.py:86
 msgid "participant limit"
 msgstr "deelnemerslimiet"
 
-#: models.py:74
+#: models.py:88
 msgid "Don't show who is registered"
 msgstr "Laat niet zien wie is geregistreerd"
 
-#: models.py:81
+#: models.py:95
 msgid "cost"
 msgstr "kosten"
 
-#: models.py:82
+#: models.py:96
 msgid "Leave empty for a free event."
 msgstr "Laat leeg voor een gratis evenement."
 
-#: models.py:88
+#: models.py:102
 msgid "registration start"
 msgstr "start registratie"
 
-#: models.py:90
+#: models.py:104
 msgid ""
-"When the registration opens, by default now. Leave the registration start and"
-" end empty for an event without registration."
+"When the registration opens, by default now. Leave the registration start "
+"and end empty for an event without registration."
 msgstr ""
-"Wanneer de registratie opent, standaard nu. Laat de registratie start en eind"
-" leeg voor een evenement zonder registratie."
+"Wanneer de registratie opent, standaard nu. Laat de registratie start en "
+"eind leeg voor een evenement zonder registratie."
 
-#: models.py:97
+#: models.py:111
 msgid "registration end"
 msgstr "einde registratie"
 
-#: models.py:99
+#: models.py:113
 msgid ""
-"When the registration closes. Leave empty to close the registration when the "
-"event starts."
+"When the registration closes. Leave empty to close the registration when the"
+" event starts."
 msgstr ""
-"Wanneer de registratie sluit. Laat leeg om de registratie te sluiten als het "
-"evenement begint."
+"Wanneer de registratie sluit. Laat leeg om de registratie te sluiten als het"
+" evenement begint."
 
-#: models.py:108
+#: models.py:122
 msgid "Google form link"
 msgstr "Google form link"
 
-#: models.py:112
+#: models.py:126
 msgid "Please enter a google form share link"
 msgstr "Vul a.u.b. een google form deel link in"
 
-#: models.py:205
+#: models.py:219
 msgid "A registration end requires a registration start."
 msgstr "Een registratie eind heeft een registratie start nodig."
 
-#: models.py:214
+#: models.py:228
 msgid "Registration start must be before registration end."
 msgstr "De registratie start moet voor het registratie eind zijn."
 
-#: models.py:221
+#: models.py:235
 msgid "The participant limit must be at least 1, leave it empty for no limit."
 msgstr ""
 "Het deelnemerslimiet moet minimaal 1 zijn, laat het leeg voor geen limiet."
 
-#: models.py:251
+#: models.py:263
 msgid "show end"
 msgstr "laat eind zien"
 
-#: models.py:257
+#: models.py:269
 msgid "label"
 msgstr "label"
 
-#: models.py:258
+#: models.py:270
 msgid "Optional, e.g. 'Day 1' or 'Finals'."
 msgstr "Optioneel, bijvoorbeeld 'Dag 1' of 'Finales'."
 
-#: models.py:265
+#: models.py:277
 msgid "Leave empty to use the location of the event."
 msgstr "Laat leeg om de locatie van het evenement te gebruiken."
 
-#: models.py:270
+#: models.py:282
 msgid "date"
 msgstr "datum"
 
-#: models.py:285 models.py:286
+#: models.py:297 models.py:298
 msgid "The start must be before the end."
 msgstr "De start moet voor het eind zijn."
 
-#: models.py:305
+#: models.py:317
 msgid "user"
 msgstr "gebruiker"
 
-#: models.py:316
+#: models.py:328
 msgid "not filled in"
 msgstr "niet ingevuld"
 
-#: models.py:317
+#: models.py:329
 msgid "filled in (checked with Google)"
 msgstr "ingevuld (gecontroleerd bij Google)"
 
-#: models.py:318
+#: models.py:330
 msgid "filled in (according to the member)"
 msgstr "ingevuld (volgens het lid)"
 
-#: models.py:319
+#: models.py:331
 msgid "filled in (marked by an admin)"
 msgstr "ingevuld (aangegeven door een admin)"
 
-#: models.py:322
+#: models.py:334
 msgid "filled in according to the member, but not found at Google"
 msgstr "ingevuld volgens het lid, maar niet gevonden bij Google"
 
-#: models.py:341
+#: models.py:353
 msgid "form filled in at"
 msgstr "formulier ingevuld op"
 
@@ -280,8 +311,8 @@ msgid ""
 "This event is hidden, only people who manage events can see it on the "
 "website."
 msgstr ""
-"Dit evenement is verborgen, alleen mensen die evenementen beheren kunnen het "
-"op de website zien."
+"Dit evenement is verborgen, alleen mensen die evenementen beheren kunnen het"
+" op de website zien."
 
 #: templates/events/event_detail.html:51
 #, python-format
@@ -376,8 +407,8 @@ msgid ""
 "Fill in the form below and press the submit button at the end of the form. "
 "Then confirm with the button below the form."
 msgstr ""
-"Vul het formulier hieronder in en druk op de verzendknop aan het eind van het"
-" formulier. Bevestig daarna met de knop onder het formulier."
+"Vul het formulier hieronder in en druk op de verzendknop aan het eind van "
+"het formulier. Bevestig daarna met de knop onder het formulier."
 
 #: templates/events/event_form.html:18
 msgid ""
@@ -385,8 +416,8 @@ msgid ""
 "did not submit it, fill in the form below and check again."
 msgstr ""
 "Je gaf aan dat je het hebt verzonden, dus je registratie telt als compleet. "
-"Als je het niet hebt verzonden, vul het formulier hieronder in en controleer "
-"opnieuw."
+"Als je het niet hebt verzonden, vul het formulier hieronder in en controleer"
+" opnieuw."
 
 #: templates/events/event_form.html:22
 msgid "You already filled in the form, you can change your answers below."
@@ -404,20 +435,20 @@ msgstr "We hebben je formulier nog niet ontvangen."
 #: templates/events/event_form.html:38
 msgid ""
 "Make sure you pressed the submit button at the end of the form and saw the "
-"confirmation of Google, then check again. Sometimes it takes a minute before "
-"we see your answers."
+"confirmation of Google, then check again. Sometimes it takes a minute before"
+" we see your answers."
 msgstr ""
 "Controleer of je op de verzendknop aan het eind van het formulier hebt "
-"gedrukt en de bevestiging van Google hebt gezien, en controleer dan opnieuw. "
-"Soms duurt het even voordat we je antwoorden zien."
+"gedrukt en de bevestiging van Google hebt gezien, en controleer dan opnieuw."
+" Soms duurt het even voordat we je antwoorden zien."
 
 #: templates/events/event_form.html:41
 msgid ""
 "Are you sure you submitted the form? Then you can still complete your "
 "registration, the committee will see that we could not check your form."
 msgstr ""
-"Weet je zeker dat je het formulier hebt verzonden? Dan kun je je registratie "
-"toch afronden, de commissie ziet dan dat we je formulier niet konden "
+"Weet je zeker dat je het formulier hebt verzonden? Dan kun je je registratie"
+" toch afronden, de commissie ziet dan dat we je formulier niet konden "
 "controleren."
 
 #: templates/events/event_form.html:45 templates/events/event_form.html:52
@@ -509,9 +540,9 @@ msgstr "Bedankt, je registratie is compleet."
 
 #: views.py:199
 msgid ""
-"We could not find your form at Google. Your registration counts as complete, "
-"but the committee can see that we could not check your form. If you did not "
-"submit it, please fill it in again."
+"We could not find your form at Google. Your registration counts as complete,"
+" but the committee can see that we could not check your form. If you did not"
+" submit it, please fill it in again."
 msgstr ""
 "We konden je formulier niet vinden bij Google. Je registratie telt als "
 "compleet, maar de commissie kan zien dat we je formulier niet konden "

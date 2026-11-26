@@ -26,6 +26,10 @@
                                 <span class="badge bg-danger position-absolute bottom-0 start-0 m-2 fs-6">
                                     <i class="fa-solid fa-triangle-exclamation pe-1"></i>{% trans "Form not filled in" %}
                                 </span>
+                            {% elif event.registration.form_not_found %}
+                                <span class="badge bg-warning text-dark position-absolute bottom-0 start-0 m-2 fs-6">
+                                    <i class="fa-solid fa-triangle-exclamation pe-1"></i>{% trans "Form not found" %}
+                                </span>
                             {% elif event.registration %}
                                 <div class="display-card-image-check">
                                     <i class="fa-regular fa-circle-check fs-4"></i>

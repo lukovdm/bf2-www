@@ -81,10 +81,15 @@ def sync_form(event, force=False):
         event.save(update_fields=["google_form_error", "google_form_checked_at"])
         return
 
-    # Also upgrade registrations the member confirmed themselves
+    # Also upgrade registrations the member confirmed themselves, e.g. when
+    # the response reached Google later
     event.registration_set.filter(
         code__in=codes,
-        form_status__in=[Registration.FORM_NOT_DONE, Registration.FORM_SELF_REPORTED],
+        form_status__in=[
+            Registration.FORM_NOT_DONE,
+            Registration.FORM_SELF_REPORTED,
+            Registration.FORM_NOT_FOUND,
+        ],
     ).update(form_status=Registration.FORM_VERIFIED, form_completed_at=timezone.now())
     event.google_form_error = ""
     event.google_form_checked_at = timezone.now()

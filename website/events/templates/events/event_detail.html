@@ -114,6 +114,17 @@
                             {% trans "Fill in the form" %}
                         </a>
                     </div>
+                {% elif registration.form_not_found %}
+                    <div class="alert alert-warning d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2" role="alert">
+                        <div>
+                            <i class="fa-solid fa-triangle-exclamation pe-2 fs-5"></i>
+                            <strong>{% trans "We could not find your form at Google." %}</strong>
+                            {% trans "If you did not submit it, please fill it in again." %}
+                        </div>
+                        <a class="btn btn-warning fw-bold" href="{% url "events:form" object.pk %}">
+                            {% trans "Check the form" %}
+                        </a>
+                    </div>
                 {% elif object.form_link %}
                     <p class="text-success fw-bold mb-2">
                         <i class="fa-solid fa-circle-check pe-2"></i>{% trans "You are registered and filled in the form." %}
@@ -128,7 +139,7 @@
                                 {% trans "unregister"|capfirst %}
                             {% endif %}
                         </button>
-                        {% if object.form_link and not registration.form_pending %}
+                        {% if object.form_link and not registration.form_pending and not registration.form_not_found %}
                             <a class="btn btn-outline-primary fw-bold" href="{% url "events:form" object.pk %}">
                                 {% trans "Change form" %}
                             </a>

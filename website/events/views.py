@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views import View
@@ -48,7 +49,9 @@ class EventListView(ListView):
             }
             for event in events:
                 event.registration = registrations.get(event.pk)
-                if event.registration and event.registration.form_pending:
+                if event.registration and (
+                    event.registration.form_pending or event.registration.form_not_found
+                ):
                     sync_form(event)
                     event.registration.refresh_from_db()
 
@@ -75,7 +78,9 @@ class EventDetailView(DetailView):
             registration = Registration.objects.filter(
                 user=self.request.user, event=self.object
             ).first()
-            if registration and registration.form_pending:
+            if registration and (
+                registration.form_pending or registration.form_not_found
+            ):
                 sync_form(self.object)
                 registration.refresh_from_db()
             context["registration"] = registration
@@ -151,6 +156,7 @@ class EventFormView(LoginRequiredMixin, TemplateView):
         context["event"] = self.event
         context["registration"] = self.registration
         context["form_url"] = self.event.form_link_for(self.registration)
+        context["not_received"] = bool(self.request.GET.get("not_received"))
         context["next"] = self.event.get_absolute_url()
         return context
 
@@ -159,7 +165,9 @@ class EventFormDoneView(LoginRequiredMixin, View):
     """The member says they submitted the form.
 
     For connected forms the website checks this with Google, otherwise the
-    member is trusted.
+    member is trusted. When Google does not have the form, the member can
+    still say they are sure, the registration is then marked as such so the
+    committee can check it.
     """
 
     http_method_names = ["post"]
@@ -168,27 +176,35 @@ class EventFormDoneView(LoginRequiredMixin, View):
         event = get_object_or_404(events_for(request.user), pk=kwargs["pk"])
         registration = get_object_or_404(Registration, event=event, user=request.user)
 
-        if not registration.form_pending:
+        if not (registration.form_pending or registration.form_not_found):
             return redirect(event)
 
-        if event.form_connected:
-            sync_form(event, force=True)
-            registration.refresh_from_db()
-            if registration.form_pending:
-                messages.error(
-                    request,
-                    _(
-                        "We have not received your form yet. Fill in all questions "
-                        "and press the submit button at the end of the form, then try "
-                        "again. If it still does not work, contact the committee."
-                    ),
-                )
-                return redirect("events:form", pk=event.pk)
-        else:
+        # Connects the form first if needed
+        sync_form(event, force=True)
+        registration.refresh_from_db()
+        if not event.form_connected:
             registration.mark_form_completed(Registration.FORM_SELF_REPORTED)
+            messages.success(request, _("Thank you, your registration is complete."))
+            return redirect(event)
 
-        messages.success(request, _("Thank you, your registration is complete."))
-        return redirect(event)
+        if registration.form_status == Registration.FORM_VERIFIED:
+            messages.success(request, _("Thank you, your registration is complete."))
+            return redirect(event)
+
+        if request.POST.get("sure"):
+            registration.mark_form_completed(Registration.FORM_NOT_FOUND)
+            messages.warning(
+                request,
+                _(
+                    "We could not find your form at Google. Your registration counts "
+                    "as complete, but the committee can see that we could not check "
+                    "your form. If you did not submit it, please fill it in again."
+                ),
+            )
+            return redirect(event)
+
+        # The form page explains that the form was not received
+        return redirect(reverse("events:form", args=[event.pk]) + "?not_received=1")
 
 
 class EventUnregisterView(LoginRequiredMixin, View):

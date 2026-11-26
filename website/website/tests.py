@@ -624,6 +624,48 @@ class EventFormFlowTest(SiteTestCase):
             registration.refresh_from_db()
             self.assertEqual(registration.form_status, Registration.FORM_VERIFIED)
 
+    def test_sure_without_google_response(self):
+        from unittest import mock
+
+        from events.tests import FakeGoogleForms
+
+        google = FakeGoogleForms()
+        form = google.add_form("1FAIpQLSdemo")
+        done_url = reverse("events:form_done", args=[self.event.pk])
+        with (
+            self.settings(GOOGLE_SERVICE_ACCOUNT_FILE="/fake/key.json"),
+            mock.patch("events.google_forms.get_client", return_value=google),
+        ):
+            registration = self.register()
+
+            # Google does not have the form: the member can say they are sure
+            response = self.client.post(done_url, follow=True)
+            self.assertContains(response, "We have not received your form yet")
+            self.assertContains(response, "I am sure I submitted the form")
+
+            response = self.client.post(done_url, {"sure": "1"}, follow=True)
+            self.assertContains(response, "We could not find your form at Google")
+            registration.refresh_from_db()
+            self.assertEqual(registration.form_status, Registration.FORM_NOT_FOUND)
+            self.assertFalse(registration.form_pending)
+            self.assertContains(
+                self.client.get(reverse("events:list")), "Form not found"
+            )
+
+            # The response reaches Google later, the next check upgrades it
+            form["codes"].add(registration.code)
+            Event.objects.filter(pk=self.event.pk).update(google_form_checked_at=None)
+            detail = self.client.get(self.event.get_absolute_url())
+            registration.refresh_from_db()
+            self.assertEqual(registration.form_status, Registration.FORM_VERIFIED)
+            self.assertNotContains(detail, "We could not find your form at Google")
+            self.assertContains(detail, "You are registered and filled in the form")
+
+    def test_sure_option_only_after_failed_check(self):
+        self.register()
+        page = self.client.get(reverse("events:form", args=[self.event.pk]))
+        self.assertNotContains(page, "I am sure I submitted the form")
+
     def test_form_page_requires_registration(self):
         response = self.client.get(reverse("events:form", args=[self.event.pk]))
         self.assertRedirects(

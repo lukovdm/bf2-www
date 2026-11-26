@@ -311,11 +311,16 @@ class Registration(Model):
     FORM_VERIFIED = "verified"
     FORM_SELF_REPORTED = "self_reported"
     FORM_MANUAL = "manual"
+    FORM_NOT_FOUND = "not_found"
     FORM_STATUSES = [
         (FORM_NOT_DONE, _("not filled in")),
         (FORM_VERIFIED, _("filled in (checked with Google)")),
         (FORM_SELF_REPORTED, _("filled in (according to the member)")),
         (FORM_MANUAL, _("filled in (marked by an admin)")),
+        (
+            FORM_NOT_FOUND,
+            _("filled in according to the member, but not found at Google"),
+        ),
     ]
 
     code = CharField(
@@ -340,6 +345,11 @@ class Registration(Model):
     def form_pending(self):
         """The event has a form and the member did not fill it in yet."""
         return bool(self.event.form_link) and not self.form_status
+
+    @property
+    def form_not_found(self):
+        """The member says they submitted the form, but Google does not have it."""
+        return self.form_status == self.FORM_NOT_FOUND
 
     def mark_form_completed(self, status):
         self.form_status = status

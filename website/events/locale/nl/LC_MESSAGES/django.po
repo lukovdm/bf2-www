@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-26 01:36+0100\n"
+"POT-Creation-Date: 2026-11-26 01:42+0100\n"
 "PO-Revision-Date: 2025-10-18 12:00+0200\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
@@ -39,7 +39,7 @@ msgstr "eind"
 msgid "dates"
 msgstr "data"
 
-#: admin.py:142 templates/events/event_detail.html:173
+#: admin.py:142 templates/events/event_detail.html:184
 msgid "registrations"
 msgstr "registraties"
 
@@ -71,11 +71,11 @@ msgstr "registratie datum"
 msgid "has paid"
 msgstr "heeft betaald"
 
-#: admin.py:167 models.py:333
+#: admin.py:167 models.py:338
 msgid "form"
 msgstr "formulier"
 
-#: admin.py:168 models.py:326
+#: admin.py:168 models.py:331
 msgid "registration code"
 msgstr "registratiecode"
 
@@ -96,11 +96,11 @@ msgstr ""
 "Het formulier is niet gedeeld met %(email)s. Deel het formulier met dit adres"
 " als bewerker in Google Forms."
 
-#: form_sync.py:97
+#: form_sync.py:102
 msgid "This event has no form."
 msgstr "Dit evenement heeft geen formulier."
 
-#: form_sync.py:100
+#: form_sync.py:105
 msgid ""
 "The Google Forms connection of the website is not set up, members confirm "
 "themselves that they filled in the form."
@@ -108,22 +108,22 @@ msgstr ""
 "De Google Forms koppeling van de website is niet ingesteld, leden bevestigen "
 "zelf dat ze het formulier hebben ingevuld."
 
-#: form_sync.py:104
+#: form_sync.py:109
 msgid "Connected: the website checks which members filled in the form."
 msgstr ""
 "Gekoppeld: de website controleert welke leden het formulier hebben ingevuld."
 
-#: form_sync.py:106
+#: form_sync.py:111
 #, python-format
 msgid "Last check failed: %(error)s"
 msgstr "Laatste controle mislukt: %(error)s"
 
-#: form_sync.py:111
+#: form_sync.py:116
 #, python-format
 msgid "Not connected: %(error)s"
 msgstr "Niet gekoppeld: %(error)s"
 
-#: form_sync.py:113
+#: form_sync.py:118
 #, python-format
 msgid ""
 "Not connected yet. Share the form with %(email)s as editor in Google Forms "
@@ -243,23 +243,27 @@ msgstr "De start moet voor het eind zijn."
 msgid "user"
 msgstr "gebruiker"
 
-#: models.py:315
+#: models.py:316
 msgid "not filled in"
 msgstr "niet ingevuld"
 
-#: models.py:316
+#: models.py:317
 msgid "filled in (checked with Google)"
 msgstr "ingevuld (gecontroleerd bij Google)"
 
-#: models.py:317
+#: models.py:318
 msgid "filled in (according to the member)"
 msgstr "ingevuld (volgens het lid)"
 
-#: models.py:318
+#: models.py:319
 msgid "filled in (marked by an admin)"
 msgstr "ingevuld (aangegeven door een admin)"
 
-#: models.py:336
+#: models.py:322
+msgid "filled in according to the member, but not found at Google"
+msgstr "ingevuld volgens het lid, maar niet gevonden bij Google"
+
+#: models.py:341
 msgid "form filled in at"
 msgstr "formulier ingevuld op"
 
@@ -306,48 +310,60 @@ msgstr "je moet het formulier nog invullen."
 msgid "Fill in the form"
 msgstr "Vul het formulier in"
 
-#: templates/events/event_detail.html:119
+#: templates/events/event_detail.html:121 templates/events/event_form.html:17
+msgid "We could not find your form at Google."
+msgstr "We konden je formulier niet vinden bij Google."
+
+#: templates/events/event_detail.html:122
+msgid "If you did not submit it, please fill it in again."
+msgstr "Als je het niet hebt verzonden, vul het dan opnieuw in."
+
+#: templates/events/event_detail.html:125
+msgid "Check the form"
+msgstr "Controleer het formulier"
+
+#: templates/events/event_detail.html:130
 msgid "You are registered and filled in the form."
 msgstr "Je bent geregistreerd en hebt het formulier ingevuld."
 
-#: templates/events/event_detail.html:126
+#: templates/events/event_detail.html:137
 msgid "Deregistration is closed, contact the committee"
 msgstr "Uitschrijven is gesloten, contacteer de commissie"
 
-#: templates/events/event_detail.html:128
+#: templates/events/event_detail.html:139
 msgid "unregister"
 msgstr "afmelden"
 
-#: templates/events/event_detail.html:133
+#: templates/events/event_detail.html:144
 msgid "Change form"
 msgstr "Verander formulier"
 
-#: templates/events/event_detail.html:142
+#: templates/events/event_detail.html:153
 msgid "Full"
 msgstr "Vol"
 
-#: templates/events/event_detail.html:144
+#: templates/events/event_detail.html:155
 msgid "Not opened"
 msgstr "Niet geopend"
 
-#: templates/events/event_detail.html:146
+#: templates/events/event_detail.html:157
 msgid "Closed"
 msgstr "Gesloten"
 
-#: templates/events/event_detail.html:148
+#: templates/events/event_detail.html:159
 msgid "register"
 msgstr "registreren"
 
-#: templates/events/event_detail.html:158
+#: templates/events/event_detail.html:169
 msgid "registrations open at"
 msgstr "registratie opent op"
 
-#: templates/events/event_detail.html:163
+#: templates/events/event_detail.html:174
 msgid "registrations close at"
 msgstr "registratie sluit op"
 
 #: templates/events/event_form.html:4 templates/events/event_form.html:5
-#: templates/events/event_form.html:22
+#: templates/events/event_form.html:28
 msgid "form for"
 msgstr "form voor"
 
@@ -363,34 +379,74 @@ msgstr ""
 "Vul het formulier hieronder in en druk op de verzendknop aan het eind van het"
 " formulier. Bevestig daarna met de knop onder het formulier."
 
-#: templates/events/event_form.html:16
+#: templates/events/event_form.html:18
+msgid ""
+"You said you submitted it, so your registration counts as complete. If you "
+"did not submit it, fill in the form below and check again."
+msgstr ""
+"Je gaf aan dat je het hebt verzonden, dus je registratie telt als compleet. "
+"Als je het niet hebt verzonden, vul het formulier hieronder in en controleer "
+"opnieuw."
+
+#: templates/events/event_form.html:22
 msgid "You already filled in the form, you can change your answers below."
 msgstr ""
 "Je hebt het formulier al ingevuld, hieronder kun je je antwoorden aanpassen."
 
-#: templates/events/event_form.html:22
+#: templates/events/event_form.html:28
 msgid "Loading..."
 msgstr "Laden..."
 
-#: templates/events/event_form.html:29
+#: templates/events/event_form.html:37
+msgid "We have not received your form yet."
+msgstr "We hebben je formulier nog niet ontvangen."
+
+#: templates/events/event_form.html:38
+msgid ""
+"Make sure you pressed the submit button at the end of the form and saw the "
+"confirmation of Google, then check again. Sometimes it takes a minute before "
+"we see your answers."
+msgstr ""
+"Controleer of je op de verzendknop aan het eind van het formulier hebt "
+"gedrukt en de bevestiging van Google hebt gezien, en controleer dan opnieuw. "
+"Soms duurt het even voordat we je antwoorden zien."
+
+#: templates/events/event_form.html:41
+msgid ""
+"Are you sure you submitted the form? Then you can still complete your "
+"registration, the committee will see that we could not check your form."
+msgstr ""
+"Weet je zeker dat je het formulier hebt verzonden? Dan kun je je registratie "
+"toch afronden, de commissie ziet dan dat we je formulier niet konden "
+"controleren."
+
+#: templates/events/event_form.html:45 templates/events/event_form.html:52
+msgid "Check again"
+msgstr "Opnieuw controleren"
+
+#: templates/events/event_form.html:48
+msgid "I am sure I submitted the form"
+msgstr "Ik weet zeker dat ik het formulier heb verzonden"
+
+#: templates/events/event_form.html:56
 msgid "I submitted the form"
 msgstr "Ik heb het formulier verzonden"
 
-#: templates/events/event_form.html:32
+#: templates/events/event_form.html:59
 msgid "This button works after you submitted the form above."
 msgstr "Deze knop werkt nadat je het formulier hierboven hebt verzonden."
 
-#: templates/events/event_form.html:35
+#: templates/events/event_form.html:63
 msgid "Fill in later"
 msgstr "Later invullen"
 
-#: templates/events/event_form.html:36
-msgid "your registration stays incomplete until you filled in the form"
-msgstr "je registratie blijft onvolledig tot je het formulier hebt ingevuld"
-
-#: templates/events/event_form.html:62
+#: templates/events/event_form.html:63 templates/events/event_form.html:94
 msgid "Back to the event"
 msgstr "Terug naar het evenement"
+
+#: templates/events/event_form.html:65
+msgid "your registration stays incomplete until you filled in the form"
+msgstr "je registratie blijft onvolledig tot je het formulier hebt ingevuld"
 
 #: templates/events/event_list.html:5
 msgid "Events"
@@ -404,64 +460,68 @@ msgstr "Verborgen"
 msgid "Form not filled in"
 msgstr "Formulier niet ingevuld"
 
-#: templates/events/event_list.html:59
+#: templates/events/event_list.html:31
+msgid "Form not found"
+msgstr "Formulier niet gevonden"
+
+#: templates/events/event_list.html:63
 #, python-format
 msgid "+%(counter)s more date"
 msgid_plural "+%(counter)s more dates"
 msgstr[0] "+%(counter)s andere datum"
 msgstr[1] "+%(counter)s andere data"
 
-#: templates/events/event_list.html:82
+#: templates/events/event_list.html:86
 msgid "Add these events to your calendar"
 msgstr "Voeg deze evenementen toe aan jouw kalender"
 
-#: views.py:98
+#: views.py:103
 msgid "This event does not have registrations."
 msgstr "Voor dit evenement kun je je niet registreren."
 
-#: views.py:102
+#: views.py:107
 msgid "The registrations for this event have not opened yet."
 msgstr "De registraties voor dit evenement zijn nog niet geopend."
 
-#: views.py:107
+#: views.py:112
 msgid "The registrations for this event have already closed."
 msgstr "De registraties voor dit evenement zijn al gesloten."
 
-#: views.py:110
+#: views.py:115
 msgid "You have already registered for this event."
 msgstr "Je bent al geregistreerd voor dit evenement."
 
-#: views.py:112
+#: views.py:117
 msgid "This event is already full."
 msgstr "Dit evenement zit vol."
 
-#: views.py:120
+#: views.py:125
 msgid "You successfully registered."
 msgstr "Je bent succesvol geregistreerd."
 
-#: views.py:141
+#: views.py:146
 msgid "Register for the event before filling in the form."
 msgstr "Registreer je voor het evenement voordat je het formulier invult."
 
-#: views.py:181
-msgid ""
-"We have not received your form yet. Fill in all questions and press the "
-"submit button at the end of the form, then try again. If it still does not "
-"work, contact the committee."
-msgstr ""
-"We hebben je formulier nog niet ontvangen. Vul alle vragen in en druk op de "
-"verzendknop aan het eind van het formulier, en probeer het dan opnieuw. Werkt"
-" het nog steeds niet, neem dan contact op met de commissie."
-
-#: views.py:190
+#: views.py:187 views.py:191
 msgid "Thank you, your registration is complete."
 msgstr "Bedankt, je registratie is compleet."
 
-#: views.py:204
+#: views.py:199
+msgid ""
+"We could not find your form at Google. Your registration counts as complete, "
+"but the committee can see that we could not check your form. If you did not "
+"submit it, please fill it in again."
+msgstr ""
+"We konden je formulier niet vinden bij Google. Je registratie telt als "
+"compleet, maar de commissie kan zien dat we je formulier niet konden "
+"controleren. Als je het niet hebt verzonden, vul het dan opnieuw in."
+
+#: views.py:220
 msgid "You are not registered for this event."
 msgstr "Je bent niet geregistreerd voor dit evenement."
 
-#: views.py:209
+#: views.py:225
 msgid ""
 "The registrations for this event have already closed, if you still want to "
 "deregister contact the committee."
@@ -469,10 +529,10 @@ msgstr ""
 "De registraties voor dit evenement zijn al gesloten, als je je nog wil "
 "uitschrijven, contacteer de commissie."
 
-#: views.py:215
+#: views.py:231
 msgid "You successfully unregistered."
 msgstr "Je bent succesvol afgemeld."
 
-#: views.py:248
+#: views.py:264
 msgid "For more details, see the website: "
 msgstr "Voor meer details, zie de website: "

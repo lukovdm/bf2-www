@@ -86,6 +86,10 @@ class Migration(migrations.Migration):
                     ("verified", "filled in (checked with Google)"),
                     ("self_reported", "filled in (according to the member)"),
                     ("manual", "filled in (marked by an admin)"),
+                    (
+                        "not_found",
+                        "filled in according to the member, but not found at Google",
+                    ),
                 ],
                 default="",
                 max_length=16,

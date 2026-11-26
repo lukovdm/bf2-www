@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-25 19:06+0100\n"
+"POT-Creation-Date: 2026-11-26 00:06+0100\n"
 "PO-Revision-Date: 2025-10-18 12:00+0200\n"
 "Last-Translator: Luko <luko@bfrisbee2s.nl>\n"
 "Language-Team: Dutch - The Netherlands <luko@bfrisbee2s.nl>\n"
@@ -19,133 +19,239 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.6\n"
 
-#: models.py:29
-msgid "name"
-msgstr "naam"
+#: admin.py:86
+msgid "Export the registrations of the selected events"
+msgstr "Exporteer de registraties van de geselecteerde evenementen"
 
-#: models.py:31
-msgid "image"
-msgstr "foto"
+#: admin.py:102 models.py:221
+msgid "start"
+msgstr "start"
 
-#: models.py:33
-msgid "start date"
-msgstr "start datum"
+#: admin.py:106 models.py:222
+msgid "end"
+msgstr "eind"
 
-#: models.py:34
-msgid "end date"
-msgstr "eind datum"
+#: admin.py:110 models.py:243
+msgid "dates"
+msgstr "data"
 
-#: models.py:35
-msgid "location"
-msgstr "locatie"
+#: admin.py:114 templates/events/event_detail.html:156
+msgid "registrations"
+msgstr "registraties"
 
-#: models.py:38
-msgid "participant limit"
-msgstr "deelnemerslimiet"
-
-#: models.py:40
-msgid "Don't show who is registered"
-msgstr "Laat niet zien wie is geregistreerd"
-
-#: models.py:43
-msgid "cost"
-msgstr "kosten"
-
-#: models.py:47
-msgid "registration start"
-msgstr "start registratie"
-
-#: models.py:50
-msgid "registration end"
-msgstr "einde registratie"
-
-#: models.py:52
-msgid "Show end date"
-msgstr "Laat eind datum zien"
-
-#: models.py:58
-msgid "Google form link"
-msgstr "Google form link"
-
-#: models.py:62
-msgid "Please enter a google form share link"
-msgstr "Vul a.u.b. een google form deel link in"
-
-#: models.py:93
-msgid "Start date must be before the end date."
-msgstr "Start datum moet voor de einddatum zijn."
-
-#: models.py:99
-msgid "Either both registration start and end need to be set, or neither."
-msgstr "Of de start en einddatum moeten worden gezet, of allebei niet."
-
-#: models.py:107
-msgid "Registration start must be before registration end."
-msgstr "De registratie start moet voor het registratie eind zijn."
-
-#: models.py:113
-msgid "The participant limit must be at least 1, leave it empty for no limit."
-msgstr "Het deelnemerslimiet moet minimaal 1 zijn, laat het leeg voor geen limiet."
-
-#: models.py:137
+#: admin.py:130 models.py:220 models.py:269
 msgid "event"
 msgstr "evenement"
 
-#: models.py:138
-msgid "user"
-msgstr "gebruiker"
+#: admin.py:131
+msgid "first name"
+msgstr "voornaam"
 
-#: models.py:140
+#: admin.py:132
+msgid "last name"
+msgstr "achternaam"
+
+#: admin.py:133
+msgid "email"
+msgstr "e-mail"
+
+#: admin.py:134
+msgid "phone number"
+msgstr "telefoonnummer"
+
+#: admin.py:135 models.py:272
 msgid "registration date"
 msgstr "registratie datum"
 
-#: models.py:141
+#: admin.py:136 models.py:273
 msgid "has paid"
 msgstr "heeft betaald"
 
-#: templates/events/event_detail.html:44
+#: admin.py:150
+msgid "yes"
+msgstr "ja"
+
+#: admin.py:150
+msgid "no"
+msgstr "nee"
+
+#: models.py:56
+msgid "name"
+msgstr "naam"
+
+#: models.py:58
+msgid "image"
+msgstr "foto"
+
+#: models.py:60 models.py:236
+msgid "location"
+msgstr "locatie"
+
+#: models.py:63
+msgid "hidden"
+msgstr "verborgen"
+
+#: models.py:65
+msgid "Hidden events are not shown anywhere on the website, only in the admin."
+msgstr ""
+"Verborgen evenementen worden nergens op de website getoond, alleen in de "
+"admin."
+
+#: models.py:70
+msgid "participant limit"
+msgstr "deelnemerslimiet"
+
+#: models.py:72
+msgid "Don't show who is registered"
+msgstr "Laat niet zien wie is geregistreerd"
+
+#: models.py:79
+msgid "cost"
+msgstr "kosten"
+
+#: models.py:80
+msgid "Leave empty for a free event."
+msgstr "Laat leeg voor een gratis evenement."
+
+#: models.py:86
+msgid "registration start"
+msgstr "start registratie"
+
+#: models.py:88
+msgid ""
+"When the registration opens, by default now. Leave the registration start and"
+" end empty for an event without registration."
+msgstr ""
+"Wanneer de registratie opent, standaard nu. Laat de registratie start en eind"
+" leeg voor een evenement zonder registratie."
+
+#: models.py:95
+msgid "registration end"
+msgstr "einde registratie"
+
+#: models.py:97
+msgid ""
+"When the registration closes. Leave empty to close the registration when the "
+"event starts."
+msgstr ""
+"Wanneer de registratie sluit. Laat leeg om de registratie te sluiten als het "
+"evenement begint."
+
+#: models.py:106
+msgid "Google form link"
+msgstr "Google form link"
+
+#: models.py:110
+msgid "Please enter a google form share link"
+msgstr "Vul a.u.b. een google form deel link in"
+
+#: models.py:177
+msgid "A registration end requires a registration start."
+msgstr "Een registratie eind heeft een registratie start nodig."
+
+#: models.py:186
+msgid "Registration start must be before registration end."
+msgstr "De registratie start moet voor het registratie eind zijn."
+
+#: models.py:193
+msgid "The participant limit must be at least 1, leave it empty for no limit."
+msgstr ""
+"Het deelnemerslimiet moet minimaal 1 zijn, laat het leeg voor geen limiet."
+
+#: models.py:223
+msgid "show end"
+msgstr "laat eind zien"
+
+#: models.py:229
+msgid "label"
+msgstr "label"
+
+#: models.py:230
+msgid "Optional, e.g. 'Day 1' or 'Finals'."
+msgstr "Optioneel, bijvoorbeeld 'Dag 1' of 'Finales'."
+
+#: models.py:237
+msgid "Leave empty to use the location of the event."
+msgstr "Laat leeg om de locatie van het evenement te gebruiken."
+
+#: models.py:242
+msgid "date"
+msgstr "datum"
+
+#: models.py:257 models.py:258
+msgid "The start must be before the end."
+msgstr "De start moet voor het eind zijn."
+
+#: models.py:270
+msgid "user"
+msgstr "gebruiker"
+
+#: templates/admin/events/event/change_form.html:11
+msgid "Export registrations"
+msgstr "Exporteer registraties"
+
+#: templates/events/event_detail.html:27
+msgid "Edit in admin"
+msgstr "Bewerk in admin"
+
+#: templates/events/event_detail.html:33
+msgid ""
+"This event is hidden, only people who manage events can see it on the "
+"website."
+msgstr ""
+"Dit evenement is verborgen, alleen mensen die evenementen beheren kunnen het "
+"op de website zien."
+
+#: templates/events/event_detail.html:50
+#, python-format
+msgid "%(counter)s date"
+msgid_plural "%(counter)s dates"
+msgstr[0] "%(counter)s datum"
+msgstr[1] "%(counter)s data"
+
+#: templates/events/event_detail.html:71
 msgid "free"
 msgstr "gratis"
 
-#: templates/events/event_detail.html:59
+#: templates/events/event_detail.html:92
+msgid "ended"
+msgstr "afgelopen"
+
+#: templates/events/event_detail.html:109
 msgid "Deregistration is closed, contact the committee"
 msgstr "Uitschrijven is gesloten, contacteer de commissie"
 
-#: templates/events/event_detail.html:61
+#: templates/events/event_detail.html:111
 msgid "unregister"
 msgstr "afmelden"
 
-#: templates/events/event_detail.html:66
+#: templates/events/event_detail.html:116
 msgid "Change form"
 msgstr "Verander formulier"
 
-#: templates/events/event_detail.html:75
+#: templates/events/event_detail.html:125
 msgid "Full"
 msgstr "Vol"
 
-#: templates/events/event_detail.html:77
+#: templates/events/event_detail.html:127
 msgid "Not opened"
 msgstr "Niet geopend"
 
-#: templates/events/event_detail.html:79
+#: templates/events/event_detail.html:129
 msgid "Closed"
 msgstr "Gesloten"
 
-#: templates/events/event_detail.html:81
+#: templates/events/event_detail.html:131
 msgid "register"
 msgstr "registreren"
 
-#: templates/events/event_detail.html:91
+#: templates/events/event_detail.html:141
 msgid "registrations open at"
 msgstr "registratie opent op"
 
-#: templates/events/event_detail.html:96
+#: templates/events/event_detail.html:146
 msgid "registrations close at"
 msgstr "registratie sluit op"
-
-#: templates/events/event_detail.html:106
-msgid "registrations"
-msgstr "registraties"
 
 #: templates/events/event_form.html:4 templates/events/event_form.html:5
 msgid "form for"
@@ -159,43 +265,50 @@ msgstr "Inleveren"
 msgid "Events"
 msgstr "Evenementen"
 
-#: templates/events/event_list.html:64
+#: templates/events/event_list.html:22
+msgid "Hidden"
+msgstr "Verborgen"
+
+#: templates/events/event_list.html:55
+#, python-format
+msgid "+%(counter)s more date"
+msgid_plural "+%(counter)s more dates"
+msgstr[0] "+%(counter)s andere datum"
+msgstr[1] "+%(counter)s andere data"
+
+#: templates/events/event_list.html:78
 msgid "Add these events to your calendar"
 msgstr "Voeg deze evenementen toe aan jouw kalender"
 
-#: views.py:70
+#: views.py:90
 msgid "This event does not have registrations."
 msgstr "Voor dit evenement kun je je niet registreren."
 
-#: views.py:74
+#: views.py:94
 msgid "The registrations for this event have not opened yet."
 msgstr "De registraties voor dit evenement zijn nog niet geopend."
 
-#: views.py:79
+#: views.py:99
 msgid "The registrations for this event have already closed."
 msgstr "De registraties voor dit evenement zijn al gesloten."
 
-#: views.py:84
-msgid "This event has already passed."
-msgstr "Dit evenement is al geweest."
-
-#: views.py:87
+#: views.py:102
 msgid "You have already registered for this event."
 msgstr "Je bent al geregistreerd voor dit evenement."
 
-#: views.py:89
+#: views.py:104
 msgid "This event is already full."
 msgstr "Dit evenement zit vol."
 
-#: views.py:94
+#: views.py:109
 msgid "You successfully registered."
 msgstr "Je bent succesvol geregistreerd."
 
-#: views.py:126
+#: views.py:141
 msgid "You are not registered for this event."
 msgstr "Je bent niet geregistreerd voor dit evenement."
 
-#: views.py:131
+#: views.py:146
 msgid ""
 "The registrations for this event have already closed, if you still want to "
 "deregister contact the committee."
@@ -203,10 +316,10 @@ msgstr ""
 "De registraties voor dit evenement zijn al gesloten, als je je nog wil "
 "uitschrijven, contacteer de commissie."
 
-#: views.py:137
+#: views.py:152
 msgid "You successfully unregistered."
 msgstr "Je bent succesvol afgemeld."
 
-#: views.py:162
+#: views.py:185
 msgid "For more details, see the website: "
 msgstr "Voor meer details, zie de website: "

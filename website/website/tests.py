@@ -16,7 +16,7 @@ from cms.utils.apphook_reload import reload_urlconf
 from cms.utils.permissions import set_current_user
 from cms.models import PageContent, Placeholder
 from django.contrib import admin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import Permission, User
 from django.core import mail
 from django.core.management import call_command
 from django.test import TestCase, override_settings
@@ -29,7 +29,7 @@ from djangocms_versioning.models import Version
 
 from boards.models import Board, BoardMembership
 from committees.models import Committee, CommitteeMembership
-from events.models import Event, Registration
+from events.models import Event, EventDate, Registration
 from members.models import Member, MemberSettings
 from members.tokens import default_activate_token_generator
 from website.models import Slideshow
@@ -99,13 +99,15 @@ def make_event(**kwargs):
         location="Nijmegen",
         cost_en="5 euro",
         cost_nl="5 euro",
-        start_date=now + timedelta(days=7),
-        end_date=now + timedelta(days=8),
         registration_start=now - timedelta(days=1),
         registration_end=now + timedelta(days=1),
     )
     defaults.update(kwargs)
-    return Event.objects.create(**defaults)
+    start = defaults.pop("start_date", now + timedelta(days=7))
+    end = defaults.pop("end_date", now + timedelta(days=8))
+    event = Event.objects.create(**defaults)
+    EventDate.objects.create(event=event, start=start, end=end)
+    return event
 
 
 @override_settings(**STATIC_SETTINGS)
@@ -418,6 +420,27 @@ class EventPagesTest(SiteTestCase):
         self.assertIn(b"BEGIN:VCALENDAR", response.content)
         self.assertIn(b"Tournament", response.content)
 
+    def test_event_with_multiple_dates(self):
+        now = timezone.now()
+        event = make_event(name_en="Weekend tournament", location="Main field")
+        EventDate.objects.create(
+            event=event,
+            start=now + timedelta(days=9),
+            end=now + timedelta(days=9, hours=8),
+            label_en="Finals",
+            label_nl="Finales",
+            location="Stadium",
+        )
+        response = self.client.get(self.event.get_absolute_url())
+        self.assertNotContains(response, "event-date-card")
+        response = self.client.get(event.get_absolute_url())
+        self.assertContains(response, "event-date-card", count=2)
+        self.assertContains(response, "Finals")
+        self.assertContains(response, "Stadium")
+        self.assertContains(response, "2 dates")
+        listing = self.client.get(reverse("events:list"))
+        self.assertContains(listing, "+1 more date")
+
     def test_past_events_hidden(self):
         make_event(
             name_en="Old event",
@@ -426,6 +449,85 @@ class EventPagesTest(SiteTestCase):
         )
         response = self.client.get(reverse("events:list"))
         self.assertNotContains(response, "Old event")
+
+
+class HiddenEventTest(SiteTestCase):
+    def setUp(self):
+        super().setUp()
+        self.event = make_event(name_en="Secret meeting", hidden=True)
+        self.member = make_member("member")
+        # Staff without access to events in the admin
+        self.staff = make_member("staffmember")
+        self.staff.is_staff = True
+        self.staff.save()
+        # Committee member that manages the events
+        self.manager = make_member("manager")
+        self.manager.is_staff = True
+        self.manager.save()
+        self.manager.user_permissions.add(
+            Permission.objects.get(codename="view_event"),
+            Permission.objects.get(codename="change_event"),
+        )
+
+    def test_not_shown_without_access_to_events(self):
+        for user in (None, self.member, self.staff):
+            if user:
+                self.client.force_login(user)
+            self.assertNotContains(
+                self.client.get(reverse("events:list")), "Secret meeting"
+            )
+            self.assertEqual(
+                self.client.get(self.event.get_absolute_url()).status_code, 404
+            )
+            response = self.client.post(
+                reverse("events:register", args=[self.event.pk])
+            )
+            self.assertIn(response.status_code, (302, 404))
+        self.assertFalse(Registration.objects.exists())
+
+    def test_shown_greyed_out_to_event_managers(self):
+        self.client.force_login(self.manager)
+        response = self.client.get(reverse("events:list"))
+        self.assertContains(response, "Secret meeting")
+        self.assertContains(response, "event-hidden")
+        self.assertContains(response, "Hidden")
+        response = self.client.get(self.event.get_absolute_url())
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "This event is hidden")
+
+    def test_not_in_ics(self):
+        self.client.force_login(self.manager)
+        self.assertNotIn(
+            b"Secret meeting", self.client.get(reverse("events:ics")).content
+        )
+
+
+class EventAdminButtonTest(SiteTestCase):
+    def setUp(self):
+        super().setUp()
+        self.event = make_event()
+        self.admin_url = reverse("admin:events_event_change", args=[self.event.pk])
+
+    def test_shown_with_change_permission(self):
+        manager = make_member("manager")
+        manager.is_staff = True
+        manager.save()
+        manager.user_permissions.add(Permission.objects.get(codename="change_event"))
+        self.client.force_login(manager)
+        response = self.client.get(self.event.get_absolute_url())
+        self.assertContains(response, self.admin_url)
+        self.assertEqual(self.client.get(self.admin_url).status_code, 200)
+
+    def test_not_shown_without_change_permission(self):
+        staff = make_member("staffmember")
+        staff.is_staff = True
+        staff.save()
+        staff.user_permissions.add(Permission.objects.get(codename="view_event"))
+        for user in (None, make_member("member"), staff):
+            if user:
+                self.client.force_login(user)
+            response = self.client.get(self.event.get_absolute_url())
+            self.assertNotContains(response, self.admin_url)
 
 
 class CommitteePagesTest(SiteTestCase):
@@ -752,11 +854,13 @@ class AdminTest(SiteTestCase):
                 "location": "Sportcentrum",
                 "cost_en": "free",
                 "cost_nl": "gratis",
-                "start_date_0": (now + timedelta(days=1)).strftime("%Y-%m-%d"),
-                "start_date_1": "10:00:00",
-                "end_date_0": (now + timedelta(days=1)).strftime("%Y-%m-%d"),
-                "end_date_1": "12:00:00",
-                "show_end_date": "on",
+                "dates-TOTAL_FORMS": "1",
+                "dates-INITIAL_FORMS": "0",
+                "dates-0-start_0": (now + timedelta(days=1)).strftime("%Y-%m-%d"),
+                "dates-0-start_1": "10:00:00",
+                "dates-0-end_0": (now + timedelta(days=1)).strftime("%Y-%m-%d"),
+                "dates-0-end_1": "12:00:00",
+                "dates-0-show_end": "on",
                 "registration_set-TOTAL_FORMS": "0",
                 "registration_set-INITIAL_FORMS": "0",
             },

@@ -6,6 +6,7 @@ from events.views import (
     EventRegisterView,
     EventUnregisterView,
     EventFormView,
+    EventFormDoneView,
     EventICSView,
 )
 
@@ -15,5 +16,6 @@ urlpatterns = [
     path("<int:pk>/", EventDetailView.as_view(), name="detail"),
     path("<int:pk>/register/", EventRegisterView.as_view(), name="register"),
     path("<int:pk>/form", EventFormView.as_view(), name="form"),
+    path("<int:pk>/form/done/", EventFormDoneView.as_view(), name="form_done"),
     path("<int:pk>/unregister/", EventUnregisterView.as_view(), name="unregister"),
 ]

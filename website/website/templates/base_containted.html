@@ -3,6 +3,7 @@
 {% block middle %}
     <div class="container-fluid py-5">
         <div class="container bg-light shadow rounded mt-4 mb-4 container-padding page-content">
+            {% include "messages.html" %}
             {% block pagecontent %}{% endblock pagecontent %}
         </div>
     </div>

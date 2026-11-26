@@ -4,12 +4,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView
 from ics import Calendar, Organizer
 
+from events.form_sync import sync_form
 from events.models import Event, EventDate, Registration
 
 
@@ -47,6 +49,11 @@ class EventListView(ListView):
             }
             for event in events:
                 event.registration = registrations.get(event.pk)
+                if event.registration and (
+                    event.registration.form_pending or event.registration.form_not_found
+                ):
+                    sync_form(event)
+                    event.registration.refresh_from_db()
 
         return events
 
@@ -68,9 +75,15 @@ class EventDetailView(DetailView):
         context["dates"] = self.object.sorted_dates
 
         if self.request.user.is_authenticated:
-            context["registration"] = Registration.objects.filter(
-                user=self.request.user, event=context["event"]
+            registration = Registration.objects.filter(
+                user=self.request.user, event=self.object
             ).first()
+            if registration and (
+                registration.form_pending or registration.form_not_found
+            ):
+                sync_form(self.object)
+                registration.refresh_from_db()
+            context["registration"] = registration
 
         return context
 
@@ -106,26 +119,92 @@ class EventRegisterView(LoginRequiredMixin, View):
             Registration.objects.create(
                 event=event, user=request.user, has_payed=False if event.cost else None
             )
-            messages.success(request, _("You successfully registered."))
-
             if event.form_link:
+                # The form page explains that the registration is not complete
                 return redirect("events:form", pk=event.pk)
+            messages.success(request, _("You successfully registered."))
 
         return redirect(event)
 
 
 class EventFormView(LoginRequiredMixin, TemplateView):
+    """The form of an event, embedded in the website."""
+
     template_name = "events/event_form.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return super().dispatch(request, *args, **kwargs)
+        self.event = get_object_or_404(events_for(request.user), pk=kwargs["pk"])
+        if not self.event.form_link:
+            raise Http404("Event has no form")
+        self.registration = Registration.objects.filter(
+            event=self.event, user=request.user
+        ).first()
+        if self.registration is None:
+            messages.error(
+                request, _("Register for the event before filling in the form.")
+            )
+            return redirect(self.event)
+        # Connects the form if needed, so the registration code can be prefilled
+        sync_form(self.event)
+        self.registration.refresh_from_db()
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        event = get_object_or_404(events_for(self.request.user), pk=kwargs["pk"])
-        if not event.form_link:
-            raise Http404("Event has no form")
-
-        context["event"] = event
-        context["next"] = event.get_absolute_url()
+        context["event"] = self.event
+        context["registration"] = self.registration
+        context["form_url"] = self.event.form_link_for(self.registration)
+        context["not_received"] = bool(self.request.GET.get("not_received"))
+        context["next"] = self.event.get_absolute_url()
         return context
+
+
+class EventFormDoneView(LoginRequiredMixin, View):
+    """The member says they submitted the form.
+
+    For connected forms the website checks this with Google, otherwise the
+    member is trusted. When Google does not have the form, the member can
+    still say they are sure, the registration is then marked as such so the
+    committee can check it.
+    """
+
+    http_method_names = ["post"]
+
+    def post(self, request, *args, **kwargs):
+        event = get_object_or_404(events_for(request.user), pk=kwargs["pk"])
+        registration = get_object_or_404(Registration, event=event, user=request.user)
+
+        if not (registration.form_pending or registration.form_not_found):
+            return redirect(event)
+
+        # Connects the form first if needed
+        sync_form(event, force=True)
+        registration.refresh_from_db()
+        if not event.form_connected:
+            registration.mark_form_completed(Registration.FORM_SELF_REPORTED)
+            messages.success(request, _("Thank you, your registration is complete."))
+            return redirect(event)
+
+        if registration.form_status == Registration.FORM_VERIFIED:
+            messages.success(request, _("Thank you, your registration is complete."))
+            return redirect(event)
+
+        if request.POST.get("sure"):
+            registration.mark_form_completed(Registration.FORM_NOT_FOUND)
+            messages.warning(
+                request,
+                _(
+                    "We could not find your form at Google. Your registration counts "
+                    "as complete, but the committee can see that we could not check "
+                    "your form. If you did not submit it, please fill it in again."
+                ),
+            )
+            return redirect(event)
+
+        # The form page explains that the form was not received
+        return redirect(reverse("events:form", args=[event.pk]) + "?not_received=1")
 
 
 class EventUnregisterView(LoginRequiredMixin, View):

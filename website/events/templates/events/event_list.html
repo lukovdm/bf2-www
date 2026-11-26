@@ -10,7 +10,7 @@
         {% for event in object_list %}
             <div class="col">
                 <a href="{% url 'events:detail' pk=event.pk %}" class="text-decoration-none text-reset">
-                    <div class="card display-card mb-4 shadow{% if event.hidden %} event-hidden{% endif %}">
+                    <div class="card display-card mb-4 shadow{% if event.hidden %} event-hidden{% endif %}{% if event.registration.form_pending %} border border-danger border-3{% endif %}">
                         <div class="display-card-image card-img-top overflow-hidden position-relative" style="
                                 {% if event.image %}
                                     background-image: url('{{ event.image.url }}');
@@ -22,7 +22,15 @@
                                     <i class="fa-solid fa-eye-slash pe-1"></i>{% trans "Hidden" %}
                                 </span>
                             {% endif %}
-                            {% if event.registration %}
+                            {% if event.registration.form_pending %}
+                                <span class="badge bg-danger position-absolute bottom-0 start-0 m-2 fs-6">
+                                    <i class="fa-solid fa-triangle-exclamation pe-1"></i>{% trans "Form not filled in" %}
+                                </span>
+                            {% elif event.registration.form_not_found %}
+                                <span class="badge bg-warning text-dark position-absolute bottom-0 start-0 m-2 fs-6">
+                                    <i class="fa-solid fa-triangle-exclamation pe-1"></i>{% trans "Form not found" %}
+                                </span>
+                            {% elif event.registration %}
                                 <div class="display-card-image-check">
                                     <i class="fa-regular fa-circle-check fs-4"></i>
                                 </div>

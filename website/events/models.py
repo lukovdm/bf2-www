@@ -1,3 +1,5 @@
+import secrets
+
 from cms.models import PlaceholderRelationField
 from cms.utils.placeholder import get_placeholder_from_slot
 from django.contrib.auth.models import User
@@ -21,6 +23,8 @@ from django.db.models import (
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.timezone import now
+
+from events.google_forms import published_id
 from django.utils.translation import gettext_lazy as _
 from filer.fields.image import FilerImageField
 
@@ -46,6 +50,18 @@ class EventQuerySet(QuerySet):
     def upcoming(self):
         """Events with a date that has not ended yet, sorted by that date."""
         return self.with_dates().filter(last_end__gt=now()).order_by("next_start", "pk")
+
+
+def embed_link(link):
+    """The link of a Google Form to show it in the website.
+
+    Share links come with different parameters (``usp=sf_link``,
+    ``usp=publish-editor``, ...), only the id of the form is kept.
+    """
+    form = published_id(link)
+    if not form:
+        return link.strip()
+    return f"https://docs.google.com/forms/d/e/{form}/viewform?embedded=true"
 
 
 class Event(Model, metaclass=ModelTranslateMeta):
@@ -111,6 +127,32 @@ class Event(Model, metaclass=ModelTranslateMeta):
             ),
         ],
     )
+
+    # Filled in by the website when the form is connected, see google_forms.py
+    google_form_id = CharField(max_length=128, blank=True, default="", editable=False)
+    google_form_question = CharField(
+        max_length=64, blank=True, default="", editable=False
+    )
+    google_form_checked_at = DateTimeField(null=True, blank=True, editable=False)
+    google_form_error = CharField(
+        max_length=500, blank=True, default="", editable=False
+    )
+
+    @property
+    def form_connected(self):
+        return bool(
+            self.form_link and self.google_form_id and self.google_form_question
+        )
+
+    def form_link_for(self, registration):
+        """The form link for a registration, with its code filled in if possible."""
+        from events.google_forms import entry_id, prefilled_link
+
+        if self.form_connected and registration is not None:
+            return prefilled_link(
+                self.form_link, entry_id(self.google_form_question), registration.code
+            )
+        return self.form_link
 
     @cached_property
     def description_placeholder(self):
@@ -200,10 +242,8 @@ class Event(Model, metaclass=ModelTranslateMeta):
     def save(self, *args, **kwargs):
         if self.pk:
             self.fill_default_registration_end()
-        if self.form_link and not self.form_link.endswith("embedded=true"):
-            embed_form_link = self.form_link.strip()
-            embed_form_link = embed_form_link.removesuffix("usp=sf_link")
-            self.form_link = embed_form_link + "embedded=true"
+        if self.form_link:
+            self.form_link = embed_link(self.form_link)
 
         super().save(*args, **kwargs)
 
@@ -263,6 +303,13 @@ class EventDate(Model, metaclass=ModelTranslateMeta):
         return f"{self.start:%Y-%m-%d %H:%M} - {self.end:%Y-%m-%d %H:%M}"
 
 
+def make_registration_code():
+    """A short code that is easy to read and type, e.g. K7M2-XQ4P."""
+    alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
+    code = "".join(secrets.choice(alphabet) for _ in range(8))
+    return f"{code[:4]}-{code[4:]}"
+
+
 class Registration(Model):
     """Registration of a user to a registrable event"""
 
@@ -271,3 +318,52 @@ class Registration(Model):
 
     date = DateTimeField(default=now, verbose_name=_("registration date"))
     has_payed = BooleanField(null=True, blank=True, verbose_name=_("has paid"))
+
+    FORM_NOT_DONE = ""
+    FORM_VERIFIED = "verified"
+    FORM_SELF_REPORTED = "self_reported"
+    FORM_MANUAL = "manual"
+    FORM_NOT_FOUND = "not_found"
+    FORM_STATUSES = [
+        (FORM_NOT_DONE, _("not filled in")),
+        (FORM_VERIFIED, _("filled in (checked with Google)")),
+        (FORM_SELF_REPORTED, _("filled in (according to the member)")),
+        (FORM_MANUAL, _("filled in (marked by an admin)")),
+        (
+            FORM_NOT_FOUND,
+            _("filled in according to the member, but not found at Google"),
+        ),
+    ]
+
+    code = CharField(
+        max_length=12,
+        unique=True,
+        default=make_registration_code,
+        editable=False,
+        verbose_name=_("registration code"),
+    )
+    form_status = CharField(
+        max_length=16,
+        choices=FORM_STATUSES,
+        blank=True,
+        default=FORM_NOT_DONE,
+        verbose_name=_("form"),
+    )
+    form_completed_at = DateTimeField(
+        null=True, blank=True, verbose_name=_("form filled in at")
+    )
+
+    @property
+    def form_pending(self):
+        """The event has a form and the member did not fill it in yet."""
+        return bool(self.event.form_link) and not self.form_status
+
+    @property
+    def form_not_found(self):
+        """The member says they submitted the form, but Google does not have it."""
+        return self.form_status == self.FORM_NOT_FOUND
+
+    def mark_form_completed(self, status):
+        self.form_status = status
+        self.form_completed_at = now()
+        self.save(update_fields=["form_status", "form_completed_at"])

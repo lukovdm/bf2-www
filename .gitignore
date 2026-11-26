@@ -139,6 +139,7 @@ database/
 
 # secrets
 config/secrets.env
+config/google-service-account.json
 
 .vscode/
 

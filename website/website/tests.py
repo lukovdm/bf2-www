@@ -388,6 +388,19 @@ class EventPagesTest(SiteTestCase):
         self.client.post(reverse("events:unregister", args=[self.event.pk]))
         self.assertFalse(Registration.objects.filter(user=self.user).exists())
 
+    def test_messages_are_shown(self):
+        # The messages of the views were never shown, base.html had them
+        # commented out
+        self.event.limit = 1
+        self.event.save()
+        Registration.objects.create(event=self.event, user=make_member("first"))
+        self.client.force_login(self.user)
+        response = self.client.post(
+            reverse("events:register", args=[self.event.pk]), follow=True
+        )
+        self.assertContains(response, "This event is already full.")
+        self.assertContains(response, "alert-danger")
+
     def test_register_requires_login(self):
         response = self.client.post(reverse("events:register", args=[self.event.pk]))
         self.assertEqual(response.status_code, 302)
@@ -528,6 +541,144 @@ class EventAdminButtonTest(SiteTestCase):
                 self.client.force_login(user)
             response = self.client.get(self.event.get_absolute_url())
             self.assertNotContains(response, self.admin_url)
+
+
+class EventFormFlowTest(SiteTestCase):
+    """Registering for an event with a (Google) form."""
+
+    form_link = "https://docs.google.com/forms/d/e/1FAIpQLSdemo/viewform?embedded=true"
+
+    def setUp(self):
+        super().setUp()
+        self.event = make_event(name_en="Form event", form_link=self.form_link)
+        self.user = make_member("former")
+        self.client.force_login(self.user)
+
+    def register(self):
+        response = self.client.post(reverse("events:register", args=[self.event.pk]))
+        self.assertRedirects(
+            response,
+            reverse("events:form", args=[self.event.pk]),
+            fetch_redirect_response=False,
+        )
+        return Registration.objects.get(event=self.event, user=self.user)
+
+    def test_pending_form_is_shown_clearly(self):
+        registration = self.register()
+        self.assertTrue(registration.form_pending)
+
+        form_page = self.client.get(reverse("events:form", args=[self.event.pk]))
+        self.assertContains(form_page, "Your registration is not complete yet")
+        self.assertContains(form_page, 'id="form-done"')
+        self.assertContains(form_page, "1FAIpQLSdemo")
+
+        detail = self.client.get(self.event.get_absolute_url())
+        self.assertContains(detail, "Your registration is not complete")
+        self.assertContains(detail, reverse("events:form", args=[self.event.pk]))
+
+        listing = self.client.get(reverse("events:list"))
+        self.assertContains(listing, "Form not filled in")
+
+    def test_confirm_without_google_connection(self):
+        registration = self.register()
+        response = self.client.post(reverse("events:form_done", args=[self.event.pk]))
+        self.assertRedirects(
+            response, self.event.get_absolute_url(), fetch_redirect_response=False
+        )
+        registration.refresh_from_db()
+        self.assertEqual(registration.form_status, Registration.FORM_SELF_REPORTED)
+
+        detail = self.client.get(self.event.get_absolute_url())
+        self.assertNotContains(detail, "Your registration is not complete")
+        self.assertContains(detail, "You are registered and filled in the form")
+        listing = self.client.get(reverse("events:list"))
+        self.assertNotContains(listing, "Form not filled in")
+
+    def test_confirm_with_google_connection(self):
+        from unittest import mock
+
+        from events.tests import FakeGoogleForms
+
+        google = FakeGoogleForms()
+        form = google.add_form("1FAIpQLSdemo")
+        with (
+            self.settings(GOOGLE_SERVICE_ACCOUNT_FILE="/fake/key.json"),
+            mock.patch("events.google_forms.get_client", return_value=google),
+        ):
+            registration = self.register()
+            form_page = self.client.get(reverse("events:form", args=[self.event.pk]))
+            # The form is connected when it is first used and the code prefilled
+            self.assertContains(form_page, registration.code)
+
+            # Not submitted yet
+            response = self.client.post(
+                reverse("events:form_done", args=[self.event.pk]), follow=True
+            )
+            self.assertContains(response, "We have not received your form yet")
+            registration.refresh_from_db()
+            self.assertTrue(registration.form_pending)
+
+            # Submitted
+            form["codes"].add(registration.code)
+            self.client.post(reverse("events:form_done", args=[self.event.pk]))
+            registration.refresh_from_db()
+            self.assertEqual(registration.form_status, Registration.FORM_VERIFIED)
+
+    def test_sure_without_google_response(self):
+        from unittest import mock
+
+        from events.tests import FakeGoogleForms
+
+        google = FakeGoogleForms()
+        form = google.add_form("1FAIpQLSdemo")
+        done_url = reverse("events:form_done", args=[self.event.pk])
+        with (
+            self.settings(GOOGLE_SERVICE_ACCOUNT_FILE="/fake/key.json"),
+            mock.patch("events.google_forms.get_client", return_value=google),
+        ):
+            registration = self.register()
+
+            # Google does not have the form: the member can say they are sure
+            response = self.client.post(done_url, follow=True)
+            self.assertContains(response, "We have not received your form yet")
+            self.assertContains(response, "I am sure I submitted the form")
+
+            response = self.client.post(done_url, {"sure": "1"}, follow=True)
+            self.assertContains(response, "We could not find your form at Google")
+            registration.refresh_from_db()
+            self.assertEqual(registration.form_status, Registration.FORM_NOT_FOUND)
+            self.assertFalse(registration.form_pending)
+            self.assertContains(
+                self.client.get(reverse("events:list")), "Form not found"
+            )
+
+            # The response reaches Google later, the next check upgrades it
+            form["codes"].add(registration.code)
+            Event.objects.filter(pk=self.event.pk).update(google_form_checked_at=None)
+            detail = self.client.get(self.event.get_absolute_url())
+            registration.refresh_from_db()
+            self.assertEqual(registration.form_status, Registration.FORM_VERIFIED)
+            self.assertNotContains(detail, "We could not find your form at Google")
+            self.assertContains(detail, "You are registered and filled in the form")
+
+    def test_sure_option_only_after_failed_check(self):
+        self.register()
+        page = self.client.get(reverse("events:form", args=[self.event.pk]))
+        self.assertNotContains(page, "I am sure I submitted the form")
+
+    def test_form_page_requires_registration(self):
+        response = self.client.get(reverse("events:form", args=[self.event.pk]))
+        self.assertRedirects(
+            response, self.event.get_absolute_url(), fetch_redirect_response=False
+        )
+
+    def test_event_without_form_has_no_warning(self):
+        event = make_event(name_en="No form event")
+        self.client.post(reverse("events:register", args=[event.pk]))
+        self.assertNotContains(
+            self.client.get(event.get_absolute_url()),
+            "Your registration is not complete",
+        )
 
 
 class CommitteePagesTest(SiteTestCase):
